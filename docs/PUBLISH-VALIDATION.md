@@ -1,5 +1,7 @@
 # Publication preparation validation
 
+For the completed v3.5.0 publication, see [published results](PUBLISHED-3.5.md). The record below preserves the earlier local preparation scope.
+
 Date: **2026-10-22**, Asia/Shanghai. Application version: **3.4.0**.
 
 This record covers local release preparation. It does not imply a remote repository, successful GitHub Actions run, GHCR publication or public-server deployment already exists.

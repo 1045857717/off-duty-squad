@@ -20,13 +20,13 @@
 ## 远程验收 / Remote acceptance
 
 - [x] Created public repository and pushed reviewed source.
-- [ ] CI passes on the actual main commit.
+- [x] CI passes on the actual main commit.
 - [x] Configured repository topics, standard issue labels and private vulnerability reporting; branch rules remain optional.
-- [ ] Push the first stable tag and complete all Release jobs.
-- [ ] Verify Windows assets, SHA256SUMS and image digest.
-- [ ] Confirm GHCR package visibility separately from repository visibility.
-- [ ] Pull the published image without local build dependencies.
+- [x] Push the first stable tag and complete all Release jobs.
+- [x] Verify Windows assets, SHA256SUMS and image digest.
+- [x] Confirm GHCR package visibility separately from repository visibility.
+- [x] Pull the published image without local build dependencies.
 - [ ] Verify the public server with two independent machines, including WebSocket, chat and reconnect.
-- [ ] Confirm Star History when public data becomes available; no star data is fabricated.
+- [x] Star History is configured for the public repository. It currently has 0 stars; no growth data is fabricated.
 
-The maintainer approved public publication and the MIT license on 2026-10-22. Remote checks below are updated as publication proceeds.
+Public MIT publication and v3.5.0 release are complete. See [published verification](PUBLISHED-3.5.md). Public-server cross-machine testing remains a later deployment acceptance step.

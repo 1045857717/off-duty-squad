@@ -42,7 +42,7 @@ npm run release:check -- --tag v3.5.1
 git add .
 git commit -m "chore(release): prepare v3.5.1"
 git push origin main
-gh run list --workflow ci.yml --limit 5
+gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --limit 5
 ```
 
 示例版本 3.5.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：

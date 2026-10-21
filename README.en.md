@@ -123,7 +123,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.5.0**. This release improves painted joint extraction, continuous attacks, weapon grips and health/shield readability; see [3.5 notes](docs/RELEASE-3.5.md). Previous local acceptance covered 92 core checks and 74 browser scenarios; scope and environment are recorded in the [3.4 notes](docs/RELEASE-3.4.md). The CI badge reflects actual runs in this repository.
+Current version: **3.5.0**. This release improves painted joint extraction, continuous attacks, weapon grips and health/shield readability; see [3.5 notes](docs/RELEASE-3.5.md). This release passed 103 core checks, 5 release-contract checks and 32 browser scenarios. Its CI and release workflow passed; anonymous image pull and runtime checks were verified. See [publication results](docs/PUBLISHED-3.5.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [performance notes](docs/PERFORMANCE-3.4.md).

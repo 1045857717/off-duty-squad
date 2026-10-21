@@ -40,7 +40,7 @@ npm run release:check -- --tag v3.5.1
 git add .
 git commit -m "chore(release): prepare v3.5.1"
 git push origin main
-gh run list --workflow ci.yml --limit 5
+gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --limit 5
 ```
 
 Replace the example version with your intended version. Wait for CI on the exact main commit, then tag:

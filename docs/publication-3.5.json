@@ -1,0 +1,32 @@
+{
+  "version": "3.5.0",
+  "releasedAt": "2026-10-22T02:48:56+08:00",
+  "sourceCommit": "466406aa24a50a93e5f2969490fb46d79d19d259",
+  "repository": "https://github.com/1045857717/off-duty-squad",
+  "visibility": "public",
+  "license": "MIT",
+  "release": "https://github.com/1045857717/off-duty-squad/releases/tag/v3.5.0",
+  "ci": "https://github.com/1045857717/off-duty-squad/actions/runs/39654453080",
+  "releaseWorkflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39654842924",
+  "image": "ghcr.io/1045857717/off-duty-squad:3.5.0",
+  "imageDigest": "sha256:4a75f56036f400290a18f26f7a74210c63d6093f6a87d7afb1d591b033d262e4",
+  "platforms": ["linux/amd64", "linux/arm64"],
+  "anonymousPullVerified": true,
+  "publishedImageSmoke": {
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true
+  },
+  "composeForceRecreationPreservesScores": true,
+  "desktop": {
+    "bytes": 142929386,
+    "sha256": "733777044b3be67f1f56301d0978a3902747c0d4dd461c7f7111b5edaa6ddc3a",
+    "matchesReleaseAndImage": true,
+    "signed": false
+  },
+  "serverDeployedToPublicHost": false
+}
