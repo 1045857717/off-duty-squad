@@ -28,5 +28,21 @@
     "matchesReleaseAndImage": true,
     "signed": false
   },
-  "serverDeployedToPublicHost": false
+  "serverDeployedToPublicHost": false,
+  "platformVerification": {
+    "workflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39658237307",
+    "amd64": {
+      "nodeArchitecture": "x64",
+      "health": true,
+      "twoClientSmoke": true,
+      "scorePersistence": true
+    },
+    "arm64": {
+      "nodeArchitecture": "arm64",
+      "environment": "GitHub Linux runner with QEMU",
+      "health": true,
+      "twoClientSmoke": true,
+      "scorePersistence": true
+    }
+  }
 }

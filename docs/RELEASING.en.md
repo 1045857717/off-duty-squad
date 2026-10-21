@@ -87,3 +87,11 @@ The READMEs include real screenshots, bilingual navigation, status badges and St
 - [Automatic token authentication](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication)
 - [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
 - [Star History](https://github.com/star-history/star-history)
+
+## 已发布镜像复验 / Verify an existing published image
+
+```bash
+gh workflow run verify-release.yml --ref main --field version=3.5.0
+```
+
+此工作流拉取指定版本并在 Linux amd64 / arm64 上执行真实双客户端检查；ARM64 使用 GitHub Linux 测试环境的 QEMU。它不会重建或覆盖已发布镜像。This checks the existing version on both platforms without rebuilding or replacing it.
