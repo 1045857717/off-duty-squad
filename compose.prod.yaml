@@ -1,0 +1,23 @@
+# Production: pull a published version; no source checkout or build required.
+services:
+  off-duty:
+    image: ${IMAGE_REPOSITORY:-ghcr.io/1045857717/off-duty-squad}:${GAME_VERSION:-3.4.0}
+    ports:
+      - "${PORT:-3000}:3000"
+    restart: unless-stopped
+    environment:
+      PORT: "3000"
+      NODE_ENV: production
+      DATA_DIR: /app/data
+      PUBLIC_URL: ${PUBLIC_URL:-}
+    volumes:
+      - abyss-scores:/app/data
+    init: true
+    stop_grace_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  abyss-scores:

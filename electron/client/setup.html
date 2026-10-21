@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <meta charset="utf-8" /><meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'"
+  /><title>连接下班小队</title
+  ><style>
+    body {
+      margin: 0;
+      padding: 48px;
+      background: #182d39;
+      color: #e5dfcc;
+      font:
+        15px "Microsoft YaHei",
+        sans-serif;
+    }
+    small {
+      color: #c7a56c;
+      letter-spacing: 3px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+    p {
+      line-height: 1.9;
+      color: #a5b9bc;
+    }
+    label {
+      display: block;
+      margin-top: 28px;
+    }
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 10px;
+      padding: 14px;
+      background: #253f4b;
+      border: 1px solid #597682;
+      color: #fff;
+      font-size: 15px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      background: #d3b77d;
+      color: #1a3039;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #status {
+      font-size: 13px;
+      color: #e7b79b;
+    }</style
+  ><small>BEFORE CLOCKING OUT</small>
+  <h1>同一地址，一起下班。</h1>
+  <p>
+    输入网页游戏的服务器地址。首次连接后保存在这台设备；也可将下载的
+    game-server.json 放到 EXE 旁。
+  </p>
+  <form>
+    <label
+      >服务器地址<input
+        id="url"
+        type="url"
+        required
+        placeholder="https://your-game.example.com"
+        autocomplete="url" /></label
+    ><button>连接小队服务器</button>
+    <p id="status" role="status"></p>
+  </form>
+  <script src="setup.js"></script>
+</html>

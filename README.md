@@ -1,0 +1,142 @@
+<div align="center">
+
+# 工位发癫局 · Off Duty Squad
+
+**白天当牛马，下班打怪物。**
+
+一款把职场日常变成抽象战场的 1–4 人在线合作生存游戏。组队、随机成长、挑战丧尸与离谱 KPI，在下班前打出自己的构筑。
+
+[English](README.en.md) · [Docker 部署](docs/DEPLOYMENT.md) · [版本发布](docs/RELEASING.md) · [操作指南](docs/CONTROLS.md) · [更新日志](CHANGELOG.md)
+
+[![CI](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml/badge.svg)](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/1045857717/off-duty-squad)](https://github.com/1045857717/off-duty-squad/releases)
+[![Stars](https://img.shields.io/github/stars/1045857717/off-duty-squad?style=flat)](https://github.com/1045857717/off-duty-squad/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-3D6B54.svg)](LICENSE)
+![Node.js](https://img.shields.io/badge/Node.js-24_LTS-339933?logo=nodedotjs&logoColor=white)
+![Players](https://img.shields.io/badge/Players-1%E2%80%934-E47832)
+
+![游戏大厅](docs/images/lobby.webp)
+
+</div>
+
+## 游戏特色
+
+- **两种合作玩法**：六章目标式行动“夺回下班权”，以及程序化大地图、持续加压的“园区发癫局”无尽生存。
+- **28 个职场职业**：IT、行政、创意与抽象职业各有固定专属技能；开局进入地图后共同选好首个攻击模块，再开始对局。
+- **可成长的随机构筑**：16 种攻击模块、条件匹配的成长分支、Lv.4 / Lv.8 进化；抽到的是当前能用的成长方向。
+- **真实联机小队**：房主发起、队员准备、3 秒倒计时；支持中途加入、0–3 名 AI、观战、聊天、倒地呼救与协作救援。
+- **清楚的战斗反馈**：敌人蓄力与攻击动作、持续范围特效、暴击与护盾反馈、伤害来源、全局 BOSS 血条和实时伤害榜。
+- **图鉴与周期排名**：职业、敌人和技能图鉴；按模式、难度划分的日 / 周 / 月 / 年 / 总榜。
+- **网页与 Windows 小窗**：浏览器独立小窗；可选 Windows 便携客户端提供无边框、透明度、置顶、隐藏与全局恢复。
+- **九种工作界面**：任务、看板、文档、表格、Excel、邮件、VS Code 风格、IDEA 风格与数据面板。IDE 界面是本地交互模拟。
+
+| 目标式行动                           | 无尽生存                              |
+| ------------------------------------ | ------------------------------------- |
+| 六章任务、收集与交互、完成目标后撤离 | 大地图随机灾变、递增怪潮、每五波 BOSS |
+| 明确的章节进度与终点                 | 持续构筑与生存纪录                    |
+
+![实际对局与任务简报](docs/images/gameplay.webp)
+
+## 快速开始
+
+### 本地运行
+
+需要 Node.js **24 LTS**（最低 22.12）和 npm。
+
+```bash
+git clone https://github.com/1045857717/off-duty-squad.git
+cd off-duty-squad
+npm ci
+npm run build
+npm start
+```
+
+打开 **http://localhost:3000**。开发时使用 `npm run dev`，以前端终端输出的 Vite 地址为准。Windows 便携客户端从 [Releases](https://github.com/1045857717/off-duty-squad/releases) 下载，解压后输入与你的网页相同的服务器地址。
+
+### Docker 部署
+
+服务器只需 Docker Engine 和 Compose v2。下载仓库中的 [compose.prod.yaml](compose.prod.yaml) 与 [.env.example](.env.example)，放在同一固定目录，将后者复制为 `.env`。
+
+```bash
+cp .env.example .env
+# 编辑 .env：设置 GAME_VERSION、PUBLIC_URL 和端口
+docker compose -f compose.prod.yaml pull
+docker compose -f compose.prod.yaml up -d --wait
+curl -fsS http://127.0.0.1:3000/api/health
+```
+
+正式发布镜像：`ghcr.io/1045857717/off-duty-squad:<版本号>`，支持 Linux amd64 / arm64。镜像仅在版本发布工作流成功后可用；仓库公开与镜像公开需分别确认。公网推荐 HTTPS 反向代理，并保留 WebSocket Upgrade。
+
+更新时先备份排行榜数据，在 `.env` 中修改 `GAME_VERSION`，再次运行 `pull` 和 `up -d --wait`。回退时改回上一版本执行相同步骤。**对局存在内存中，更新会结束当前对局；排行榜保存在数据卷中。** 请勿执行 `down -v`。完整说明见 [部署文档](docs/DEPLOYMENT.md)。
+
+## 操作
+
+| 按键          | 功能                     | 按键             | 功能           |
+| ------------- | ------------------------ | ---------------- | -------------- |
+| WASD / 方向键 | 移动                     | 鼠标             | 瞄准           |
+| 空格 / 右键   | 冲刺，设置中可启用 Shift | Q                | 职业专属技能   |
+| E             | 持续交互 / 救援          | T                | 自动攻击开关   |
+| 1 / 2 / 3     | 选择成长选项             | H                | 倒地呼救       |
+| Enter         | 聊天，发送后返回操作     | U                | 展开成长选项   |
+| F2            | 设置                     | F7               | 伤害榜         |
+| F8            | 工作界面                 | F9               | 小窗           |
+| F10           | 隐藏 / 恢复              | Ctrl + Shift + B | 桌面端全局恢复 |
+
+完整快捷键与浏览器能力边界见 [操作指南](docs/CONTROLS.md)。普通网页透明度只能改变内容显示，无法让桌面透过浏览器或隐藏整个浏览器进程；这些功能由桌面端提供。
+
+## 开发与验证
+
+```bash
+npm run check         # 核心测试 + TypeScript + 生产构建
+npm run format:check  # 代码格式
+npm run browser:install
+# 启动服务后按需运行：
+npm run test:feedback
+```
+
+技术栈：**React 19 + TypeScript + Phaser 3 / WebGL + Express + Socket.IO**。Node 服务器负责权威模拟，客户端插值渲染；同一服务提供页面、HTTP API 与 WebSocket。Windows 客户端基于 Electron。
+
+| 目录                 | 用途                               |
+| -------------------- | ---------------------------------- |
+| `src/`               | 大厅、HUD、Phaser 场景与客户端渲染 |
+| `server/`            | 房间、权威模拟、联机协议与排行榜   |
+| `shared/`            | 类型、职业、成长树与数值定义       |
+| `public/art/`        | 运行时美术资源与生成来源           |
+| `electron/`          | Windows 小窗与便携客户端           |
+| `tests/`             | 模拟、网络、渲染与浏览器回归       |
+| `.github/workflows/` | 持续集成、桌面端与镜像发布         |
+
+![图鉴](docs/images/codex.webp)
+
+<details>
+<summary>查看结算统计与工作界面</summary>
+
+![结算统计](docs/images/results.webp)
+
+![VS Code 风格工作界面](docs/images/work-mode.webp)
+
+</details>
+
+## 当前状态与边界
+
+版本 **3.4.0**。此前本地验收包含 92 项核心检查与 74 组浏览器功能场景；原始环境与范围见 [版本记录](docs/RELEASE-3.4.md)。GitHub CI 的状态以本仓库运行结果为准。
+
+- 目前采用单实例房间服务，多个副本不会共享房间或在线人数。正式扩容前需要独立的房间路由与共享存储设计。
+- 支持 144 FPS 目标档位，实际帧率受设备、分辨率与怪物数量影响。已测密集场景约 79 FPS，**不保证全场景 144 FPS**，详见 [性能记录](docs/PERFORMANCE-3.4.md)。
+- 浏览器小窗依赖浏览器能力；Windows 便携包尚未代码签名，目前不提供 macOS / Linux 桌面包。
+- 现有网络回归在本机多客户端及人工延迟条件下完成，尚未覆盖公网跨机器长时间压力测试。
+- 排行榜按北京时间统计，记录最近 50,000 场成绩；聊天与实时房间不会持久保存。
+
+## 参与与支持
+
+欢迎提交问题与改进建议。请先阅读 [贡献指南](CONTRIBUTING.md)；漏洞请遵循 [安全报告流程](SECURITY.md)。
+
+大厅提供 AI 中转站入口及赞助展示位，不插入战斗画面。广告位联系 **QQ：1045857717**；默认赞助链接为 [api.xiebc.cc](https://api.xiebc.cc)。
+
+本项目采用 [MIT 许可证](LICENSE)。第三方依赖保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)；项目美术来源见 [ART-3.4](docs/ART-3.4.md)。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=1045857717/off-duty-squad&type=Date)](https://www.star-history.com/#1045857717/off-duty-squad&Date)
+
+图表由 Star History 第三方服务提供，读取公开仓库的 Star 数据。它不是 GitHub 内置图表，新仓库暂无数据时可能暂不显示。

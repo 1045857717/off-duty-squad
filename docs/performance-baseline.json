@@ -1,0 +1,22 @@
+{
+  "textUpdates": 3680,
+  "renderCalls": 1839,
+  "gameFPS": 229.82328975946166,
+  "duration": 8001.800000011921,
+  "frames": 1838,
+  "fps": 229.69831787813516,
+  "p50": 4.199999999999818,
+  "p95": 5,
+  "p99": 8.799999999999272,
+  "over25": 0,
+  "over50": 0,
+  "mutations": 12,
+  "longtasks": 0,
+  "phase": "playing",
+  "entities": 3,
+  "phaserGlobal": true,
+  "scriptMs": 4654.019,
+  "taskMs": 5836.22,
+  "heapMB": 16.128520965576172,
+  "nodes": 596
+}

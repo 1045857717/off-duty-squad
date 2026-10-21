@@ -1,0 +1,37 @@
+name: "Bug / 问题反馈"
+description: "Report a reproducible problem / 提交可重现的问题"
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities, use SECURITY.md. 请勿公开提交漏洞细节、密钥或个人数据。"
+  - type: input
+    id: version
+    attributes:
+      label: "Version / 版本"
+      placeholder: "3.4.0 or commit SHA"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment / 运行环境"
+      description: "OS, browser/client, mode, player count; resolution and DPR for performance reports."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Steps to reproduce / 重现步骤"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected and actual result / 预期与实际结果"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: "Screenshots and sanitized logs / 截图与已脱敏日志"

@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: 8-cell additive visual effect texture atlas for a mature office apocalypse action game. EXACT 4 columns by 2 rows. Every cell identical, no gutters, PURE BLACK background (#000000), isolated centered effect, no overlap. Not a UI mockup.
+Primary request: Refined hand-painted game VFX sprites with directional brush strokes, subtle sparks and atmospheric wisps, elegant controlled luminous edges and detailed inner textures, optimized for additive compositing on a dark battlefield. Effects restrained, dense focal centre, clean falloff to pure black around outer 15% of every cell. No scenery or people.
+Order row1: (1) warm ivory crescent metallic melee impact slash, (2) fractured amber electrical branching arc, (3) cool icy teal frost bloom with fine shards, (4) sage-green disinfectant mist ring with a soft centre.
+Order row2: (5) protective blue translucent hexagonal barrier circle, (6) rust-orange coffee splash/heat burst, (7) golden critical impact with sharp directional streaks, (8) soft warm green healing motes and vertical glow.
+Composition: EXACT 4x2 grid, each sprite fully centered in its own tile, each effect consumes central 65-75% width and height. Plain black pixels between effects. No borders, no text, no labels, no UI, no logos. Painterly realistic game VFX, not cartoon stickers, no giant neon outlines.

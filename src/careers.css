@@ -1,0 +1,715 @@
+/* 3.1 — field dossier, human faces and restrained cinematic materials. */
+:root {
+  --ready-green: #257c54;
+  --paper: #f4f0e5;
+  --ink: #243b45;
+}
+.pixel-avatar {
+  object-fit: cover !important;
+  image-rendering: auto !important;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px #122a3322;
+}
+.nav-avatar .pixel-avatar {
+  object-fit: cover !important;
+}
+.job-picker {
+  container: job-picker/inline-size;
+}
+.job-picker > header {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.job-picker > header span {
+  font-size: 10px;
+  color: #698179;
+}
+.job-picker header label {
+  flex: 1;
+  min-width: 110px;
+  border-radius: 4px;
+  padding: 7px 9px;
+}
+.job-picker input {
+  font-size: 11px;
+  width: 100%;
+}
+.career-filters {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin: 9px 0 12px;
+}
+.career-filters button {
+  font:
+    10px "Microsoft YaHei",
+    sans-serif;
+  background: #ebece2;
+  color: #5e776f;
+  padding: 6px 8px;
+  border: 1px solid #ccd4c8;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.career-filters button[aria-pressed="true"] {
+  color: #f3efe4;
+  background: #294c5b;
+  border-color: #294c5b;
+}
+.career-filters small {
+  font-size: 8px;
+  opacity: 0.65;
+  margin-left: 5px;
+}
+.job-grid {
+  max-height: 350px;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  scrollbar-width: thin;
+}
+.job-grid > button {
+  padding: 8px;
+  min-height: 80px;
+  border-radius: 5px;
+  background: #f6f4e9;
+  overflow: hidden;
+}
+.job-grid > button > span {
+  flex: 1;
+  min-width: 0;
+}
+.job-grid > button img {
+  width: 52px !important;
+  height: 59px !important;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.job-grid strong {
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+}
+.job-grid small {
+  font-size: 10px;
+  color: #72816c;
+  line-height: 1.5;
+}
+.job-grid > button.selected {
+  background: #e1eadd;
+  border: 1px solid #6d9a83;
+}
+.job-picker.large .job-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-height: 380px;
+  gap: 9px;
+}
+.job-picker.large .job-grid > button {
+  padding: 10px;
+  min-height: 120px;
+  gap: 10px;
+}
+.job-picker.large .job-grid > button img {
+  width: 72px !important;
+  height: 90px !important;
+}
+.job-picker.large .job-grid strong {
+  font-size: 13px;
+}
+.job-picker.large .job-grid em {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #718173;
+}
+.careers-coming {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px dashed #bbc7b7;
+  margin-top: 12px;
+  padding-top: 11px;
+}
+.careers-coming strong {
+  display: block;
+  font-size: 11px;
+  color: #55776b;
+  font-weight: 500;
+}
+.careers-coming small {
+  font-size: 9px;
+  color: #839180;
+  display: block;
+  margin-top: 5px;
+}
+.careers-coming button,
+.career-empty button,
+.career-suggestion button {
+  border: 1px solid #a5b8a7;
+  background: #e4eadc;
+  color: #4e7166;
+  padding: 7px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.career-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 10px;
+  color: #5e7d70;
+  gap: 9px;
+  text-align: center;
+}
+.career-empty p {
+  font-size: 11px;
+}
+.career-suggestion {
+  margin-top: 10px;
+  padding: 12px;
+  background: #e9eddf;
+  border-radius: 4px;
+}
+.career-suggestion label {
+  font-size: 11px;
+  display: block;
+}
+.career-suggestion input {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid #b5c4b1;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fffdf1;
+  color: #3f6559;
+}
+.career-suggestion p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #37795a;
+}
+.skill-details {
+  background: #e8ede1;
+  border: 1px solid #c1d0bc;
+  border-left: 3px solid #74947f;
+  border-radius: 5px;
+  padding: 13px;
+  margin: 12px 0;
+  color: #375b50;
+}
+.skill-details header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.skill-details header > span {
+  font: 9px Consolas;
+  background: #294c58;
+  color: #e5e8d8;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+.skill-details header strong {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+}
+.skill-details header b {
+  font: 10px Consolas;
+  color: #82936b;
+}
+.skill-details p {
+  font-size: 11px !important;
+  line-height: 1.75;
+  color: #5d7567 !important;
+}
+.skill-details dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 12px;
+  margin: 12px 0;
+}
+.skill-details dl > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  border-bottom: 1px solid #becbb73f;
+  padding: 4px 0;
+}
+.skill-details dt {
+  font-size: 10px;
+  color: #75907b;
+}
+.skill-details dd {
+  font:
+    12px Consolas,
+    "Microsoft YaHei";
+  margin: 0;
+  color: #335e52;
+  font-weight: 600;
+}
+.skill-details > small {
+  display: block;
+  font-size: 9px;
+  line-height: 1.7;
+  color: #84937d;
+}
+.role-description > .skill-details {
+  margin-bottom: 0;
+  padding: 10px;
+}
+.role-description > .skill-details header strong {
+  font-size: 11px;
+}
+.skill-details.compact dl {
+  gap: 5px;
+}
+.skill-details.compact dd {
+  font-size: 10px;
+}
+/* Lobby key art is a real generated bitmap, while all labels remain selectable DOM. */
+.page-heading {
+  min-height: 240px;
+  margin: 12px 0 22px;
+  padding: 44px 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, #102331f2 0%, #152d36c4 43%, #18313a00 76%),
+    url("/art/lobby-office-v31.webp") center 45% / cover;
+  color: #eee7d0;
+  box-shadow: 0 6px 20px #172c3426;
+}
+.page-heading .eyebrow {
+  color: #cba775;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.page-heading h1 {
+  color: #f0e8d3;
+  font-size: 34px;
+  max-width: 550px;
+  line-height: 1.45;
+  text-shadow: 0 2px 7px #08121e55;
+}
+.page-heading h1 > span {
+  color: #b8c7b5;
+}
+.page-heading:after {
+  color: #c3b48c;
+  right: 30px;
+  bottom: 22px;
+  font-size: 10px;
+}
+.first-time-hint {
+  position: relative;
+  z-index: 1;
+}
+.ready-room {
+  background: linear-gradient(150deg, #f8f4e9, #e7e9df);
+  padding: 24px 24px 18px;
+  overflow: auto;
+}
+.ready-room-heading {
+  padding-bottom: 13px;
+  border-bottom: 1px solid #c7d0c1;
+  margin-bottom: 18px;
+}
+.ready-room-heading h2 {
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: #284b58;
+}
+.ready-room-heading p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #718477;
+}
+.ready-roster {
+  gap: 12px;
+}
+.ready-seat {
+  padding: 12px 10px 0;
+  background: #fffdf3;
+  border: 1px solid #c4cfc0;
+  border-radius: 5px;
+  box-shadow: 0 3px 8px #263e3820;
+  overflow: hidden;
+}
+.ready-seat.is-ready {
+  border-color: #83ad91;
+}
+.ready-seat.is-waiting {
+  border-color: #c8b68e;
+}
+.ready-portrait {
+  height: 120px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #c5c5b7;
+}
+.ready-portrait img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 28%;
+  animation: portrait-breathe 7s ease-in-out infinite;
+  transform-origin: center 70%;
+}
+.ready-seat h3 {
+  font-size: 14px;
+  color: #244e4a;
+  margin: 12px 0 6px;
+}
+.ready-role {
+  font-size: 10px;
+  color: #6a8272;
+}
+.ready-loadout {
+  font-size: 11px;
+  color: #516f5e;
+  gap: 6px;
+  border-color: #d9dfcf;
+  margin-top: 9px;
+  padding: 9px 0;
+}
+.ready-seat footer {
+  padding: 9px 0;
+  margin: 0;
+  font-size: 11px;
+  border-top: 1px solid #d3ddc9;
+}
+.ready-seat.is-ready footer {
+  color: #23834f !important;
+  font-weight: 700;
+  background: #e5f0e0;
+}
+.ready-seat.is-ready footer svg {
+  color: #27905a !important;
+}
+.ready-seat.is-waiting footer {
+  color: #a1804b;
+}
+.ready-mode-brief {
+  margin: 12px 0;
+  background: #edf0e3;
+  border: 1px solid #ced7c3;
+  padding: 11px;
+}
+.ready-mode-brief h3 {
+  font-size: 13px;
+}
+.ready-mode-brief p {
+  font-size: 10px;
+  line-height: 1.65;
+}
+.ready-mode-brief > b {
+  display: none;
+}
+.ready-rules {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+}
+.ready-rules label {
+  font-size: 10px;
+  color: #6e846f;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.ready-rules select {
+  background: #fffdf2;
+  border: 1px solid #bccbb7;
+  border-radius: 3px;
+  padding: 8px 9px;
+  color: #3e675a;
+  font: 11px "Microsoft YaHei";
+  flex: 1;
+  min-width: 0;
+}
+.ready-skill-expand {
+  margin: 10px 0;
+  color: #5c796a;
+  font-size: 11px;
+}
+.ready-skill-expand summary {
+  cursor: pointer;
+  padding: 7px 0;
+}
+.ready-launch {
+  padding-top: 13px;
+  border-top: 1px solid #c5d1bb;
+}
+.ready-launch > div > strong {
+  color: #358551 !important;
+}
+.ready-launch .btn-primary {
+  background: #2b7155;
+  color: #f0f4df;
+  border: 1px solid #41866a;
+}
+.ready-room .portrait-scan {
+  display: none;
+}
+.desktop-entry {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #a6b7ac;
+  background: #e6ece2;
+  color: #365f55;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  margin: 12px 0;
+}
+.desktop-entry > span {
+  flex: 1;
+  font-size: 13px;
+}
+.desktop-entry small {
+  display: block;
+  font-size: 10px;
+  color: #7b8e7c;
+  margin-top: 4px;
+}
+.desktop-download {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.desktop-download-art {
+  background:
+    linear-gradient(120deg, #162d39e8, #23434ccc),
+    url("/art/lobby-office-v31.webp") center/cover;
+  color: #e3dbc7;
+  width: 100%;
+  padding: 25px;
+  border-radius: 5px;
+}
+.desktop-download-art strong {
+  display: block;
+  margin: 13px 0 7px;
+  font-size: 20px;
+}
+.desktop-download-art p {
+  font-size: 12px;
+  color: #b4c5b8;
+}
+.desktop-download ol {
+  padding-left: 22px;
+  font-size: 12px;
+  line-height: 2.2;
+  color: #607c68;
+}
+.desktop-download > label {
+  width: 100%;
+  font-size: 11px;
+  color: #738b70;
+}
+.desktop-download input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px;
+  box-sizing: border-box;
+}
+.desktop-download-link {
+  width: 100%;
+  justify-content: center;
+}
+.desktop-download > small {
+  font-size: 10px;
+  color: #899b80;
+  line-height: 1.8;
+}
+.top-actions {
+  gap: 4px;
+}
+.top-actions button {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+.app.in-run .skill-details {
+  background: #213e46;
+  border-color: #4f716a;
+  color: #d4ddbf;
+}
+.app.in-run .skill-details p,
+.app.in-run .skill-details dd {
+  color: #c7d5b3 !important;
+}
+@keyframes portrait-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+@container job-picker (max-width:460px) {
+  .job-picker.large .job-grid {
+    grid-template-columns: 1fr;
+  }
+  .job-picker.large .job-grid > button {
+    min-height: 110px;
+  }
+  .job-picker.large .job-grid > button > span {
+    min-width: 100px;
+  }
+}
+@media (min-width: 1600px) {
+  .job-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .job-grid > button {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .job-grid > button img {
+    width: 100% !important;
+    height: 85px !important;
+  }
+  .job-grid > button small {
+    font-size: 9px;
+  }
+}
+@media (max-width: 900px) {
+  .page-heading {
+    min-height: 220px;
+    padding: 28px 22px;
+  }
+  .page-heading h1 {
+    font-size: 27px;
+  }
+  .ready-roster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ready-portrait {
+    height: 110px;
+  }
+  .ready-seat h3 {
+    font-size: 12px;
+  }
+  .ready-rules {
+    grid-template-columns: 1fr;
+  }
+  .top-actions .desktop-download-button > span {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  .page-heading {
+    min-height: 235px;
+    padding: 28px 19px;
+    background-position: 62% center;
+  }
+  .page-heading h1 {
+    font-size: 25px;
+    max-width: 270px;
+  }
+  .page-heading:after {
+    right: 18px;
+    bottom: 18px;
+    font-size: 9px;
+  }
+  .ready-room {
+    padding: 16px 12px;
+  }
+  .ready-room-heading h2 {
+    font-size: 21px;
+  }
+  .ready-roster {
+    gap: 8px;
+  }
+  .ready-portrait {
+    height: 90px;
+  }
+  .ready-seat {
+    padding: 8px 7px 0;
+  }
+  .ready-seat footer {
+    font-size: 10px;
+  }
+  .ready-mode-emblem {
+    display: none;
+  }
+  .desktop-download-art strong {
+    font-size: 16px;
+  }
+  .top-actions .desktop-download-button {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ready-portrait img {
+    animation: none;
+  }
+}
+.game-stage:has(.ready-room) .chat-open {
+  top: 16px;
+  bottom: auto;
+  right: 16px;
+}
+.game-stage:has(.ready-room) .ready-code {
+  padding-right: 85px;
+}
+.game-stage:has(.ready-room) .chat-panel {
+  top: 60px;
+  bottom: auto;
+  max-height: 70%;
+}
+.ready-room {
+  padding-bottom: 18px;
+}
+.ready-launch {
+  position: sticky;
+  bottom: 0;
+  z-index: 6;
+  background: #edf0e4f7;
+  padding: 14px 0 2px;
+  box-shadow: 0 -12px 16px #eef0e4e8;
+}
+.ready-roster {
+  height: auto !important;
+  min-height: 285px !important;
+}
+.ready-seat {
+  min-height: 285px;
+}
+.ready-room-heading .eyebrow {
+  letter-spacing: 1.5px;
+}
+.team-slot.occupied.is-ready .slot-info > small,
+.team-slot.occupied.is-ready .slot-status {
+  color: #23834f !important;
+}
+.page-heading {
+  background-position: center 25%;
+}
+@media (max-width: 620px) {
+  .ready-roster {
+    min-height: 520px !important;
+  }
+  .ready-seat {
+    min-height: 255px;
+  }
+  .ready-launch {
+    gap: 10px;
+  }
+  .ready-launch .btn {
+    min-width: 110px;
+  }
+  .page-heading {
+    background-position: 62% 22%;
+  }
+}

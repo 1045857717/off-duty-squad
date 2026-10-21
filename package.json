@@ -1,0 +1,74 @@
+{
+  "name": "off-duty-squad",
+  "version": "3.4.0",
+  "private": true,
+  "type": "module",
+  "description": "工位发癫局 — 1–4人抽象职场合作闯关 / 随机构筑无尽生存",
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c green,cyan \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
+    "build": "tsc --noEmit && vite build",
+    "start": "tsx server/index.ts",
+    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts && node --test tests/release.test.mjs",
+    "desktop": "electron electron/main.cjs",
+    "check": "npm test && npm run build",
+    "browser:install": "playwright install chromium",
+    "test:browser": "tsx tests/browser-abyss.ts",
+    "desktop:smoke": "electron electron/main.cjs --compact --smoke-test",
+    "format:check": "prettier --check src server shared tests electron scripts/*.mjs *.json *.ts index.html",
+    "test:windows": "node tests/browser-windows.mjs",
+    "test:pip": "node tests/browser-pip.mjs",
+    "test:performance": "node tests/performance.mjs",
+    "test:quality": "node tests/browser-quality.mjs",
+    "test:stress": "tsx tests/stress.ts",
+    "desktop:performance": "electron electron/main.cjs --compact --smoke-test --perf-test",
+    "test:abyss": "tsx tests/browser-abyss.ts",
+    "test:recovery": "tsx tests/browser-recovery.ts",
+    "test:combat": "tsx tests/browser-combat.ts",
+    "test:arsenal": "tsx tests/browser-arsenal.ts",
+    "test:identity": "tsx tests/browser-identity.ts",
+    "test:launch": "tsx tests/browser-launch.ts",
+    "test:growth": "tsx tests/browser-growth.ts",
+    "test:office": "tsx tests/browser-office.ts",
+    "test:careers": "tsx tests/browser-careers.ts",
+    "test:comedy": "tsx tests/browser-comedy.ts",
+    "test:polish": "tsx tests/browser-polish.ts",
+    "test:turn": "tsx tests/browser-turn-regression.ts",
+    "test:feedback": "tsx tests/browser-feedback.ts",
+    "release:check": "node scripts/verify-release.mjs",
+    "desktop:package": "python scripts/package-desktop.py"
+  },
+  "dependencies": {
+    "express": "4.22.3",
+    "phaser": "3.90.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "socket.io": "4.8.1",
+    "socket.io-client": "4.8.1",
+    "tsx": "4.19.3"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "@types/node": "22.15.3",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "@vitejs/plugin-react": "4.4.1",
+    "concurrently": "9.1.2",
+    "electron": "41.10.7",
+    "playwright": "1.61.1",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3",
+    "vite": "6.4.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1045857717/off-duty-squad.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1045857717/off-duty-squad/issues"
+  },
+  "homepage": "https://github.com/1045857717/off-duty-squad#readme",
+  "license": "MIT"
+}

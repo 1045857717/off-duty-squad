@@ -1,0 +1,1422 @@
+/* 3.2 / 工位发癫局 — semantic cream, ink and tangerine. */
+:root {
+  --bg: #f3efe5;
+  --panel: #fffdf7;
+  --text: #24363d;
+  --muted: #657477;
+  --dim: #768287;
+  --border: #d4d7cc;
+  --accent: #e57c3e;
+  --accent-ink: #fff;
+  --ui-surface: #fffdf7;
+  --ui-tint: #f0e6d2;
+  --ui-ink: #24363d;
+  --ui-secondary: #576c73;
+  --ui-line: #d1d5cc;
+  --ui-orange: #d76227;
+  --ui-teal: #276a73;
+  --ui-success: #24734b;
+  --office-paper: #fffaf0;
+  --office-ink: #24363d;
+  --office-blue: #276a73;
+  --office-orange: #d76227;
+  color: #24363d;
+  background: #f3efe5;
+}
+body,
+.app {
+  background: #f3efe5;
+  color: var(--ui-ink);
+}
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #d96f2f;
+  outline-offset: 3px;
+}
+button:active {
+  transform: translateY(1px);
+}
+button {
+  transition:
+    background-color 0.18s,
+    color 0.18s,
+    border-color 0.18s,
+    box-shadow 0.18s;
+}
+.sidebar {
+  background: #253c46;
+  color: #dae4df;
+  border-right: 0;
+}
+.brand-mark {
+  background: #ffbf6b;
+  box-shadow: 2px 3px 0 #0e2631;
+}
+.brand-mark i {
+  background: #29434a;
+}
+.nav-item {
+  color: #c2d1cf;
+}
+.nav-item.active {
+  background: #fff2d4;
+  color: #2b4c56;
+  box-shadow: 3px 0 0 #e78545 inset;
+}
+.nav-item:hover {
+  background: #36535b;
+  color: #fff8e7;
+}
+.topbar {
+  background: #fffdf6f5;
+  border-color: #d8d8cd;
+}
+.topbar .brand-name {
+  color: #253f49;
+}
+.top-actions button {
+  background: #fffdf7;
+  border: 1px solid #c7d1cc;
+  color: #344e57;
+  min-height: 36px;
+  box-shadow: none;
+  border-radius: 5px;
+}
+.top-actions button:hover {
+  background: #fae8ce;
+  border-color: #cc8957;
+}
+.top-actions kbd {
+  background: #eee9db;
+  border-color: #d9d1be;
+  color: #596e70;
+  font-size: 9px;
+}
+.connection {
+  color: #476b62;
+}
+.connection i {
+  background: #3c9566;
+}
+.page-heading {
+  background:
+    linear-gradient(90deg, #fcf3dfef 0, #fff1d8b5 40%, #ffefcd00 75%),
+    url("/art/lobby-comedy-v32.webp") center 34% / cover;
+  border: 1px solid #e5cba7;
+  box-shadow: 0 5px 16px #51402612;
+  min-height: 270px;
+  padding: 42px 34px;
+}
+.page-heading .eyebrow {
+  color: #965224;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.page-heading h1 {
+  color: #273a41;
+  text-shadow: none;
+  font-size: 38px;
+  font-weight: 800;
+  max-width: 600px;
+  line-height: 1.4;
+}
+.page-heading h1 > span {
+  color: #b85226;
+}
+.page-heading:after {
+  content: "友情提示：老板画的饼，终于能造成伤害了。";
+  color: #744e32;
+  right: 26px;
+  bottom: 20px;
+  font-size: 12px;
+}
+.first-time-hint {
+  color: #344f52;
+}
+.first-time-hint button {
+  color: #276a73;
+}
+.panel,
+.team-panel,
+.game-panel,
+.route-section,
+.public-lobby {
+  background: var(--ui-surface);
+  border-color: var(--ui-line);
+}
+.team-panel {
+  box-shadow: 0 4px 12px #203b4510;
+}
+.panel-top h2,
+.team-panel h2,
+.public-lobby h2,
+.section-label {
+  color: var(--ui-ink);
+}
+.eyebrow {
+  color: #8a6138;
+}
+.team-slot {
+  border-color: #d7d9ce;
+  background: #f9f6ec;
+}
+.team-slot.occupied {
+  background: #f8f5e9;
+  border-color: #c6d4c6;
+}
+.team-slot.self {
+  background: #f3ead6;
+  border-color: #c7a769;
+}
+.slot-info strong {
+  color: #293f47;
+}
+.slot-info small {
+  color: #5b736d;
+}
+.slot-info strong em {
+  color: #527356;
+  background: #e3e9d5;
+}
+.slot-info .mini-health {
+  background: #dbe1d3;
+}
+.room-box {
+  background: #f3e9d3;
+  border-color: #dfc9a4;
+}
+.room-code {
+  color: #8c5d2c;
+}
+.team-hint {
+  color: #667d75;
+}
+.section-label {
+  font-size: 12px;
+}
+.section-label > span {
+  color: #778175;
+}
+.job-picker > header > span {
+  color: #65756e;
+}
+.career-filters button {
+  background: #f6efdf;
+  color: #415d60;
+  border-color: #d6d4c6;
+  min-height: 32px;
+  font-size: 11px;
+}
+.career-filters button[aria-pressed="true"] {
+  background: #294f59;
+  color: #fff5dc;
+  border-color: #294f59;
+}
+.career-filters small {
+  font-size: 9px;
+  opacity: 0.85;
+}
+.job-grid > button {
+  background: #fffbf1;
+  border-color: #d6d6c9;
+  box-shadow: none;
+}
+.job-grid > button.selected {
+  background: #f9e4c4;
+  border-color: #d99046;
+  box-shadow: 3px 0 0 #e58b43 inset;
+}
+.job-grid > button:hover {
+  background: #f2e7d2;
+  border-color: #c4a36d;
+}
+.job-grid strong {
+  color: #2f4e55;
+  font-size: 12px;
+}
+.job-grid small {
+  color: #6e6b59;
+  font-size: 10px;
+}
+.job-grid em {
+  color: #6b776a !important;
+  font-size: 11px !important;
+}
+.job-grid img {
+  filter: none;
+}
+.career-filters {
+  gap: 6px;
+}
+.careers-coming strong {
+  color: #6e5134;
+  font-size: 12px;
+}
+.careers-coming small {
+  color: #686f62;
+  font-size: 10px;
+}
+.careers-coming button,
+.career-suggestion button,
+.career-empty button {
+  background: #f3e3c9;
+  color: #71502e;
+  border-color: #d0af7a;
+  min-height: 34px;
+}
+.career-suggestion {
+  background: #f5ebd7;
+}
+.career-suggestion label,
+.career-empty {
+  color: #3b5e5a;
+}
+.skill-details {
+  background: #f4eddc;
+  border-color: #dfcba9;
+  border-left-color: #da8a42;
+}
+.skill-details header > span {
+  background: #2e5961;
+  color: #fff3d8;
+}
+.skill-details header strong {
+  color: #354f53;
+}
+.skill-details p {
+  color: #526663 !important;
+  font-size: 12px !important;
+}
+.skill-details dt {
+  color: #66766a;
+  font-size: 11px;
+}
+.skill-details dd {
+  color: #294f56;
+}
+.skill-details > small {
+  color: #667365;
+  font-size: 10px;
+}
+.skill-details .skill-mechanism {
+  border-top: 1px solid #ded2b9;
+  padding-top: 8px;
+}
+.role-description {
+  background: #fbf5e7;
+  border-color: #ded4bc;
+}
+.role-description > span {
+  color: #6d542e !important;
+}
+.role-description.active {
+  background: #f3eddf;
+  border-color: #d9c7a1;
+}
+.btn-primary {
+  background: #df7a38;
+  color: #fff8ea;
+  border: 1px solid #cc6a2c;
+  box-shadow: 0 2px 0 #ba5a28;
+}
+.btn-primary:hover:not(:disabled) {
+  background: #cb6427;
+}
+.btn-secondary {
+  background: #eceddf;
+  color: #355b5a;
+  border-color: #bfcbbb;
+}
+.solo-button {
+  color: #496e63;
+  background: #edf0e0;
+  border-color: #cbd5bd;
+}
+.leave-button {
+  color: #a75c3a;
+  border-color: #dec8ac;
+  background: #fffaf1;
+}
+.rules-selector {
+  margin: 16px 0;
+  padding: 18px;
+  background: #fffaf0;
+  border: 1px solid #dcd4bf;
+  border-radius: 7px;
+}
+.rules-selector fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 16px;
+  min-width: 0;
+}
+.rules-selector fieldset:last-child {
+  margin-bottom: 0;
+}
+.rules-selector legend {
+  font-size: 13px;
+  font-weight: 700;
+  color: #304f58;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.rules-selector legend span {
+  float: right;
+  color: #717a66;
+  font-size: 10px;
+  font-weight: 400;
+}
+.mode-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.mode-cards > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  text-align: left;
+  background: #f9f5e8;
+  border: 1px solid #d5d7c7;
+  border-radius: 6px;
+  padding: 16px;
+  min-height: 106px;
+  color: #345763;
+}
+.mode-cards > button[aria-pressed="true"] {
+  background: #ffedd1;
+  border: 2px solid #d78a43;
+  padding: 15px;
+  box-shadow: 0 3px 0 #e5c495;
+}
+.mode-cards > button:hover {
+  border-color: #a8884c;
+  background: #f9e9cf;
+}
+.mode-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #e8eddf;
+  border-radius: 9px;
+  color: #46736e;
+  flex-shrink: 0;
+}
+.mode-cards > button[aria-pressed="true"] .mode-icon {
+  background: #f2c893;
+  color: #9c4a26;
+}
+.mode-cards button > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.mode-cards strong {
+  font-size: 19px;
+  letter-spacing: 0.4px;
+  color: #354850;
+}
+.mode-cards small {
+  font-size: 10px;
+  color: #9e6637;
+}
+.mode-cards em {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #697d70;
+  font-style: normal;
+}
+.mode-cards i {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  color: #b9662f;
+}
+.difficulty-pills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.difficulty-pills > button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  background: #f4f2e7;
+  border: 1px solid #cdd5c7;
+  border-radius: 5px;
+  padding: 12px 8px;
+  color: #526e67;
+  min-height: 63px;
+}
+.difficulty-pills strong {
+  font-size: 12px;
+}
+.difficulty-pills small {
+  font-size: 10px;
+  color: #707b68;
+  display: block;
+  width: 100%;
+}
+.difficulty-pills > button[aria-pressed="true"] {
+  background: #e4eddf;
+  border-color: #6f987c;
+  box-shadow: inset 0 2px #80a384;
+  color: #275d4d;
+}
+.ready-room {
+  background: #fff9ee;
+  color: #304f53;
+  padding: 24px 24px 18px;
+}
+.ready-room:before {
+  display: none;
+}
+.ready-room-heading h2 {
+  color: #2c4d58;
+  font-size: 26px;
+}
+.ready-room-heading p {
+  color: #65796b;
+  font-size: 12px;
+}
+.ready-room-heading .eyebrow {
+  color: #946237;
+}
+.ready-code {
+  color: #78603e;
+}
+.ready-seat {
+  background: #fbf5e9;
+  border-color: #d7d1bc;
+  box-shadow: 0 3px 7px #41362416;
+}
+.ready-seat.is-ready {
+  border-color: #86a78b;
+}
+.ready-seat h3 {
+  color: #304f53;
+}
+.ready-seat footer {
+  font-size: 12px;
+}
+.ready-seat.is-ready footer {
+  color: #24734b !important;
+  background: #e8f1e0;
+}
+.ready-seat.is-waiting footer {
+  color: #9a622f;
+}
+.ready-role,
+.ready-loadout {
+  color: #5a7265;
+}
+.ready-portrait {
+  background: #d8c8aa;
+}
+.ready-portrait img {
+  max-height: none;
+}
+.ready-seat.empty {
+  background: #f8f2e5;
+  color: #577366;
+}
+.ready-seat.empty strong {
+  color: #3e655c;
+}
+.ready-seat.empty small {
+  color: #698272;
+}
+.ready-room .rules-selector {
+  padding: 14px;
+  margin: 14px 0 4px;
+  background: #f8f1e0;
+}
+.ready-room .mode-cards > button {
+  min-height: 84px;
+  padding: 12px;
+}
+.ready-room .mode-cards > button[aria-pressed="true"] {
+  padding: 11px;
+}
+.ready-room .mode-cards strong {
+  font-size: 15px;
+}
+.ready-mode-brief {
+  display: none;
+}
+.ready-launch {
+  background: #fff8eaf7;
+  box-shadow: 0 -12px 16px #fff8eae8;
+}
+.ready-launch > div > strong {
+  color: #26764c !important;
+}
+.ready-launch .btn-primary {
+  background: #2e7551;
+  border-color: #286a47;
+  color: #fff7e7;
+  box-shadow: 0 2px 0 #1e573c;
+}
+.ready-launch small {
+  color: #657c68;
+}
+.ready-skill-expand summary {
+  color: #5d6d5b;
+  font-size: 12px;
+}
+.squad-lobby-chat {
+  border: 1px solid #cccfbf;
+  background: #fffaf0;
+  border-radius: 7px;
+  padding: 18px;
+  margin: 16px 0;
+}
+.squad-lobby-chat header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #ddd7c5;
+  padding-bottom: 11px;
+}
+.squad-lobby-chat header > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #345b60;
+}
+.squad-lobby-chat header strong {
+  font-size: 15px;
+}
+.squad-lobby-chat header b {
+  font-size: 10px;
+  color: #427550;
+  background: #e4edda;
+  padding: 4px 7px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.squad-lobby-chat header small {
+  font-size: 10px;
+  color: #6f7865;
+}
+.squad-chat-messages {
+  height: 150px;
+  overflow: auto;
+  padding: 12px 0;
+  scrollbar-width: thin;
+}
+.squad-chat-messages p {
+  display: grid;
+  grid-template-columns: 68px 100px 1fr;
+  gap: 9px;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 4px 0;
+  color: #405e61;
+}
+.squad-chat-messages time {
+  font: 10px Consolas;
+  color: #7d8875;
+  padding-top: 4px;
+}
+.squad-chat-messages strong {
+  font-size: 11px;
+  color: #486b59;
+}
+.squad-chat-messages span {
+  overflow-wrap: anywhere;
+}
+.squad-chat-messages .system {
+  color: #84917c;
+  font-size: 11px;
+}
+.squad-lobby-chat form {
+  display: flex;
+  gap: 9px;
+}
+.squad-lobby-chat input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #becbbd;
+  background: #fffef8;
+  border-radius: 5px;
+  color: #314f57;
+  padding: 12px;
+  font-size: 12px;
+}
+.squad-lobby-chat form button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #2e6269;
+  color: #fff8e8;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 18px;
+}
+.chat-open {
+  background: #233f48bf;
+  color: #e9ebd4;
+  border: 1px solid #75958a;
+}
+.live-chat-feed {
+  left: 18px;
+  right: auto;
+  bottom: 88px;
+  width: min(380px, 42%);
+  max-height: 98px;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  font-size: 10px;
+  pointer-events: none;
+}
+.live-chat-feed > div {
+  background: #1b35394d;
+  border-radius: 3px;
+  padding: 3px 7px;
+  margin-bottom: 3px;
+  text-shadow: 0 1px 2px #122b2e;
+}
+.live-chat-feed time {
+  color: #a7bbb2;
+  font-size: 9px;
+}
+.live-chat-feed strong {
+  color: #ead2a1;
+}
+.live-chat-feed span {
+  color: #e1ead5;
+}
+.chat-panel {
+  left: 18px;
+  right: auto;
+  bottom: 80px;
+  width: 340px;
+  max-width: calc(100% - 36px);
+  background: #203d46f5;
+  border-color: #658880;
+}
+.chat-panel header {
+  color: #d9e5cc;
+}
+.chat-panel input {
+  background: #15323b;
+  color: #eef3df;
+  border-color: #5a8077;
+}
+.lobby-chat {
+  background: #fffaf0;
+  border-color: #d2d3c0;
+  border-radius: 6px;
+}
+.lobby-chat header {
+  background: #eee9d8;
+  border-color: #d6d2bd;
+  color: #416365;
+}
+.lobby-chat header small {
+  color: #78816b;
+}
+.lobby-chat form button {
+  background: #2b626a;
+  color: #fff7df;
+}
+.chat-welcome {
+  color: #77866d;
+}
+.lobby-chat input {
+  background: #fffdf5;
+  color: #334e53;
+  border-color: #bfcbbd;
+}
+.modal {
+  background: #fffaf0;
+  border-color: #d7cab0;
+  color: #354c52;
+  box-shadow: 0 20px 70px #122a4260;
+}
+.modal-backdrop {
+  background: #182d3c88;
+}
+.modal h2,
+.modal .modal-heading h2 {
+  color: #314e57;
+}
+.modal .eyebrow {
+  color: #9a6536;
+}
+.modal input,
+.modal select,
+.modal textarea {
+  background: #fffef8;
+  color: #34545b;
+  border-color: #bac8bf;
+}
+.modal .field-label,
+.modal label {
+  color: #5c7369;
+}
+.modal .field-label {
+  font-size: 12px;
+}
+.modal .body-copy,
+.modal .toggle-row small,
+.modal .range-row small,
+.modal .fineprint {
+  color: #64766b;
+}
+.modal .toggle-row strong {
+  color: #3b5c5c;
+}
+.modal .inline-note {
+  background: #f1ead8;
+  border-color: #d7c49e;
+  color: #69674d;
+}
+.modal .themed-select > button {
+  background: #fffdf4;
+  color: #345a61;
+  border-color: #bfcdc2;
+}
+.themed-select-menu {
+  background: #fffaf0 !important;
+  border-color: #bdcaba !important;
+}
+.themed-select-menu button {
+  color: #46665c !important;
+}
+.themed-select-menu button[aria-selected="true"] {
+  background: #f3e1bf !important;
+  color: #7d4d25 !important;
+}
+.route-card,
+.route-card.active {
+  background: #fff8e9;
+  border-color: #d5cfb9;
+  color: #536b60;
+}
+.route-card h3,
+.route-card.active h3 {
+  color: #365b60;
+}
+.route-card p,
+.route-card small {
+  color: #6a7b68;
+}
+.route-card.active {
+  background: #f3dfb7;
+  border-color: #bc8b47;
+}
+.route-card.active .route-top {
+  color: #94632a;
+}
+.route-card .route-top {
+  color: #7e8166;
+}
+.route-card .route-status {
+  color: #7a7960;
+}
+.route-top b {
+  color: #c18140;
+}
+.relay-ad {
+  background: #eef1df;
+  border-color: #becbb0;
+  color: #385c51;
+}
+.relay-ad strong {
+  color: #315d52;
+}
+.relay-ad small {
+  color: #627a62;
+}
+.relay-ad .ad-label,
+.relay-ad .ad-action {
+  color: #7b7149;
+}
+.rental-ads {
+  gap: 12px;
+}
+.rental-ads article {
+  background: #fff6df;
+  border: 1px dashed #cead6d;
+  border-radius: 5px;
+  padding: 18px;
+}
+.rental-ads article .rental-title {
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #ae551f;
+  letter-spacing: 1px;
+  display: block;
+}
+.rental-slot-id {
+  font: 9px Consolas;
+  color: #8a8066;
+  display: block;
+  margin: 5px 0 12px;
+}
+.rental-ads article > strong {
+  font-size: 13px;
+  color: #4e6556;
+}
+.rental-ads p {
+  font-size: 11px;
+  color: #6f7961;
+  line-height: 1.7;
+}
+.rental-contact {
+  display: block;
+  font: 700 14px Consolas;
+  color: #475e50;
+  margin: 13px 0;
+}
+.rental-ads button {
+  color: #9e632a;
+  font-size: 11px;
+}
+.rental-ads > small {
+  font-size: 11px;
+  color: #697e64;
+}
+.autofire-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  color: #3f7165;
+  font-size: 11px;
+}
+.auto-fire-button[aria-pressed="true"] {
+  background: #f8e7c8;
+  border-color: #d18d42;
+  color: #7a5029;
+}
+.desktop-entry {
+  background: #e8eeea;
+  border-color: #becfc3;
+  color: #365f5c;
+}
+.desktop-entry small {
+  color: #6c7e6a;
+}
+.desktop-download-art {
+  background:
+    linear-gradient(110deg, #fff1d9e8, #fff1d975),
+    url("/art/lobby-comedy-v32.webp") center/cover;
+  color: #2f4e55;
+}
+.desktop-download-art p {
+  color: #586e5c;
+}
+.page-footer,
+.fineprint,
+.page-footer p {
+  color: #6f7e6f;
+}
+.toast {
+  background: #fff1d4;
+  border-color: #cf9d5e;
+  color: #6f4e2b;
+}
+.stage-heading,
+.stage-footer {
+  background: #f9f5e9;
+  border-color: #d4d3c0;
+  color: #4c6a62;
+}
+.stage-tabs button {
+  color: #6d7f70;
+}
+.stage-tabs button.active {
+  color: #315b61;
+  border-color: #d68842;
+}
+.mode-selection {
+  display: none;
+}
+.app.in-run {
+  --text: #e4ebda;
+  --muted: #a6bcad;
+  --border: #567970;
+  --accent: #e6bd76;
+  background: #eae8dc;
+  color: #dce5cd;
+}
+.app.in-run .topbar {
+  background: #233e49;
+  color: #eef0dc;
+}
+.app.in-run .top-actions button {
+  background: #294955;
+  border-color: #617e7f;
+  color: #e2ead9;
+}
+.app.in-run .top-actions kbd {
+  background: #1a3540;
+  color: #d2dfce;
+  border-color: #657f79;
+}
+.app.in-run .team-panel {
+  background: #233f48;
+  border-color: #4b716a;
+}
+.app.in-run .panel-top h2,
+.app.in-run .section-label,
+.app.in-run .slot-info strong {
+  color: #e4dfc4;
+}
+.app.in-run .slot-info small {
+  color: #a7c0ad;
+}
+.app.in-run .team-slot {
+  background: #29494e;
+  border-color: #4e7770;
+}
+.app.in-run .room-box {
+  background: #304f4c;
+  border-color: #66826b;
+}
+.app.in-run .room-code {
+  color: #e5ca90;
+}
+.app.in-run .skill-details {
+  background: #1c3741;
+  border-color: #678276;
+  border-left-color: #d3a65d;
+}
+.app.in-run .skill-details p,
+.app.in-run .skill-details dd {
+  color: #e2e8ce !important;
+}
+.app.in-run .skill-details header strong {
+  color: #eadbb7;
+}
+.app.in-run .skill-details dt,
+.app.in-run .skill-details > small {
+  color: #b0c5b0;
+}
+.app.in-run .role-description {
+  background: #2c4a4f;
+  border-color: #5b7c70;
+}
+.app.in-run .role-description > span {
+  color: #e2c68e !important;
+}
+.app.in-run .damage-board {
+  color: #e7dfbc;
+  background: #1c3740c9;
+  border-color: #7c93814d;
+}
+.app.in-run .damage-board small {
+  color: #b4c8b2;
+}
+.global-boss-vitals {
+  background: #20353cf0;
+  border-color: #a57850;
+}
+.global-boss-vitals header {
+  color: #f2d7ab;
+}
+.global-boss-vitals i {
+  background: linear-gradient(90deg, #d97947, #e8b86a);
+}
+.mission-peek {
+  color: #ecdebb;
+}
+.combat-strip {
+  background: #1c3640d9;
+  border-color: #6d857758;
+  color: #e6debb;
+}
+.combat-strip kbd {
+  color: #dfd9b5;
+  background: #18333d;
+  border-color: #58776c;
+}
+.augment-dock {
+  background: #1c343de8;
+  border-color: #7a8b6b;
+  color: #efddba;
+}
+.augment-dock h3,
+.augment-dock strong {
+  color: #f0dcac;
+}
+.augment-dock p,
+.augment-dock small {
+  color: #c5d6bf;
+}
+.augment-dock button {
+  border-color: #697e67;
+}
+.augment-dock button:hover {
+  background: #394f43;
+  border-color: #d4a25b;
+}
+.battle-intro {
+  color: #f2d5a0;
+}
+.launch-countdown {
+  background: #213844ed;
+  color: #f6e5ba;
+}
+.launch-countdown strong {
+  color: #ffcb80;
+}
+.ready-seat.empty .ready-seat-number {
+  color: #6f846f;
+}
+.ready-seat.empty > svg {
+  color: #d4b780;
+}
+@media (max-width: 1100px) {
+  .page-heading h1 {
+    font-size: 31px;
+  }
+  .mode-cards > button {
+    padding: 12px;
+    gap: 8px;
+  }
+  .mode-cards > button[aria-pressed="true"] {
+    padding: 11px;
+  }
+  .mode-cards strong {
+    font-size: 16px;
+  }
+  .mode-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .squad-lobby-chat header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 620px) {
+  .page-heading {
+    min-height: 245px;
+    padding: 26px 19px;
+    background-position: 58% 25%;
+  }
+  .page-heading h1 {
+    font-size: 26px;
+    max-width: 235px;
+  }
+  .page-heading:after {
+    font-size: 10px;
+    right: 16px;
+    bottom: 17px;
+    max-width: 210px;
+  }
+  .top-actions button {
+    min-height: 34px;
+  }
+  .rules-selector {
+    padding: 12px;
+  }
+  .mode-cards {
+    grid-template-columns: 1fr;
+  }
+  .mode-cards > button {
+    min-height: 85px;
+  }
+  .difficulty-pills {
+    gap: 5px;
+  }
+  .difficulty-pills > button {
+    padding: 10px 5px;
+  }
+  .difficulty-pills strong {
+    font-size: 11px;
+  }
+  .difficulty-pills small {
+    font-size: 9px;
+  }
+  .squad-lobby-chat {
+    padding: 13px;
+  }
+  .squad-chat-messages p {
+    grid-template-columns: 51px 70px 1fr;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .squad-chat-messages time {
+    font-size: 8px;
+  }
+  .squad-lobby-chat header small {
+    font-size: 10px;
+  }
+  .squad-lobby-chat input {
+    font-size: 16px;
+  }
+  .squad-lobby-chat form button {
+    padding: 9px 13px;
+  }
+  .rental-ads article .rental-title {
+    font-size: 25px;
+  }
+  .live-chat-feed {
+    width: min(330px, 65%);
+    bottom: 90px;
+    max-height: 75px;
+    font-size: 9px;
+  }
+  .ready-room {
+    padding: 16px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+  .ready-portrait img {
+    animation: none;
+  }
+}
+.ai-seat-pills {
+  display: flex;
+  gap: 7px;
+  flex: 1;
+  justify-content: flex-end;
+}
+.ai-seat-pills button {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px;
+  min-height: 36px;
+  background: #f8f2e4;
+  border: 1px solid #cbd2c2;
+  border-radius: 4px;
+  color: #3b615e;
+  font-size: 14px;
+}
+.ai-seat-pills small {
+  font: 8px Consolas;
+}
+.ai-seat-pills button[aria-pressed="true"] {
+  background: #f4d9ac;
+  border-color: #cd9851;
+  color: #855329;
+}
+.public-lobby {
+  background: #fffdf5;
+}
+.public-lobby > header,
+.public-lobby-tools,
+.public-lobby > footer {
+  border-color: #d0d5c5;
+}
+.public-lobby header .eyebrow,
+.public-lobby .room-list-count,
+.public-lobby > footer {
+  color: #627a69;
+}
+.public-lobby-tools input {
+  background: #fffef8;
+  border-color: #bfccbf;
+  color: #375962;
+}
+.lobby-no-rooms strong {
+  color: #365a61;
+}
+.lobby-no-rooms p,
+.lobby-no-rooms > button {
+  color: #6b7b68;
+}
+.live-room-list article {
+  background: #f7f1e2;
+  border-color: #cbd2c1;
+}
+.live-room-list article strong {
+  color: #304d54;
+}
+.live-room-list article p,
+.live-room-list article small {
+  color: #667b69;
+}
+.live-room-list article button {
+  color: #306168;
+  border-color: #a8c2b1;
+  background: #e6edde;
+}
+.live-room-list article button:last-child {
+  background: #e6b87a;
+  color: #5e3b21;
+  border-color: #cc9859;
+}
+.game-panel .stage-location {
+  color: #657e70;
+}
+.game-panel .stage-location > b,
+.active-mode-badge {
+  color: #45675e;
+}
+.app.in-run .stage-location {
+  color: #b8c9b0;
+}
+.app.in-run .game-panel {
+  background: #263d46;
+  border-color: #58766d;
+}
+.app.in-run .stage-heading,
+.app.in-run .stage-footer {
+  background: #263e47;
+  border-color: #5b786b;
+  color: #c4d5bd;
+}
+.themed-select > button {
+  min-height: 40px;
+  font-size: 12px;
+}
+.themed-select-menu button {
+  min-height: 36px;
+  font-size: 12px;
+}
+.modal-wide:has(.job-picker) {
+  width: min(820px, calc(100vw - 48px));
+}
+.modal-wide:has(.job-picker) .job-picker.large .job-grid {
+  max-height: 330px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.modal-wide:has(.job-picker) .job-picker.large .job-grid > button {
+  padding: 10px;
+  gap: 9px;
+}
+.modal-wide:has(.job-picker) .job-grid > button img {
+  width: 62px !important;
+  height: 78px !important;
+}
+.modal-wide:has(.job-picker) .job-grid > button > span {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .modal-wide:has(.job-picker) .job-picker.large .job-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .modal-wide:has(.job-picker) .job-picker.large .job-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-wide:has(.job-picker) {
+    width: 100%;
+  }
+  .ai-seat-pills button {
+    min-width: 34px;
+  }
+}
+.absurd-bonus {
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  background: #f1ce7de8;
+  border: 1px solid #f9e4ae;
+  border-radius: 5px;
+  color: #60462c;
+  pointer-events: none;
+  box-shadow: 0 4px 12px #122d3e55;
+  font-size: 11px;
+}
+.absurd-bonus span {
+  font-size: 9px;
+}
+.absurd-bonus b {
+  font: 12px Consolas;
+}
+.app.in-run .team-slot.is-ready .slot-info > small,
+.app.in-run .team-slot.is-ready .slot-status {
+  color: #bbd8ba !important;
+}
+.stage-heading .active-mode-badge {
+  background: #edf1e5;
+  border-color: #ccd4bf;
+}
+.app.in-run .stage-heading .active-mode-badge {
+  background: #324f54;
+  color: #c7ddbc;
+  border-color: #6d8a77;
+}
+.public-lobby .btn-primary {
+  background: #de853e;
+  color: #fff8eb;
+  border-color: #cc7a32;
+}
+.public-lobby .lobby-no-rooms {
+  background: none;
+}
+.ready-room {
+  scroll-padding-top: 18px;
+}
+.first-time-hint {
+  background: #fff5dc90;
+  border-radius: 5px;
+  padding: 10px;
+}
+.first-time-hint button {
+  color: #3a6a6e;
+}
+.page-heading h1 {
+  padding-right: 220px;
+  max-width: none;
+}
+.ready-roster {
+  min-height: 285px !important;
+}
+.ready-seat {
+  height: auto;
+}
+@media (max-width: 900px) {
+  .page-heading h1 {
+    padding-right: 150px;
+  }
+}
+@media (max-width: 620px) {
+  .page-heading h1 {
+    padding-right: 0;
+  }
+  .first-time-hint {
+    font-size: 10px;
+    padding: 7px;
+  }
+  .ready-roster {
+    min-height: 520px !important;
+  }
+}

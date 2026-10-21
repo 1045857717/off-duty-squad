@@ -1,0 +1,11 @@
+Use case: stylized-concept / reference-based game turnarounds
+Asset type: missing rear-quarter full-body views for an adult office-comedy action game, used to repair upper-left and upper-right movement.
+Input images: Image1 is reference identity and existing 4-view proportions for developer, technician, security and admin (one character per row). Image2 is reference identity for workhorse, chef, director and designer. Preserve these exact eight characters, clothes, colors, faces/hair, scale, mature realistic-stylized illustration and clean rendering; change ONLY viewing angle.
+Output: one precisely regular4columns×4rows sheet on a pure opaque white background, exactly16 full-body figures, no grid/borders/text. Each equal cell contains exactlyone standing character from head to shoes with padding. Arms comfortably separated from torso, hands empty, feet separated, natural adult anatomy; consistent overhead3/4 game camera and light.
+Column orientations: odd columns1and3 show REAR THREE-QUARTER facing NORTH-EAST / upper-right on screen; even columns2and4 show REAR THREE-QUARTER facing NORTH-WEST / upper-left on screen. Show back of shoulders plus side profile, nose pointing upper-right or upper-left respectively. They must genuinely turn45degrees from straightback, NOT draw straightback, NOT front3/4, NOT looking at viewer. All pairs correspond to sameperson.
+Row1: cols1/2 developer white shirt blue lanyard and black glasses;cols3/4 technician teal utility jacket orange vest.
+Row2: cols1/2 security navy uniform;cols3/4 admin teal cardigan light shirt ponytail.
+Row3: cols1/2 workhorse brown horse hood over white shirt and orange tie;cols3/4 chef white toque and chefcoat.
+Row4: cols1/2 director teal suit orange tie;cols3/4 designer female purple jacket bob haircut.
+Style: use supplied identity references, sophisticated hand-painted game sprites, material details, clear hands/shoes/joints, natural adult proportions, subtly funny, no chibi/childish proportions. No new accessories, no weapons, no scenery, no ground shadows. Purewhite opaque background only for later local extraction, do not generate transparency.
+Text(verbatim): none. Avoid: text, labels, watermarks, logos, cropped feet, detached limbs, duplicate heads, floor shadows, straightback replacing diagonal rear.

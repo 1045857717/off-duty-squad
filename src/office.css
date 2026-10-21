@@ -1,0 +1,1725 @@
+/* BEFORE CLOCKING OUT / office-disaster visual system */
+:root {
+  --office-paper: #f3f1e9;
+  --office-ink: #203346;
+  --office-blue: #315f7b;
+  --office-orange: #c87945;
+  --office-line: #c9cec7;
+  --bg: #f0efe8;
+  --panel: #f9f8f2;
+  --text: #243b4a;
+  --muted: #71818a;
+  --dim: #82918e;
+  --border: #ced2c8;
+  --accent: #315f7b;
+  --accent-ink: #fff;
+  color: #203346;
+  background: #eeede5;
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+body {
+  background: #eeede5;
+}
+.app {
+  background: linear-gradient(105deg, #e8e9e2 0, #f2f1e9 46%, #e7e9e2 100%);
+  color: #253c4b;
+}
+.sidebar {
+  width: 76px;
+  background: #233a49;
+  border-right: 1px solid #1c3442;
+  color: #b9c7c8;
+}
+.brand-mark {
+  background: #f1ead6;
+  transform: rotate(-7deg);
+  border-radius: 3px;
+  box-shadow: 2px 3px 0 #111f29;
+}
+.brand-mark i {
+  background: #b87645;
+}
+.nav-item {
+  color: #9eb3b9;
+}
+.nav-item.active {
+  background: #e9e3cc;
+  color: #274c64;
+  box-shadow: 3px 0 0 #ca7d44 inset;
+}
+.nav-item:hover {
+  background: #d4d9c615;
+  color: #f0eddf;
+}
+.sidebar-bottom {
+  color: #b7c6c5;
+}
+.topbar {
+  background: #faf9f0ef;
+  border-bottom: 1px solid #bcc7c7;
+  color: #294958;
+  backdrop-filter: blur(10px);
+}
+.topbar .brand-name {
+  color: #2d4b5e;
+}
+.topbar > strong,
+.topbar h1 {
+  color: #294759;
+}
+.top-actions {
+  gap: 7px;
+}
+.top-actions button {
+  background: #f8f8ef;
+  border: 1px solid #bcc8c7;
+  color: #345a70;
+  min-height: 34px;
+  box-shadow: 0 1px 0 #fff;
+}
+.top-actions button:hover {
+  background: #e2e8e5;
+  border-color: #6f8b96;
+}
+.top-actions kbd {
+  background: #e2e7df;
+  border: 1px solid #c3cec6;
+  color: #668078;
+  font-size: 7px;
+}
+.top-actions button > span {
+  font-size: 10px;
+}
+.top-actions .quiet-button {
+  gap: 7px;
+  display: flex;
+  align-items: center;
+}
+.connection {
+  color: #6f857b;
+}
+.main-content {
+  max-width: 1880px;
+}
+.page-heading {
+  margin: 12px 0 23px;
+}
+.page-heading .eyebrow {
+  color: #a5704c;
+  letter-spacing: 3px;
+  font-size: 8px;
+}
+.page-heading h1 {
+  color: #233c4d;
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: 750;
+  margin-top: 12px;
+}
+.page-heading h1 > span {
+  color: #76918e;
+  font-weight: 500;
+}
+.heading-aside {
+  color: #78908d;
+}
+.text-btn {
+  color: #7a6f4c;
+}
+.page-footer {
+  color: #7b8f89;
+  border-color: #cad1c6;
+}
+.btn-primary {
+  background: #315f7b;
+  color: #fff8e4;
+  border: 1px solid #274d62;
+  box-shadow: 0 2px 0 #1d3f4c;
+}
+.btn-primary:hover {
+  background: #3e748e;
+}
+.btn-primary:disabled {
+  background: #788d95;
+  color: #dde0d4;
+}
+.btn-secondary {
+  background: #f4f4eb;
+  border: 1px solid #bdcbc6;
+  color: #3d6472;
+}
+.btn-secondary:hover {
+  background: #e8ede4;
+}
+.stage-shell {
+  border: 1px solid #b9c8c8;
+  border-radius: 5px;
+  background: #f7f5ec;
+  box-shadow: 0 8px 24px #31454f0c;
+  overflow: hidden;
+}
+.stage-topbar {
+  background: #f7f7ef;
+  border-bottom: 1px solid #becdca;
+  color: #586f74;
+}
+.stage-topbar button {
+  color: #81928e;
+}
+.stage-topbar button.active {
+  color: #284f65;
+  border-bottom-color: #c47c4a;
+}
+.stage-location {
+  color: #7b8c84;
+}
+.stage-location small {
+  font-size: 7px;
+}
+.active-mode-badge {
+  background: #385f7612;
+  color: #345f72;
+  border: 1px solid #72929b55;
+}
+.stage-footer {
+  background: #faf8ee;
+  border-top: 1px solid #c4cec5;
+  color: #6c8579;
+}
+.stage-footer .subtle {
+  color: #8f9d91;
+}
+.stage-footer .signal-bars i {
+  background: #86a69b;
+}
+.game-stage {
+  background: #2e454c;
+}
+.public-lobby {
+  background: linear-gradient(115deg, #f6f6ec, #e7eeea);
+  color: #2e4c5b;
+  padding: 28px 29px 18px;
+}
+.public-lobby:before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 17px;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #d2a57a66;
+  background: repeating-linear-gradient(
+    45deg,
+    #d4b27e15 0 2px,
+    transparent 2px 6px
+  );
+  transform: rotate(9deg);
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 80%);
+}
+.public-lobby .eyebrow {
+  color: #9d7957;
+  font-size: 8px;
+}
+.public-lobby h2 {
+  font-size: 29px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #274d62;
+  margin: 15px 0 10px;
+  letter-spacing: 1px;
+}
+.public-lobby header p {
+  color: #718c87;
+  font-size: 10px;
+}
+.public-lobby header > .btn {
+  position: relative;
+  z-index: 1;
+  background: #2e6079;
+  color: #fff7df;
+  height: 41px;
+  min-width: 122px;
+  box-shadow: 0 2px 0 #1b4051;
+}
+.public-lobby-tools {
+  border-bottom: 1px solid #b7c9c1;
+  padding-bottom: 14px;
+  margin-top: 24px;
+}
+.room-list-count {
+  color: #769088;
+}
+.public-lobby-tools label {
+  background: #fffff6;
+  border: 1px solid #bbcec7;
+  border-radius: 2px;
+  color: #6f938e;
+}
+.public-lobby-tools input {
+  color: #2a4e5b;
+  font-size: 10px;
+}
+.live-room-list > article {
+  background: #ffffffaa;
+  border: 1px solid #bdcec6;
+  border-left: 3px solid #a88558;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px #53665b08;
+  padding: 18px 16px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.live-room-list > article:hover {
+  background: #fffef6;
+  transform: translateX(2px);
+}
+.live-room-list > article.room-expedition {
+  background: #f6fcf8dd;
+  border-left-color: #6a959c;
+}
+.live-room-list article b {
+  color: #9b7951;
+}
+.live-room-list article em {
+  color: #69917b;
+  background: #91b29c18;
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+.live-room-list h3 {
+  color: #274b5c;
+  font-size: 16px;
+}
+.live-room-list p {
+  color: #7a948a;
+}
+.live-room-list code {
+  color: #526e72;
+}
+.room-mode-art {
+  color: #9e7e4e;
+}
+.room-expedition .room-mode-art {
+  color: #6d96a0;
+}
+.room-mode-art i {
+  border-color: #9cb4a766;
+}
+.live-room-actions button {
+  background: #f8fbf5;
+  color: #5c7d75;
+  border-color: #b4cbc1;
+}
+.live-room-actions button + button {
+  background: #315f7b;
+  color: #fff8e7;
+  border-color: #315f7b;
+}
+.lobby-no-rooms {
+  background: radial-gradient(ellipse, #c3d6ce22, transparent 70%);
+}
+.lobby-no-rooms strong {
+  color: #32586b;
+  font-size: 21px;
+  letter-spacing: 2px;
+}
+.lobby-no-rooms p {
+  color: #7c958b;
+}
+.lobby-no-rooms > button {
+  color: #a0794b;
+}
+.signal-orbit {
+  color: #7b9992;
+}
+.signal-orbit i {
+  border-color: #aabfaf66;
+  border-top-color: #729793;
+}
+.public-lobby > footer {
+  border-color: #b8c9bb;
+  color: #7d9588;
+}
+.public-lobby > footer > span {
+  color: #9aa68f;
+}
+.team-panel {
+  background: #fbfaf0;
+  border: 1px solid #bfccc4;
+  box-shadow: 0 3px 14px #30495808;
+  border-radius: 4px;
+  color: #345360;
+  padding: 20px 17px;
+}
+.team-panel .eyebrow {
+  color: #a08b63;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+.panel-top h2 {
+  color: #315565;
+  font-size: 18px;
+}
+.panel-top h2 span {
+  color: #658a83;
+}
+.team-slot.occupied {
+  background: #eef2e9;
+  border: 1px solid #c4d1c5;
+  border-left: 2px solid #8ea88f;
+}
+.team-slot.self {
+  background: #e8eee4;
+  border-color: #9fb49a;
+}
+.slot-info strong {
+  color: #345661;
+}
+.slot-info strong em {
+  color: #9b926e;
+  background: #d3d7b926;
+}
+.slot-info small {
+  color: #85988c;
+}
+.empty.team-slot {
+  background: transparent;
+  border: 1px dashed #c4d2c3;
+  color: #89a08f;
+}
+.empty-avatar {
+  border-color: #bacbbd;
+  background: #f7f9ef;
+  color: #95a791;
+}
+.empty span small {
+  color: #94a695;
+}
+.slot-number {
+  color: #a6b0a0;
+}
+.room-box {
+  background: #f0f1dd;
+  border: 1px solid #c8c8a5;
+}
+.room-box > span {
+  color: #7c9678;
+}
+.room-code {
+  color: #8e724c;
+  letter-spacing: 5px;
+  font-size: 24px;
+}
+.team-actions .btn-secondary {
+  border-color: #c8d4c7;
+  background: #f5f6ed;
+  color: #64816d;
+}
+.team-hint {
+  color: #9aa790;
+}
+.role-section {
+  border-top: 1px solid #ccd6c7;
+  padding-top: 16px;
+}
+.section-label {
+  color: #688879;
+  font-size: 10px;
+}
+.section-label span {
+  color: #a6b198;
+}
+.role-description {
+  background: #eef2e9;
+  border: 1px solid #c4d3c6;
+  border-radius: 3px;
+  padding: 12px;
+  margin-top: 12px;
+}
+.role-description > span {
+  color: #486d70 !important;
+  font-size: 11px;
+}
+.role-description p {
+  color: #7a9487;
+  font-size: 9px;
+  line-height: 1.9;
+}
+.room-options {
+  border-top: 1px solid #ced8c8;
+  color: #81947d;
+}
+.room-options select {
+  background: #eff4eb;
+  color: #4f7566;
+  border: 1px solid #bcccbc;
+  border-radius: 3px;
+  padding: 5px 6px;
+  font-size: 9px;
+}
+.leave-button {
+  color: #82927b;
+  font-size: 9px;
+}
+.squad-note {
+  background: #e9eee2;
+  border: 1px solid #c8d0b9;
+  color: #929876;
+}
+.squad-note p {
+  color: #718065;
+}
+.squad-note small {
+  color: #9aaa8c;
+}
+.job-picker {
+  container: job-picker / inline-size;
+  margin-top: 10px;
+}
+.job-picker > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.job-picker header > span {
+  font-size: 8px;
+  color: #8aa18b;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.job-picker header label {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background: #f8faf1;
+  border: 1px solid #bdcbbf;
+  padding: 5px 7px;
+  color: #87a18e;
+}
+.job-picker input {
+  width: 78px;
+  border: 0;
+  background: transparent;
+  color: #577969;
+  font-size: 8px;
+  outline: 0;
+}
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  max-height: 216px;
+  overflow: auto;
+  padding-right: 3px;
+}
+.job-grid > button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+  background: #f3f5ed;
+  border: 1px solid #d1d9c9;
+  padding: 8px 5px;
+  text-align: left;
+  min-height: 58px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.job-grid > button.selected {
+  background: #e3ecdf;
+  border: 1px solid #90aa91;
+  box-shadow: inset 2px 0 var(--role-color);
+}
+.job-grid > button:hover {
+  background: #e9f0e3;
+}
+.job-grid img {
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px #40564b22);
+}
+.job-grid > button > span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.job-grid strong {
+  font-size: 8px;
+  color: #416d61;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.job-grid small {
+  font-size: 6px;
+  line-height: 1.5;
+  color: #9aa98e;
+}
+.job-grid button > svg {
+  position: absolute;
+  right: 3px;
+  top: 4px;
+  color: #7eaa8c;
+  width: 8px;
+}
+.job-picker.large .job-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-height: 360px;
+  gap: 9px;
+}
+.job-picker.large .job-grid > button {
+  padding: 14px 10px;
+  min-height: 110px;
+  gap: 10px;
+}
+.job-picker.large strong {
+  font-size: 11px;
+}
+.job-picker.large small {
+  font-size: 8px;
+}
+.job-grid em {
+  font-size: 7px;
+  color: #8f9b87;
+  font-style: normal;
+  line-height: 1.7;
+}
+.job-picker.large input {
+  width: 145px;
+}
+.mode-selection button {
+  background: #e2e9e1;
+  border: 1px solid #bbcbbf;
+  color: #627e6d;
+  box-shadow: none;
+}
+.mode-selection button.selected {
+  background: #edf1e3;
+  border-color: #9a9c70;
+  box-shadow: inset 0 2px #a19b68;
+}
+.mode-selection button > span {
+  color: #8f9a7c;
+  font: 7px Consolas;
+}
+.mode-selection h3 {
+  color: #3d655e;
+  font-size: 18px;
+}
+.mode-selection p {
+  color: #8da18a;
+  font-size: 9px;
+}
+.mode-selection svg {
+  color: #89a18c;
+}
+.lobby-social button {
+  background: #f8f8ec;
+  border: 1px solid #c7d1bc;
+  color: #7b987e;
+}
+.relay-ad {
+  background: linear-gradient(110deg, #e4ebdf, #f2f2df);
+  border: 1px solid #bac9b2;
+  color: #5a7e6b;
+}
+.relay-ad strong {
+  color: #456f65;
+}
+.relay-ad small {
+  color: #94a58c;
+}
+.ad-label {
+  color: #aab296;
+}
+.ad-mark {
+  border-color: #b1bea3;
+  color: #99a072;
+}
+.ad-action {
+  color: #7d8b63;
+}
+.rental-ads article {
+  background: #f4f5e8;
+  border-color: #c9d1b7;
+}
+.rental-ads strong {
+  color: #819674;
+}
+.rental-ads article > span {
+  color: #acb594;
+}
+.rental-ads p,
+.rental-ads > small {
+  color: #a5b096;
+}
+.rental-ads button {
+  color: #959d77;
+}
+.lobby-chat {
+  margin: 18px 0 15px;
+  border: 1px solid #b9ccc0;
+  background: #fafcf3;
+  border-radius: 4px;
+  box-shadow: 0 3px 12px #3c625008;
+  overflow: hidden;
+}
+.lobby-chat > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid #d1dccb;
+  background: #e9f0e3;
+}
+.lobby-chat header > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #486d5b;
+  font-size: 11px;
+  font-weight: 600;
+}
+.lobby-chat header small {
+  font-size: 8px;
+  color: #97a78b;
+}
+.lobby-chat > div {
+  max-height: 176px;
+  min-height: 96px;
+  overflow: auto;
+  padding: 13px 16px;
+}
+.lobby-chat p {
+  display: flex;
+  gap: 9px;
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 5px 0;
+  color: #536f60;
+  word-break: break-word;
+}
+.lobby-chat time {
+  font: 8px Consolas;
+  color: #a5b298;
+  align-self: center;
+  white-space: nowrap;
+}
+.lobby-chat b {
+  color: #56816b;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.lobby-chat .chat-welcome {
+  font-size: 10px;
+  color: #a2ad91;
+  padding: 17px 0;
+}
+.lobby-chat form {
+  display: flex;
+  border-top: 1px solid #d3dfca;
+  background: #f4f8ee;
+  padding: 9px 12px;
+  gap: 10px;
+}
+.lobby-chat input {
+  flex: 1;
+  min-width: 0;
+  background: #fffef6;
+  border: 1px solid #c9d6bf;
+  border-radius: 3px;
+  padding: 9px 11px;
+  font-size: 10px;
+  color: #4c7262;
+}
+.lobby-chat form button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #4e7b72;
+  color: #f4f8ea;
+  border-radius: 3px;
+  padding: 8px 16px;
+  font-size: 10px;
+}
+.ready-room {
+  background: linear-gradient(120deg, #f2f3e9, #e8eeea);
+  color: #46695f;
+  padding: 29px;
+}
+.ready-room:before {
+  opacity: 0.13;
+}
+.ready-room-heading .eyebrow {
+  color: #939e74;
+}
+.ready-room-heading h2 {
+  color: #325a60;
+  font-size: 28px;
+}
+.ready-room-heading p {
+  color: #87a18e;
+}
+.ready-code {
+  color: #a1ad90;
+}
+.ready-seat,
+.ready-seat.is-ready {
+  background: linear-gradient(180deg, #e8eee2, #f5f7ed);
+  border: 1px solid #bbcbb8;
+  border-top: 2px solid #8caa8f;
+}
+.ready-seat.is-waiting {
+  border-top-color: #b7aa78;
+}
+.ready-seat-number {
+  color: #8aa38c;
+}
+.ready-seat h3 {
+  color: #426e61;
+}
+.ready-role {
+  color: #819d85;
+}
+.ready-role span {
+  color: #a6b69d;
+}
+.ready-loadout {
+  color: #718f73;
+  border-color: #c9d8be;
+}
+.ready-seat footer {
+  background: #e1e9d8;
+  color: #719370;
+  border-top: 1px solid #d0dac6;
+}
+.ready-seat.empty {
+  background: #edf2e61a;
+  border-color: #c8d4bc;
+  color: #b3bba2;
+}
+.ready-seat.empty small {
+  color: #b1bd9e;
+}
+.ready-mode-brief {
+  background: #e6ebd930;
+  border-left-color: #bda970;
+}
+.ready-mode-brief h3 {
+  color: #6b8569;
+}
+.ready-mode-brief p {
+  color: #9aab8b;
+}
+.ready-mode-brief small {
+  color: #a7ac83;
+}
+.ready-mode-brief > b {
+  color: #a9ad84;
+}
+.ready-launch {
+  border-color: #cad7bf;
+}
+.ready-launch strong {
+  color: #71916f;
+}
+.ready-launch small {
+  color: #a0b391;
+}
+.kick-player {
+  color: #b69b76;
+  background: #f3eddd;
+  border-color: #d4cbb0;
+}
+.ready-spectator {
+  color: #96ad8a;
+}
+.ready-portrait img {
+  height: 122px;
+  width: auto;
+  max-height: 125px;
+  animation: worker-idle 5s ease-in-out infinite;
+}
+.ready-portrait {
+  min-height: 128px;
+}
+.portrait-scan:after {
+  display: none;
+}
+@keyframes worker-idle {
+  50% {
+    transform: translateY(-2px) rotate(0.3deg);
+  }
+}
+.modal-backdrop {
+  background: #1a303c88;
+  backdrop-filter: blur(5px);
+}
+.modal {
+  background: #f4f5e9;
+  border: 1px solid #c0cdb7;
+  color: #4b6f5b;
+  box-shadow: 0 15px 55px #122e3a44;
+}
+.modal h2 {
+  color: #375f53;
+}
+.modal .eyebrow {
+  color: #a08e64;
+}
+.modal > header {
+  border-color: #c4d2b9;
+}
+.modal input,
+.modal select {
+  background: #fcfdf1;
+  color: #50775d;
+  border: 1px solid #bdcdb2;
+}
+.modal .field-label,
+.modal label {
+  color: #75906d;
+}
+.modal .body-copy {
+  color: #7d9672;
+}
+.modal .range-row {
+  border-color: #c7d5bb;
+}
+.modal .range-row > span {
+  color: #7a926d;
+}
+.modal .inline-note {
+  background: #e6edda;
+  border: 1px solid #bfcdb0;
+  color: #899e73;
+}
+.modal .toggle-row {
+  border-color: #c5d3ba;
+}
+.modal .toggle-row strong {
+  color: #6a8966;
+}
+.modal .toggle-row small {
+  color: #a0ae8c;
+}
+.modal .range-row small {
+  color: #a1b08e;
+}
+.modal .role-dialog-desc {
+  color: #869f75;
+}
+.modal .themed-select > button {
+  background: #f7f8e9;
+  border: 1px solid #bdcca9;
+  color: #76966d;
+}
+.modal .themed-select-menu {
+  background: #f9faeb;
+  border-color: #bcc9a5;
+  box-shadow: 0 7px 20px #5b715f33;
+}
+.modal .themed-select-menu > button {
+  color: #8aa37c;
+}
+.modal .themed-select-menu > button:hover,
+.modal .themed-select-menu > button[aria-selected="true"] {
+  background: #e2ebd4;
+  color: #597f5b;
+}
+.modal .room-browser-tools p {
+  color: #8ba57d;
+}
+.fineprint {
+  color: #99a98a;
+}
+.toast {
+  background: #e6edd4;
+  color: #587950;
+  border-color: #a9ba91;
+}
+/* The battlefield remains contrast-safe. Only the shell retains the paper theme. */
+.app.in-run {
+  --accent: #c4cf9e;
+  color: #c9d2bf;
+}
+.app.in-run .topbar {
+  background: #253b49;
+  color: #d8e0d4;
+  border-color: #516471;
+}
+.app.in-run .topbar button {
+  background: #2c4655;
+  border-color: #617980;
+  color: #d9e1ce;
+  box-shadow: none;
+}
+.app.in-run .topbar kbd {
+  background: #203945;
+  border-color: #627b78;
+  color: #a5b9a0;
+}
+.app.in-run .topbar .brand-name {
+  color: #e3e6d2;
+}
+.app.in-run .connection {
+  color: #9eb79b;
+}
+.app.in-run .stage-shell {
+  border-color: #607981;
+}
+.app.in-run .stage-topbar {
+  background: #294654;
+  color: #aabeb4;
+  border-color: #5d7c80;
+}
+.app.in-run .stage-topbar button {
+  color: #91aaa4;
+}
+.app.in-run .stage-topbar button.active {
+  color: #dfe7ce;
+  border-bottom-color: #d4b773;
+}
+.app.in-run .stage-location {
+  color: #a9c4b7;
+}
+.app.in-run .stage-footer {
+  background: #294653;
+  border-color: #5e7d7c;
+  color: #c4d0ab;
+}
+.app.in-run .stage-footer .subtle {
+  color: #b0c2a6;
+}
+.app.in-run .team-panel {
+  background: #263f4d;
+  border-color: #5b777a;
+  color: #bdcbb5;
+}
+.app.in-run .panel-top h2 {
+  color: #dae1ca;
+}
+.app.in-run .team-slot.occupied {
+  background: #2f4b56;
+  border-color: #607e79;
+}
+.app.in-run .slot-info strong {
+  color: #d6e0cb;
+}
+.app.in-run .slot-info small {
+  color: #a0b8a3;
+}
+.app.in-run .room-box {
+  background: #344d4b;
+  border-color: #78856c;
+}
+.app.in-run .room-code {
+  color: #d6ca9b;
+}
+.app.in-run .role-description {
+  background: #2b4651;
+  border-color: #5a7775;
+}
+.app.in-run .role-description > span {
+  color: #d9dbb9 !important;
+}
+.app.in-run .role-description p {
+  color: #a8bfa9;
+}
+.app.in-run .damage-summary > strong {
+  color: #e6d7a7;
+}
+.app.in-run .damage-person strong {
+  color: #c8d9be;
+}
+.app.in-run .job-grid > button {
+  background: #294652;
+  border-color: #506f72;
+}
+.app.in-run .job-grid strong {
+  color: #bbd2bd;
+}
+.app.in-run .job-grid small {
+  color: #7d9e8f;
+}
+.app.in-run .empty.team-slot {
+  color: #789b89;
+  border-color: #50716a;
+}
+.app.in-run .slot-number {
+  color: #76978a;
+}
+.app.in-run .leave-button {
+  color: #92b08e;
+}
+.office-noise {
+  position: absolute;
+  left: 14px;
+  top: 84px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+  color: #c8c8a2;
+  background: #1b37435e;
+  font-size: 8px;
+  pointer-events: none;
+}
+.office-noise > i {
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: #a4bf9f22;
+}
+.office-noise > i > b {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #9dba91, #dbaa6a);
+  transition: width 0.2s;
+}
+.office-noise small {
+  font: 7px Consolas;
+  color: #acbe9e;
+}
+.team-ping-controls {
+  position: absolute;
+  right: 14px;
+  bottom: 49px;
+  display: flex;
+  gap: 4px;
+  z-index: 30;
+}
+.team-ping-controls button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #294752d9;
+  color: #c7d7bc;
+  border: 1px solid #8aa18b5a;
+  padding: 5px 7px;
+  font-size: 8px;
+}
+.team-ping-controls kbd {
+  font: 7px Consolas;
+  border: 1px solid #8ba28655;
+  padding: 1px 3px;
+}
+.route-vote {
+  position: absolute;
+  top: 115px;
+  left: 50%;
+  translate: -50% 0;
+  width: min(610px, 90%);
+  background: #173541eb;
+  border: 1px solid #c4bd8866;
+  padding: 16px;
+  z-index: 55;
+  box-shadow: 0 7px 25px #12242a55;
+  border-radius: 3px;
+}
+.route-vote > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ddd8b0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.route-vote header span {
+  font-size: 8px;
+  color: #8eae96;
+}
+.route-vote > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.route-vote button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  text-align: left;
+  min-height: 100px;
+  padding: 13px 11px;
+  background: #91ac8b0a;
+  border: 1px solid #92ad8466;
+  color: #c2d3b4;
+}
+.route-vote button.selected {
+  border-color: #e0c998;
+  background: #a6b57525;
+}
+.route-vote button strong {
+  font-size: 11px;
+  font-weight: 500;
+}
+.route-vote button small {
+  font-size: 8px;
+  line-height: 1.7;
+  color: #8aab92;
+}
+.route-vote button b {
+  font: 9px Consolas;
+  margin-top: auto;
+  color: #d2bf8d;
+}
+.route-chosen {
+  position: absolute;
+  top: 111px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 15;
+  background: #243f48d9;
+  border: 1px solid #97b08d66;
+  color: #c4d0a6;
+  padding: 8px 14px;
+  font-size: 9px;
+}
+.battle-intro > strong {
+  color: #eee8ca;
+  text-shadow: 0 2px 9px #123343;
+}
+.battle-intro > span {
+  color: #d2c29a;
+}
+.deployment-screen {
+  background: linear-gradient(180deg, #183642ea, #152f3aca);
+}
+.deployment-screen h2 {
+  color: #f0e8c8;
+}
+.initial-draft {
+  border-color: #b3b39366;
+}
+.evolution-beacon {
+  background: #294b4ce8;
+  border-color: #b7c3a87a;
+  color: #e5ddb8;
+}
+.damage-overlay {
+  background: linear-gradient(145deg, #213e4bd9, #183641c2) !important;
+  border-color: #9ab6a350 !important;
+  border-top-color: #c9bd8d88 !important;
+}
+.report-overlay {
+  background:
+    radial-gradient(ellipse at 10% 0%, #66827b30, transparent 60%), #17333ff7;
+}
+.grow-tree {
+  color: #c3d7bc;
+}
+.interaction-channel {
+  background: #274e55ed;
+  border-color: #b5c79b88;
+}
+.launch-countdown {
+  background: radial-gradient(ellipse, #375b58ed, #1b3949f5);
+}
+.launch-countdown > strong {
+  color: #ede3bd;
+  font-size: 27px;
+}
+.launch-countdown > span {
+  color: #bccbb0;
+}
+.compact-bar {
+  background: #294653e8;
+  border-color: #5f7e7c;
+  color: #cbd7bb;
+}
+.compact-bar button {
+  color: #ccdabd;
+}
+.is-compact .topbar {
+  background: #294653;
+}
+.window-is-hidden .hidden-card {
+  background: #eff2e5;
+  color: #5c7c68;
+}
+@media (max-width: 1200px) {
+  .top-actions {
+    gap: 5px;
+  }
+  .top-actions button {
+    font-size: 9px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .top-actions button > span {
+    font-size: 9px;
+  }
+  .job-grid {
+    grid-template-columns: 1fr;
+    max-height: 198px;
+  }
+  .job-grid > button {
+    min-height: 49px;
+  }
+  .job-grid strong {
+    font-size: 10px;
+  }
+  .job-grid small {
+    font-size: 7px;
+  }
+  .job-picker header > span {
+    display: none;
+  }
+  .job-picker header label {
+    width: 100%;
+  }
+  .job-picker input {
+    width: 100%;
+  }
+  .job-picker.large .job-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .job-picker.large .job-grid > button {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 10px 7px;
+  }
+  .job-picker.large .job-grid strong {
+    font-size: 10px;
+  }
+}
+@media (max-width: 900px) {
+  .top-actions .quiet-button {
+    padding: 6px 7px;
+  }
+  .top-actions .quiet-button > span {
+    font-size: 8px;
+  }
+  .page-heading h1 {
+    font-size: 25px;
+  }
+  .job-picker.large .job-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-height: 320px;
+  }
+  .public-lobby h2 {
+    font-size: 23px;
+  }
+  .public-lobby {
+    padding: 22px;
+  }
+  .ready-portrait img {
+    max-height: 112px;
+  }
+}
+@media (max-width: 620px) {
+  .page-heading h1 {
+    font-size: 23px;
+    letter-spacing: 0;
+  }
+  .page-heading .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .top-actions .quiet-button > span {
+    display: inline;
+    font-size: 7px;
+  }
+  .top-actions .quiet-button {
+    gap: 3px;
+    padding: 5px;
+  }
+  .top-actions .quiet-button > svg {
+    width: 11px;
+  }
+  .top-actions .quiet-button > kbd {
+    font-size: 6px;
+  }
+  .topbar {
+    padding-right: 10px;
+  }
+  .public-lobby {
+    padding: 20px 14px;
+  }
+  .public-lobby h2 {
+    font-size: 21px;
+  }
+  .public-lobby header > .btn {
+    min-width: 91px;
+    font-size: 9px;
+  }
+  .public-lobby-tools {
+    margin-top: 18px;
+  }
+  .live-room-list > article {
+    padding: 13px 9px;
+  }
+  .live-room-list h3 {
+    font-size: 13px;
+  }
+  .job-picker.large .job-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 330px;
+  }
+  .job-picker.large .job-grid > button {
+    min-height: 115px;
+  }
+  .job-picker.large .job-grid em {
+    display: none;
+  }
+  .job-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 190px;
+  }
+  .job-grid strong {
+    font-size: 9px;
+  }
+  .lobby-chat header small {
+    font-size: 7px;
+    max-width: 140px;
+    text-align: right;
+    line-height: 1.7;
+  }
+  .lobby-chat > div {
+    padding: 10px 12px;
+  }
+  .lobby-chat p {
+    font-size: 9px;
+    gap: 6px;
+  }
+  .lobby-chat time {
+    font-size: 7px;
+  }
+  .lobby-chat b {
+    font-size: 8px;
+  }
+  .lobby-chat .chat-welcome {
+    font-size: 9px;
+  }
+  .lobby-chat input {
+    font-size: 9px;
+  }
+  .lobby-chat form button {
+    font-size: 9px;
+    padding: 8px 11px;
+  }
+  .team-ping-controls {
+    right: 8px;
+    bottom: 46px;
+  }
+  .office-noise {
+    top: 86px;
+    left: 10px;
+    font-size: 7px;
+    padding: 4px;
+  }
+  .office-noise > i {
+    width: 35px;
+  }
+  .route-vote {
+    top: 125px;
+    padding: 12px;
+  }
+  .route-vote > header {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .route-vote header span {
+    font-size: 7px;
+  }
+  .route-vote > div {
+    gap: 5px;
+  }
+  .route-vote button {
+    padding: 10px 7px;
+    min-height: 110px;
+  }
+  .route-vote button strong {
+    font-size: 9px;
+  }
+  .route-vote button small {
+    font-size: 7px;
+  }
+  .ready-room {
+    padding: 20px 16px;
+  }
+  .ready-room-heading h2 {
+    font-size: 23px;
+  }
+  .ready-room-heading p {
+    font-size: 8px;
+  }
+  .ready-portrait img {
+    max-height: 100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ready-portrait img {
+    animation: none;
+  }
+}
+/* Real room chat stays above preparation roster, not buried behind it. */
+.game-stage:has(.ready-room) .chat-open {
+  z-index: 45;
+  background: #e6eddf;
+  color: #4b7460;
+  border-color: #a2b69a;
+  bottom: 12px;
+}
+.game-stage:has(.ready-room) .live-chat-feed {
+  z-index: 42;
+  bottom: 50px;
+  color: #4b6c5a;
+  text-shadow: none;
+  background: linear-gradient(90deg, #f2f5e6dd, transparent);
+  padding: 7px 10px;
+  border-left: 2px solid #9baa7f;
+  max-width: 64%;
+}
+.game-stage:has(.ready-room) .live-chat-feed strong {
+  color: #8a7550;
+}
+.game-stage:has(.ready-room) .live-chat-feed span {
+  color: #66856b;
+}
+.game-stage:has(.ready-room) .live-chat-feed time {
+  color: #9aa98b;
+}
+.game-stage:has(.ready-room) .chat-panel {
+  z-index: 55;
+  background: #f6f8e9f7;
+  border-color: #b8c5a4;
+  color: #5c7e62;
+}
+.game-stage:has(.ready-room) .chat-panel header {
+  color: #6f926c;
+  border-color: #c8d4b8;
+}
+.game-stage:has(.ready-room) .chat-panel input {
+  background: #fdfff3;
+  color: #567b5c;
+  border-color: #c6d5b3;
+}
+.game-stage:has(.ready-room) .chat-panel .chat-messages strong {
+  color: #a18c5c;
+}
+.game-stage:has(.ready-room) .chat-panel .chat-messages span {
+  color: #70916f;
+}
+.ready-room {
+  padding-bottom: 65px;
+}
+.stage-heading {
+  background: #f5f5e9;
+  border-color: #bdcec4;
+  color: #698b78;
+}
+.stage-tabs button {
+  color: #8b9e85;
+}
+.stage-tabs button.active {
+  color: #406c68;
+  border-bottom-color: #c08b59;
+}
+.app.in-run .stage-heading {
+  background: #294754;
+  color: #bad0b5;
+  border-color: #688980;
+}
+.app.in-run .stage-tabs button {
+  color: #8fae9e;
+}
+.app.in-run .stage-tabs button.active {
+  color: #e1e5c5;
+}
+.route-card {
+  background: #edf0e0;
+  border-color: #c9d2b6;
+  color: #78936a;
+}
+.route-card.active {
+  background: #e1e9d4;
+  border-color: #9fac7d;
+}
+.route-card h3 {
+  color: #739267;
+}
+.route-card p,
+.route-card small {
+  color: #a0af87;
+}
+.route-card .route-top {
+  color: #a4b88c;
+}
+.route-card .route-status {
+  color: #879e70;
+}
+:root {
+  color-scheme: light;
+}
+.app.in-run {
+  color-scheme: dark;
+}
+.public-lobby h3,
+.slot-info strong,
+.job-grid strong {
+  letter-spacing: 0.2px;
+}
+.job-grid {
+  max-height: 260px;
+}
+.job-picker header > span {
+  font-size: 7px;
+}
+.job-grid img {
+  width: 31px;
+  height: 43px;
+  object-fit: contain;
+}
+.job-picker.large img {
+  width: 52px;
+  height: 70px;
+}
+.app.in-run .damage-board {
+  color: #bcd0af;
+}
+.page-heading {
+  position: relative;
+}
+.page-heading:after {
+  content: "紧急通知：今天谁也不许独自加班。";
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  font-size: 8px;
+  color: #a89b73;
+  letter-spacing: 1px;
+}
+.office-note-strip {
+  color: #8a9f85;
+}
+@media (max-width: 900px) {
+  .page-heading:after {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  .game-stage:has(.ready-room) .live-chat-feed {
+    bottom: 48px;
+    max-width: 78%;
+    font-size: 8px;
+  }
+  .ready-room {
+    padding-bottom: 75px;
+  }
+}
+
+/* Paper UI uses ink-strength secondary text, never washed-out placeholders. */
+.public-lobby header p,
+.public-lobby > footer,
+.room-list-count,
+.public-lobby-tools input::placeholder {
+  color: #677f79;
+}
+.public-lobby > footer > span {
+  color: #7d8c7a;
+}
+.job-grid small {
+  color: #7b9074;
+}
+.role-description p {
+  color: #65836f;
+}
+.slot-info small {
+  color: #718a79;
+}
+.ready-room-heading p {
+  color: #6a8975;
+}
+.ready-role,
+.ready-loadout {
+  color: #6e8a71;
+}
+.ready-room .ready-seat-number {
+  color: #78967d;
+}
+.ready-room .ready-code {
+  color: #819378;
+}
+.ready-mode-brief p {
+  color: #7b967c;
+}
+.ready-launch small {
+  color: #849d7c;
+}
+.relay-ad small {
+  color: #7e927a;
+}
+.rental-ads p {
+  color: #8c9c7d;
+}
+.page-footer {
+  color: #80916f;
+}
+.job-picker.large .job-grid em {
+  color: #829076;
+}
+.job-picker.large .job-grid small {
+  color: #7f9277;
+}
+.app.in-run .role-description p {
+  color: #a5bfab;
+}
+
+/* Profession cards adapt to the chooser width, including the narrow create dialog. */
+.job-picker.large .job-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.job-picker.large .job-grid > button {
+  flex-direction: row;
+  text-align: left;
+  min-height: 126px;
+  padding: 12px 10px;
+  gap: 10px;
+}
+.job-grid img {
+  flex-shrink: 0;
+}
+.job-picker.large .job-grid > button > span {
+  flex: 1;
+}
+.job-picker.large .job-grid strong {
+  font-size: 12px;
+  white-space: normal;
+  line-height: 1.4;
+}
+.job-picker.large .job-grid small {
+  font-size: 10px;
+}
+.job-picker.large .job-grid em {
+  display: block;
+  font-size: 10px;
+  line-height: 1.45;
+}
+@container job-picker (max-width: 340px) {
+  .job-picker.large .job-grid {
+    grid-template-columns: 1fr;
+  }
+  .job-picker.large .job-grid > button {
+    min-height: 106px;
+  }
+}
+@container job-picker (min-width: 600px) {
+  .job-picker.large .job-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container job-picker (min-width: 820px) {
+  .job-picker.large .job-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

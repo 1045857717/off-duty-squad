@@ -1,0 +1,219 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing stable tag, e.g. v3.4.0"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify tagged source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      tag: ${{ steps.meta.outputs.tag }}
+      image: ${{ steps.meta.outputs.image }}
+      revision: ${{ steps.meta.outputs.revision }}
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Reject replacement of an already published release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" --json isDraft > release-state.json 2>/dev/null; then
+            node --input-type=module -e "import fs from 'node:fs'; if (!JSON.parse(fs.readFileSync('release-state.json', 'utf8')).isDraft) throw new Error('This release is already published. Create a new version.');"
+          fi
+      - run: npm run release:check
+      - run: npm run format:check
+      - run: npm run check
+      - id: meta
+        name: Resolve verified tag and image
+        shell: bash
+        run: |
+          git show-ref --verify "refs/tags/$RELEASE_TAG"
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { execFileSync } from 'node:child_process';
+          const version = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
+          const image = 'ghcr.io/' + process.env.GITHUB_REPOSITORY.toLowerCase();
+          const revision = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'version=' + version + '\ntag=' + process.env.RELEASE_TAG + '\nimage=' + image + '\nrevision=' + revision + '\n');
+          NODE
+
+  desktop:
+    name: Windows portable client
+    needs: verify
+    runs-on: windows-2025
+    timeout-minutes: 25
+    env:
+      RELEASE_TAG: ${{ needs.verify.outputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.verify.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - run: npm ci --no-audit --no-fund
+      - run: npm run desktop:package
+      - run: npm run release:check -- --desktop
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: windows-portable
+          path: |
+            releases/offshift-desktop-win-x64.zip
+            releases/desktop-release.json
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+  image:
+    name: Publish Linux image
+    needs: [verify, desktop]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      digest: ${{ steps.publish.outputs.digest }}
+    env:
+      RELEASE_TAG: ${{ needs.verify.outputs.tag }}
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.verify.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: windows-portable
+          path: releases
+      - run: npm ci --no-audit --no-fund
+      - run: npm run release:check -- --desktop
+      - name: Smoke-test release image before publishing
+        run: |
+          docker build --tag off-duty:release-check .
+          node scripts/container-smoke.mjs --image off-duty:release-check --desktop
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: publish
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ needs.verify.outputs.image }}:${{ needs.verify.outputs.version }}
+            ${{ needs.verify.outputs.image }}:latest
+          labels: |
+            org.opencontainers.image.title=Off Duty Squad
+            org.opencontainers.image.description=Workplace comedy co-op survival game
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.version=${{ needs.verify.outputs.version }}
+            org.opencontainers.image.revision=${{ needs.verify.outputs.revision }}
+          cache-from: type=gha,scope=release
+          cache-to: type=gha,mode=max,scope=release
+          provenance: mode=min
+          sbom: true
+
+  release:
+    name: Publish release and checksums
+    needs: [verify, desktop, image]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_TAG: ${{ needs.verify.outputs.tag }}
+      IMAGE: ${{ needs.verify.outputs.image }}
+      VERSION: ${{ needs.verify.outputs.version }}
+      DIGEST: ${{ needs.image.outputs.digest }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.verify.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: windows-portable
+          path: releases
+      - name: Prepare deployment assets and notes
+        shell: bash
+        run: |
+          cp compose.prod.yaml releases/compose.prod.yaml
+          cp .env.example releases/env.example
+          # The release asset always defaults to its own version.
+          sed -i "s/GAME_VERSION:-[0-9.]*/GAME_VERSION:-$VERSION/" releases/compose.prod.yaml
+          sed -i "s/^GAME_VERSION=.*/GAME_VERSION=$VERSION/" releases/env.example
+          printf '%s@%s\n' "$IMAGE" "$DIGEST" > releases/image-digest.txt
+          (cd releases && sha256sum offshift-desktop-win-x64.zip desktop-release.json compose.prod.yaml env.example image-digest.txt > SHA256SUMS.txt)
+          cat > releases/notes.md <<EOF
+          ## 部署 / Deploy
+          Docker: $IMAGE:$VERSION
+          Digest: $IMAGE@$DIGEST
+
+          下载 compose.prod.yaml 和 env.example，将后者重命名为 .env，设置公网域名后运行：
+          Download compose.prod.yaml and env.example, rename env.example to .env, then configure your public origin:
+
+          ~~~bash
+          docker compose -f compose.prod.yaml pull
+          docker compose -f compose.prod.yaml up -d --wait
+          ~~~
+
+          更新会结束当前对局；排行榜保存在数据卷。Updating ends active matches; scores remain in the named volume.
+          Windows 便携包未签名。The Windows portable client is unsigned. Verify downloads against SHA256SUMS.txt.
+          See CHANGELOG.md and docs/DEPLOYMENT.md / docs/DEPLOYMENT.en.md for changes, backup and rollback.
+          EOF
+      - name: Create or resume the draft release
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            test "$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft)" = true || { echo "Release is already public; use a new version instead of replacing published assets."; exit 1; }
+          else
+            gh release create "$RELEASE_TAG" --verify-tag --draft --title "Off Duty Squad $RELEASE_TAG" --notes-file releases/notes.md
+          fi
+          gh release upload "$RELEASE_TAG" releases/offshift-desktop-win-x64.zip releases/desktop-release.json releases/compose.prod.yaml releases/env.example releases/image-digest.txt releases/SHA256SUMS.txt --clobber
+          gh release edit "$RELEASE_TAG" --notes-file releases/notes.md --draft=false --latest

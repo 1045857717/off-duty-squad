@@ -1,0 +1,44 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+coverage/
+.cache/
+
+# Local settings, credentials and runtime data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+data/
+client-config.json
+**/game-server.json
+
+# Release binaries belong in GitHub Releases, not Git history
+releases/*
+!releases/.gitkeep
+!releases/README.md
+*.zip
+*.exe
+*.msi
+*.dmg
+*.AppImage
+
+# Local verification artifacts; curated documentation images are tracked
+test-results/
+/*.png
+/docs/[0-9]*.json
+/docs/[0-9]*.txt
+/docs/[0-9]*.log
+/task_plan.md
+/findings.md
+/progress.md
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
