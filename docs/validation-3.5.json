@@ -1,0 +1,146 @@
+{
+  "version": "3.5.0",
+  "date": "2026-10-22",
+  "gameCoreTests": 103,
+  "releaseContractTests": 5,
+  "browserGroups": 32,
+  "browserSuites": [
+    {
+      "suite": "feel",
+      "passed": 7,
+      "errors": [],
+      "cases": [
+        "双人准备、共同初始选卡、观战与对局同步正常",
+        "头顶数字生命/独立护盾、危险状态和受伤拖尾清晰可见",
+        "护盾破裂使用独立状态文字，不与生命损失混为同一条",
+        "16种攻击逐一确认真实手臂变化、正确武器、握持点连续与有界挥击轨迹",
+        "四模块同时触发并移动时，动作队列不冻结行走",
+        "快速转身持续保持可见层总透明度，不出现人物闪烁",
+        "620像素小窗血条仍可读且不溢出画面"
+      ],
+      "attacks": {
+        "pulse": {
+          "frames": 10,
+          "trail": 0
+        },
+        "arc": {
+          "frames": 15,
+          "trail": 0
+        },
+        "frost": {
+          "frames": 12,
+          "trail": 0
+        },
+        "blade": {
+          "frames": 14,
+          "trail": 12
+        },
+        "orbit": {
+          "frames": 20,
+          "trail": 0
+        },
+        "meteor": {
+          "frames": 20,
+          "trail": 12
+        },
+        "venom": {
+          "frames": 15,
+          "trail": 12
+        },
+        "drone": {
+          "frames": 18,
+          "trail": 0
+        },
+        "flame": {
+          "frames": 18,
+          "trail": 12
+        },
+        "seeker": {
+          "frames": 17,
+          "trail": 0
+        },
+        "gravity": {
+          "frames": 19,
+          "trail": 0
+        },
+        "ricochet": {
+          "frames": 12,
+          "trail": 12
+        },
+        "bat": {
+          "frames": 17,
+          "trail": 12
+        },
+        "mop": {
+          "frames": 18,
+          "trail": 12
+        },
+        "wrench": {
+          "frames": 19,
+          "trail": 12
+        },
+        "coffee": {
+          "frames": 16,
+          "trail": 12
+        }
+      }
+    },
+    {
+      "suite": "feedback",
+      "passed": 12,
+      "errors": [],
+      "cases": [
+        "全站在线人数包含大厅访客；3个真实浏览器会话显示3，不把AI算进去。",
+        "图鉴包含7敌人/16攻击/28职业/个人记录，搜索和成长等级预览真实可用。",
+        "指南使用统一纸面配色并纠正攻击快捷键；日/周/月/年/总榜按服务端时间边界筛选真实记录。",
+        "准备大厅点击任务简报会打开真正可见且可操作的独立面板，关闭可返回原小队。",
+        "队员管理入口独立成按钮，移出前确认可取消，实际移出后释放席位并让队员回到大厅。",
+        "左上使用真实斜后左素材、右上使用真实斜后右素材；实际可见14关节角色方向正确。",
+        "E零件不足由服务端明确拒绝，显示缺额、短促抖动和反馈，资源不会被错误扣除。",
+        "敌人先蓄力再出手，伤害来自实际敌人；受击界面显示来源、方向和护盾反馈。",
+        "7类敌人均使用可见14关节骨架和同一GPU图集，持续移动/蓄力/出手，并有连续倒地收尾。",
+        "逐项验证16种攻击的可见起手/出手/收招，高攻速也能完成动作，肘腕和下肢不被重置冻结。",
+        "28个职业Q都能驱动对应动作族，和16种随机攻击分开，不会覆盖职业技能。",
+        "真实队员重连保留身份与房间，不出现重复队员；在线汇总继续更新。"
+      ],
+      "attacks": 16
+    },
+    {
+      "suite": "abyss",
+      "passed": 10,
+      "errors": [],
+      "cases": [
+        "Survival creation and player name/squad name/mode preserved; ad points to requested external URL.",
+        "Public discovery -> real spectator joins and messages reach player as escaped text.",
+        "Shared XP delivers three random upgrade options; chosen server effect applied without pausing match.",
+        "Late player receives current team level upgrade catch-up without resetting room.",
+        "Task auto-folds and reopens by click; ranking is transparent; shield overlay visible and HUD is slim.",
+        "Real keyboard R triggers sequenced continuous server dash.",
+        "Downed player calls rescue with H; teammate mend ability revives without reload.",
+        "All four interactive workspaces work; edits persist; F8 works even while typing.",
+        "F9 opens actual small popup, handoff preserves identity, hide/show/return retain room.",
+        "390px lobby responsive layout has no horizontal overflow."
+      ]
+    },
+    {
+      "suite": "comedy",
+      "passed": 3,
+      "errors": [],
+      "cases": [
+        "模式/难度卡可真实切换、无原生下拉；28职业含4资本梗；大厅专属小队聊天不遮挡准备，广告QQ与大标题可见。",
+        "T切换自动开火、聊天输入T不触发开火切换；消息发送后收起；成长详情与弹窗关闭后无残留指针焦点。",
+        "新场内角色素材实际加载，玩家可移动、画饼Q实际伤害与特效生效，战斗仍可看到轻量透明消息。"
+      ]
+    }
+  ],
+  "quality": {
+    "dpr": 2,
+    "cap144": 141.63833899774147,
+    "movement": {
+      "samples": 58,
+      "moving": 58
+    },
+    "distinctWalkPhases": 128,
+    "uncapped": false
+  }
+}

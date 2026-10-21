@@ -19,9 +19,9 @@
 
 ## 远程验收 / Remote acceptance
 
-- [ ] Create the repository and push reviewed source.
+- [x] Created public repository and pushed reviewed source.
 - [ ] CI passes on the actual main commit.
-- [ ] Configure repository topics, issue labels, branch rules and private vulnerability reporting as appropriate.
+- [x] Configured repository topics, standard issue labels and private vulnerability reporting; branch rules remain optional.
 - [ ] Push the first stable tag and complete all Release jobs.
 - [ ] Verify Windows assets, SHA256SUMS and image digest.
 - [ ] Confirm GHCR package visibility separately from repository visibility.

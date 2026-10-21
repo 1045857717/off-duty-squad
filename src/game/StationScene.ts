@@ -1,3 +1,6 @@
+import { PlayerVitals } from "./PlayerVitals";
+import { WeaponRibbon } from "./WeaponRibbon";
+import { visibleAttack, weaponPose } from "./joints";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../../shared/combatProfiles";
 import { windupProgress } from "./actorPose";
 import { ensureDamageFont } from "./damageFont";
@@ -77,6 +80,8 @@ export type SceneBridge = {
 };
 type Actor = {
   rig?: ArticulatedActor;
+  vitals?: PlayerVitals;
+  ribbon?: WeaponRibbon;
   sprite: Phaser.GameObjects.Sprite;
   shadow: Phaser.GameObjects.Image;
   name: Phaser.GameObjects.Text | null;
@@ -793,6 +798,8 @@ export class StationScene extends Phaser.Scene {
         .setBlendMode(Phaser.BlendModes.ADD)
         .setVisible(false);
       a.prevHp = p.hp;
+      a.vitals = new PlayerVitals(this, p.id);
+      a.ribbon = new WeaponRibbon(this, p.id);
     }
     if (!a.rig || a.rig.role !== p.role) {
       a.rig?.destroy();
@@ -919,7 +926,16 @@ export class StationScene extends Phaser.Scene {
       0.68 * (p.dashTime > 0 ? 1.08 : 1),
       0.68 * (p.dashTime > 0 ? 0.94 : 1),
     );
-    a.rig!.updatePose(p, facing, travel, dt, time, a.recoilUntil, a.castUntil);
+    a.rig!.updatePose(
+      p,
+      facing,
+      travel,
+      dt,
+      time,
+      a.recoilUntil,
+      a.castUntil,
+      preview ? undefined : (this.bridge.state?.elapsed || 0) + this.age,
+    );
     a.rig!.tint(time < a.hitUntil ? (p.hitShield ? 0xb7e0ff : 0xffa9a0) : null);
     if (
       p.id === this.bridge.playerId &&
@@ -934,47 +950,68 @@ export class StationScene extends Phaser.Scene {
       }
     }
 
-    const recoil = Math.max(0, (a.recoilUntil - time) / 115),
-      wx = a.rig!.handWorld().x - Math.cos(facing) * recoil * 2,
-      wy = a.rig!.handWorld().y;
-    const held = (
-      p.attackMotion?.id && p.arsenal?.[p.attackMotion.id]
-        ? p.attackMotion.id
-        : Object.keys(p.arsenal || {})[0]
-    ) as keyof typeof p.arsenal | undefined;
-    const pose = a.rig?.pose,
-      phase = Number(pose?.attackPhase ?? 1),
-      active = phase < 1;
-    const motionKind = held ? ATTACK_MOTIONS[held].kind : "shoot";
-    const swing =
-      active && (motionKind === "slash" || motionKind === "sweep")
-        ? -0.75 + Math.sin(phase * Math.PI) * 1.75
-        : active && motionKind === "overhead"
-          ? -1.35 + Math.sin(phase * Math.PI) * 2.2
-          : 0;
+    const motion = a.rig!.attackFrame;
+    const held = visibleAttack(motion, p.arsenal || {});
+    const transform = weaponPose(motion, facing);
+    const hand = a.rig!.handWorld();
+    const wx = hand.x - Math.cos(facing) * transform.recoil;
+    const wy = hand.y - Math.sin(facing) * transform.recoil;
+    const tipX = wx + Math.cos(transform.rotation) * 54 * transform.scale;
+    const tipY = wy + Math.sin(transform.rotation) * 54 * transform.scale;
     a.weapon!.setTexture("tool-" + (held || "pulse"))
       .setPosition(wx, wy)
-      .setRotation(facing + swing)
+      .setRotation(transform.rotation)
+      .setScale(transform.scale)
       .setFlipY(Math.cos(facing) < 0)
-      .setVisible(p.alive && !!held);
-    a.muzzle!.setPosition(
-      wx + Math.cos(facing) * 29,
-      wy + Math.sin(facing) * 29,
-    )
-      .setVisible(p.alive && held === "pulse" && recoil > 0.55)
-      .setAlpha(recoil * 0.6);
+      .setVisible(p.alive && !!held)
+      .setData("attack", {
+        id: held || "",
+        phase: motion.progress,
+        active: motion.active,
+        handX: hand.x,
+        handY: hand.y,
+        tipX,
+        tipY,
+      });
+    a.ribbon?.sample(
+      tipX,
+      tipY,
+      p.alive && !!held && transform.trail,
+      time,
+      held ? color(ATTACKS[held].color) : 0xeac489,
+      this.bridge.settings.lowMotion,
+      depth + 0.8,
+    );
+    a.muzzle!.setPosition(tipX, tipY)
+      .setVisible(p.alive && held === "pulse" && motion.strike > 0.45)
+      .setAlpha(motion.strike * 0.5);
     if (a.name) {
       const text = (p.id === this.bridge.playerId ? "你 · " : "") + p.name;
       if (a.name.text !== text) a.name.setText(text);
-      if (a.name.style.color !== p.color) a.name.setColor(p.color);
-      a.name.setPosition(a.x, a.y - 62).setAlpha(p.connected ? 1 : 0.4);
+      if (a.name.style.color !== "#fff2da")
+        a.name
+          .setColor("#fff2da")
+          .setBackgroundColor("#12231f")
+          .setPadding(4, 2);
+      a.name.setPosition(a.x, a.y - 77).setAlpha(p.connected ? 1 : 0.4);
     }
-    a.hpBg.setPosition(a.x - 17, a.y - 52).setVisible(!preview);
-    a.hp
-      .setPosition(a.x - 17, a.y - 52)
-      .setScale(Math.max(0.001, p.alive ? p.hp / p.maxHp : p.revive / 2.5), 1)
-      .setFillStyle(p.alive ? color(p.color) : 0xf3b290)
-      .setVisible(!preview);
+    a.hpBg.setVisible(false);
+    a.hp.setVisible(false);
+    a.vitals?.setVisible(!preview);
+    const shieldBroken = a.vitals?.updatePlayer(
+      p,
+      a.x,
+      a.y,
+      time,
+      p.id === this.bridge.playerId,
+      this.cameras.main.zoom / this.ratio,
+      this.bridge.state?.phase === "playing" &&
+        this.bridge.state.players.some(
+          (player) => player.alive && player.connected,
+        ),
+    );
+    if (shieldBroken && p.id === this.bridge.playerId)
+      this.bridge.sound("shield-break");
     if (p.id === this.bridge.playerId && !preview) {
       const ring = this.item("self-ring", "glow", a.x, a.y + 10, 58, 23);
       ring.sprite
@@ -1166,6 +1203,8 @@ export class StationScene extends Phaser.Scene {
     a.name?.destroy();
     a.hp.destroy();
     a.hpBg.destroy();
+    a.vitals?.destroy();
+    a.ribbon?.destroy();
     a.weapon?.destroy();
     a.muzzle?.destroy();
     this.actors.delete(id);

@@ -1,0 +1,165 @@
+/* Combat hierarchy: life first, armor separate, equipment secondary. */
+.combat-strip .combat-vitals {
+  width: 158px;
+  min-width: 134px;
+  padding: 1px 5px 1px 0;
+}
+.combat-vitals .vital-label {
+  gap: 5px;
+  color: #fff4de;
+  line-height: 20px;
+  font-size: 11px;
+}
+.combat-vitals .vital-label > svg {
+  color: #90e7b4;
+  filter: drop-shadow(0 1px 1px #07140e);
+}
+.combat-vitals .vital-label strong {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  font-variant-numeric: tabular-nums;
+}
+.combat-vitals .vital-label small {
+  font-size: 11px;
+  color: #c1cbbf;
+}
+.combat-vitals .vital-label em {
+  margin-left: auto;
+  font: 600 10px var(--sans, sans-serif);
+  font-style: normal;
+  color: #bce9cb;
+  white-space: nowrap;
+}
+.combat-vitals .vital-track {
+  height: 9px;
+  margin-top: 4px;
+  border: 1px solid #b1c4b36e;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #10261e;
+  box-shadow: 0 1px 5px #0006;
+}
+.combat-vitals .vital-track > i,
+.combat-vitals .vital-loss {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+}
+.combat-vitals .vital-track > i {
+  background: linear-gradient(180deg, #a2f1c1, #5acb92);
+  transition: transform 100ms linear;
+}
+.combat-vitals .vital-loss {
+  background: #f1cd7d;
+  transition: transform 440ms cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.combat-vitals .vital-shield {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 5px;
+  margin-top: 4px;
+  color: #a5e3ff;
+  font: 600 10px var(--mono);
+}
+.combat-vitals .vital-shield b {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #9bddff;
+  transform-origin: left;
+  transition: transform 100ms linear;
+  border-radius: 2px;
+}
+.combat-vitals.status-wounded .vital-track > i {
+  background: linear-gradient(180deg, #f8d68b, #e6a64b);
+}
+.combat-vitals.status-wounded .vital-label > svg,
+.combat-vitals.status-wounded .vital-label em {
+  color: #f8cc7f;
+}
+.combat-vitals.status-critical .vital-track {
+  border-color: #ffb3a4;
+  animation: vital-danger 1.1s ease-in-out infinite;
+}
+.combat-vitals.status-critical .vital-track > i {
+  background: linear-gradient(180deg, #ffad93, #ee6958);
+}
+.combat-vitals.status-critical .vital-label strong,
+.combat-vitals.status-critical .vital-label > svg,
+.combat-vitals.status-critical .vital-label em {
+  color: #ffb4a1;
+}
+.combat-vitals.status-down .vital-label em {
+  color: #f1c58b;
+}
+.combat-vitals.shield-broken .vital-label em {
+  color: #a5e3ff;
+}
+@keyframes vital-danger {
+  50% {
+    box-shadow:
+      0 0 0 2px #f0806036,
+      0 0 11px #f080602a;
+  }
+}
+@media (max-width: 800px) {
+  .combat-strip .combat-vitals {
+    width: 132px;
+    min-width: 112px;
+  }
+  .combat-vitals .vital-label strong {
+    font-size: 17px;
+  }
+}
+.is-compact .combat-strip .combat-vitals {
+  width: 125px;
+  min-width: 108px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .combat-vitals.status-critical .vital-track {
+    animation: none;
+  }
+  .combat-vitals .vital-track > i,
+  .combat-vitals .vital-loss,
+  .combat-vitals .vital-shield b {
+    transition: none;
+  }
+}
+
+.combat-vitals .vital-shield-amount {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  color: #b2e5ff;
+  font-size: 10px;
+  margin-left: 0;
+}
+.combat-vitals .vital-shield {
+  height: 3px;
+  padding: 0;
+  margin-top: 3px;
+  background: #173a4d;
+  border-radius: 2px;
+  overflow: hidden;
+}
+@media (max-width: 800px) {
+  .combat-vitals .vital-label em {
+    display: none;
+  }
+  .combat-vitals .vital-shield-amount {
+    margin-left: auto;
+  }
+}
+
+.combat-strip {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

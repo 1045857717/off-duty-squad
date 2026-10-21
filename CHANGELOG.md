@@ -2,6 +2,20 @@
 
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
+## [3.5.0] - 2026-10-22
+
+### Changed / 调整
+
+- Direction-specific painted body-part masks and shoulder/elbow/wrist anchors replace transparent outer-edge arm crops.
+- Continuous anticipation, contact and recovery for player and enemy attacks; held weapons follow the currently rendered attack.
+- Numeric overhead health, separate shield bars, recent-damage trails and clearer compact HUD.
+- Bounded weapon-tip ribbons, shield-break cues and stale-attack / stale-Q replay prevention.
+
+### Added / 新增
+
+- Combat-feel browser acceptance for all 16 attacks, real hand alignment, multiplayer draft and compact health readability.
+- Focused regressions for phase boundaries, geometry, source timing and vitality display.
+
 ## [3.4.0] - 2026-10-22
 
 ### Publication / 首次公开发布

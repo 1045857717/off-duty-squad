@@ -33,23 +33,23 @@
 更新 CHANGELOG 和说明后运行：
 
 ```bash
-# 以后每次更新时使用；首次发布已有 3.4.0，不需要再 bump 一次。
+# 以后每次更新时使用；首次发布已有 3.5.0，不需要再 bump 一次。
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
-npm run release:check -- --tag v3.4.1
+npm run release:check -- --tag v3.5.1
 
 git add .
-git commit -m "chore(release): prepare v3.4.1"
+git commit -m "chore(release): prepare v3.5.1"
 git push origin main
 gh run list --workflow ci.yml --limit 5
 ```
 
-示例版本 3.4.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
+示例版本 3.5.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
 
 ```bash
-git tag -a v3.4.1 -m "Off Duty Squad v3.4.1"
-git push origin v3.4.1
+git tag -a v3.5.1 -m "Off Duty Squad v3.5.1"
+git push origin v3.5.1
 gh run list --workflow release.yml --limit 5
 # 使用上条命令返回的 run ID：
 gh run watch RUN_ID --exit-status

@@ -25,7 +25,7 @@ A 1–4 player online co-op survival game that turns workplace absurdity into a 
 - **28 workplace professions:** recognizable office roles and deliberately absurd careers, each with a permanent signature skill. Choose your first attack module inside the map; combat starts after everyone has chosen.
 - **Builds that grow:** 16 attack modules, prerequisite-aware upgrades, and level 4 / level 8 evolutions. Upgrade offers follow your available growth branches.
 - **Actual multiplayer:** host-controlled departure, player readiness, a cancellable three-second countdown, mid-run joining, 0–3 AI teammates, spectators, chat, rescue calls and revives.
-- **Readable combat:** enemy wind-ups and articulated attacks, persistent area effects, critical-hit and shield feedback, damage sources, a global boss bar and live damage rankings.
+- **Readable combat:** high-contrast numeric health/shields, recent-damage trails, direction-specific painted arms and continuous held weapons; enemy wind-ups and articulated attacks, persistent area effects, critical-hit and shield feedback, damage sources, a global boss bar and live damage rankings.
 - **Codex and leaderboards:** enemies, professions and skills; daily, weekly, monthly, yearly and all-time squad rankings, separated by mode and difficulty.
 - **Browser and optional Windows client:** independent browser windows; a portable Electron client adds frameless transparency, always-on-top, hiding and global restore.
 - **Nine work-style views:** tasks, board, documents, spreadsheet, Excel-style sheet, mail, VS Code-style editor, IDEA-style editor and metrics. Editors are local interactive simulations.
@@ -51,7 +51,7 @@ npm run build
 npm start
 ```
 
-Open **http://localhost:3000**. For development, run `npm run dev` and use the Vite URL printed in your terminal. Download the Windows portable client from [Releases](https://github.com/1045857717/off-duty-squad/releases), extract all files and enter the same server origin used by your browser.
+Open [http://localhost:3000](http://localhost:3000). For development, run `npm run dev` and use the Vite URL printed in your terminal. Download the Windows portable client from [Releases](https://github.com/1045857717/off-duty-squad/releases), extract all files and enter the same server origin used by your browser.
 
 ### Deploy with Docker
 
@@ -111,6 +111,10 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 <details>
 <summary>View results and work-style interface</summary>
 
+**3.5 health and shield acceptance scene**
+
+![3.5 health and shields](docs/images/vitals-35.webp)
+
 ![Run results](docs/images/results.webp)
 
 ![VS Code-style work interface](docs/images/work-mode.webp)
@@ -119,7 +123,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.4.0**. Previous local acceptance covered 92 core checks and 74 browser scenarios; scope and environment are recorded in the [3.4 notes](docs/RELEASE-3.4.md). The CI badge reflects actual runs in this repository.
+Current version: **3.5.0**. This release improves painted joint extraction, continuous attacks, weapon grips and health/shield readability; see [3.5 notes](docs/RELEASE-3.5.md). Previous local acceptance covered 92 core checks and 74 browser scenarios; scope and environment are recorded in the [3.4 notes](docs/RELEASE-3.4.md). The CI badge reflects actual runs in this repository.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [performance notes](docs/PERFORMANCE-3.4.md).

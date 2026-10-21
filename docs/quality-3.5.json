@@ -1,0 +1,53 @@
+{
+  "dpr": 2,
+  "distinctWalkFrames": 128,
+  "motion": {
+    "samples": 58,
+    "moving": 58
+  },
+  "cap144": 141.63833899774147,
+  "displayUncapped": false,
+  "toolbarHints": [
+    {
+      "name": "一键工作摸鱼",
+      "keys": "F8"
+    },
+    {
+      "name": "独立小窗",
+      "keys": "F6"
+    },
+    {
+      "name": "桌面端F3",
+      "keys": "F3"
+    },
+    {
+      "name": "自动开火快捷开关",
+      "keys": "T"
+    },
+    {
+      "name": "一键隐藏",
+      "keys": "F10"
+    },
+    {
+      "name": "低调一点F9",
+      "keys": "F9"
+    },
+    {
+      "name": "开启音效",
+      "keys": "M"
+    },
+    {
+      "name": "切换伤害排名",
+      "keys": "F7"
+    },
+    {
+      "name": "快捷设置",
+      "keys": "F2"
+    }
+  ],
+  "border": {
+    "width": "0px",
+    "radius": "0px"
+  },
+  "errors": []
+}

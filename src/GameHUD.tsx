@@ -1,3 +1,4 @@
+import { PlayerVitalsHUD } from "./PlayerVitalsHUD";
 import { workerQuote } from "../shared/humor";
 import { RunReport } from "./RunReport";
 import { BossVitals, PartsHelp, InteractionHUD } from "./CombatReadability";
@@ -169,30 +170,7 @@ export function GameHUD({
       {me ? (
         <>
           <div className="combat-strip">
-            <div className="vitals">
-              <div className="vital-label">
-                <Icon name="heart" size={12} />
-                <strong>{Math.ceil(me.hp)}</strong>
-                <small>/{me.maxHp}</small>
-                {me.shield > 0 && (
-                  <span>
-                    <Icon name="shield" size={10} />
-                    {Math.ceil(me.shield)}
-                  </span>
-                )}
-              </div>
-              <div
-                className="vital-track"
-                aria-label={`生命 ${Math.ceil(me.hp)} 护盾 ${Math.ceil(me.shield)}`}
-              >
-                <i style={{ width: `${(me.hp / me.maxHp) * 100}%` }} />
-                <b
-                  style={{
-                    width: `${Math.min(1, me.shield / Math.max(30, me.shieldCap)) * 100}%`,
-                  }}
-                />
-              </div>
-            </div>
+            <PlayerVitalsHUD player={me} elapsed={state.elapsed} />
             <div
               className={
                 "micro-skill signature-tier-" +

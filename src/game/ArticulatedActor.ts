@@ -8,10 +8,19 @@ import type {
 } from "../../shared/types";
 import { gameplayModel } from "./paintedActors";
 import { directionView, locomotionWeight, windupProgress } from "./actorPose";
-import { JOINT_PARTS, articulatedPose, AttackTimeline } from "./joints";
+import {
+  JOINT_PARTS,
+  articulatedPose,
+  AttackTimeline,
+  enemyAttackFrame,
+  type AttackFrame,
+  rigPartGeometry,
+} from "./joints";
 import { ensureRigAtlas } from "./RigAtlas";
 import { ENEMY_DEFS, SIGNATURE_MOTIONS } from "../../shared/combatProfiles";
 type Pose = ReturnType<typeof articulatedPose>;
+const motionRecoil = (_pose: Pose, frame: AttackFrame) =>
+  frame.kind === "shoot" && frame.active ? frame.strike * 2 : 0;
 type Bone = {
   x: number;
   y: number;
@@ -20,6 +29,8 @@ type Bone = {
   parent: number;
   matrix: Float64Array;
   image: Phaser.GameObjects.Image;
+  width: number;
+  height: number;
 };
 const BONE_ORDER = [9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13];
 /** All joint images and props share one GPU texture, including the enemies. */
@@ -36,13 +47,16 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
   private layerIndex = 0;
   private currentDir = -1;
   private changedAt = -999;
+  private incomingAlpha = 0;
+  private outgoingAlpha = 1;
   private weight = 0;
   private phase = 0;
   private clock = new AttackTimeline();
+  attackFrame: AttackFrame = this.clock.sample(undefined, -1, 0);
   private gear: Phaser.GameObjects.Image;
   private blink: Phaser.GameObjects.Image;
   private lastTint: number | null = null;
-  private castSeq = 0;
+  private castSeq = -1;
   private castStarted = -9999;
   private diag: Record<string, number | string | boolean> = {};
   pose: Record<string, number | string | boolean> = {};
@@ -59,7 +73,9 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
     const key = ensureRigAtlas(scene),
       model = gameplayModel(role);
     for (let l = 0; l < 2; l++) {
-      const group = new Phaser.GameObjects.Container(scene, 0, 0),
+      const group = new Phaser.GameObjects.Container(scene, 0, 0).setAlpha(
+          l === 0 ? 1 : 0,
+        ),
         nodes = new Map<string, Bone>(),
         images = new Map<string, Phaser.GameObjects.Image>(),
         bones: Bone[] = [];
@@ -68,9 +84,10 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
             part.parent === "root"
               ? -1
               : JOINT_PARTS.findIndex((p) => p.name === part.parent),
-          pp = parent < 0 ? null : JOINT_PARTS[parent].pivot,
-          [px, py] = part.pivot,
-          [x, y, w, h] = part.rect;
+          pp = parent < 0 ? null : rigPartGeometry(0, part.parent, model).pivot,
+          geometry = rigPartGeometry(0, part.name, model),
+          [px, py] = geometry.pivot,
+          [x, y, w, h] = geometry.rect;
         const image = new Phaser.GameObjects.Image(
           scene,
           0,
@@ -88,6 +105,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
           parent,
           matrix: new Float64Array(6),
           image,
+          width: w * 84,
+          height: h * 105,
         };
         nodes.set(part.name, bone);
         images.set(part.name, image);
@@ -128,15 +147,34 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
     const { dir } = directionView(aim),
       model = gameplayModel(this.role);
     if (dir !== this.currentDir) {
-      this.layerIndex = 1 - this.layerIndex;
+      const outgoing =
+        this.layers[0].group.alpha >= this.layers[1].group.alpha ? 0 : 1;
+      this.layerIndex = 1 - outgoing;
+      this.incomingAlpha = this.layers[this.layerIndex].group.alpha;
+      this.outgoingAlpha = this.layers[outgoing].group.alpha;
       this.currentDir = dir;
       this.layers[this.layerIndex].dir = dir;
       this.changedAt = time;
       const view = directionView((dir * Math.PI) / 4);
-      for (const part of JOINT_PARTS)
-        this.layers[this.layerIndex].images
+      for (const part of JOINT_PARTS) {
+        const layer = this.layers[this.layerIndex];
+        const geometry = rigPartGeometry(view.column, part.name, model),
+          [px, py] = geometry.pivot,
+          [x, y, w, h] = geometry.rect;
+        const pp =
+          part.parent === "root"
+            ? null
+            : rigPartGeometry(view.column, part.parent, model).pivot;
+        const bone = layer.nodes.get(part.name)!;
+        bone.x = pp ? (px - pp[0]) * 84 : -42 + px * 84;
+        bone.y = pp ? (py - pp[1]) * 105 : -53 + py * 105;
+        bone.width = w * 84;
+        bone.height = h * 105;
+        layer.images
           .get(part.name)!
-          .setFrame(`${model}-${view.column}-${part.name}`);
+          .setFrame(model + "-" + view.column + "-" + part.name)
+          .setOrigin((px - x) / w, (py - y) / h);
+      }
     }
     const turn = Math.min(1, (time - this.changedAt) / 75);
     for (let l = 0; l < 2; l++) {
@@ -149,9 +187,16 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       }
       layer.group
         .setVisible(true)
-        .setAlpha(active ? turn : 1 - turn)
+        .setAlpha(
+          active
+            ? this.incomingAlpha + (1 - this.incomingAlpha) * turn
+            : this.outgoingAlpha * (1 - turn),
+        )
         .setScale(view.flip ? -1 : 1, assist ? 0.86 : 1)
-        .setPosition(0, pose.bob);
+        .setPosition(
+          -Math.cos(aim) * motionRecoil(pose, this.attackFrame),
+          pose.bob,
+        );
       for (const part of JOINT_PARTS)
         layer.nodes.get(part.name)!.rotation = pose[part.name];
       layer.nodes.get("torso")!.sy = pose.breath;
@@ -184,6 +229,7 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       leftLeg: pose.leftUpperLeg,
       rightLeg: pose.rightUpperLeg,
       leftArm: pose.leftUpperArm,
+      rightArm: pose.rightUpperArm,
       elbow: pose.leftForearm,
       rightElbow: pose.rightForearm,
       knee: pose.leftShin,
@@ -203,6 +249,7 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
     time: number,
     _attackUntil: number,
     _castUntil: number,
+    worldElapsed?: number,
   ) {
     this.weight = locomotionWeight(this.weight, travel > 0.02, dt);
     this.phase += (Math.min(travel, 7) * Math.PI * 2) / 84;
@@ -210,10 +257,15 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       p.attackMotion?.id,
       p.attackMotion?.seq ?? -1,
       time,
+      worldElapsed === undefined
+        ? 0
+        : Math.max(0, worldElapsed - (p.attackMotion?.at ?? worldElapsed)) *
+            1000,
     );
+    this.attackFrame = motion;
     if (p.skillSeq !== this.castSeq) {
+      if (this.castSeq >= 0) this.castStarted = time;
       this.castSeq = p.skillSeq;
-      this.castStarted = time;
     }
     const cp = (time - this.castStarted) / 650,
       cast = cp >= 0 && cp < 1 ? Math.sin(cp * Math.PI) : 0,
@@ -271,9 +323,7 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       (Math.min(travel, 7) * Math.PI * 2) / (e.kind === "mite" ? 58 : 86);
     const total = e.windupTotal || ENEMY_DEFS[e.kind].windup,
       windup = e.windup ? windupProgress(e.windup, total, snapshotAge) : 0,
-      age = elapsed - (e.attackStartedAt ?? -999),
-      strike = age >= 0 && age < 0.28 ? Math.sin((age / 0.28) * Math.PI) : 0,
-      recover = age >= 0.28 && age < 0.58 ? 1 - (age - 0.28) / 0.3 : 0;
+      age = elapsed + snapshotAge - (e.attackStartedAt ?? -999);
     const kind =
       e.kind === "hound"
         ? "sweep"
@@ -286,21 +336,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
               : e.kind === "bomber"
                 ? "channel"
                 : "slash";
-    const motion = {
-      kind: kind as any,
-      id: undefined,
-      active: !!e.windup || strike > 0 || recover > 0,
-      windup: e.windup ? Math.sin((windup * Math.PI) / 2) : 0,
-      strike,
-      recovery: recover,
-      progress: e.windup
-        ? windup * 0.23
-        : age >= 0 && age < 0.28
-          ? 0.23 + (age / 0.28) * 0.35
-          : age >= 0.28 && age < 0.58
-            ? 0.58 + ((age - 0.28) / 0.3) * 0.42
-            : 1,
-    };
+    const motion = enemyAttackFrame(kind, windup, age);
+    const strike = motion.strike;
     const pose = articulatedPose(
       this.phase,
       this.weight,
@@ -364,19 +401,25 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
         .setPosition(m[4], m[5])
         .setRotation(Math.atan2(m[1], m[0]))
         .setScale(
-          ((part.rect[2] * 84) / bone.image.frame.realWidth) * sx,
-          ((part.rect[3] * 105) / bone.image.frame.realHeight) * sy,
+          (bone.width / bone.image.frame.realWidth) * sx,
+          (bone.height / bone.image.frame.realHeight) * sy,
         );
     }
   }
   handWorld() {
-    const layer = this.layers[this.layerIndex],
-      b = layer.nodes.get("rightHand")!.matrix,
-      m = layer.group.getWorldTransformMatrix();
-    return {
-      x: m.a * b[4] + m.c * b[5] + m.tx,
-      y: m.b * b[4] + m.d * b[5] + m.ty,
-    };
+    let x = 0,
+      y = 0,
+      total = 0;
+    for (const layer of this.layers) {
+      if (!layer.group.visible || layer.group.alpha <= 0) continue;
+      const b = layer.nodes.get("rightHand")!.matrix;
+      const m = layer.group.getWorldTransformMatrix();
+      const weight = layer.group.alpha;
+      x += (m.a * b[4] + m.c * b[5] + m.tx) * weight;
+      y += (m.b * b[4] + m.d * b[5] + m.ty) * weight;
+      total += weight;
+    }
+    return { x: total ? x / total : this.x, y: total ? y / total : this.y };
   }
   tint(value: number | null) {
     if (value === this.lastTint) return;

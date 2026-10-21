@@ -155,10 +155,28 @@ try {
     "1",
   );
   const compactHUD = await host.locator(".combat-strip").boundingBox();
-  assert.ok(compactHUD && compactHUD.height < 55);
+  const hudMetrics = await host.locator(".combat-strip").evaluate((el) => ({
+    height: el.getBoundingClientRect().height,
+    padding: getComputedStyle(el).padding,
+    children: [...el.children].map((child) => ({
+      class: child.className,
+      height: child.getBoundingClientRect().height,
+      children: [...child.children].map((item) => ({
+        class: item.className,
+        height: item.getBoundingClientRect().height,
+        padding: getComputedStyle(item).padding,
+        margin: getComputedStyle(item).margin,
+        lineHeight: getComputedStyle(item).lineHeight,
+      })),
+    })),
+  }));
+  assert.ok(
+    compactHUD && compactHUD.height < 55,
+    "HUD height budget exceeded: " + JSON.stringify(hudMetrics),
+  );
   assert.ok(
     await host
-      .locator(".vital-track b")
+      .locator(".vital-shield b")
       .evaluate((el) => el.getBoundingClientRect().width > 0),
   );
   passed.push(

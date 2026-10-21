@@ -1,6 +1,6 @@
 {
   "name": "off-duty-squad",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "private": true,
   "type": "module",
   "description": "工位发癫局 — 1–4人抽象职场合作闯关 / 随机构筑无尽生存",
@@ -8,7 +8,7 @@
     "dev": "concurrently -k -n server,web -c green,cyan \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
-    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts && node --test tests/release.test.mjs",
+    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts tests/feel.test.ts && node --test tests/release.test.mjs",
     "desktop": "electron electron/main.cjs",
     "check": "npm test && npm run build",
     "browser:install": "playwright install chromium",
@@ -35,7 +35,8 @@
     "test:turn": "tsx tests/browser-turn-regression.ts",
     "test:feedback": "tsx tests/browser-feedback.ts",
     "release:check": "node scripts/verify-release.mjs",
-    "desktop:package": "python scripts/package-desktop.py"
+    "desktop:package": "python scripts/package-desktop.py",
+    "test:feel": "tsx tests/browser-feel.ts"
   },
   "dependencies": {
     "express": "4.22.3",

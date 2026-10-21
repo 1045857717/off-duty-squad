@@ -31,14 +31,14 @@ Images receive exact `X.Y.Z` and convenience `latest` tags. Pin the exact versio
 Update the changelog and relevant docs:
 
 ```bash
-# Use for subsequent releases; the initial 3.4.0 already exists in package.json.
+# Use for subsequent releases; the initial 3.5.0 already exists in package.json.
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
-npm run release:check -- --tag v3.4.1
+npm run release:check -- --tag v3.5.1
 
 git add .
-git commit -m "chore(release): prepare v3.4.1"
+git commit -m "chore(release): prepare v3.5.1"
 git push origin main
 gh run list --workflow ci.yml --limit 5
 ```
@@ -46,8 +46,8 @@ gh run list --workflow ci.yml --limit 5
 Replace the example version with your intended version. Wait for CI on the exact main commit, then tag:
 
 ```bash
-git tag -a v3.4.1 -m "Off Duty Squad v3.4.1"
-git push origin v3.4.1
+git tag -a v3.5.1 -m "Off Duty Squad v3.5.1"
+git push origin v3.5.1
 gh run list --workflow release.yml --limit 5
 # Substitute the run ID returned above:
 gh run watch RUN_ID --exit-status

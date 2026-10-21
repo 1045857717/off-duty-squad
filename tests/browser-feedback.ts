@@ -417,7 +417,7 @@ try {
   }, enemyIds);
   for (const kind of kinds) {
     assert.equal(audit[kind]?.parts, 14, kind);
-    assert.equal(audit[kind]?.texture, "joint-atlas-v34");
+    assert.equal(audit[kind]?.texture, "joint-atlas-v35");
     assert.ok(audit[kind]?.poses.length >= 3, kind);
   }
   await fs.writeFile(

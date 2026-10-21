@@ -213,7 +213,7 @@ try {
   assert.equal(actor.height, 320);
   assert.equal(actor.parts, 14);
   assert.equal(actor.visible, true);
-  assert.equal(actor.texture, "joint-atlas-v34");
+  assert.equal(actor.texture, "joint-atlas-v35");
   assert.ok(actor.poses >= 4, JSON.stringify(actor));
   await fs.writeFile(
     "test-results/comedy/actor-audit.json",

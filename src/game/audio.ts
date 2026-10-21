@@ -26,27 +26,29 @@ export function playSound(kind: string, enabled: boolean, volume: number) {
           ? [175, 110, 0.14]
           : kind === "critical"
             ? [880, 240, 0.13]
-            : kind === "shield-hit"
-              ? [410, 200, 0.11]
-              : kind === "player-hit"
-                ? [110, 38, 0.17]
-                : kind === "collect"
-                  ? [600, 1100, 0.12]
-                  : kind === "printer"
-                    ? [180, 135, 0.25]
-                    : kind === "scream"
-                      ? [380, 120, 0.3]
-                      : kind === "step"
-                        ? [85, 65, 0.05]
-                        : kind === "melee"
-                          ? [145, 45, 0.12]
-                          : kind === "ping"
-                            ? [720, 520, 0.12]
-                            : kind === "heal"
-                              ? [400, 800, 0.22]
-                              : kind === "skill"
-                                ? [220, 680, 0.22]
-                                : [120, 55, 0.09];
+            : kind === "shield-break"
+              ? [680, 95, 0.25]
+              : kind === "shield-hit"
+                ? [410, 200, 0.11]
+                : kind === "player-hit"
+                  ? [110, 38, 0.17]
+                  : kind === "collect"
+                    ? [600, 1100, 0.12]
+                    : kind === "printer"
+                      ? [180, 135, 0.25]
+                      : kind === "scream"
+                        ? [380, 120, 0.3]
+                        : kind === "step"
+                          ? [85, 65, 0.05]
+                          : kind === "melee"
+                            ? [145, 45, 0.12]
+                            : kind === "ping"
+                              ? [720, 520, 0.12]
+                              : kind === "heal"
+                                ? [400, 800, 0.22]
+                                : kind === "skill"
+                                  ? [220, 680, 0.22]
+                                  : [120, 55, 0.09];
     osc.type = ["death", "melee", "step"].includes(kind)
       ? "triangle"
       : kind === "printer"

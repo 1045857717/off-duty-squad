@@ -8,3 +8,5 @@ if (window.desktop) document.documentElement.classList.add("desktop-host");
 createRoot(document.getElementById("root")!).render(<App />);
 import "./polish.css";
 import "./field.css";
+
+import "./combat-feel.css";

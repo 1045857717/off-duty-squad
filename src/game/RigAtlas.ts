@@ -1,48 +1,108 @@
 import type Phaser from "phaser";
 import { GAMEPLAY_MODELS } from "./paintedActors";
-import { JOINT_PARTS } from "./joints";
+import { JOINT_PARTS, rigPartGeometry } from "./joints";
 import { ROLES } from "../../shared/content";
 import { ENEMY_DEFS } from "../../shared/combatProfiles";
+/** One bounded atlas, 672 painted joint frames plus props; no runtime per-limb canvas work. */
 export function ensureRigAtlas(scene: Phaser.Scene) {
-  const key = "joint-atlas-v34";
+  const key = "joint-atlas-v35";
   if (scene.textures.exists(key)) return key;
-  const roles = Object.keys(ROLES),
-    enemies = Object.keys(ENEMY_DEFS),
-    props = [...roles, ...enemies.map((k) => "enemy-" + k), "blink"];
+  const props = [
+    ...Object.keys(ROLES),
+    ...Object.keys(ENEMY_DEFS).map((k) => "enemy-" + k),
+    "blink",
+  ];
+  const count = GAMEPLAY_MODELS.length * 6 * JOINT_PARTS.length + props.length;
   const canvas = document.createElement("canvas");
-  canvas.width = 1536;
-  canvas.height = 320 * 8 + Math.ceil(props.length / 16) * 112;
+  canvas.width = 24 * 96;
+  canvas.height = Math.ceil(count / 24) * 112;
   const c = canvas.getContext("2d")!;
-  for (let m = 0; m < GAMEPLAY_MODELS.length; m++)
-    c.drawImage(
-      scene.textures
-        .get("painted-" + GAMEPLAY_MODELS[m])
-        .getSourceImage() as HTMLImageElement,
-      0,
-      m * 320,
-    );
   const rects: Record<string, { x: number; y: number; w: number; h: number }> =
     {};
-  for (let m = 0; m < GAMEPLAY_MODELS.length; m++)
+  let slot = 0;
+  const temp = document.createElement("canvas");
+  for (const model of GAMEPLAY_MODELS) {
+    const image = scene.textures
+      .get("painted-" + model)
+      .getSourceImage() as HTMLImageElement;
     for (let col = 0; col < 6; col++)
       for (const part of JOINT_PARTS) {
-        const [x, y, w, h] = part.rect;
-        rects[`${GAMEPLAY_MODELS[m]}-${col}-${part.name}`] = {
-          x: Math.round(col * 256 + x * 256),
-          y: Math.round(m * 320 + y * 320),
-          w: Math.round(w * 256),
-          h: Math.round(h * 320),
-        };
+        const geometry = rigPartGeometry(col, part.name, model),
+          [rx, ry, rw, rh] = geometry.rect;
+        const w = Math.max(2, Math.ceil(rw * 126)),
+          h = Math.max(2, Math.ceil(rh * 157.5));
+        temp.width = w;
+        temp.height = h;
+        const t = temp.getContext("2d")!;
+        t.drawImage(
+          image,
+          col * 256 + rx * 256,
+          ry * 320,
+          rw * 256,
+          rh * 320,
+          0,
+          0,
+          w,
+          h,
+        );
+        const point = (x: number, y: number): [number, number] => [
+          ((x - rx) / rw) * w,
+          ((y - ry) / rh) * h,
+        ];
+        // Remove the baked near arm from a profile torso before articulating it.
+        if (part.name === "torso" && col === 2) {
+          const x = ((0.405 - rx) / rw) * w,
+            band = (0.095 / rw) * w;
+          t.drawImage(
+            image,
+            col * 256 + 0.545 * 256,
+            ry * 320,
+            0.018 * 256,
+            rh * 320,
+            x,
+            0,
+            band,
+            h,
+          );
+        }
+        if (geometry.polygon) {
+          t.globalCompositeOperation = "destination-in";
+          t.fillStyle = "#fff";
+          t.beginPath();
+          geometry.polygon.forEach((p, i) => {
+            const q = point(...p);
+            if (i) t.lineTo(...q);
+            else t.moveTo(...q);
+          });
+          t.closePath();
+          t.fill();
+        } else if (geometry.tip && geometry.radius) {
+          t.globalCompositeOperation = "destination-in";
+          t.strokeStyle = "#fff";
+          t.lineWidth = geometry.radius * 2 * 126;
+          t.lineCap = "round";
+          t.beginPath();
+          t.moveTo(...point(...geometry.pivot));
+          t.lineTo(...point(...geometry.tip));
+          t.stroke();
+        }
+        const x = (slot % 24) * 96,
+          y = Math.floor(slot / 24) * 112;
+        slot++;
+        c.drawImage(temp, x, y);
+        rects[model + "-" + col + "-" + part.name] = { x, y, w, h };
       }
-  props.forEach((prop, i) => {
-    const x = (i % 16) * 96,
-      y = 2560 + Math.floor(i / 16) * 112;
+  }
+  for (const prop of props) {
+    const x = (slot % 24) * 96,
+      y = Math.floor(slot / 24) * 112;
+    slot++;
     c.save();
     c.translate(x + 48, y + 56);
     drawProp(c, prop);
     c.restore();
     rects["prop-" + prop] = { x, y, w: 96, h: 112 };
-  });
+  }
   const atlas = scene.textures.addCanvas(key, canvas)!;
   for (const [id, r] of Object.entries(rects))
     atlas.add(id, 0, r.x, r.y, r.w, r.h);
