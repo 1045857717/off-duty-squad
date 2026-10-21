@@ -46,4 +46,7 @@ jobs:
         run: |
           image="ghcr.io/${GITHUB_REPOSITORY,,}:$VERSION"
           docker pull --platform "$DOCKER_DEFAULT_PLATFORM" "$image"
+          expected_arch="arm64"
+          if [ "$DOCKER_DEFAULT_PLATFORM" = "linux/amd64" ]; then expected_arch="x64"; fi
+          docker run --rm --platform "$DOCKER_DEFAULT_PLATFORM" --entrypoint node "$image" -e 'if (process.arch !== process.argv[1]) throw new Error("Architecture mismatch"); console.log(JSON.stringify({architecture:process.arch,platform:process.platform}));' "$expected_arch"
           node scripts/container-smoke.mjs --image "$image" --desktop
