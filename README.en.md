@@ -110,6 +110,8 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ![Enemy codex](docs/images/codex.webp)
 
+![Public and squad channels](docs/images/community.webp)
+
 <details>
 <summary>View results and work-style interface</summary>
 
@@ -125,7 +127,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.6.0**. This release adds persistent public/squad chat channels, unread indicators and new workplace satire. See [3.6 notes](docs/RELEASE-3.6.md). Combat retains the verified 3.5 animation pipeline; workflow badges reflect actual CI and publication status.
+Current version: **3.6.0**. This release adds persistent public/squad chat channels, unread indicators and new workplace satire. See [3.6 notes](docs/RELEASE-3.6.md). Combat retains the verified 3.5 animation pipeline. [Published release verification](docs/PUBLISHED-3.6.md) records anonymous image pull, amd64 / arm64 runtime checks, and two-client public/private messaging.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [performance notes](docs/PERFORMANCE-3.4.md).

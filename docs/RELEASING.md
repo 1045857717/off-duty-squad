@@ -33,7 +33,7 @@
 更新 CHANGELOG 和说明后运行：
 
 ```bash
-# 以后每次更新时使用；首次发布已有 3.6.0，不需要再 bump 一次。
+# 当前 package.json 为 3.6.0；准备下一个修复版本时递增。
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check

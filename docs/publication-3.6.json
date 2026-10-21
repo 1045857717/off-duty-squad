@@ -1,0 +1,93 @@
+{
+  "version": "3.6.0",
+  "releasedAt": "2026-10-22T03:54:00+08:00",
+  "sourceCommit": "15b5f0a1407e092915d2e968ba406658f1aa519b",
+  "repository": "https://github.com/1045857717/off-duty-squad",
+  "visibility": "public",
+  "license": "MIT",
+  "release": "https://github.com/1045857717/off-duty-squad/releases/tag/v3.6.0",
+  "ci": "https://github.com/1045857717/off-duty-squad/actions/runs/39664129504",
+  "releaseWorkflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39664495697",
+  "image": "ghcr.io/1045857717/off-duty-squad:3.6.0",
+  "imageDigest": "sha256:dcaf1cc31ef8b2f21065f250a8b9e61506f4234cb47f1f6825863475e618554d",
+  "latestMatchesVersion": true,
+  "platforms": ["linux/amd64", "linux/arm64"],
+  "anonymousPullVerified": true,
+  "publishedImageSmoke": {
+    "image": "ghcr.io/1045857717/off-duty-squad:3.6.0",
+    "version": "3.6.0",
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "publicChat": true,
+    "privatePublicIsolation": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true
+  },
+  "desktop": {
+    "version": "3.6.0",
+    "platform": "Windows x64",
+    "bytes": 142929388,
+    "sha256": "3bb96dc851474230611aba374831ef44e54fe4aa56260cc1e54177c2b2905c87",
+    "signed": false,
+    "file": "offshift-desktop-win-x64.zip",
+    "matchesReleaseAndImage": true,
+    "licenseAndThirdPartyNoticesPresent": true
+  },
+  "assetsVerified": [
+    {
+      "name": "compose.prod.yaml",
+      "bytes": 589,
+      "digest": "sha256:f26cef78d83a553caca4bb30596066d2fdcc8c598eb60481ec684ddd1931d3d3"
+    },
+    {
+      "name": "desktop-release.json",
+      "bytes": 225,
+      "digest": "sha256:5cd0001fc573884a5299b0ae4aab01d8826633be4a6d9cdcd34886bbd115def5"
+    },
+    {
+      "name": "env.example",
+      "bytes": 404,
+      "digest": "sha256:ed1f3eeb140241c1b2bc646377a58f8dcc7de3efa2217619e7ab51384ea37d65"
+    },
+    {
+      "name": "image-digest.txt",
+      "bytes": 106,
+      "digest": "sha256:3bb928f93d89412f346bdf31cf93fa8830df135179fcf6730730f42740ec77c6"
+    },
+    {
+      "name": "offshift-desktop-win-x64.zip",
+      "bytes": 142929388,
+      "digest": "sha256:3bb96dc851474230611aba374831ef44e54fe4aa56260cc1e54177c2b2905c87"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 427,
+      "digest": "sha256:74a7154f98e30669344fab0c24c94dfd5200aa47d84e2a0063cd258e98ac652d"
+    }
+  ],
+  "smallFileChecksums": true,
+  "serverDeployedToPublicHost": false,
+  "platformVerification": {
+    "workflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39665683961",
+    "amd64": {
+      "nodeArchitecture": "x64",
+      "health": true,
+      "twoClientSmoke": true,
+      "publicChat": true,
+      "privatePublicIsolation": true,
+      "scorePersistence": true
+    },
+    "arm64": {
+      "nodeArchitecture": "arm64",
+      "environment": "GitHub Linux runner with QEMU",
+      "health": true,
+      "twoClientSmoke": true,
+      "publicChat": true,
+      "privatePublicIsolation": true,
+      "scorePersistence": true
+    }
+  }
+}

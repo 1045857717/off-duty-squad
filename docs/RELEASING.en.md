@@ -31,7 +31,7 @@ Images receive exact `X.Y.Z` and convenience `latest` tags. Pin the exact versio
 Update the changelog and relevant docs:
 
 ```bash
-# Use for subsequent releases; the initial 3.6.0 already exists in package.json.
+# package.json is currently 3.6.0; bump when preparing the next patch.
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
