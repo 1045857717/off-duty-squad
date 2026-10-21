@@ -14,17 +14,15 @@ Changes follow [Semantic Versioning](https://semver.org/) and the categories use
 - Continuous integration and tagged Windows / GHCR release workflow.
 - Image-only production Compose deployment with backup and rollback instructions.
 
-### Changed / 调整
-
-- Desktop and server metadata read the application version from package.json.
-- Local data, secrets, verification output and desktop binaries are excluded from Git.
-
-### Added / 新增
-
 - Enemy, equipment and profession codex; interactive mission brief and redesigned guide.
 - Site-wide presence and daily, weekly, monthly, yearly and all-time rankings.
 - Enemy attack cues, damage-source indicators and interaction failure feedback.
 - Eight-direction rear-quarter artwork and continuous articulated character / enemy motion.
+
+### Changed / 调整
+
+- Desktop and server metadata read the application version from package.json.
+- Local data, secrets, verification output and desktop binaries are excluded from Git.
 
 ### Fixed / 修复
 
