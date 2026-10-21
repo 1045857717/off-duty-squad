@@ -287,6 +287,7 @@ export function createServer(options: { dataDir?: string } = {}) {
     let actions: number[] = [],
       created: number[] = [],
       chatTimes: number[] = [],
+      publicChatTimes: number[] = [],
       inputAt = 0;
     const bind = (event: string, fn: (data: any) => RoomReply) =>
       s.on(event, (data, cb) => {
@@ -313,8 +314,8 @@ export function createServer(options: { dataDir?: string } = {}) {
     bind("presence:get", () => ({ ok: true, presence: presence() }));
     bind("lobby:history", () => ({ ok: true, messages: lobbyChat }));
     bind("lobby:chat", (data) => {
-      chatTimes = chatTimes.filter((t) => Date.now() - t < 5000);
-      if (chatTimes.length >= 4)
+      publicChatTimes = publicChatTimes.filter((t) => Date.now() - t < 5000);
+      if (publicChatTimes.length >= 4)
         return { ok: false, error: "先喝口水，5秒最多4条大厅消息。" };
       const text =
         typeof data.text === "string"
@@ -324,17 +325,23 @@ export function createServer(options: { dataDir?: string } = {}) {
               .slice(0, 160)
           : "";
       if (!text) return { ok: false, error: "请输入消息。" };
+      const session = sessionOf(s);
       const name =
-        typeof data.name === "string"
-          ? data.name.trim().slice(0, 16) || "匿名同事"
-          : "匿名同事";
-      chatTimes.push(Date.now());
+        session?.name ||
+        (typeof data.name === "string"
+          ? data.name
+              .replace(/[\u0000-\u001f]/g, " ")
+              .trim()
+              .slice(0, 16) || "匿名工友"
+          : "匿名工友");
+      publicChatTimes.push(Date.now());
       const msg: ChatMessage = {
         id: randomUUID(),
         name,
         text,
         at: Date.now(),
-        spectator: false,
+        spectator: session?.spectator ?? false,
+        playerId: session?.playerId,
       };
       lobbyChat.push(msg);
       if (lobbyChat.length > 60) lobbyChat.shift();

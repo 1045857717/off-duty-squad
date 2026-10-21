@@ -2,6 +2,19 @@
 
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
+## [3.6.0] - 2026-10-22
+
+### Added / 新增
+
+- Persistent public / squad chat tabs, cross-room and spectator conversations, unread indicators and per-channel drafts.
+- Bounded 60-message public history with scroll-follow and a new-message jump control.
+
+### Changed / 调整
+
+- Hero copy: “班没少上，人没正常过。” Supporting line: “工资按月到账，怨气按秒结算。”
+- Public author identity comes from the room session; public and private flood quotas are independent.
+- Chat inputs preserve Chinese IME composition and work/hide shortcuts; successful sends return to controls.
+
 ## [3.5.0] - 2026-10-22
 
 ### Changed / 调整

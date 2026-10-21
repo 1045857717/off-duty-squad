@@ -3,11 +3,11 @@ import { FieldGuide } from "./FieldGuide";
 import { MissionBrief, CombatFeedback } from "./FeedbackUI";
 import { ExpeditionDossier } from "./ExpeditionDossier";
 import { RulesSelector } from "./RulesSelector";
-import { SquadLobbyChat } from "./SquadLobbyChat";
+import { LobbyChannels } from "./LobbyChannels";
 import { DesktopDownload, DesktopDownloadLink } from "./DesktopDownload";
 import { SkillDetails } from "./SkillDetails";
 import { JobPicker } from "./JobPicker";
-import { LobbyChat, OfficeTactics } from "./OfficeUI";
+import { OfficeTactics } from "./OfficeUI";
 import { PublicLobby, RentalAds } from "./PublicLobby";
 import { LaunchCountdown, InitialDeployment } from "./LaunchUI";
 import {
@@ -753,12 +753,12 @@ export default function App() {
                   BEFORE CLOCKING OUT / OFFICE SURVIVAL / CO-OP
                 </div>
                 <h1>
-                  工位发癫，<span>快乐加倍。</span>
+                  班没少上，<span>人没正常过。</span>
                 </h1>
               </div>
               <div className="heading-aside">
-                <strong>今日工位状态：快乐在线</strong>
-                <span>组个队，顺手把老板画的饼打回去。</span>
+                <strong>今日精神状态：已读乱回</strong>
+                <span>工资按月到账，怨气按秒结算。</span>
                 <button className="text-btn" onClick={() => setPanel("help")}>
                   第一次来？<span>看看怎么玩</span>
                   <Icon name="arrow" size={14} />
@@ -1103,16 +1103,14 @@ export default function App() {
                 />
               </section>
               <aside className="squad-side-rail" aria-label="队伍与聊天">
-                {s && ["lobby", "countdown"].includes(s.phase) && (
-                  <SquadLobbyChat state={s} request={net.request} />
-                )}
-                {!s && (
-                  <LobbyChat
-                    messages={net.lobbyMessages}
-                    name={name}
-                    request={net.request}
-                  />
-                )}
+                <LobbyChannels
+                  state={s}
+                  messages={net.lobbyMessages}
+                  name={name}
+                  connected={net.connected}
+                  online={net.presence?.online}
+                  request={net.request}
+                />
                 <TeamPanel
                   state={s}
                   playerId={net.playerId}

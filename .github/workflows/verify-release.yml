@@ -6,7 +6,7 @@ on:
       version:
         description: "Published stable image version (without v)"
         required: true
-        default: "3.5.0"
+        default: "3.6.0"
         type: string
 
 permissions:

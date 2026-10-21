@@ -477,7 +477,9 @@ try {
   await snap(mobile, "lobby-mobile", true);
   await mobile.getByRole("button", { name: /先一个人试跑/ }).click();
   await mobile.getByRole("region", { name: "小队准备大厅" }).waitFor();
-  await mobile.getByRole("button", { name: "展开茶水间", exact: true }).click();
+  await mobile
+    .getByRole("button", { name: "展开聊天频道", exact: true })
+    .click();
   const mobileChat = await mobile
     .getByRole("region", { name: "小队大厅聊天" })
     .boundingBox();
@@ -485,7 +487,9 @@ try {
     mobileChat && mobileChat.y >= 0 && mobileChat.y + mobileChat.height <= 844,
   );
   await snap(mobile, "ready-chat-mobile");
-  await mobile.getByRole("button", { name: "收起茶水间", exact: true }).click();
+  await mobile
+    .getByRole("button", { name: "收起聊天频道", exact: true })
+    .click();
   passed.push(
     "1366×768整备按钮和茶水间同屏；手机提供原位折叠茶水间，无需滚动找聊天。",
   );

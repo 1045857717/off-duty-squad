@@ -9,7 +9,7 @@
 | `compose.prod.yaml` | Recommended public server          | Pull a released GHCR image |
 | `compose.yaml`      | Local verification or source build | Update source and rebuild  |
 
-Image: `ghcr.io/1045857717/off-duty-squad:<version>`, Linux amd64 / arm64. The initial version is 3.5.0; no remote image exists until its release workflow succeeds. Package visibility is independent of repository visibility. Public images allow anonymous pulls. Private images require a local GHCR login on the host; never put credentials in Compose or Git.
+Image: `ghcr.io/1045857717/off-duty-squad:<version>`, Linux amd64 / arm64. The initial version is 3.6.0; no remote image exists until its release workflow succeeds. Package visibility is independent of repository visibility. Public images allow anonymous pulls. Private images require a local GHCR login on the host; never put credentials in Compose or Git.
 
 The server owns rooms in one process. Do not add replicas behind random load balancing: replicas currently share neither rooms, sessions nor presence.
 
@@ -27,7 +27,7 @@ Configure `.env`:
 
 ```dotenv
 IMAGE_REPOSITORY=ghcr.io/1045857717/off-duty-squad
-GAME_VERSION=3.5.0
+GAME_VERSION=3.6.0
 PORT=3000
 PUBLIC_URL=https://game.example.com
 ```

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { memo, useState, useRef, useEffect } from "react";
 import type {
   ChatMessage,
   RoomReply,
@@ -7,75 +7,170 @@ import type {
 } from "../shared/types";
 import { Icon } from "./icons";
 import { messageTime } from "./Social";
-export function LobbyChat({
+export const LobbyChat = memo(function LobbyChat({
   messages,
   name,
   request,
+  active = true,
+  connected = true,
+  online,
 }: {
   messages: ChatMessage[];
   name: string;
   request: (e: string, d?: unknown) => Promise<RoomReply>;
+  active?: boolean;
+  connected?: boolean;
+  online?: number;
 }) {
   const [text, setText] = useState("");
-  const end = useRef<HTMLDivElement>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [hasNew, setHasNew] = useState(false);
+  const log = useRef<HTMLDivElement>(null),
+    input = useRef<HTMLInputElement>(null),
+    following = useRef(true),
+    wasActive = useRef(false);
+  const composing = useRef(false);
+  const lastId = messages.at(-1)?.id;
   useEffect(() => {
-    if (end.current?.parentElement)
-      end.current.parentElement.scrollTop =
-        end.current.parentElement.scrollHeight;
-  }, [messages.length]);
+    if (active && log.current) {
+      if (!wasActive.current || following.current) {
+        log.current.scrollTop = log.current.scrollHeight;
+        following.current = true;
+        setHasNew(false);
+      } else setHasNew(true);
+    }
+    wasActive.current = active;
+  }, [lastId, active]);
+  if (!active) return null;
   return (
-    <section className="lobby-chat" aria-label="公共大厅聊天">
+    <section
+      className="lobby-chat public-community-chat"
+      aria-label="公共大厅聊天"
+    >
       <header>
         <span>
           <Icon name="users" size={14} />
-          下班搭子群
+          全服茶水间
         </span>
-        <small>公共频道 · 不同房间的同事都能看见</small>
+        <small>
+          <i className={connected ? "is-online" : "is-offline"} />
+          {connected
+            ? "全服在线 " + (online ?? "—") + " 人 · 跨房间聊天"
+            : "连接中 · 草稿会保留"}
+        </small>
       </header>
-      <div role="log" aria-live="polite">
+      <div
+        className="public-chat-log"
+        role="log"
+        aria-live="polite"
+        aria-relevant="additions"
+        ref={log}
+        onScroll={() => {
+          const el = log.current;
+          if (el) {
+            following.current =
+              el.scrollHeight - el.scrollTop - el.clientHeight < 36;
+            if (following.current) setHasNew(false);
+          }
+        }}
+      >
         {messages.length ? (
-          messages.slice(-20).map((m) => (
-            <p key={m.id}>
-              <time>{messageTime(m.at)}</time>
+          messages.slice(-60).map((m) => (
+            <p key={m.id} className={m.spectator ? "is-spectator" : ""}>
+              <time dateTime={new Date(m.at).toISOString()}>
+                {messageTime(m.at)}
+              </time>
               <b>{m.name}</b>
+              {m.spectator && <em>观战</em>}
               <span>{m.text}</span>
             </p>
           ))
         ) : (
           <p className="chat-welcome">
-            群公告：不问进度，只问人齐了没。发条消息，找个下班搭子。
+            <strong>本群不查考勤，只查谁还活着。</strong>
+            <span>
+              可以没有工作进度，不能没有精神状态。发句话，找个下班搭子。
+            </span>
           </p>
         )}
-        <div ref={end} />
       </div>
+      {hasNew && (
+        <button
+          type="button"
+          className="public-chat-jump"
+          onClick={() => {
+            if (log.current) log.current.scrollTop = log.current.scrollHeight;
+            following.current = true;
+            setHasNew(false);
+          }}
+        >
+          有新消息，回到底部 ↓
+        </button>
+      )}
+      {error && (
+        <p className="public-chat-error" role="alert">
+          {error}
+        </p>
+      )}
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          if (!text.trim()) return;
-          const result = await request("lobby:chat", { name, text });
-          if (result.ok) setText("");
+          if (!text.trim() || busy || !connected || composing.current) return;
+          const submitted = text;
+          setBusy(true);
+          setError("");
+          try {
+            const result = await request("lobby:chat", {
+              name,
+              text: submitted,
+            });
+            if (result.ok) {
+              setText((current) => (current === submitted ? "" : current));
+              if (input.current?.value === submitted) input.current.blur();
+              following.current = true;
+            } else setError(result.error || "没发出去，草稿还在。");
+          } catch {
+            setError("没发出去，草稿还在，稍后再试。");
+          } finally {
+            setBusy(false);
+          }
         }}
       >
         <input
+          ref={input}
           aria-label="大厅聊天内容"
           maxLength={160}
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="喊个同事，一起下班…"
+          placeholder="吐槽两句，别发真需求…"
+          onCompositionStart={() => {
+            composing.current = true;
+          }}
+          onCompositionEnd={() => {
+            composing.current = false;
+          }}
           onKeyDown={(e) => {
-            if (e.nativeEvent.isComposing && e.key === "Enter")
+            if (e.key === "F8" || e.key === "F10") return;
+            if (
+              (e.nativeEvent.isComposing ||
+                composing.current ||
+                e.nativeEvent.keyCode === 229) &&
+              e.key === "Enter"
+            )
               e.preventDefault();
             e.stopPropagation();
           }}
         />
-        <button type="submit">
-          发送
+        <button type="submit" disabled={busy || !text.trim() || !connected}>
+          {busy ? "发送中" : "发送"}
           <Icon name="arrow" size={12} />
         </button>
       </form>
+      <footer>全服可见 · 最近 60 条</footer>
     </section>
   );
-}
+});
 export function OfficeTactics({
   state,
   me,

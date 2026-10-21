@@ -157,6 +157,7 @@ export function ChatPanel({
           onChange={(e) => setText(e.target.value)}
           placeholder="Enter 发送 · Esc 收起"
           onKeyDown={(e) => {
+            if (e.key === "F8" || e.key === "F10") return;
             if (e.nativeEvent.isComposing || e.keyCode === 229) {
               if (e.key === "Enter") e.preventDefault();
               e.stopPropagation();

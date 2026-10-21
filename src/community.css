@@ -1,0 +1,285 @@
+/* 3.6: a shared public/squad station in the existing paper-and-ink rail. */
+.squad-side-rail .lobby-channels {
+  min-width: 0;
+  border: 1px solid #c9c8b7;
+  border-radius: 8px;
+  background: #fffdf5;
+  color: #29484b;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #263c4210;
+}
+.channel-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 7px;
+  background: #f1eee0;
+  border-bottom: 1px solid #dcd7c4;
+}
+.channel-chat-header [role="tablist"] {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+.channel-chat-header [role="tab"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 7px;
+  min-height: 34px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #66766b;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.channel-chat-header [role="tab"][aria-selected="true"] {
+  background: #fffaf0;
+  color: #a64b21;
+  border-color: #ddc4a3;
+  box-shadow: 0 1px 3px #7b633d14;
+}
+.channel-chat-header [role="tab"] b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  height: 17px;
+  border-radius: 8px;
+  background: #bc572e;
+  color: #fff8e9;
+  font: 700 10px var(--mono);
+  padding: 0 4px;
+}
+.channel-chat-header .channel-collapse {
+  width: 27px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #c7cebe;
+  background: #fffdf4;
+  color: #4c6660;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.channel-chat-header button:focus-visible {
+  outline: 2px solid #35656d;
+  outline-offset: 2px;
+}
+.channel-chat-body[hidden],
+.channel-chat-body [role="tabpanel"][hidden] {
+  display: none !important;
+}
+.squad-side-rail .lobby-channels .lobby-chat,
+.squad-side-rail .lobby-channels .squad-lobby-chat.is-embedded {
+  position: static !important;
+  inset: auto !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none !important;
+  background: transparent;
+}
+.lobby-channels .lobby-chat > header {
+  gap: 4px;
+  margin-bottom: 7px;
+}
+.lobby-channels .lobby-chat header > span {
+  font-size: 12px;
+  font-weight: 700;
+}
+.lobby-channels .lobby-chat header small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #60736a;
+  line-height: 1.5;
+}
+.lobby-channels header small i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #52856e;
+}
+.lobby-channels header small i.is-offline {
+  background: #b17d51;
+}
+.squad-side-rail .lobby-channels .lobby-chat > .public-chat-log {
+  height: 169px;
+  max-height: 220px;
+  padding: 2px 2px 5px 0;
+  scrollbar-gutter: stable;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: auto;
+}
+.squad-side-rail .lobby-channels .public-chat-log p {
+  padding: 7px 0;
+  margin: 0;
+  border-bottom: 1px dashed #e7e2d2;
+  align-items: center;
+  gap: 3px 6px;
+}
+.lobby-channels .public-chat-log time {
+  font: 9px var(--mono);
+  color: #7b877b;
+}
+.lobby-channels .public-chat-log b {
+  font-size: 11px;
+  color: #315c60;
+  overflow-wrap: anywhere;
+}
+.lobby-channels .public-chat-log em {
+  font-size: 9px;
+  font-style: normal;
+  padding: 1px 4px;
+  border-radius: 3px;
+  color: #846443;
+  background: #f1e6ce;
+}
+.squad-side-rail .lobby-channels .public-chat-log p > span {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #344a48;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.lobby-channels .public-chat-log .chat-welcome {
+  display: block;
+  border: 0;
+  padding: 15px 4px;
+}
+.lobby-channels .chat-welcome strong {
+  display: block;
+  color: #8f502c;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.lobby-channels .chat-welcome span {
+  display: block;
+  font-size: 11px;
+  color: #788275;
+  line-height: 1.8;
+}
+.lobby-channels .public-chat-jump {
+  display: block;
+  margin: 4px auto;
+  padding: 4px 8px;
+  border: 1px solid #d8c6a8;
+  border-radius: 4px;
+  color: #9b562c;
+  background: #fff2d8;
+  font-size: 10px;
+  cursor: pointer;
+}
+.lobby-channels .public-chat-error {
+  margin: 4px 0;
+  color: #a74331;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.lobby-channels .lobby-chat form {
+  margin-top: 8px;
+  display: flex;
+  gap: 5px;
+}
+.lobby-channels .lobby-chat input {
+  width: 0;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #d1d6c4;
+  background: #f7f7ed;
+  color: #29474b;
+  padding: 8px 7px;
+  font-size: 11px;
+  border-radius: 4px;
+}
+.lobby-channels .lobby-chat input:focus {
+  outline: 2px solid #6b979c;
+  outline-offset: 0;
+}
+.lobby-channels .lobby-chat button[type="submit"] {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #315f68;
+  color: #fff8e6;
+  border: 1px solid #244f58;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.lobby-channels .lobby-chat button:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+.lobby-channels .lobby-chat > footer {
+  font-size: 9px;
+  color: #81897a;
+  margin-top: 7px;
+  line-height: 1.5;
+}
+.squad-side-rail .lobby-channels .squad-chat-messages {
+  height: 169px;
+}
+.lobby-channels .squad-lobby-chat header {
+  padding-bottom: 7px;
+}
+.lobby-channels .squad-lobby-chat header > span {
+  font-size: 11px;
+}
+.lobby-channels.is-collapsed .channel-chat-header {
+  border-bottom: 0;
+}
+@media (max-width: 620px) {
+  .app:not(.is-compact) .squad-side-rail .lobby-channels {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    width: min(340px, calc(100vw - 24px));
+    z-index: 45;
+    max-height: calc(100dvh - 100px);
+    box-shadow: 0 7px 28px #263d4930;
+  }
+  .app.in-run:not(.is-compact) .squad-side-rail .lobby-channels {
+    bottom: 65px;
+  }
+  .lobby-channels .channel-chat-body {
+    max-height: calc(100dvh - 160px);
+    overflow: auto;
+  }
+  .squad-side-rail .lobby-channels .squad-lobby-chat.is-embedded {
+    padding: 10px 12px !important;
+  }
+  .lobby-channels .squad-lobby-chat.is-embedded .squad-chat-messages {
+    display: block;
+  }
+  .lobby-channels .squad-lobby-chat.is-embedded form {
+    display: flex;
+  }
+}
+
+@media (max-width: 620px) {
+  .channel-chat-header [role="tab"],
+  .channel-chat-header .channel-collapse {
+    min-height: 44px;
+  }
+  .channel-chat-header .channel-collapse {
+    width: 32px;
+  }
+  .lobby-channels .lobby-chat input,
+  .lobby-channels .lobby-chat button[type="submit"] {
+    min-height: 44px;
+  }
+}

@@ -2,7 +2,7 @@
 
 # Off Duty Squad · 工位发癫局
 
-**Office chaos. Random builds. One more run before clocking out.**
+**Attendance: perfect. Sanity: pending.**
 
 A 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
 
@@ -25,6 +25,7 @@ A 1–4 player online co-op survival game that turns workplace absurdity into a 
 - **Two co-op modes:** six mission-based expedition chapters with objectives and extraction, or an endless procedural campus with escalating waves and a boss every five waves.
 - **28 workplace professions:** recognizable office roles and deliberately absurd careers, each with a permanent signature skill. Choose your first attack module inside the map; combat starts after everyone has chosen.
 - **Builds that grow:** 16 attack modules, prerequisite-aware upgrades, and level 4 / level 8 evolutions. Upgrade offers follow your available growth branches.
+- **Public chat:** cross-room conversations for lobby users, squads, players and spectators, with separate public/squad channels, unread indicators, preserved drafts and return to controls after sending.
 - **Actual multiplayer:** host-controlled departure, player readiness, a cancellable three-second countdown, mid-run joining, 0–3 AI teammates, spectators, chat, rescue calls and revives.
 - **Readable combat:** high-contrast numeric health/shields, recent-damage trails, direction-specific painted arms and continuous held weapons; enemy wind-ups and articulated attacks, persistent area effects, critical-hit and shield feedback, damage sources, a global boss bar and live damage rankings.
 - **Codex and leaderboards:** enemies, professions and skills; daily, weekly, monthly, yearly and all-time squad rankings, separated by mode and difficulty.
@@ -124,7 +125,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.5.0**. This release improves painted joint extraction, continuous attacks, weapon grips and health/shield readability; see [3.5 notes](docs/RELEASE-3.5.md). This release passed 103 core checks, 5 release-contract checks and 32 browser scenarios. Its CI and release workflow passed; anonymous image pull and runtime checks were verified. See [publication results](docs/PUBLISHED-3.5.md).
+Current version: **3.6.0**. This release adds persistent public/squad chat channels, unread indicators and new workplace satire. See [3.6 notes](docs/RELEASE-3.6.md). Combat retains the verified 3.5 animation pipeline; workflow badges reflect actual CI and publication status.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [performance notes](docs/PERFORMANCE-3.4.md).

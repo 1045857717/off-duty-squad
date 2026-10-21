@@ -97,6 +97,22 @@ try {
     role: "medic",
   });
   assert.equal(joined.ok, true);
+  let publicMessage;
+  guest.once("lobby:message", (message) => {
+    publicMessage = message;
+  });
+  assert.equal(
+    (
+      await ack(host, "lobby:chat", {
+        name: "Forged name",
+        text: "Public container check",
+      })
+    ).ok,
+    true,
+  );
+  await waitFor(() => publicMessage, "public chat delivery");
+  assert.equal(publicMessage.name, "CI Host");
+  assert.equal(publicMessage.playerId, created.playerId);
   assert.equal((await ack(guest, "game:start", {})).ok, false);
   let chatSeen = false;
   guest.on("chat", (message) => {
@@ -107,6 +123,12 @@ try {
     true,
   );
   await waitFor(() => chatSeen, "cross-client chat");
+  const publicHistory = await ack(guest, "lobby:history", {});
+  assert.ok(
+    publicHistory.messages.every(
+      (message) => message.text !== "Container smoke test",
+    ),
+  );
   const latest = new Map();
   for (const [socket, id] of [
     [host, created.playerId],
@@ -182,6 +204,8 @@ try {
       desktop: desktop.available,
       websocketClients: 2,
       chat: true,
+      publicChat: true,
+      privatePublicIsolation: true,
       countdownAndDraft: true,
       scorePersistence: true,
     }),

@@ -10,3 +10,5 @@ import "./polish.css";
 import "./field.css";
 
 import "./combat-feel.css";
+
+import "./community.css";
