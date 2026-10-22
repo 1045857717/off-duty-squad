@@ -33,8 +33,8 @@ const open = async () => {
 };
 try {
   const host = await open();
-  assert.match(await host.locator(".page-heading").innerText(), /班没少上/);
-  assert.match(await host.locator(".page-heading").innerText(), /人没正常过/);
+  assert.match(await host.locator(".page-heading").innerText(), /月薪三千/);
+  assert.match(await host.locator(".page-heading").innerText(), /火力三亿/);
   assert.equal(await host.locator("select").count(), 0);
   await host.locator(".rental-title").first().scrollIntoViewIfNeeded();
   assert.ok(

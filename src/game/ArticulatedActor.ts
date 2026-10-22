@@ -20,7 +20,7 @@ import { ensureRigAtlas } from "./RigAtlas";
 import { ENEMY_DEFS, SIGNATURE_MOTIONS } from "../../shared/combatProfiles";
 type Pose = ReturnType<typeof articulatedPose>;
 const motionRecoil = (_pose: Pose, frame: AttackFrame) =>
-  frame.kind === "shoot" && frame.active ? frame.strike * 2 : 0;
+  frame.kind === "shoot" && frame.active ? frame.strike * 6.8 : 0;
 type Bone = {
   x: number;
   y: number;
@@ -194,8 +194,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
         )
         .setScale(view.flip ? -1 : 1, assist ? 0.86 : 1)
         .setPosition(
-          -Math.cos(aim) * motionRecoil(pose, this.attackFrame),
-          pose.bob,
+          Math.cos(aim) * (pose.thrust - motionRecoil(pose, this.attackFrame)),
+          pose.bob + Math.sin(aim) * pose.thrust * 0.55,
         );
       for (const part of JOINT_PARTS)
         layer.nodes.get(part.name)!.rotation = pose[part.name];
@@ -204,7 +204,10 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
     }
     const view = directionView(aim);
     this.gear
-      .setPosition(0, pose.bob)
+      .setPosition(
+        Math.cos(aim) * pose.thrust,
+        pose.bob + Math.sin(aim) * pose.thrust * 0.55,
+      )
       .setRotation(pose.torso * 0.7)
       .setScale(view.flip ? -1 : 1, assist ? 0.86 : 1)
       .setVisible(

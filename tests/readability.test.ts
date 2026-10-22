@@ -128,6 +128,7 @@ test("each equipped attack serializes its weapon identity for the visible attack
   startFixture(g, "p");
   const p = g.state.players[0];
   p.arsenal = { mop: 1 };
+  p.basicCd = 999;
   p.attackCooldowns = {};
   g.state.enemies = [];
   g.state.spawnCd = 999;
@@ -177,7 +178,12 @@ test("visible preparation is replicated before projectile release", () => {
   tickGame(g, 0.016);
   assert.equal(p.attackMotion?.id, "pulse");
   assert.equal(g.state.bullets.filter((b) => !b.enemy).length, 0);
-  for (let i = 0; i < 5; i++) tickGame(g, 0.016);
+  for (
+    let i = 0;
+    i < Math.ceil((ATTACK_MOTIONS.pulse.duration * 0.3) / 16) + 1;
+    i++
+  )
+    tickGame(g, 0.016);
   assert.ok(g.state.bullets.some((b) => !b.enemy));
 });
 

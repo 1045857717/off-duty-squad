@@ -2,6 +2,20 @@
 
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
+## [3.7.0] - 2026-10-22
+
+### Added / 新增
+
+- Independent innate attacks for all 28 professions, with no random-module slot cost or Q replacement.
+- Lobby GitHub link and optional coffee panel using the author-provided original QR image.
+- Bilingual AI development history, actual request excerpts and explicitly reconstructed prompt templates.
+
+### Changed / 调整
+
+- Align server contact timing with continuous physical attacks; refine actual tool grips, tips, scale, recoil and bounded trails.
+- Foot-level health/shield display and stronger HUD hierarchy, damage trail and shield-break state.
+- Hero copy: “月薪三千，火力三亿。” Supporting line: “老板画饼，我来清屏。”
+
 ## [3.6.0] - 2026-10-22
 
 ### Added / 新增

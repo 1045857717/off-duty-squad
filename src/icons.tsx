@@ -1,5 +1,10 @@
 import type { CSSProperties } from "react";
 const paths: Record<string, React.ReactNode> = {
+  github: (
+    <>
+      <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.8A5.3 5.3 0 0 0 18.7 5a4.9 4.9 0 0 0-.1-3s-1.2-.4-4 1.5a13.5 13.5 0 0 0-7.2 0C4.6 1.6 3.4 2 3.4 2a4.9 4.9 0 0 0-.1 3A5.3 5.3 0 0 0 2 8.7c0 5.3 3.1 6.5 6.1 6.8a3.4 3.4 0 0 0-.9 2.6V22" />
+    </>
+  ),
   minus: <path d="M5 12h14" />,
   grid: (
     <>

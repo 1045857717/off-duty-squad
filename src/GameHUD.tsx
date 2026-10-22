@@ -1,3 +1,4 @@
+import { ROLE_BASICS } from "../shared/basics";
 import { PlayerVitalsHUD } from "./PlayerVitalsHUD";
 import { workerQuote } from "../shared/humor";
 import { RunReport } from "./RunReport";
@@ -171,6 +172,14 @@ export function GameHUD({
         <>
           <div className="combat-strip">
             <PlayerVitalsHUD player={me} elapsed={state.elapsed} />
+            <div
+              className="micro-skill innate-basic"
+              title="固有普攻：跟随鼠标瞄准，与随机模块一起攻击；T切换自动攻击"
+            >
+              <Icon name="crosshair" size={13} />
+              <span>{ROLE_BASICS[me.role].name}</span>
+              <small>普攻</small>
+            </div>
             <div
               className={
                 "micro-skill signature-tier-" +

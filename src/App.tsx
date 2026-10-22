@@ -1,3 +1,4 @@
+import { ProjectLinks, CoffeeSupport } from "./ProjectSupport";
 import { CodexPanel } from "./CodexPanel";
 import { FieldGuide } from "./FieldGuide";
 import { MissionBrief, CombatFeedback } from "./FeedbackUI";
@@ -51,6 +52,7 @@ import { TeamPanel } from "./TeamPanel";
 import { GameHUD, StageOverlay, TouchControls } from "./GameHUD";
 
 type Panel =
+  | "coffee"
   | "desktop"
   | "create"
   | "join"
@@ -753,12 +755,13 @@ export default function App() {
                   BEFORE CLOCKING OUT / OFFICE SURVIVAL / CO-OP
                 </div>
                 <h1>
-                  班没少上，<span>人没正常过。</span>
+                  月薪三千，<span>火力三亿。</span>
                 </h1>
               </div>
               <div className="heading-aside">
-                <strong>今日精神状态：已读乱回</strong>
-                <span>工资按月到账，怨气按秒结算。</span>
+                <strong>今日绩效：把加班怪优化掉</strong>
+                <span>老板画饼，我来清屏。</span>
+                <ProjectLinks onCoffee={() => setPanel("coffee")} />
                 <button className="text-btn" onClick={() => setPanel("help")}>
                   第一次来？<span>看看怎么玩</span>
                   <Icon name="arrow" size={14} />
@@ -1351,6 +1354,7 @@ export default function App() {
         </Modal>
       )}
       {brief && <MissionBrief state={s} mode={gameMode} onClose={closeBrief} />}
+      {panel === "coffee" && <CoffeeSupport onClose={close} />}
       {panel === "desktop" && (
         <DesktopDownload onClose={() => setPanel(null)} />
       )}

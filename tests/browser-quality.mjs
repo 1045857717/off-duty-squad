@@ -20,6 +20,25 @@ page.on("console", (m) => {
   if (m.type() === "error") errors.push(m.text());
 });
 try {
+  // Median blank-page cadence excludes GPU startup stalls and is independent of game work.
+  const displayReferenceFps = await page.evaluate(async () => {
+    let previous = performance.now();
+    const start = previous,
+      deltas = [];
+    return await new Promise((resolve) => {
+      const frame = (time) => {
+        deltas.push(time - previous);
+        previous = time;
+        if (time - start < 1400) requestAnimationFrame(frame);
+        else {
+          deltas.shift();
+          deltas.sort((a, b) => a - b);
+          resolve(1000 / Math.max(0.1, deltas[Math.floor(deltas.length / 2)]));
+        }
+      };
+      requestAnimationFrame(frame);
+    });
+  });
   await page.goto(process.env.GAME_BASE_URL || "http://localhost:3000", {
     waitUntil: "networkidle",
   });
@@ -173,7 +192,12 @@ try {
   });
   const cap = capSample.fps;
   console.log("CAP_SAMPLE", JSON.stringify(capSample));
-  assert.ok(cap > 135 && cap < 150, `144 cap rendered ${cap}`);
+  const expectedFrameRate = Math.min(144, displayReferenceFps);
+  assert.ok(
+    cap > expectedFrameRate * 0.94 &&
+      cap < Math.min(150, capSample.raf * 1.05 + 1),
+    `144 target rendered ${cap}; blank display reference ${displayReferenceFps}`,
+  );
   await page.keyboard.press("F2");
   await page.getByRole("combobox", { name: "刷新率模式" }).click();
   await page
@@ -231,13 +255,17 @@ try {
   );
   await fs.mkdir("test-results", { recursive: true });
   await fs.writeFile(
-    "test-results/quality.json",
+    process.env.QUALITY_OUTPUT || "test-results/quality.json",
     JSON.stringify(
       {
         dpr,
         distinctWalkFrames: frames,
         motion,
         cap144: cap,
+        targetCap: 144,
+        displayReferenceFps,
+        rafFPS: capSample.raf,
+        expectedFrameRate,
         displayUncapped: process.env.BENCHMARK_UNCAPPED === "1",
         toolbarHints: hints,
         border,

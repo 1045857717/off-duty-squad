@@ -198,6 +198,24 @@ export class CombatFX {
       this.emit(e, time, "blade", c(5), 110, 18, 0.4);
       return;
     }
+    if (e.kind === "attack" && e.attackSkill && e.owner !== "enemy") {
+      this.emit(
+        {
+          ...e,
+          x: e.x + Math.cos(e.angle || 0) * 28,
+          y: e.y + Math.sin(e.angle || 0) * 28,
+        },
+        time,
+        e.attackSkill === "coffee" ? "shard" : "spark",
+        c(6),
+        115,
+        8,
+        0.22,
+        e.angle,
+        0.9,
+      );
+      return;
+    }
     if (e.attackSkill) {
       const shape =
         e.attackSkill === "frost"
@@ -269,7 +287,13 @@ export class CombatFX {
     }
   }
   private stamp(e: Effect, time: number, reduced: boolean) {
-    if (e.warning || e.kind === "death" || e.kind === "rescue") return;
+    if (
+      e.warning ||
+      e.kind === "death" ||
+      e.kind === "rescue" ||
+      (e.kind === "attack" && !!e.attackSkill && e.owner !== "enemy")
+    )
+      return;
     if (e.attackSkill) {
       if (time - this.lastAttackStamp < 45) return;
       this.lastAttackStamp = time;
@@ -405,6 +429,42 @@ export class CombatFX {
       col = tint(e.color),
       a = e.angle || 0,
       spin = time * 0.002;
+    if (e.kind === "attack" && e.attackSkill && e.owner !== "enemy") {
+      const ranged = ["pulse", "blade", "ricochet"].includes(e.attackSkill);
+      if (ranged) {
+        const near = 24 + t * 12,
+          far = 58 + t * 30;
+        g.lineStyle(6, 0x142821, alpha * 0.7).lineBetween(
+          e.x + Math.cos(a) * near,
+          e.y + Math.sin(a) * near,
+          e.x + Math.cos(a) * far,
+          e.y + Math.sin(a) * far,
+        );
+        g.lineStyle(2.5, 0xffeed0, alpha).lineBetween(
+          e.x + Math.cos(a) * near,
+          e.y + Math.sin(a) * near,
+          e.x + Math.cos(a) * far,
+          e.y + Math.sin(a) * far,
+        );
+      } else {
+        const r = e.size * (0.7 + t * 0.3),
+          start = a - 1.05 + t * 0.4,
+          end = a + 0.75 + t * 0.35;
+        g.lineStyle(8, 0x152622, alpha * 0.65)
+          .beginPath()
+          .arc(e.x, e.y - 8, r, start, end, false)
+          .strokePath();
+        g.lineStyle(4, col, alpha * 0.95)
+          .beginPath()
+          .arc(e.x, e.y - 8, r, start, end, false)
+          .strokePath();
+        g.lineStyle(1.5, 0xfff1cf, alpha)
+          .beginPath()
+          .arc(e.x, e.y - 8, r - 2, start, end, false)
+          .strokePath();
+      }
+      return;
+    }
     if ((e.attackLevel || 1) >= 4 && e.kind === "skill") {
       const level = e.attackLevel || 4;
       g.lineStyle(

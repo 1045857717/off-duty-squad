@@ -138,8 +138,30 @@ test("a fresh queued module begins at anticipation instead of jumping into or sk
   const clock = new AttackTimeline();
   clock.sample("bat", 1, 0);
   clock.sample("pulse", 2, 100);
-  const queued = clock.sample("pulse", 2, 390);
+  const queued = clock.sample("pulse", 2, ATTACK_MOTIONS.bat.duration + 10);
   assert.equal(queued.id, "pulse");
   assert.equal(queued.progress, 0);
   assert.equal(queued.active, true);
+});
+
+import { ROLE_BASICS } from "../shared/basics";
+test("ordinary weapon remains visible without any drafted attack module", () => {
+  for (const basic of Object.values(ROLE_BASICS)) {
+    const t = new AttackTimeline();
+    const frame = t.sample(basic.weapon, 1, 10);
+    assert.equal(
+      (visibleAttack as (...args: any[]) => unknown)(frame, {}, basic.weapon),
+      basic.weapon,
+    );
+  }
+});
+test("ordinary fire has a readable held-tool silhouette and recoil at contact", () => {
+  const t = new AttackTimeline();
+  t.sample("pulse", 1, 0);
+  const pose = weaponPose(
+    t.sample("pulse", 1, ATTACK_MOTIONS.pulse.duration * 0.35),
+    0,
+  );
+  assert.ok(pose.scale >= 0.74);
+  assert.ok(pose.recoil >= 5);
 });

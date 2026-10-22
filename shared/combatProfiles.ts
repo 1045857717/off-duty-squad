@@ -135,11 +135,11 @@ export const ATTACK_MOTIONS: Record<
   AttackId,
   { kind: AttackMotionKind; duration: number; accent: string }
 > = {
-  pulse: { kind: "shoot", duration: 210, accent: "装订后坐" },
+  pulse: { kind: "shoot", duration: 300, accent: "装订后坐" },
   blade: { kind: "throw", duration: 330, accent: "甩出裁纸刃" },
   orbit: { kind: "channel", duration: 430, accent: "双臂维持刃环" },
   arc: { kind: "channel", duration: 330, accent: "指尖放电" },
-  frost: { kind: "shoot", duration: 260, accent: "举起冷冻工具" },
+  frost: { kind: "shoot", duration: 330, accent: "举起冷冻工具" },
   flame: { kind: "sweep", duration: 400, accent: "横扫喷焰" },
   venom: { kind: "throw", duration: 360, accent: "抛出清洁剂" },
   drone: { kind: "summon", duration: 420, accent: "托举放飞无人机" },
@@ -147,7 +147,7 @@ export const ATTACK_MOTIONS: Record<
   ricochet: { kind: "throw", duration: 300, accent: "甩出弹射夹" },
   gravity: { kind: "channel", duration: 450, accent: "双臂牵引重力" },
   seeker: { kind: "summon", duration: 390, accent: "推出追踪弹" },
-  bat: { kind: "slash", duration: 380, accent: "侧身蓄棒挥击" },
+  bat: { kind: "slash", duration: 470, accent: "侧身蓄棒挥击" },
   mop: { kind: "sweep", duration: 450, accent: "腰胯带动双手扫地" },
   wrench: { kind: "overhead", duration: 450, accent: "抬肘下砸扳手" },
   coffee: { kind: "throw", duration: 380, accent: "抛洒咖啡" },

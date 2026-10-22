@@ -1,0 +1,415 @@
+/* Clear combat information and optional project support. */
+.project-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 5px 0 2px;
+}
+.project-links a,
+.project-links button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid #a2b2ac;
+  background: #fffaf0;
+  border-radius: 5px;
+  color: #234b56;
+  text-decoration: none;
+  font: 600 11px var(--sans, sans-serif);
+  cursor: pointer;
+}
+.project-links button {
+  background: #f8e6cd;
+  border-color: #c59665;
+  color: #7b411e;
+}
+.project-links a:hover,
+.project-links button:hover {
+  border-color: #ba5b28;
+  background: #ffefcf;
+  transform: translateY(-1px);
+}
+.project-links a:focus-visible,
+.project-links button:focus-visible {
+  outline: 2px solid #285b71;
+  outline-offset: 3px;
+}
+.heading-aside {
+  gap: 7px;
+}
+.heading-aside > strong {
+  color: #82471f;
+}
+.coffee-support {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 0.85fr);
+  gap: 24px;
+  align-items: center;
+  padding: 5px 2px 12px;
+}
+.coffee-receipt {
+  color: #29434a;
+}
+.coffee-receipt > svg {
+  color: #a75825;
+}
+.coffee-receipt > span {
+  display: block;
+  margin-top: 12px;
+  font: 600 11px var(--mono);
+  letter-spacing: 1px;
+  color: #88502d;
+}
+.coffee-receipt h3 {
+  font-size: 25px;
+  line-height: 1.5;
+  letter-spacing: -0.7px;
+  margin: 14px 0;
+}
+.coffee-receipt p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #4e6263;
+}
+.coffee-qr {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+  background: #fff;
+  padding: 12px;
+  border: 1px solid #c5d2c7;
+  border-radius: 8px;
+}
+.coffee-qr > a:first-child {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.coffee-qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.coffee-qr > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #315d49;
+}
+.coffee-qr > a:last-child {
+  font-size: 11px;
+  color: #2c5264;
+  text-underline-offset: 3px;
+}
+.coffee-thanks {
+  grid-column: 1/-1;
+  margin: 0;
+  border-top: 1px dashed #c1c7b7;
+  padding-top: 15px;
+  text-align: center;
+  color: #687464;
+  font-size: 11px;
+}
+.innate-attack {
+  margin-bottom: 13px;
+  padding: 12px 14px;
+  border-left: 3px solid #b96331;
+  background: #f6eedc;
+  color: #284550;
+}
+.innate-attack > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: #885229;
+}
+.innate-attack > strong {
+  display: block;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.innate-attack > p {
+  margin: 6px 0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.innate-attack > small,
+.innate-attack > em {
+  display: block;
+  font-size: 10px;
+  line-height: 1.8;
+  font-style: normal;
+}
+.innate-attack > em {
+  color: #647665;
+  margin-top: 5px;
+}
+.combat-strip .combat-vitals {
+  width: 184px;
+  min-width: 156px;
+  padding: 4px 8px 5px;
+  background: #0c201bef;
+  border: 1px solid #e4d8af99;
+  border-radius: 6px;
+  box-shadow: 0 2px 9px #0005;
+}
+.combat-vitals .vital-label {
+  line-height: 22px;
+  gap: 4px;
+}
+.combat-vitals .vital-label strong {
+  font-size: 22px;
+  letter-spacing: 0;
+}
+.combat-vitals .vital-label small {
+  color: #f4e9d1;
+  font-size: 11px;
+}
+.combat-vitals .vital-label em {
+  color: #d0eed6;
+  font-size: 10px;
+}
+.combat-vitals .vital-track {
+  height: 12px;
+  margin-top: 3px;
+  background: #132921;
+  border-color: #c4d5b3a1;
+}
+.combat-vitals .vital-track > i {
+  background: linear-gradient(180deg, #ade9b3, #5aba83);
+  box-shadow: inset 0 1px #d0f5b7;
+}
+.combat-vitals .vital-loss {
+  background: #efce7b;
+}
+.combat-vitals .vital-shield {
+  height: 5px;
+  border-radius: 2px;
+  margin-top: 4px;
+  background: #173e52;
+}
+.combat-vitals .vital-shield b {
+  height: 5px;
+  background: #a3def6;
+}
+.combat-vitals .vital-shield-amount {
+  font-size: 11px;
+  color: #b8e9ff;
+}
+.combat-vitals.status-critical {
+  border-color: #ff9e7b;
+  background: #361d19ed;
+}
+.combat-vitals.status-down {
+  border-color: #c8ac88;
+  background: #292421;
+}
+.combat-vitals.status-wounded {
+  border-color: #e6b967;
+}
+.combat-vitals.status-critical .vital-label em {
+  color: #ffd1b0;
+}
+.combat-strip .innate-basic {
+  border-color: #bea0766b;
+  background: #142721b5;
+}
+.innate-basic small {
+  font-size: 9px;
+  color: #decfa7;
+  white-space: nowrap;
+}
+@media (max-width: 1000px) {
+  .combat-strip .innate-basic span {
+    max-width: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .combat-strip .combat-vitals {
+    width: 157px;
+    min-width: 140px;
+  }
+  .combat-vitals .vital-label strong {
+    font-size: 20px;
+  }
+}
+.is-compact .combat-strip .combat-vitals {
+  width: 142px;
+  min-width: 130px;
+}
+.is-compact .combat-strip .innate-basic {
+  display: none;
+}
+@media (max-width: 620px) {
+  .coffee-support {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .coffee-receipt h3 {
+    font-size: 22px;
+    margin: 8px 0;
+  }
+  .coffee-receipt h3 br {
+    display: none;
+  }
+  .coffee-receipt p {
+    margin: 5px 0;
+  }
+  .coffee-qr {
+    max-width: 270px;
+    margin: auto;
+    width: 100%;
+  }
+  .coffee-thanks {
+    font-size: 10px;
+  }
+  .app:not(.in-run) .page-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    min-height: 0;
+    padding: 24px 20px;
+    background-position: 60% center;
+  }
+  .app:not(.in-run) .page-heading .heading-copy {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+  }
+  .app:not(.in-run) .page-heading h1 {
+    font-size: 30px;
+    line-height: 1.4;
+    max-width: 100%;
+    margin-top: 14px;
+  }
+  .app:not(.in-run) .page-heading .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .app:not(.in-run) .page-heading h1 span {
+    display: block;
+  }
+  .app:not(.in-run) .page-heading .heading-aside {
+    position: static;
+    inset: auto;
+    width: auto;
+    max-width: none;
+    align-items: flex-start;
+    background: #fff9edee;
+    padding: 14px;
+    box-shadow: 0 1px 9px #6e4d2520;
+  }
+  .project-links {
+    gap: 6px;
+  }
+  .project-links a,
+  .project-links button {
+    min-height: 42px;
+    padding: 8px;
+    font-size: 10px;
+  }
+  .combat-strip .innate-basic {
+    display: none;
+  }
+  .combat-strip .combat-vitals {
+    width: 145px;
+    min-width: 130px;
+  }
+  .combat-vitals .vital-label strong {
+    font-size: 19px;
+  }
+  .combat-vitals .vital-label em {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-links a:hover,
+  .project-links button:hover {
+    transform: none;
+  }
+}
+
+/* Crop only the preview via CSS; the original payment image is unchanged. */
+.coffee-qr > a:first-child {
+  position: relative;
+  aspect-ratio: 1/1;
+}
+.coffee-qr img {
+  position: absolute;
+  left: -54.0984%;
+  top: -61.6393%;
+  width: 208.5246%;
+  max-width: none;
+  height: auto;
+}
+
+.project-links {
+  width: 100%;
+}
+.project-links > a,
+.project-links > button {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  font-size: 10px;
+  padding: 6px 8px;
+}
+.coffee-qr {
+  max-width: 320px;
+  width: 100%;
+  justify-self: center;
+}
+.skill-details .innate-attack p {
+  color: #31514f;
+}
+.skill-details .innate-attack small {
+  color: #294952;
+}
+.skill-details .innate-attack em {
+  color: #5a6c53;
+}
+
+.app.in-run .skill-details .innate-attack p {
+  color: #31514f !important;
+}
+
+@media (min-width: 900px) {
+  .has-lobby:not(.is-compact) .page-heading .heading-aside {
+    flex-basis: 290px;
+    padding-right: 90px;
+    min-height: 58px;
+  }
+  .has-lobby:not(.is-compact) .heading-aside > strong {
+    font-size: 11px;
+  }
+  .has-lobby:not(.is-compact) .heading-aside > span {
+    font-size: 11px;
+  }
+  .has-lobby:not(.is-compact) .heading-aside .project-links {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 72px;
+    margin: 0;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  .has-lobby:not(.is-compact) .project-links > a,
+  .has-lobby:not(.is-compact) .project-links > button {
+    flex: 0 0 32px;
+    width: 32px;
+    min-height: 32px;
+    padding: 6px;
+  }
+  .has-lobby:not(.is-compact) .project-links span {
+    display: none;
+  }
+}

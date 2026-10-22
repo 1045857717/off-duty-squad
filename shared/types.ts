@@ -153,7 +153,13 @@ export type Player = Vec & {
     amount: number;
     shieldAbsorbed: number;
   };
-  attackMotion?: { id: AttackId; seq: number; at: number; angle: number };
+  attackMotion?: {
+    id: AttackId;
+    seq: number;
+    at: number;
+    angle: number;
+    source?: "basic" | "module";
+  };
   initialChosen: boolean;
   upgradeCd: number;
   interactionFeedback?: {
@@ -173,6 +179,7 @@ export type Player = Vec & {
     until?: number;
     message?: string;
   };
+  basicCd: number;
   fireCd: number;
   skillCd: number;
   dashCd: number;

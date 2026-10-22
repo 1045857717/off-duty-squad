@@ -2,7 +2,7 @@
 
 # Off Duty Squad · 工位发癫局
 
-**Attendance: perfect. Sanity: pending.**
+**Tiny paycheck. Outrageous firepower.**
 
 A 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
 
@@ -20,10 +20,16 @@ A 1–4 player online co-op survival game that turns workplace absurdity into a 
 
 </div>
 
+## Built by AI, directed by people
+
+From the first prototype through the current release, an AI coding agent implemented the code, gameplay, UI, procedural animation, networking, tests, documentation and release tooling. The author sets the product direction, playtests and provides feedback, authorizes releases and supplies the optional coffee QR image. The project builds on existing open-source engines and libraries.
+
+[AI development process](docs/AI-DEVELOPMENT.en.md) · [Actual prompt evolution and reusable templates](docs/PROMPT-HISTORY.en.md) · [Buy the author a coffee](docs/SUPPORT.md)
+
 ## Features
 
 - **Two co-op modes:** six mission-based expedition chapters with objectives and extraction, or an endless procedural campus with escalating waves and a boss every five waves.
-- **28 workplace professions:** recognizable office roles and deliberately absurd careers, each with a permanent signature skill. Choose your first attack module inside the map; combat starts after everyone has chosen.
+- **28 workplace professions:** recognizable office roles and deliberately absurd careers, each with an innate ordinary attack and a permanent Q. Choose the first random module inside the map; combat starts after everyone has chosen.
 - **Builds that grow:** 16 attack modules, prerequisite-aware upgrades, and level 4 / level 8 evolutions. Upgrade offers follow your available growth branches.
 - **Public chat:** cross-room conversations for lobby users, squads, players and spectators, with separate public/squad channels, unread indicators, preserved drafts and return to controls after sending.
 - **Actual multiplayer:** host-controlled departure, player readiness, a cancellable three-second countdown, mid-run joining, 0–3 AI teammates, spectators, chat, rescue calls and revives.
@@ -127,10 +133,10 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.6.0**. This release adds persistent public/squad chat channels, unread indicators and new workplace satire. See [3.6 notes](docs/RELEASE-3.6.md). Combat retains the verified 3.5 animation pipeline. [Published release verification](docs/PUBLISHED-3.6.md) records anonymous image pull, amd64 / arm64 runtime checks, and two-client public/private messaging.
+Current version: **3.7.0**. This release adds innate attacks for all 28 professions, aligned contact/grips, clearer life/shields, project/coffee links and AI development history. See [3.7 notes](docs/RELEASE-3.7.md); consult the matching verification record and workflow for publication results.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
-- A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [performance notes](docs/PERFORMANCE-3.4.md).
+- A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [3.7 frame-rate measurements](docs/PERFORMANCE-3.7.md) and the [dense-scene baseline](docs/PERFORMANCE-3.4.md).
 - Browser window support varies. The Windows portable client is unsigned; no macOS or Linux desktop package is currently provided.
 - Existing networking checks use multiple local clients and simulated latency. Cross-machine public-network soak testing remains outstanding.
 - Ranking periods use Asia/Shanghai time and retain the most recent 50,000 results. Chat and live rooms are not persisted.

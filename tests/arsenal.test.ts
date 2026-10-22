@@ -40,7 +40,7 @@ test("a drafted attack adds and upgrades itself without replacing the role signa
   assert.equal(p.arsenal[first.attackSkill!], 2);
   assert.equal(p.ability, "mend");
 });
-test("an unarmed player produces no basic shots", () => {
+test("a player without random modules still has an ordinary attack with anticipation", () => {
   const g = createGame("ARSENA", "p", 2);
   addPlayer(g, "p", "房主", "scout");
   const p = g.state.players[0];
@@ -48,8 +48,10 @@ test("an unarmed player produces no basic shots", () => {
   g.state.spawnCd = 999;
   setInput(g, p.id, { ...EMPTY_INPUT, fire: true });
   tickGame(g, 1 / 60);
-  assert.equal(p.attackSeq, 0);
+  assert.ok(p.attackSeq > 0);
   assert.equal(g.state.bullets.length, 0);
+  for (let frame = 0; frame < 20; frame++) tickGame(g, 1 / 60);
+  assert.ok(g.state.bullets.some((b) => !b.enemy));
 });
 import { ATTACK_IDS, attackOffer, ROLE_SIGNATURE } from "../shared/arsenal";
 import { gameKeyAction } from "../src/game/inputKeys";
@@ -210,10 +212,11 @@ test("capped attributes never occupy random offers and multishot benefits every 
       startGame(game, "p");
       player.arsenal = { [id]: 1 };
       player.attackCooldowns = {};
+      player.basicCd = 999;
       game.state.spawnCd = 999;
       player.projectiles = projectiles;
       setInput(game, "p", { ...EMPTY_INPUT, fire: true });
-      for (let frame = 0; frame < 8; frame++) tickGame(game, 1 / 60);
+      for (let frame = 0; frame < 16; frame++) tickGame(game, 1 / 60);
       counts.push(game.state.bullets.length);
     }
     assert.ok(counts[1] > counts[0], id + " multishot ignored");

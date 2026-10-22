@@ -1,6 +1,7 @@
+import { ROLE_BASICS } from "../../shared/basics";
 import { PlayerVitals } from "./PlayerVitals";
 import { WeaponRibbon } from "./WeaponRibbon";
-import { visibleAttack, weaponPose } from "./joints";
+import { visibleAttack, weaponPose, toolGeometry } from "./joints";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../../shared/combatProfiles";
 import { windupProgress } from "./actorPose";
 import { ensureDamageFont } from "./damageFont";
@@ -803,7 +804,7 @@ export class StationScene extends Phaser.Scene {
     }
     if (!a.rig || a.rig.role !== p.role) {
       a.rig?.destroy();
-      a.rig = new ArticulatedActor(this, p.role, p.id);
+      a.rig = new ArticulatedActor(this, p.role, p.id).setDepth(a.depth);
     }
     a.seen = this.serial;
     const px = a.x,
@@ -951,14 +952,21 @@ export class StationScene extends Phaser.Scene {
     }
 
     const motion = a.rig!.attackFrame;
-    const held = visibleAttack(motion, p.arsenal || {});
+    const held = visibleAttack(
+      motion,
+      p.arsenal || {},
+      ROLE_BASICS[p.role].weapon,
+    );
     const transform = weaponPose(motion, facing);
     const hand = a.rig!.handWorld();
-    const wx = hand.x - Math.cos(facing) * transform.recoil;
-    const wy = hand.y - Math.sin(facing) * transform.recoil;
-    const tipX = wx + Math.cos(transform.rotation) * 54 * transform.scale;
-    const tipY = wy + Math.sin(transform.rotation) * 54 * transform.scale;
+    const wx = hand.x;
+    const wy = hand.y;
+    const geometry = toolGeometry(held || ROLE_BASICS[p.role].weapon);
+    const reach = (geometry.tip - geometry.origin * 80) * transform.scale;
+    const tipX = wx + Math.cos(transform.rotation) * reach;
+    const tipY = wy + Math.sin(transform.rotation) * reach;
     a.weapon!.setTexture("tool-" + (held || "pulse"))
+      .setOrigin(geometry.origin, 0.5)
       .setPosition(wx, wy)
       .setRotation(transform.rotation)
       .setScale(transform.scale)
@@ -984,8 +992,10 @@ export class StationScene extends Phaser.Scene {
     );
     a.muzzle!.setPosition(tipX, tipY)
       .setVisible(p.alive && held === "pulse" && motion.strike > 0.45)
-      .setAlpha(motion.strike * 0.5);
+      .setAlpha(motion.strike * 0.85)
+      .setScale(0.32 + motion.strike * 0.2, 0.17 + motion.strike * 0.1);
     if (a.name) {
+      a.name.setVisible(preview || p.id !== this.bridge.playerId);
       const text = (p.id === this.bridge.playerId ? "你 · " : "") + p.name;
       if (a.name.text !== text) a.name.setText(text);
       if (a.name.style.color !== "#fff2da")
@@ -1808,11 +1818,16 @@ export class StationScene extends Phaser.Scene {
             .setVisible(true)
             .setAlpha(1);
         }
-        if (["death", "collect", "heal", "skill"].includes(e.kind))
+        if (
+          ["death", "collect", "heal", "skill"].includes(e.kind) ||
+          (e.kind === "attack" && e.owner === this.bridge.playerId)
+        )
           this.bridge.sound(
             e.attackSkill && ["bat", "mop", "wrench"].includes(e.attackSkill)
               ? "melee"
-              : e.kind,
+              : e.kind === "attack"
+                ? "skill"
+                : e.kind,
           );
       }
     }

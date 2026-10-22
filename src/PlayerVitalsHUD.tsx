@@ -19,7 +19,11 @@ export function PlayerVitalsHUD({
   const previous = useRef(v.ratio);
   const [trail, setTrail] = useState(v.ratio);
   useEffect(() => {
-    setTrail(v.ratio < previous.current ? previous.current : v.ratio);
+    setTrail((current) =>
+      v.ratio < previous.current
+        ? Math.max(current, previous.current)
+        : v.ratio,
+    );
     previous.current = v.ratio;
     const timer = setTimeout(() => setTrail(v.ratio), 340);
     return () => clearTimeout(timer);
@@ -46,9 +50,10 @@ export function PlayerVitalsHUD({
         (broken ? " shield-broken" : "")
       }
       data-health-status={v.status}
+      aria-label="你的生命与护盾"
     >
       <div className="vital-label">
-        <Icon name="heart" size={15} />
+        <Icon name="heart" size={17} />
         <strong>{v.hp}</strong>
         <small>/{v.maxHp}</small>
         <em>{label}</em>
@@ -75,7 +80,14 @@ export function PlayerVitalsHUD({
         <i style={{ transform: "scaleX(" + v.ratio + ")" }} />
       </div>
       {v.shield > 0 && (
-        <div className="vital-shield">
+        <div
+          className="vital-shield"
+          role="progressbar"
+          aria-label="角色护盾"
+          aria-valuemin={0}
+          aria-valuemax={Math.max(v.shield, player.shieldCap)}
+          aria-valuenow={v.shield}
+        >
           <b style={{ transform: "scaleX(" + v.shieldRatio + ")" }} />
         </div>
       )}

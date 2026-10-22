@@ -131,15 +131,17 @@ try {
     return {
       data: meter.getData("vitals"),
       label: meter.list.find((o: any) => o.type === "Text").text,
+      armor: meter.list.filter((o: any) => o.type === "Text")[1]?.text,
     };
   });
   assert.equal(health.data.hp, 24);
   assert.equal(health.data.status, "critical");
-  assert.equal(health.data.width, 82);
+  assert.equal(health.data.width, 108);
+  assert.equal(health.data.placement, "below-feet");
   assert.ok(health.data.ghost > health.data.ratio);
-  assert.match(health.label, /32盾/);
+  assert.match(health.armor, /盾 32/);
   await snapshot(host, "health-critical");
-  done("头顶数字生命/独立护盾、危险状态和受伤拖尾清晰可见");
+  done("脚下数字生命/独立护盾、危险状态和受伤拖尾清晰可见");
   me.shield = 0;
   me.hitShield = true;
   me.hitSeq++;
@@ -164,6 +166,7 @@ try {
   const results: Record<string, unknown> = {};
   for (const id of ATTACK_IDS) {
     me.arsenal = { [id]: 1 };
+    me.basicCd = 999;
     me.attackCooldowns = {};
     game.state.enemies = [];
     await host.mouse.down();

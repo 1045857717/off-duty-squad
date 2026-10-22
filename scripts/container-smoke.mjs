@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { randomBytes } from "node:crypto";
+import { randomBytes, createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { setTimeout as delay } from "node:timers/promises";
 import { io } from "socket.io-client";
@@ -66,6 +66,13 @@ try {
   const page = await fetch(base);
   assert.equal(page.status, 200);
   assert.match(await page.text(), /<html/i);
+  const qr = Buffer.from(
+    await (await fetch(base + "/wechat-coffee.png")).arrayBuffer(),
+  );
+  assert.equal(
+    createHash("sha256").update(qr).digest("hex"),
+    "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+  );
   const desktop = await (await fetch(base + "/api/desktop")).json();
   assert.equal(desktop.version, expectedVersion);
   assert.equal(desktop.available, process.argv.includes("--desktop"));
@@ -168,6 +175,29 @@ try {
     assert.equal(state.players.filter((p) => !p.bot).length, 2);
     assert.ok(state.players.every((p) => p.initialChosen));
   }
+  host.emit("input", {
+    x: 0,
+    y: 0,
+    aimX: 1,
+    aimY: 0,
+    fire: true,
+    dash: false,
+    skill: false,
+    interact: false,
+  });
+  await waitFor(
+    () =>
+      latest.get(host.id)?.players.find((p) => p.id === created.playerId)
+        ?.attackMotion?.source === "basic",
+    "innate ordinary attack",
+  );
+  const attacker = latest
+    .get(host.id)
+    .players.find((p) => p.id === created.playerId);
+  assert.equal(attacker.attackMotion.id, "pulse");
+  assert.equal(attacker.ability, "volley");
+  assert.ok(Object.keys(attacker.arsenal).length >= 1);
+  assert.equal(typeof attacker.basicCd, "number");
   for (const socket of sockets) socket.disconnect();
   // Verify the mounted score data is loaded again after a process restart.
   const record = {
@@ -205,6 +235,8 @@ try {
       websocketClients: 2,
       chat: true,
       publicChat: true,
+      innateBasicAttack: true,
+      qrImage: true,
       privatePublicIsolation: true,
       countdownAndDraft: true,
       scorePersistence: true,

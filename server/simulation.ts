@@ -1,3 +1,4 @@
+import { ROLE_BASICS } from "../shared/basics";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../shared/combatProfiles";
 import { workerQuote } from "../shared/humor";
 import { skillMetrics } from "../shared/careers";
@@ -161,6 +162,7 @@ export function addPlayer(
     signatureLevel: 1,
     hitSeq: 0,
     hitShield: false,
+    basicCd: 0,
     fireCd: 0,
     skillCd: 0,
     dashCd: 0,
@@ -1141,8 +1143,84 @@ const pendingAttacks = new WeakMap<
     release: number;
     world: number;
     run: string;
+    basic?: boolean;
   }[]
 >();
+function motionAvailable(g: Game, p: Player) {
+  return (
+    !p.attackMotion ||
+    g.state.elapsed - p.attackMotion.at >=
+      ATTACK_MOTIONS[p.attackMotion.id].duration / 1000
+  );
+}
+function beginBasic(g: Game, p: Player) {
+  const b = ROLE_BASICS[p.role];
+  p.basicCd = Math.max(
+    ATTACK_MOTIONS[b.weapon].duration / 1000 + 0.1,
+    b.cooldown * (p.rate / 0.32) * (g.state.event.kind === "bonus" ? 0.75 : 1),
+  );
+  p.fireCd = p.basicCd;
+  p.attackSeq++;
+  p.attackMotion = {
+    id: b.weapon,
+    seq: p.attackSeq,
+    at: g.state.elapsed,
+    angle: p.angle,
+    source: "basic",
+  };
+  const list = pendingAttacks.get(g) || [];
+  list.push({
+    player: p.id,
+    id: b.weapon,
+    basic: true,
+    release: g.state.elapsed + ATTACK_MOTIONS[b.weapon].duration * 0.0003,
+    world: g.state.world.seed,
+    run: g.state.runId,
+  });
+  pendingAttacks.set(g, list);
+}
+function fireBasic(g: Game, p: Player) {
+  const b = ROLE_BASICS[p.role],
+    damage = p.damage * b.power;
+  effect(
+    g,
+    p,
+    "attack",
+    p.color,
+    b.ranged ? 52 : Math.min(94, b.range * 0.65),
+    {
+      angle: p.angle,
+      attackSkill: b.weapon,
+      owner: p.id,
+      life: 0.22,
+      maxLife: 0.22,
+    },
+  );
+  officeNoise(g, p, b.ranged ? 170 : 105, b.name, 0.6);
+  if (b.ranged) {
+    shoot(g, p, p.angle, damage);
+    const bolt = g.state.bullets.at(-1)!;
+    bolt.attackSkill = b.weapon;
+    bolt.level = 1;
+    bolt.life = b.range / 620;
+    bolt.color = p.color;
+  } else {
+    let count = 0;
+    for (const e of g.state.enemies) {
+      if (e.hp <= 0 || dist(p, e) > b.range || !visible(g, p, e)) continue;
+      const angle = Math.atan2(e.y - p.y, e.x - p.x);
+      if (Math.abs(PhaserAngle(angle - p.angle)) > 1.05) continue;
+      const crit =
+        g.random() <
+        Math.min(0.95, p.crit + ((p.critBoost || 0) > 0 ? 0.18 : 0));
+      dealDamage(g, e, damage * (crit ? p.critPower : 1), p.id, crit);
+      const d = dist(p, e) || 1;
+      moveWorld(g.state.world, e, ((e.x - p.x) / d) * 9, ((e.y - p.y) / d) * 9);
+      if (++count >= 4) break;
+    }
+  }
+}
+
 function beginModule(g: Game, p: Player, id: AttackId) {
   const level = p.arsenal[id] || 1,
     stats = attackStats(id, level);
@@ -1158,30 +1236,22 @@ function beginModule(g: Game, p: Player, id: AttackId) {
   );
   p.fireCd = p.attackCooldowns[id];
   p.attackSeq++;
-  const priority = (key: AttackId) =>
-    ["bat", "mop", "wrench"].includes(key)
-      ? 3
-      : ["orbit", "flame", "venom", "gravity"].includes(key)
-        ? 1
-        : 2;
   if (
-    !p.attackMotion ||
-    !p.arsenal[p.attackMotion.id] ||
-    g.state.elapsed - p.attackMotion.at > 0.12 ||
-    priority(id) >= priority(p.attackMotion.id)
+    motionAvailable(g, p) &&
+    p.basicCd > ATTACK_MOTIONS[id].duration / 1000 + 0.06
   )
     p.attackMotion = {
       id,
       seq: p.attackSeq,
       at: g.state.elapsed,
       angle: p.angle,
+      source: "module",
     };
   const list = pendingAttacks.get(g) || [];
   list.push({
     player: p.id,
     id,
-    release:
-      g.state.elapsed + Math.min(0.095, ATTACK_MOTIONS[id].duration * 0.0002),
+    release: g.state.elapsed + ATTACK_MOTIONS[id].duration * 0.0003,
     world: g.state.world.seed,
     run: g.state.runId,
   });
@@ -1197,7 +1267,10 @@ function releaseAttacks(g: Game) {
       continue;
     }
     const p = g.state.players.find((p) => p.id === a.player);
-    if (p?.alive && p.connected && p.arsenal[a.id]) fireModule(g, p, a.id);
+    if (p?.alive && p.connected) {
+      if (a.basic) fireBasic(g, p);
+      else if (p.arsenal[a.id]) fireModule(g, p, a.id);
+    }
   }
   pendingAttacks.set(g, future);
 }
@@ -1806,6 +1879,8 @@ export function tickGame(g: Game, delta: number) {
         input.y * p.speed * dt * (s.event.kind === "bonus" ? 1.2 : 1),
         15,
       );
+    p.basicCd = Math.max(0, (p.basicCd || 0) - dt);
+    if (input.fire && !p.basicCd && motionAvailable(g, p)) beginBasic(g, p);
     for (const attack of ATTACK_IDS) {
       p.attackCooldowns[attack] = Math.max(
         0,

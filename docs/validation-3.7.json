@@ -1,0 +1,460 @@
+{
+  "version": "3.7.0",
+  "date": "2026-10-22",
+  "gameCoreTests": 113,
+  "releaseContractTests": 5,
+  "browserGroups": 47,
+  "suites": [
+    {
+      "suite": "clarity",
+      "passed": [
+        "GitHub入口指向真实项目，咖啡面板可关闭，二维码与作者原图SHA256一致",
+        "28职业在空随机构筑下均展示真实14关节普攻、连续手臂变化与贴手武器，并造成实际伤害",
+        "脚下本机生命条108px并区分自己，护盾独立显示，危险状态与损血拖尾正确",
+        "破盾状态独立呈现，生命数值没有被护盾替代",
+        "双人加观战正常，四模块与普攻/Q共存并能边走边打，队友重连不重复",
+        "620px战场生命条可读且位于可见范围",
+        "390px标题、开源/咖啡入口和二维码面板无横向溢出"
+      ],
+      "errors": [],
+      "actions": {
+        "scout": {
+          "frames": 28,
+          "armRange": 0.9729590292897056,
+          "weapon": "pulse",
+          "damage": 32.4
+        },
+        "engineer": {
+          "frames": 26,
+          "armRange": 0.8908274050835849,
+          "weapon": "wrench",
+          "damage": 24.15
+        },
+        "medic": {
+          "frames": 33,
+          "armRange": 2.2443840988953516,
+          "weapon": "coffee",
+          "damage": 40.5
+        },
+        "guardian": {
+          "frames": 31,
+          "armRange": 2.427790278260126,
+          "weapon": "bat",
+          "damage": 50.60000000000001
+        },
+        "designer": {
+          "frames": 27,
+          "armRange": 2.2704480915944814,
+          "weapon": "blade",
+          "damage": 28.900000000000006
+        },
+        "accountant": {
+          "frames": 28,
+          "armRange": 2.2296984030683067,
+          "weapon": "ricochet",
+          "damage": 36.099999999999994
+        },
+        "hr": {
+          "frames": 28,
+          "armRange": 2.2224489795918365,
+          "weapon": "blade",
+          "damage": 29.919999999999987
+        },
+        "manager": {
+          "frames": 29,
+          "armRange": 2.38316523664679,
+          "weapon": "bat",
+          "damage": 20.519999999999982
+        },
+        "sales": {
+          "frames": 29,
+          "armRange": 2.2367181417397006,
+          "weapon": "ricochet",
+          "damage": 45.900000000000034
+        },
+        "logistics": {
+          "frames": 32,
+          "armRange": 0.8911596115167326,
+          "weapon": "wrench",
+          "damage": 58.80000000000001
+        },
+        "chef": {
+          "frames": 29,
+          "armRange": 0.8923489648442355,
+          "weapon": "wrench",
+          "damage": 51.51999999999998
+        },
+        "cleaner": {
+          "frames": 33,
+          "armRange": 2.425936531504893,
+          "weapon": "mop",
+          "damage": 31.319999999999993
+        },
+        "teacher": {
+          "frames": 31,
+          "armRange": 2.411882692629203,
+          "weapon": "bat",
+          "damage": 36
+        },
+        "driver": {
+          "frames": 25,
+          "armRange": 0.8925713147945717,
+          "weapon": "wrench",
+          "damage": 24.149999999999977
+        },
+        "creator": {
+          "frames": 29,
+          "armRange": 2.217889841908284,
+          "weapon": "blade",
+          "damage": 46.440000000000055
+        },
+        "lawyer": {
+          "frames": 24,
+          "armRange": 2.2293348539504136,
+          "weapon": "ricochet",
+          "damage": 38
+        },
+        "workhorse": {
+          "frames": 32,
+          "armRange": 2.415341555638142,
+          "weapon": "bat",
+          "damage": 70.83999999999992
+        },
+        "blametaker": {
+          "frames": 29,
+          "armRange": 0.8766436139399931,
+          "weapon": "meteor",
+          "damage": 46.200000000000045
+        },
+        "slacker": {
+          "frames": 24,
+          "armRange": 2.26493743650704,
+          "weapon": "coffee",
+          "damage": 28.159999999999968
+        },
+        "intern": {
+          "frames": 30,
+          "armRange": 2.2002827809300465,
+          "weapon": "blade",
+          "damage": 29.920000000000073
+        },
+        "duck": {
+          "frames": 16,
+          "armRange": 2.2046650987699836,
+          "weapon": "ricochet",
+          "damage": 33.120000000000005
+        },
+        "deadline": {
+          "frames": 27,
+          "armRange": 0.8913332035542751,
+          "weapon": "meteor",
+          "damage": 25.519999999999982
+        },
+        "barista": {
+          "frames": 33,
+          "armRange": 2.2542617144810064,
+          "weapon": "coffee",
+          "damage": 52.43999999999994
+        },
+        "qa": {
+          "frames": 29,
+          "armRange": 0.9689168818214628,
+          "weapon": "pulse",
+          "damage": 35.200000000000045
+        },
+        "director": {
+          "frames": 29,
+          "armRange": 0.8753961832014434,
+          "weapon": "meteor",
+          "damage": 51.51999999999998
+        },
+        "investor": {
+          "frames": 22,
+          "armRange": 2.2675962699445833,
+          "weapon": "ricochet",
+          "damage": 40.32000000000005
+        },
+        "ppt": {
+          "frames": 28,
+          "armRange": 2.2246550495070805,
+          "weapon": "blade",
+          "damage": 34.200000000000045
+        },
+        "landlord": {
+          "frames": 28,
+          "armRange": 0.89065215739441,
+          "weapon": "wrench",
+          "damage": 47.039999999999964
+        }
+      },
+      "qrSHA256": "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a"
+    },
+    {
+      "suite": "feel",
+      "passed": [
+        "双人准备、共同初始选卡、观战与对局同步正常",
+        "脚下数字生命/独立护盾、危险状态和受伤拖尾清晰可见",
+        "护盾破裂使用独立状态文字，不与生命损失混为同一条",
+        "16种攻击逐一确认真实手臂变化、正确武器、握持点连续与有界挥击轨迹",
+        "四模块同时触发并移动时，动作队列不冻结行走",
+        "快速转身持续保持可见层总透明度，不出现人物闪烁",
+        "620像素小窗血条仍可读且不溢出画面"
+      ],
+      "errors": [],
+      "attacks": {
+        "pulse": {
+          "frames": 11,
+          "trail": 0
+        },
+        "arc": {
+          "frames": 12,
+          "trail": 0
+        },
+        "frost": {
+          "frames": 12,
+          "trail": 0
+        },
+        "blade": {
+          "frames": 11,
+          "trail": 8
+        },
+        "orbit": {
+          "frames": 17,
+          "trail": 0
+        },
+        "meteor": {
+          "frames": 18,
+          "trail": 9
+        },
+        "venom": {
+          "frames": 13,
+          "trail": 8
+        },
+        "drone": {
+          "frames": 16,
+          "trail": 0
+        },
+        "flame": {
+          "frames": 14,
+          "trail": 9
+        },
+        "seeker": {
+          "frames": 14,
+          "trail": 0
+        },
+        "gravity": {
+          "frames": 16,
+          "trail": 0
+        },
+        "ricochet": {
+          "frames": 11,
+          "trail": 8
+        },
+        "bat": {
+          "frames": 18,
+          "trail": 9
+        },
+        "mop": {
+          "frames": 17,
+          "trail": 9
+        },
+        "wrench": {
+          "frames": 17,
+          "trail": 9
+        },
+        "coffee": {
+          "frames": 14,
+          "trail": 9
+        }
+      }
+    },
+    {
+      "suite": "community",
+      "passed": [
+        "大厅直接可见公共聊天室，跨浏览器同步昵称/时间/消息，发送后清空并退出输入；新标语显示正确",
+        "不同房间保持各自小队，公屏消息产生未读提示，查看后清零且不串入队内频道",
+        "小队私聊仅本队与观众可见；观战者可向公共聊天室发言并显示观战标识",
+        "频道切换保留各自未发送草稿",
+        "中文输入法确认候选词不会误提交消息",
+        "公屏输入不误触T开火，F8在输入中仍能切换工作并保留草稿",
+        "聊天中的 HTML 作为文本呈现",
+        "60条容量后仍能接收/自动跟随；翻阅旧消息时保持位置并提示新消息",
+        "对局中默认收起，展开后可跨房间发言，发送后仍能继续移动",
+        "390px 手机公共聊天室可用且不产生横向溢出"
+      ],
+      "errors": [],
+      "rooms": ["6F4A2D", "EMZB9H"]
+    },
+    {
+      "suite": "polish",
+      "passed": [
+        "纸面六章档案可打开真实任务；右侧说明对比度达标；三处广告显示联系QQ。",
+        "准备大厅与右侧茶水间同屏；真实队友和观战者双向聊天，在每方向75ms的WebSocket延迟下送达。",
+        "真人准备约束、3秒内取消准备、全员地图内选卡等待均在延迟联机下正确。",
+        "近怪关闭自动开火仍正确转向；实际可见的十四关节角色在持续开火时下肢持续变化，不被攻击动作替换。",
+        "同屏队友位置与服务器一致；延迟客户端刷新重连保留原身份，没有重复队员，重连后仍能移动。",
+        "F10恢复界面与按钮不出现游戏相关文字，页签标题同步变为工作台。",
+        "VS Code/IntelliJ使用独立真实布局，文件各自持久编辑、查找、终端和切换可用；Excel不再套通用大标题。",
+        "联机全队结算展示真实整数统计、可查看队员构筑，390px布局无页面溢出；只有房主能重整，所有人回到同一准备大厅。",
+        "结算重整后切换六章模式，实际进入办公楼地图，重新选卡后可正常移动。",
+        "成功结算分支可见；房主从结算返回大厅后真实队友接任，房间继续保留。",
+        "1366×768整备按钮和茶水间同屏；手机提供原位折叠茶水间，无需滚动找聊天。"
+      ],
+      "errors": [],
+      "heroContrast": 7.668270673034345,
+      "delayedPackets": 730,
+      "latencyMsPerDirection": 75
+    },
+    {
+      "suite": "feedback",
+      "passed": [
+        "全站在线人数包含大厅访客；3个真实浏览器会话显示3，不把AI算进去。",
+        "图鉴包含7敌人/16攻击/28职业/个人记录，搜索和成长等级预览真实可用。",
+        "指南使用统一纸面配色并纠正攻击快捷键；日/周/月/年/总榜按服务端时间边界筛选真实记录。",
+        "准备大厅点击任务简报会打开真正可见且可操作的独立面板，关闭可返回原小队。",
+        "队员管理入口独立成按钮，移出前确认可取消，实际移出后释放席位并让队员回到大厅。",
+        "左上使用真实斜后左素材、右上使用真实斜后右素材；实际可见14关节角色方向正确。",
+        "E零件不足由服务端明确拒绝，显示缺额、短促抖动和反馈，资源不会被错误扣除。",
+        "敌人先蓄力再出手，伤害来自实际敌人；受击界面显示来源、方向和护盾反馈。",
+        "7类敌人均使用可见14关节骨架和同一GPU图集，持续移动/蓄力/出手，并有连续倒地收尾。",
+        "逐项验证16种攻击的可见起手/出手/收招，高攻速也能完成动作，肘腕和下肢不被重置冻结。",
+        "28个职业Q都能驱动对应动作族，和16种随机攻击分开，不会覆盖职业技能。",
+        "真实队员重连保留身份与房间，不出现重复队员；在线汇总继续更新。"
+      ],
+      "errors": [],
+      "attacks": 16,
+      "signatures": 28,
+      "enemies": 7
+    }
+  ],
+  "quality": {
+    "native": {
+      "dpr": 2,
+      "distinctWalkFrames": 55,
+      "motion": {
+        "samples": 25,
+        "moving": 25
+      },
+      "cap144": 59.55153370009333,
+      "targetCap": 144,
+      "displayReferenceFps": 59.88023952095813,
+      "rafFPS": 59.55153370009333,
+      "expectedFrameRate": 59.88023952095813,
+      "displayUncapped": false,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调一点F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "unrestrictedBrowserLab": {
+      "dpr": 2,
+      "distinctWalkFrames": 127,
+      "motion": {
+        "samples": 55,
+        "moving": 55
+      },
+      "cap144": 143.66666666666666,
+      "targetCap": 144,
+      "displayReferenceFps": 57.142857142857146,
+      "rafFPS": 598.6666666666666,
+      "expectedFrameRate": 57.142857142857146,
+      "displayUncapped": true,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调一点F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "scope": "Local normal scene at DPR2; lab disables browser vsync/frame limit. No dense-scene or public-network guarantee."
+  },
+  "qr": {
+    "originalSHA256": "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+    "original": {
+      "detected": true,
+      "decoded": true,
+      "payloadSHA256": "2fdd077fb3409bccc5144193e21f7ffd7e8a8d2b138cf5484fc3c12aa9023363"
+    },
+    "renderedPreview": {
+      "detected": true,
+      "decoded": true
+    }
+  },
+  "scope": "Actual local multi-client and delayed WebSocket regressions, not public Internet soak testing. Published artifacts verified separately."
+}

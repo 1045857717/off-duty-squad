@@ -22,7 +22,7 @@ export function LaunchCountdown({
       </div>
       <span>打卡成功，正在接入快乐</span>
       <strong>倒数三秒，全员开始发癫。</strong>
-      <p>进入地图后选择初始攻击 · 全员选完才开始战斗</p>
+      <p>职业普攻已就位 · 进入地图选首个改装 · 全员选完开战</p>
       <button
         onClick={() =>
           void request(
@@ -55,8 +55,8 @@ export function InitialDeployment({
         <span>DEPLOYMENT / 小队接入中</span>
         <h2>
           {me?.initialChosen
-            ? "已选择攻击，等待队友就绪。"
-            : "工位里翻翻，哪样顺手拿哪样。"}
+            ? "改装已装配，等队友一起开工。"
+            : "普攻自带，再挑一件反卷装备。"}
         </h2>
         <p>
           当前战场暂停 · {state.players.filter((p) => p.initialChosen).length}/

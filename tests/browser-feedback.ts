@@ -455,6 +455,7 @@ try {
     me.x = center.x;
     me.y = center.y;
     me.arsenal = { [id]: 1 };
+    me.basicCd = 999;
     me.attackCooldowns = {};
     me.rate = 0.11;
     g.state.areas = [];

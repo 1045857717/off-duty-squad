@@ -98,12 +98,14 @@ export function enemyAttackFrame(
 export function visibleAttack(
   frame: AttackFrame,
   arsenal: Partial<Record<AttackId, number>>,
+  basic?: AttackId,
 ) {
-  return frame.id && arsenal[frame.id]
+  return frame.id && (arsenal[frame.id] || frame.id === basic)
     ? frame.id
-    : (Object.keys(arsenal).find((id) => arsenal[id as AttackId]) as
-        | AttackId
-        | undefined);
+    : basic ||
+        (Object.keys(arsenal).find((id) => arsenal[id as AttackId]) as
+          | AttackId
+          | undefined);
 }
 export function weaponPose(frame: AttackFrame, facing: number) {
   const { windup: prep, strike: hit, recovery, kind } = frame;
@@ -111,9 +113,9 @@ export function weaponPose(frame: AttackFrame, facing: number) {
   const offset = !frame.active
     ? 0
     : kind === "slash" || kind === "sweep"
-      ? -prep * 1.05 + hit * 1.15 + recovery * 0.18
+      ? -prep * 1.2 + hit * 1.4 + recovery * 0.14
       : kind === "overhead"
-        ? -prep * 1.4 + hit * 0.55 + recovery * 0.12
+        ? -prep * 1.5 + hit * 0.8 + recovery * 0.12
         : kind === "throw"
           ? -prep * 0.65 + hit * 0.36
           : kind === "shoot"
@@ -121,8 +123,8 @@ export function weaponPose(frame: AttackFrame, facing: number) {
             : -prep * 0.15 + hit * 0.2;
   return {
     rotation: facing + offset * side,
-    scale: ["slash", "sweep", "overhead"].includes(kind) ? 0.66 : 0.55,
-    recoil: kind === "shoot" ? hit * 2.7 : 0,
+    scale: ["slash", "sweep", "overhead"].includes(kind) ? 0.96 : 0.76,
+    recoil: kind === "shoot" ? hit * 6.8 : 0,
     trail:
       frame.active &&
       ["slash", "sweep", "overhead", "throw"].includes(kind) &&
@@ -388,28 +390,28 @@ export function articulatedPose(
     torso = -step * 0.018;
   if (motion.active) {
     if (kind === "shoot") {
-      right -= 0.42 + prep * 0.24 + hit * 0.35;
+      right -= 0.45 + prep * 0.4 + hit * 0.6;
       left -= 0.25;
-      elbowR = -0.58 + hit * 0.25;
+      elbowR = -0.82 + hit * 0.45;
       elbowL = 0.25;
-      torso += hit * 0.04;
+      torso += prep * 0.08 - hit * 0.12;
     }
     if (kind === "slash" || kind === "sweep") {
-      left += prep * 0.65 - hit * 0.95 + recoil * 0.16;
-      right -= prep * 0.7 - hit * 1.1 + recoil * 0.16;
+      left += prep * 0.92 - hit * 1.25 + recoil * 0.16;
+      right -= prep * 1.0 - hit * 1.45 + recoil * 0.16;
       elbowL = 0.36 + prep * 0.23;
       elbowR = -0.42 - prep * 0.22;
-      torso += prep * 0.11 - hit * 0.18;
+      torso += prep * 0.17 - hit * 0.28;
     }
     if (kind === "overhead") {
-      left -= prep * 0.85 + hit * 0.45;
+      left -= prep * 1.14 + hit * 0.64;
       right += prep * 0.85 + hit * 0.45;
       elbowL = 0.55 + prep * 0.3;
       elbowR = -0.55 - prep * 0.3;
       torso += hit * 0.13;
     }
     if (kind === "throw") {
-      right += prep * 0.62 - hit * 1.25;
+      right += prep * 0.9 - hit * 1.4;
       left -= hit * 0.3;
       elbowR = -prep * 0.65 + hit * 0.15;
       torso += prep * 0.04 - hit * 0.08;
@@ -456,6 +458,18 @@ export function articulatedPose(
       Math.cos(phase * 2) * weight * 0.7 +
       Math.sin(time * 0.002) * (1 - weight) * 0.6 +
       hit * 0.8,
+    thrust: motion.active ? (hit * 4.5 - prep * 2.0) * blend : 0,
     breath: 1 + Math.sin(time * 0.002) * 0.006,
   };
+}
+
+/** Handle and visible tip of the existing80x40 tool artwork. */
+export function toolGeometry(id: AttackId) {
+  if (id === "mop") return { origin: 0.08, tip: 72 };
+  if (id === "bat") return { origin: 0.08, tip: 58 };
+  if (id === "wrench") return { origin: 0.08, tip: 66 };
+  if (id === "coffee") return { origin: 0.38, tip: 43 };
+  if (id === "meteor" || id === "orbit") return { origin: 0.32, tip: 56 };
+  if (id === "drone" || id === "seeker") return { origin: 0.35, tip: 58 };
+  return { origin: 0.2, tip: 68 };
 }
