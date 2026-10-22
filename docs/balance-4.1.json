@@ -1,0 +1,1154 @@
+{
+  "version": "4.1.0",
+  "fixture": "Server-authoritative 60Hz simulation; first-wave actual director spawn repositioned52px forward; stationary target, ordinary attack only, no random modules, Q or critical hits; other squad members do not attack. This measures in-range damage, not travel/chase time or human survival.",
+  "cases": [
+    {
+      "players": 1,
+      "role": "scout",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "engineer",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "medic",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.917,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "guardian",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "designer",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.883,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "accountant",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.917,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "hr",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.9,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "manager",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "sales",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "logistics",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "chef",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "cleaner",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.017,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "teacher",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.017,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "driver",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "creator",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "lawyer",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.917,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "workhorse",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.05,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "blametaker",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.117,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "slacker",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.967,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "intern",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "duck",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.9,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "deadline",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "barista",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.917,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "qa",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "director",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "investor",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.917,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "ppt",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 0.883,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "landlord",
+      "enemy": "mite",
+      "hp": 27,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "scout",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "engineer",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "medic",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 2.483,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "guardian",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "designer",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.65,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "accountant",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "hr",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.683,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "manager",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "sales",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "logistics",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "chef",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "cleaner",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "teacher",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.867,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "driver",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "creator",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "lawyer",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "workhorse",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.05,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "blametaker",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.117,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "slacker",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.8,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "intern",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "duck",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.683,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "deadline",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "barista",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.7,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "qa",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "director",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "investor",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "ppt",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.65,
+      "killed": true
+    },
+    {
+      "players": 1,
+      "role": "landlord",
+      "enemy": "hound",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "scout",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "engineer",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "medic",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 2.483,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "guardian",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "designer",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.65,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "accountant",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "hr",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.683,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "manager",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "sales",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "logistics",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.033,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "chef",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "cleaner",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.867,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "teacher",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.867,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "driver",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "creator",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "lawyer",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "workhorse",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.05,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "blametaker",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.117,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "slacker",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.8,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "intern",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "duck",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.683,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "deadline",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "barista",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.7,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "qa",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.617,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "director",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.133,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "investor",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.717,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "ppt",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.65,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "landlord",
+      "enemy": "mite",
+      "hp": 41,
+      "ordinaryOnlySeconds": 1.067,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "scout",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.367,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "engineer",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.967,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "medic",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.267,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "guardian",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.9,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "designer",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.183,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "accountant",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.517,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "hr",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.25,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "manager",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.767,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "sales",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.117,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "logistics",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.9,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "chef",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.967,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "cleaner",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.567,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "teacher",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.717,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "driver",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.967,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "creator",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.117,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "lawyer",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.517,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "workhorse",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.933,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "blametaker",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.05,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "slacker",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.467,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "intern",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 3.117,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "duck",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.467,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "deadline",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.083,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "barista",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.483,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "qa",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.367,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "director",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.083,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "investor",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.517,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "ppt",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 2.417,
+      "killed": true
+    },
+    {
+      "players": 4,
+      "role": "landlord",
+      "enemy": "hound",
+      "hp": 63,
+      "ordinaryOnlySeconds": 1.967,
+      "killed": true
+    }
+  ],
+  "pressure": [
+    {
+      "wave": 1,
+      "solo": {
+        "health": 0.7,
+        "teamHp": 1,
+        "damage": 1,
+        "speed": 0.85,
+        "interval": 2.05,
+        "spawn": 1,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 22
+      },
+      "fourPlayers": {
+        "health": 0.7,
+        "teamHp": 1.54,
+        "damage": 1,
+        "speed": 0.85,
+        "interval": 2.05,
+        "spawn": 1.84,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 58
+      }
+    },
+    {
+      "wave": 2,
+      "solo": {
+        "health": 0.7899999999999999,
+        "teamHp": 1,
+        "damage": 1.055,
+        "speed": 0.885,
+        "interval": 1.9599999999999997,
+        "spawn": 1,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 29
+      },
+      "fourPlayers": {
+        "health": 0.7899999999999999,
+        "teamHp": 1.5939999999999999,
+        "damage": 1.055,
+        "speed": 0.885,
+        "interval": 1.9599999999999997,
+        "spawn": 1.84,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 77
+      }
+    },
+    {
+      "wave": 3,
+      "solo": {
+        "health": 0.8799999999999999,
+        "teamHp": 1,
+        "damage": 1.11,
+        "speed": 0.9199999999999999,
+        "interval": 1.8699999999999999,
+        "spawn": 1,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 36
+      },
+      "fourPlayers": {
+        "health": 0.8799999999999999,
+        "teamHp": 1.6480000000000001,
+        "damage": 1.11,
+        "speed": 0.9199999999999999,
+        "interval": 1.8699999999999999,
+        "spawn": 1.84,
+        "batch": 1,
+        "eliteChance": 0,
+        "target": 95
+      }
+    },
+    {
+      "wave": 4,
+      "solo": {
+        "health": 0.97,
+        "teamHp": 1,
+        "damage": 1.165,
+        "speed": 0.955,
+        "interval": 1.7799999999999998,
+        "spawn": 1,
+        "batch": 1,
+        "eliteChance": 0.025,
+        "target": 43
+      },
+      "fourPlayers": {
+        "health": 0.97,
+        "teamHp": 1.702,
+        "damage": 1.165,
+        "speed": 0.955,
+        "interval": 1.7799999999999998,
+        "spawn": 1.84,
+        "batch": 2,
+        "eliteChance": 0.025,
+        "target": 114
+      }
+    },
+    {
+      "wave": 5,
+      "solo": {
+        "health": 1.115,
+        "teamHp": 1,
+        "damage": 1.22,
+        "speed": 0.99,
+        "interval": 1.69,
+        "spawn": 1,
+        "batch": 2,
+        "eliteChance": 0.037000000000000005,
+        "target": 50
+      },
+      "fourPlayers": {
+        "health": 1.115,
+        "teamHp": 1.756,
+        "damage": 1.22,
+        "speed": 0.99,
+        "interval": 1.69,
+        "spawn": 1.84,
+        "batch": 3,
+        "eliteChance": 0.037000000000000005,
+        "target": 133
+      }
+    },
+    {
+      "wave": 6,
+      "solo": {
+        "health": 1.26,
+        "teamHp": 1,
+        "damage": 1.275,
+        "speed": 1.025,
+        "interval": 1.5999999999999999,
+        "spawn": 1,
+        "batch": 2,
+        "eliteChance": 0.049,
+        "target": 57
+      },
+      "fourPlayers": {
+        "health": 1.26,
+        "teamHp": 1.81,
+        "damage": 1.275,
+        "speed": 1.025,
+        "interval": 1.5999999999999999,
+        "spawn": 1.84,
+        "batch": 3,
+        "eliteChance": 0.049,
+        "target": 151
+      }
+    },
+    {
+      "wave": 10,
+      "solo": {
+        "health": 1.8399999999999999,
+        "teamHp": 1,
+        "damage": 1.495,
+        "speed": 1.165,
+        "interval": 1.2399999999999998,
+        "spawn": 1,
+        "batch": 3,
+        "eliteChance": 0.097,
+        "target": 85
+      },
+      "fourPlayers": {
+        "health": 1.8399999999999999,
+        "teamHp": 2.026,
+        "damage": 1.495,
+        "speed": 1.165,
+        "interval": 1.2399999999999998,
+        "spawn": 1.84,
+        "batch": 4,
+        "eliteChance": 0.097,
+        "target": 225
+      }
+    },
+    {
+      "wave": 15,
+      "solo": {
+        "health": 2.743107994686314,
+        "teamHp": 1,
+        "damage": 1.945,
+        "speed": 1.34,
+        "interval": 0.7899999999999998,
+        "spawn": 1,
+        "batch": 4,
+        "eliteChance": 0.157,
+        "target": 120
+      },
+      "fourPlayers": {
+        "health": 2.743107994686314,
+        "teamHp": 2.08,
+        "damage": 1.945,
+        "speed": 1.34,
+        "interval": 0.7899999999999998,
+        "spawn": 1.84,
+        "batch": 5,
+        "eliteChance": 0.157,
+        "target": 318
+      }
+    },
+    {
+      "wave": 20,
+      "solo": {
+        "health": 3.70489672685939,
+        "teamHp": 1,
+        "damage": 2.395,
+        "speed": 1.5150000000000001,
+        "interval": 0.33999999999999986,
+        "spawn": 1,
+        "batch": 5,
+        "eliteChance": 0.217,
+        "target": 155
+      },
+      "fourPlayers": {
+        "health": 3.70489672685939,
+        "teamHp": 2.08,
+        "damage": 2.395,
+        "speed": 1.5150000000000001,
+        "interval": 0.33999999999999986,
+        "spawn": 1.84,
+        "batch": 6,
+        "eliteChance": 0.217,
+        "target": 411
+      }
+    },
+    {
+      "wave": 30,
+      "solo": {
+        "health": 5.7064883053779205,
+        "teamHp": 1,
+        "damage": 3.295,
+        "speed": 1.75,
+        "interval": 0.28,
+        "spawn": 1,
+        "batch": 7,
+        "eliteChance": 0.3,
+        "target": 225
+      },
+      "fourPlayers": {
+        "health": 5.7064883053779205,
+        "teamHp": 2.08,
+        "damage": 3.295,
+        "speed": 1.75,
+        "interval": 0.28,
+        "spawn": 1.84,
+        "batch": 7,
+        "eliteChance": 0.3,
+        "target": 596
+      }
+    }
+  ]
+}

@@ -190,6 +190,7 @@ export function IDEWorkspace({
   };
   return (
     <section
+      data-work-style={idea ? "idea" : "code"}
       className={"work-screen ide-workspace ide-" + flavor}
       aria-label={idea ? "IntelliJ IDEA 工作界面" : "VS Code 工作界面"}
       onKeyDown={(e) => {
@@ -271,6 +272,8 @@ export function IDEWorkspace({
         <button
           className="ide-switch"
           aria-label="切换工作界面"
+          aria-haspopup="menu"
+          aria-expanded={menu === "switch"}
           onClick={() => setMenu(menu === "switch" ? "" : "switch")}
         >
           <Icon name="grid" size={14} />
@@ -280,7 +283,7 @@ export function IDEWorkspace({
         </button>
       </header>
       {menu && (
-        <div className="ide-menu" role="menu">
+        <div className="ide-menu" data-menu={menu} role="menu">
           {menu === "switch" ? (
             (
               [
@@ -290,6 +293,7 @@ export function IDEWorkspace({
                 ["tasks", "任务管理"],
                 ["board", "项目看板"],
                 ["docs", "文档编辑"],
+                ["sheet", "数据报表"],
                 ["mail", "邮件工作台"],
                 ["metrics", "经营分析"],
               ] as const

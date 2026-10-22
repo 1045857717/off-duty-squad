@@ -49,14 +49,8 @@ try {
   const host = await open("普攻组长"),
     peer = await open("普攻队友"),
     viewer = await open("普攻观众");
-  assert.match(
-    await host.locator(".page-heading h1").innerText(),
-    /班是公司的/,
-  );
-  assert.match(
-    await host.locator(".page-heading h1").innerText(),
-    /鱼是自己的/,
-  );
+  assert.match(await host.locator(".scene-copy h2").innerText(), /班是公司的/);
+  assert.match(await host.locator(".scene-copy h2").innerText(), /鱼是自己的/);
   const project = host.getByRole("link", { name: "GitHub开源项目" });
   assert.equal(
     await project.getAttribute("href"),
@@ -373,7 +367,7 @@ try {
     ),
     false,
   );
-  await mobile.locator(".page-heading").scrollIntoViewIfNeeded();
+  await mobile.locator(".scene-copy").scrollIntoViewIfNeeded();
   await mobile.screenshot({ path: "test-results/clarity/mobile-lobby.png" });
   assert.equal(
     await mobile

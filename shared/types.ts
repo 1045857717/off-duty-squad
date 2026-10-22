@@ -162,11 +162,13 @@ export type Player = Vec & {
   };
   initialChosen: boolean;
   upgradeCd: number;
+  interactionLatched?: boolean;
   interactionFeedback?: {
     seq: number;
     at: number;
     message: string;
     status: "failed" | "complete";
+    label?: string;
   };
   interaction?: {
     label: string;

@@ -1,4 +1,5 @@
 import { IDEWorkspace } from "./IDEWorkspace";
+import "./work41.css";
 import type { Settings } from "../shared/types";
 import {
   ExcelWorkspace,
@@ -108,6 +109,7 @@ export function Workspaces({
   const specialized = ["excel", "mail", "metrics"].includes(view);
   return (
     <div
+      data-work-style={view}
       className={
         "work-screen rich-work " +
         (!sidebarOpen ? "work-sidebar-collapsed" : "")
@@ -291,6 +293,7 @@ export function Workspaces({
                         <em>{t.priority}优先级</em>
                       </p>
                       <select
+                        aria-label={"事项状态" + t.id}
                         value={t.status}
                         onChange={(e) =>
                           change(t.id, { status: e.target.value })
@@ -433,6 +436,7 @@ export function Workspaces({
                     </td>
                     <td>
                       <select
+                        aria-label={"事项状态" + t.id}
                         value={t.status}
                         onChange={(e) =>
                           change(t.id, { status: e.target.value })
@@ -445,6 +449,7 @@ export function Workspaces({
                     </td>
                     <td>
                       <select
+                        aria-label={"事项优先级" + t.id}
                         value={t.priority}
                         onChange={(e) =>
                           change(t.id, { priority: e.target.value })

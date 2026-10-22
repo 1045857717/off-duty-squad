@@ -45,7 +45,7 @@
 
 ![实际对局与任务简报](docs/images/gameplay.webp)
 
-实机截图：1位玩家与3位实际服务端AI，未注入假血量；[整备界面](docs/images/ready-40.webp) · [八方向挥击](docs/images/directions-40.webp) · [敌人动作](docs/images/enemies-40.webp)。
+实机截图：1位玩家与3位实际服务端AI，未注入假血量；[整备界面](docs/images/ready-41.webp) · [八方向挥击](docs/images/directions-40.webp) · [敌人动作](docs/images/enemies-40.webp)。
 
 ## 快速开始
 
@@ -139,10 +139,10 @@ npm run test:feedback
 
 ## 当前状态与边界
 
-版本 **4.0.0**。整体改为「夜班办公室奇谭」视觉：统一角色、办公武器、七类异变敌人、地图、特效和界面；修复反向挥击、蓄力转向与接触动作错位。详见[4.0更新](docs/RELEASE-4.0.md)、[美术动作](docs/ART-4.0.md)、[逐职业攻击矩阵](docs/COMBAT-4.0.md)、[正式发行验收](docs/PUBLISHED-4.0.md)与[保护发布策略](docs/BRANCH-PROTECTION.md)。
+版本 **4.1.0**。大厅改为上方选择玩法、下方工友集合的游戏整备界面；无尽首波重新校准为可清怪的开局，敌人组合与精英逐波加入。E交互明确显示真实收益、费用和持续效果，修复F8各工作视图背景串色。详见[4.1玩法与修复](docs/PLAYABILITY-4.1.md)和[开局伤害审计](docs/balance-4.1.json)。4.0的[美术动作](docs/ART-4.0.md)、[逐职业矩阵](docs/COMBAT-4.0.md)、[已发布验收](docs/PUBLISHED-4.0.md)与[分支保护策略](docs/BRANCH-PROTECTION.md)继续保留。
 
 - 目前采用单实例房间服务，多个副本不会共享房间或在线人数。正式扩容前需要独立的房间路由与共享存储设计。
-- 支持144FPS目标档位，实际取决于硬件、分辨率和敌人密度，**不保证全场景144FPS**。当前版本测量和限制见[4.0性能实测](docs/PERFORMANCE-4.0.md)，旧版本结果保留在历史报告。
+- 支持144FPS目标档位，实际取决于硬件、分辨率和敌人密度，**不保证全场景144FPS**。上一轮4.0测量和限制见[4.0性能实测](docs/PERFORMANCE-4.0.md)，旧版本结果保留在历史报告。
 - 浏览器小窗依赖浏览器能力；Windows 便携包尚未代码签名，目前不提供 macOS / Linux 桌面包。
 - 现有网络回归在本机多客户端及人工延迟条件下完成，尚未覆盖公网跨机器长时间压力测试。
 - 排行榜按北京时间统计，记录最近 50,000 场成绩；聊天与实时房间不会持久保存。

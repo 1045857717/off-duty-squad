@@ -1,5 +1,20 @@
 # Changelog / 更新日志
 
+## [4.1.0] - 2026-10-23
+
+### Gameplay / 玩法
+
+- Give endless mode a gradual opening: killable common enemies, sublinear party health, staged ranged/bomber/heavy/ghost introductions and later elites; keep growing late-wave pressure and five-wave bosses. First-wave events now help establish a build.
+- Unify HUD/server E target selection and show personal authoritative benefit receipts, exact shared-parts cost, upgrade keys, actual healing/shields, environmental-tool duration and hit results.
+- Preserve unneeded medical supplies and require E release before another completed interaction; success no longer triggers failure shake.
+
+### Interface / 界面
+
+- Put mode selection above squad assembly and replace report-like lobby cards with illustrated mode destinations, an office gathering scene, visible squad staging and adjacent chat.
+- Isolate all nine F8 work palettes from the game theme, including authentic light document/sheet surfaces and dark editor menus/inputs.
+
+See [中文设计与规则](docs/PLAYABILITY-4.1.md), [English design](docs/PLAYABILITY-4.1.en.md) and the reproducible [opening damage audit](docs/balance-4.1.json). Historical 4.0 art and performance reports remain available.
+
 ## [4.0.0] - 2026-10-23
 
 ### Changed / 调整

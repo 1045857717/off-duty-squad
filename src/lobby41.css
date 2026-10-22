@@ -1,0 +1,1699 @@
+/* 4.1 lobby only: a graphic office co-op breakroom. Combat and workspaces keep 4.0. */
+.app.odyssey40.lobby41 {
+  --lobby-ink: #153739;
+  --lobby-lime: #d4f778;
+  --lobby-paper: #f4f0dc;
+  --lobby-muted: #a7bbb0;
+  --lobby-line: #49625b;
+  --bg: #182d2d;
+  --panel: #213a37;
+  --text: #f4f0dc;
+  --paper: #f4f0dc;
+  --muted: #b6c4b4;
+  --accent: #d4f778;
+  --brass: #d4f778;
+  --verdigris: #d4f778;
+  --display: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  color: var(--text);
+  background: #182d2d;
+  font-family: var(--display);
+}
+.app.odyssey40.lobby41 :is(button, a, input, select, summary):focus-visible {
+  outline: 3px solid #d4f778;
+  outline-offset: 3px;
+}
+.app.odyssey40.lobby41 :is(button, input) {
+  font-family: inherit;
+}
+.app.odyssey40.lobby41 :is(button, a) {
+  touch-action: manipulation;
+}
+.app.odyssey40.lobby41:not(.window-is-hidden) .app-body .btn-primary {
+  color: #153739;
+  background: #d4f778;
+  border: 1px solid #e7ffb0;
+  box-shadow: 0 3px 0 #779949;
+  border-radius: 6px;
+}
+.app.odyssey40.lobby41:not(.window-is-hidden)
+  .app-body
+  .btn-primary:hover:not(:disabled) {
+  background: #e2ff9c;
+}
+.app.odyssey40.lobby41:not(.window-is-hidden) .app-body .btn-secondary {
+  color: #f4f0dc;
+  border-color: #6e8878;
+  background: #284641;
+}
+.app.odyssey40.lobby41:not(.is-compact) .sidebar {
+  width: 62px;
+  background: #122a2b;
+  border-color: #39524c;
+  padding-top: 17px;
+}
+.app.odyssey40.lobby41 .brand-mark {
+  color: #d4f778;
+  background: #263f38;
+  border-color: #698759;
+}
+.app.odyssey40.lobby41 .nav-item.active {
+  color: #d4f778;
+  background: #2a443b;
+}
+.app.odyssey40.lobby41:not(.is-compact) .workspace {
+  margin-left: 62px;
+  width: calc(100% - 62px);
+  background: #182d2d;
+}
+.app.odyssey40.lobby41:not(.is-compact) .topbar {
+  height: 62px;
+  min-height: 62px;
+  padding: 0 22px;
+  background: #182d2d;
+  border-color: #3a534b;
+}
+.app.odyssey40.lobby41 .wordmark {
+  color: #f4f0dc;
+  font-family: var(--display);
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  font-size: 25px;
+}
+.app.odyssey40.lobby41 .wordmark > span {
+  color: #bbd29d;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.app.odyssey40.lobby41 .wordmark b {
+  color: #d4f778;
+}
+.app.odyssey40.lobby41 .breadcrumb {
+  color: #a7bbb0;
+}
+.app.odyssey40.lobby41 .quiet-button {
+  color: #e0e8cf;
+  background: #213a37;
+  border-color: #4c685a;
+}
+.app.odyssey40.lobby41 .connection {
+  color: #c3d6ba;
+}
+.app.odyssey40.lobby41:not(.is-compact) .main-content {
+  max-width: 1600px;
+  padding: 16px 22px 0;
+}
+.app.odyssey40.lobby41:not(.is-compact) .page-heading {
+  display: none;
+}
+.app.odyssey40.lobby41:not(.is-compact) .main-grid {
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 18px;
+  align-items: start;
+}
+.app.odyssey40.lobby41 .mission-column {
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .stage-shell {
+  border: 1px solid #49625b;
+  border-radius: 9px;
+  background: #213a37;
+  box-shadow: none;
+  overflow: hidden;
+}
+.app.odyssey40.lobby41 .stage-heading {
+  height: 32px;
+  min-height: 32px;
+  padding: 0 14px;
+  background: #213a37;
+  border-color: #49625b;
+}
+.app.odyssey40.lobby41 .stage-tabs button {
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .stage-tabs button.active {
+  color: #d4f778;
+}
+.app.odyssey40.lobby41 .stage-location {
+  color: #c2d3bb;
+}
+.app.odyssey40.lobby41 .game-stage {
+  background: #213a37;
+}
+.app.odyssey40.lobby41 .stage-footer {
+  min-height: 28px;
+  padding: 5px 13px;
+  background: #213a37;
+  border-color: #49625b;
+  color: #c2d3bb;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .lobby-step {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 24px;
+  border-radius: 4px;
+  color: #153739;
+  background: #d4f778;
+  font: 900 13px/1 var(--mono);
+  vertical-align: middle;
+}
+/* One selector, in reading order before the roster and profession setup. */
+.app.odyssey40.lobby41 .rules-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .rules-selector fieldset {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.app.odyssey40.lobby41 .rules-selector legend {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+  color: #f4f0dc;
+  font: 800 15px/1.3 var(--display);
+  gap: 8px;
+}
+.app.odyssey40.lobby41 .rules-selector legend > span {
+  color: #b6c4b4;
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: auto;
+}
+.app.odyssey40.lobby41 .mode-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.app.odyssey40.lobby41 .mode-cards > button {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 116px;
+  min-height: 116px;
+  padding: 13px 15px;
+  overflow: hidden;
+  text-align: left;
+  border: 2px solid #708578;
+  border-radius: 8px;
+  background: #e8b39a;
+  color: #153739;
+  box-shadow: 0 3px 0 #0e2525;
+  transform: none;
+}
+.app.odyssey40.lobby41 .mode-cards > .mode-expedition {
+  background: #aacac0;
+}
+.app.odyssey40.lobby41 .mode-cards > button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    115deg,
+    transparent 0 20px,
+    #ffffff12 21px 22px
+  );
+}
+.app.odyssey40.lobby41 .mode-cards > button[aria-pressed="true"] {
+  border-color: #d4f778;
+  box-shadow:
+    0 0 0 1px #d4f778,
+    0 3px 0 #0e2525;
+}
+.app.odyssey40.lobby41 .mode-cards > button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #f4f0dc;
+}
+.app.odyssey40.lobby41 .mode-cards > button:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+.app.odyssey40.lobby41 .mode-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+  width: 100%;
+  z-index: 1;
+}
+.app.odyssey40.lobby41 .mode-copy small {
+  display: inline-block;
+  color: #153739;
+  background: #ffffff70;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.app.odyssey40.lobby41 .mode-copy strong {
+  color: #153739;
+  font: 950 clamp(22px, 2.3vw, 32px) / 1.1 var(--display);
+  letter-spacing: -0.07em;
+}
+.app.odyssey40.lobby41 .mode-copy em {
+  color: #244945;
+  font-size: 10px;
+  font-style: normal;
+  white-space: normal;
+  max-width: 74%;
+  line-height: 1.5;
+}
+.app.odyssey40.lobby41 .mode-illustration {
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  width: 47%;
+  height: 110px;
+  pointer-events: none;
+}
+.app.odyssey40.lobby41 .mode-choice {
+  position: absolute;
+  inset: 8px 8px auto auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: auto;
+  height: 22px;
+  padding: 0 5px;
+  border: 0;
+  border-radius: 3px;
+  color: #153739;
+  background: #ffffffa0;
+  font: 700 10px/1 var(--display);
+}
+.app.odyssey40.lobby41 .mode-cards button[aria-pressed="true"] .mode-choice {
+  background: #d4f778;
+}
+.app.odyssey40.lobby41 .rules-selector fieldset + fieldset {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.app.odyssey40.lobby41 .rules-selector fieldset + fieldset legend {
+  display: contents;
+  font-size: 11px;
+  font-weight: 600;
+}
+.app.odyssey40.lobby41 .rules-selector fieldset + fieldset legend > span {
+  display: none;
+}
+.app.odyssey40.lobby41 .difficulty-pills {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .difficulty-pills > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 34px;
+  flex: 1;
+  padding: 6px 8px;
+  gap: 5px;
+  border: 1px solid #587161;
+  border-radius: 5px;
+  background: #243f39;
+  color: #dce7ca;
+}
+.app.odyssey40.lobby41 .difficulty-pills > button[aria-pressed="true"] {
+  background: #d4f778;
+  color: #153739;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .difficulty-pills strong {
+  color: inherit;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .difficulty-pills small {
+  display: none;
+}
+/* An actual gathering scene: native profession art, floor and shared background. */
+.app.odyssey40.lobby41.has-lobby .ready-room {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  padding: 14px;
+  background: #213a37;
+}
+.app.odyssey40.lobby41.has-lobby .ready-room-heading {
+  position: relative;
+  padding: 0 0 8px;
+  margin: 0;
+  border: 0;
+  min-height: 0;
+}
+.app.odyssey40.lobby41 .lobby-assembly-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f4f0dc;
+  font-size: 14px;
+  font-weight: 800;
+}
+.app.odyssey40.lobby41 .lobby-assembly-label > span {
+  font-size: 11px;
+  font-weight: 400;
+  color: #b6c4b4;
+}
+.app.odyssey40.lobby41.has-lobby .ready-room-heading h2 {
+  margin: 6px 0 0;
+  font: 900 20px/1.35 var(--display);
+  letter-spacing: -0.04em;
+}
+.app.odyssey40.lobby41.has-lobby .ready-room-heading p {
+  margin: 3px 0 0;
+  color: #c1cfb9;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.app.odyssey40.lobby41.has-lobby .ready-code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  color: #d4f778;
+  background: #29453e;
+  border: 1px solid #769064;
+  border-radius: 4px;
+  font: 600 11px var(--display);
+}
+.app.odyssey40.lobby41.has-lobby .ready-staging {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #304b43;
+  border: 1px solid #526b58;
+}
+.app.odyssey40.lobby41 .office-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.65;
+}
+.app.odyssey40.lobby41.has-lobby .ready-roster {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  height: auto;
+  gap: 0;
+  margin: 0;
+  padding: 7px 10px 9px;
+  min-height: 0 !important;
+  max-height: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat {
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 4px 6px;
+  min-width: 0;
+  min-height: 0 !important;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.is-ready {
+  background: transparent;
+  border: 0;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat + .ready-seat {
+  border-left: 1px solid #8aa17a30;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat-number {
+  align-self: stretch;
+  color: #d1dbc1;
+  font: 600 10px/1.4 var(--display);
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat-number i {
+  background: #d4f778;
+  box-shadow: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat-number i.offline {
+  background: #f0ab94;
+}
+.app.odyssey40.lobby41.has-lobby .ready-portrait {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 126px;
+  min-height: 126px;
+  flex: 0 0 126px;
+  margin: 3px 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat .pixel-avatar {
+  width: 108px !important;
+  height: 122px !important;
+  max-height: none !important;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid #aac194;
+  border-radius: 38% 38% 8px 8px;
+  box-shadow: 0 5px 0 #152f2b88;
+  transform: rotate(-3deg);
+  image-rendering: auto;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat:nth-child(even) .pixel-avatar {
+  transform: rotate(3deg);
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.is-waiting .pixel-avatar {
+  border-color: #bbab88;
+}
+.app.odyssey40.lobby41 .portrait-scan {
+  display: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  gap: 4px;
+  margin: 2px 0 3px;
+  color: #fff8df;
+  font: 800 13px/1.3 var(--display);
+  overflow-wrap: anywhere;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat h3 em {
+  color: #153739;
+  background: #d4f778;
+  padding: 1px 3px;
+  font: 700 9px var(--display);
+  border-radius: 2px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-role {
+  color: #e9f2d4;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.app.odyssey40.lobby41.has-lobby .ready-role > span {
+  display: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-loadout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 4px 0;
+  color: #c8d8b8;
+  font-size: 10px;
+  background: none;
+  border: 0;
+}
+.app.odyssey40.lobby41.has-lobby .ready-loadout small {
+  color: #d4f778;
+  font-size: 9px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat > footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #d4f778;
+  background: #203a31;
+  padding: 4px 7px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.is-waiting > footer {
+  color: #f2bca4;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.empty {
+  justify-content: flex-start;
+  background: transparent;
+  color: #c1cfb4;
+  border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.empty:hover {
+  background: #d4f77812;
+}
+.app.odyssey40.lobby41 .empty-worker {
+  display: grid;
+  place-items: center;
+  width: 87px;
+  height: 123px;
+  margin: 6px 0 4px;
+  color: #d4f778;
+  border: 2px dashed #91a87c;
+  border-radius: 40% 40% 7px 7px;
+  background: #223d3780;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.empty strong {
+  color: #dfe9ca;
+  font: 700 13px/1.5 var(--display);
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.empty small {
+  color: #c3d0b5;
+  font-size: 10px;
+  margin-top: 3px;
+}
+.app.odyssey40.lobby41 .seat-management {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.app.odyssey40.lobby41 .manage-teammate {
+  padding: 4px;
+  color: #f4f0dc;
+  background: #183731;
+  border: 1px solid #7e9a70;
+  border-radius: 4px;
+}
+.app.odyssey40.lobby41 .manage-teammate span {
+  display: none;
+}
+.app.odyssey40.lobby41 .kick-confirm {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  padding: 9px;
+  background: #183731;
+  border: 1px solid #c6db8e;
+  box-shadow: 0 5px 20px #0005;
+}
+.app.odyssey40.lobby41 .kick-confirm button {
+  min-height: 32px;
+  color: #f4f0dc;
+}
+.app.odyssey40.lobby41.has-lobby .ready-skill-expand {
+  margin: 0;
+  padding: 7px 0;
+  color: #bdcdb0;
+  font-size: 10px;
+  border: 0;
+  background: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-skill-expand summary {
+  min-height: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 0;
+  margin-top: 0;
+  border-top: 1px solid #53705a;
+  background: none;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch > div {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch > div > i {
+  display: inline-block;
+  margin-right: 7px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch strong {
+  color: #f4f0dc;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch small {
+  display: block;
+  margin-top: 3px;
+  color: #c2cfb5;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch .btn {
+  min-width: 160px;
+  min-height: 48px;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+.app.odyssey40.lobby41.has-lobby .ready-launch .btn:disabled {
+  opacity: 0.55;
+}
+/* Public rooms remain the default; illustration and list share the same view. */
+.app.odyssey40.lobby41 .public-lobby {
+  padding: 0;
+  background: #213a37;
+}
+.app.odyssey40.lobby41 .lobby-scene {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  height: 158px;
+  min-height: 158px;
+  overflow: hidden;
+  border-bottom: 1px solid #668164;
+  background: #304b43;
+}
+.app.odyssey40.lobby41 .scene-copy {
+  position: relative;
+  z-index: 2;
+  padding: 12px 22px;
+}
+.app.odyssey40.lobby41 .scene-copy > span {
+  color: #d4f778;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.app.odyssey40.lobby41 .scene-copy h2 {
+  margin: 7px 0 5px;
+  color: #f4f0dc;
+  font: 950 31px/1.03 var(--display);
+  letter-spacing: -0.06em;
+}
+.app.odyssey40.lobby41 .scene-copy em {
+  color: #d4f778;
+  font-style: normal;
+}
+.app.odyssey40.lobby41 .scene-copy p {
+  color: #d4dfc1;
+  font-size: 10px;
+  margin: 5px 0 0;
+}
+.app.odyssey40.lobby41 .scene-coworkers {
+  position: absolute;
+  inset: 0 8% 0 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 12px;
+}
+.app.odyssey40.lobby41 .scene-worker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(-7deg);
+}
+.app.odyssey40.lobby41 .scene-worker:last-child {
+  transform: rotate(9deg);
+}
+.app.odyssey40.lobby41 .scene-worker.featured {
+  transform: translateY(-8px) rotate(2deg);
+  z-index: 1;
+}
+.app.odyssey40.lobby41 .scene-worker img {
+  display: block;
+  width: 88px;
+  height: 100px;
+  border: 3px solid #c0d18d;
+  border-radius: 38% 38% 7px 7px;
+  object-fit: cover;
+  box-shadow: 0 6px 0 #172f2a80;
+  image-rendering: auto;
+}
+.app.odyssey40.lobby41 .scene-worker.featured img {
+  width: 103px;
+  height: 116px;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .scene-worker > span {
+  margin-top: 5px;
+  padding: 3px 6px;
+  color: #153739;
+  background: #e2e6c7;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.app.odyssey40.lobby41 .scene-worker.featured > span {
+  background: #d4f778;
+}
+.app.odyssey40.lobby41 .scene-sticker {
+  position: absolute;
+  right: 12px;
+  top: 22px;
+  transform: rotate(9deg);
+  padding: 9px 7px;
+  color: #153739;
+  background: #e9ac93;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.4;
+  box-shadow: 2px 3px 0 #152f2a80;
+}
+.app.odyssey40.lobby41 .public-lobby > header {
+  padding: 12px 16px 8px;
+  gap: 10px;
+}
+.app.odyssey40.lobby41 .public-lobby > header h2 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font: 850 17px/1.4 var(--display);
+  letter-spacing: -0.03em;
+  color: #f4f0dc;
+}
+.app.odyssey40.lobby41 .public-lobby > header p {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #bdcdb0;
+}
+.app.odyssey40.lobby41 .lobby-online {
+  margin-top: 4px;
+  color: #c9d7b9;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .lobby-online b {
+  color: #d4f778;
+}
+.app.odyssey40.lobby41 .public-lobby-tools {
+  margin: 0;
+  padding: 7px 16px;
+  border-color: #49625b;
+  background: #1c3431;
+  gap: 8px;
+}
+.app.odyssey40.lobby41 .room-list-count {
+  color: #c2d2b7;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .public-lobby-tools label {
+  border-color: #708469;
+  background: #1b3430;
+}
+.app.odyssey40.lobby41 .public-lobby-tools input {
+  min-width: 0;
+  width: 100%;
+  color: #f4f0dc;
+  background: none;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .live-room-list {
+  padding: 0 16px;
+  min-height: 0;
+  max-height: 176px;
+  overflow-y: auto;
+  background: #213a37;
+}
+.app.odyssey40.lobby41 .live-room-list > article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  min-height: 90px;
+  border-color: #49625b;
+  background: none;
+  border-radius: 0;
+}
+.app.odyssey40.lobby41 .room-mode-art {
+  position: relative;
+  display: block;
+  flex: 0 0 62px;
+  width: 62px;
+  height: 57px;
+  overflow: hidden;
+  background: #e8b39a;
+  border: 0;
+  border-radius: 5px;
+}
+.app.odyssey40.lobby41 .room-expedition .room-mode-art {
+  background: #aacac0;
+}
+.app.odyssey40.lobby41 .room-mode-art .mode-illustration {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.app.odyssey40.lobby41 .room-mode-art > i {
+  display: none;
+}
+.app.odyssey40.lobby41 .live-room-list article > section {
+  min-width: 0;
+  flex: 1;
+}
+.app.odyssey40.lobby41 .live-room-list article h3 {
+  color: #f4f0dc;
+  font: 800 15px/1.4 var(--display);
+  overflow-wrap: anywhere;
+}
+.app.odyssey40.lobby41 .live-room-list article b {
+  color: #d4f778;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .live-room-list article :is(p, em) {
+  color: #c2d2b7;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .live-room-list code {
+  color: #d4f778;
+  background: #29473b;
+}
+.app.odyssey40.lobby41 .live-room-actions button {
+  min-height: 36px;
+  color: #f4f0dc;
+  background: #2f4e42;
+  border: 1px solid #7c9467;
+}
+.app.odyssey40.lobby41 .live-room-actions button:last-child {
+  color: #153739;
+  background: #d4f778;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .lobby-no-rooms {
+  min-height: 117px;
+  gap: 4px;
+  padding: 14px 8px;
+}
+.app.odyssey40.lobby41 .lobby-no-rooms .signal-orbit {
+  display: none;
+}
+.app.odyssey40.lobby41 .lobby-no-rooms strong {
+  color: #e8efd3;
+  font: 800 18px/1.4 var(--display);
+}
+.app.odyssey40.lobby41 .lobby-no-rooms p {
+  margin: 4px 0;
+  color: #becdb1;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .lobby-no-rooms button {
+  min-height: 32px;
+  color: #d4f778;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .public-lobby > footer {
+  padding: 8px 16px;
+  color: #bdcdb0;
+  background: #213a37;
+  border-color: #49625b;
+  font-size: 10px;
+}
+/* Chat stays beside the stage; setup is a compact toolbox below it. */
+.app.odyssey40.lobby41 .squad-side-rail {
+  gap: 12px;
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .squad-side-rail .lobby-channels {
+  background: #233c35;
+  border: 1px solid #688063;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 #102a27;
+}
+.app.odyssey40.lobby41 .channel-chat-header {
+  background: #29483e;
+  border-color: #587152;
+  padding: 5px;
+}
+.app.odyssey40.lobby41 .channel-chat-header [role="tab"] {
+  min-height: 34px;
+  color: #d5e2c4;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .channel-chat-header [role="tab"][aria-selected="true"] {
+  background: #d4f778;
+  color: #153739;
+  font-weight: 800;
+}
+.app.odyssey40.lobby41 .channel-collapse {
+  color: #d5e2c4;
+  border-color: #7e946a;
+}
+.app.odyssey40.lobby41
+  .squad-side-rail
+  .lobby-channels
+  :is(.lobby-chat, .squad-lobby-chat) {
+  padding: 10px 12px;
+  background: #233c35;
+}
+.app.odyssey40.lobby41
+  .lobby-channels
+  :is(.lobby-chat, .squad-lobby-chat)
+  > header {
+  padding-bottom: 6px;
+  margin-bottom: 7px;
+  border-color: #4b684e;
+}
+.app.odyssey40.lobby41 .lobby-channels header small {
+  color: #c1cfb2;
+}
+.app.odyssey40.lobby41 .squad-side-rail .lobby-channels .public-chat-log {
+  height: 95px;
+  min-height: 95px;
+  background: #1c352e;
+  border: 0;
+  border-radius: 4px;
+}
+.app.odyssey40.lobby41 .squad-chat-messages {
+  height: 95px;
+  min-height: 95px;
+  max-height: 95px;
+  background: #1c352e;
+  border-color: #4b684e;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome {
+  padding: 10px;
+  color: #cbd9b8;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome strong {
+  color: #d4f778;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome span {
+  font-size: 11px;
+  margin-top: 4px;
+}
+.app.odyssey40.lobby41 .lobby-channels form input {
+  min-height: 36px;
+  min-width: 0;
+  color: #f4f0dc;
+  background: #182e29;
+  border-color: #768967;
+}
+.app.odyssey40.lobby41 .lobby-channels form button {
+  color: #153739;
+  background: #d4f778;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .lobby-channels footer {
+  color: #b6c9a7;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .squad-side-rail .team-panel {
+  padding: 12px;
+  background: #213a37;
+  border-color: #49625b;
+  border-radius: 8px;
+}
+.app.odyssey40.lobby41 .team-panel :is(.team-slots, .room-box, .squad-note) {
+  display: none;
+}
+.app.odyssey40.lobby41 .team-panel .panel-top {
+  display: none;
+}
+.app.odyssey40.lobby41 .team-actions {
+  margin: 0 0 8px;
+}
+.app.odyssey40.lobby41 .team-actions .btn {
+  min-height: 36px;
+}
+.app.odyssey40.lobby41 .team-hint {
+  font-size: 10px;
+  color: #bdcdb0;
+  margin-top: 5px;
+}
+.app.odyssey40.lobby41 .role-section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.app.odyssey40.lobby41 .section-label {
+  color: #f4f0dc;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .section-label > span {
+  color: #bdcdb0;
+}
+.app.odyssey40.lobby41 .profession-card {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 8px;
+  min-height: 0;
+  padding: 7px;
+  border: 1px solid #688263;
+  border-radius: 5px;
+  background: #2e493f;
+}
+.app.odyssey40.lobby41 .profession-portrait {
+  width: 65px;
+  min-width: 65px;
+  height: 76px;
+  border: 0;
+  background: none;
+}
+.app.odyssey40.lobby41 .profession-portrait img {
+  width: 65px;
+  height: 76px;
+  object-fit: cover;
+}
+.app.odyssey40.lobby41 .profession-identity {
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .profession-identity h3 {
+  color: #d4f778;
+  font: 800 15px/1.3 var(--display);
+}
+.app.odyssey40.lobby41 .profession-identity p {
+  color: #e0e7cd;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.app.odyssey40.lobby41 .profession-identity dl {
+  display: none;
+}
+.app.odyssey40.lobby41 .profession-signature {
+  color: #dce7c9;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .job-picker header {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.app.odyssey40.lobby41 .job-picker header > span {
+  color: #c4d5b6;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .job-picker header label {
+  width: 100%;
+  background: #19312c;
+  border-color: #647d5c;
+}
+.app.odyssey40.lobby41 .job-picker input {
+  color: #f4f0dc;
+}
+.app.odyssey40.lobby41 .career-filters {
+  gap: 4px;
+  margin: 6px 0;
+}
+.app.odyssey40.lobby41 .career-filters button {
+  min-height: 28px;
+  color: #c7d5b9;
+  background: #2b453b;
+  border-color: #5b7455;
+  padding: 4px 6px;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41 .career-filters button[aria-pressed="true"] {
+  color: #153739;
+  background: #d4f778;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .career-filters small {
+  color: inherit;
+}
+.app.odyssey40.lobby41 .job-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-height: 126px;
+  gap: 5px;
+  overscroll-behavior: contain;
+}
+.app.odyssey40.lobby41 .job-grid > button {
+  min-height: 54px;
+  padding: 4px;
+  color: #f4f0dc;
+  background: #1d352f;
+  border-color: #496750;
+  border-radius: 4px;
+}
+.app.odyssey40.lobby41 .job-grid > button.selected {
+  background: #40583b;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41 .job-grid > button strong {
+  color: #edf3da;
+}
+.app.odyssey40.lobby41 .job-grid > button small {
+  color: #c4d4b3;
+}
+.app.odyssey40.lobby41 .role-description {
+  padding-top: 6px;
+}
+.app.odyssey40.lobby41 .role-description > .skill-details {
+  max-height: 74px;
+  overflow-y: auto;
+}
+.app.odyssey40.lobby41 .skill-details {
+  background: #1c342f;
+  color: #d5e1c2;
+  border-color: #4e6b50;
+}
+.app.odyssey40.lobby41 .bot-controls {
+  margin-top: 9px;
+  border-top: 1px solid #496750;
+  padding-top: 8px;
+}
+.app.odyssey40.lobby41 .bot-controls button {
+  min-height: 32px;
+  color: #dce7ca;
+  background: #29463c;
+  border-color: #65815d;
+}
+.app.odyssey40.lobby41 .bot-controls button[aria-pressed="true"] {
+  background: #d4f778;
+  color: #153739;
+}
+.app.odyssey40.lobby41 :is(.solo-button, .leave-button) {
+  min-height: 35px;
+  color: #d4f778;
+  background: #29463c;
+  border-color: #65815d;
+  margin-top: 8px;
+}
+.app.odyssey40.lobby41 .lobby-social {
+  margin-top: 10px;
+}
+.app.odyssey40.lobby41 .lobby-social button {
+  color: #d3e1bf;
+  background: #213a37;
+  border-color: #496750;
+  min-height: 35px;
+}
+.app.odyssey40.lobby41 :is(.controls-strip, .route-section) {
+  display: none;
+}
+.app.odyssey40.lobby41 .rental-ads {
+  margin-top: 12px;
+}
+.app.odyssey40.lobby41 .rental-ads article {
+  background: #213a37;
+  border-color: #496750;
+  box-shadow: none;
+}
+.app.odyssey40.lobby41 .rental-ads :is(strong, .rental-contact) {
+  color: #d0ddba;
+}
+.app.odyssey40.lobby41 .page-footer {
+  color: #b9c9ac;
+  border-color: #496750;
+}
+.app.odyssey40.lobby41 .launch-countdown {
+  background: #182e2aeb;
+}
+.app.odyssey40.lobby41 .launch-countdown b {
+  color: #d4f778;
+  font-family: var(--display);
+}
+@media (min-width: 1100px) {
+  .app.odyssey40.lobby41.has-lobby .ready-staging {
+    min-height: 248px;
+  }
+}
+@media (max-width: 1100px) {
+  .app.odyssey40.lobby41:not(.is-compact) .main-grid {
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 12px;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .main-content {
+    padding: 12px;
+  }
+  .app.odyssey40.lobby41 .mode-copy strong {
+    font-size: 24px;
+  }
+  .app.odyssey40.lobby41 .mode-copy em {
+    max-width: 78%;
+    font-size: 9px;
+  }
+  .app.odyssey40.lobby41 .scene-coworkers {
+    right: 4%;
+    left: 43%;
+    gap: 4px;
+  }
+  .app.odyssey40.lobby41 .scene-worker img {
+    width: 64px;
+    height: 80px;
+  }
+  .app.odyssey40.lobby41 .scene-worker.featured img {
+    width: 80px;
+    height: 98px;
+  }
+  .app.odyssey40.lobby41 .scene-sticker {
+    display: none;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-code {
+    position: static;
+    float: right;
+    margin-top: 5px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-seat .pixel-avatar {
+    width: 84px !important;
+    height: 105px !important;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-portrait {
+    height: 110px;
+    min-height: 110px;
+    flex-basis: 110px;
+  }
+  .app.odyssey40.lobby41 .empty-worker {
+    width: 72px;
+    height: 105px;
+  }
+}
+@media (max-width: 850px) {
+  .app.odyssey40.lobby41:not(.is-compact) .sidebar {
+    width: 52px;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .workspace {
+    margin-left: 52px;
+    width: calc(100% - 52px);
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .main-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .app.odyssey40.lobby41 .squad-side-rail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .app.odyssey40.lobby41 .mode-copy strong {
+    font-size: 29px;
+  }
+}
+@media (max-width: 620px) {
+  .app.odyssey40.lobby41:not(.is-compact) .sidebar {
+    display: none;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .workspace {
+    margin-left: 0;
+    width: 100%;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .main-content {
+    padding: 10px;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .topbar {
+    height: 60px;
+    min-height: 60px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .app.odyssey40.lobby41 .wordmark {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .app.odyssey40.lobby41 .top-actions {
+    min-width: 0;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .app.odyssey40.lobby41 .connection {
+    font-size: 10px;
+  }
+  .app.odyssey40.lobby41 .topbar .breadcrumb {
+    display: none;
+  }
+  .app.odyssey40.lobby41 .squad-side-rail {
+    display: flex;
+    flex-direction: column;
+  }
+  .app.odyssey40.lobby41 .squad-side-rail > * {
+    width: 100%;
+    min-width: 0;
+  }
+  .app.odyssey40.lobby41 .mode-cards {
+    gap: 8px;
+  }
+  .app.odyssey40.lobby41 .mode-cards > button {
+    height: 146px;
+    padding: 11px 10px;
+    align-items: flex-start;
+  }
+  .app.odyssey40.lobby41 .mode-copy {
+    gap: 6px;
+  }
+  .app.odyssey40.lobby41 .mode-copy strong {
+    font-size: 24px;
+  }
+  .app.odyssey40.lobby41 .mode-copy em {
+    font-size: 10px;
+    max-width: 100%;
+    width: 90%;
+  }
+  .app.odyssey40.lobby41 .mode-illustration {
+    right: -7px;
+    bottom: -7px;
+    width: 65%;
+    height: 75px;
+    opacity: 0.85;
+  }
+  .app.odyssey40.lobby41 .mode-choice {
+    top: auto;
+    bottom: 9px;
+    right: auto;
+    left: 10px;
+    font-size: 9px;
+  }
+  .app.odyssey40.lobby41 .rules-selector legend {
+    font-size: 14px;
+  }
+  .app.odyssey40.lobby41 .rules-selector legend > span {
+    font-size: 10px;
+  }
+  .app.odyssey40.lobby41 .rules-selector fieldset + fieldset {
+    gap: 5px;
+  }
+  .app.odyssey40.lobby41 .difficulty-pills {
+    gap: 4px;
+  }
+  .app.odyssey40.lobby41 .difficulty-pills > button {
+    min-height: 44px;
+    padding: 5px 4px;
+    gap: 3px;
+  }
+  .app.odyssey40.lobby41 .difficulty-pills strong {
+    font-size: 10px;
+  }
+  .app.odyssey40.lobby41 .difficulty-pills svg {
+    width: 13px;
+  }
+  .app.odyssey40.lobby41 .stage-location {
+    display: none;
+  }
+  .app.odyssey40.lobby41 .lobby-scene {
+    height: 163px;
+    min-height: 163px;
+  }
+  .app.odyssey40.lobby41 .scene-copy {
+    padding: 14px 12px;
+  }
+  .app.odyssey40.lobby41 .scene-copy h2 {
+    font-size: 23px;
+  }
+  .app.odyssey40.lobby41 .scene-copy p {
+    max-width: 165px;
+    font-size: 10px;
+  }
+  .app.odyssey40.lobby41 .scene-copy > span {
+    font-size: 9px;
+  }
+  .app.odyssey40.lobby41 .scene-coworkers {
+    inset: 12px -10px 0 46%;
+    gap: 0;
+  }
+  .app.odyssey40.lobby41 .scene-worker img {
+    width: 57px;
+    height: 75px;
+  }
+  .app.odyssey40.lobby41 .scene-worker.featured img {
+    width: 70px;
+    height: 91px;
+  }
+  .app.odyssey40.lobby41 .scene-worker > span {
+    padding: 3px;
+    font-size: 8px;
+  }
+  .app.odyssey40.lobby41 .public-lobby > header {
+    padding: 12px;
+    flex-wrap: wrap;
+  }
+  .app.odyssey40.lobby41 .public-lobby > header h2 {
+    font-size: 16px;
+  }
+  .app.odyssey40.lobby41 .public-lobby > header .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+  .app.odyssey40.lobby41 .public-lobby-tools {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+  }
+  .app.odyssey40.lobby41 .public-lobby-tools label {
+    width: 100%;
+    flex: 1 0 100%;
+    min-height: 40px;
+  }
+  .app.odyssey40.lobby41 .live-room-list {
+    max-height: 320px;
+    padding: 0 12px;
+  }
+  .app.odyssey40.lobby41 .live-room-list > article {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .app.odyssey40.lobby41 .live-room-actions {
+    flex-direction: row;
+    margin-left: auto;
+  }
+  .app.odyssey40.lobby41 .live-room-actions button {
+    min-height: 44px;
+  }
+  .app.odyssey40.lobby41 .lobby-no-rooms {
+    padding: 14px 0;
+  }
+  .app.odyssey40.lobby41 .public-lobby > footer > span {
+    display: none;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-room {
+    padding: 10px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-code {
+    float: none;
+    width: max-content;
+    max-width: 100%;
+    min-height: 36px;
+    margin: 7px 0;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-room-heading h2 {
+    margin-top: 5px;
+    font-size: 21px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-room-heading p {
+    font-size: 11px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-roster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 0;
+    padding: 8px 4px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-seat:nth-child(3) {
+    border-left: 0;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-seat {
+    min-height: 215px !important;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-seat .pixel-avatar {
+    width: 94px !important;
+    height: 112px !important;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-seat.empty {
+    min-height: 190px !important;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-staging .office-backdrop {
+    opacity: 0.35;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-launch {
+    flex-wrap: wrap;
+    padding: 12px 0 2px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-launch .btn {
+    width: 100%;
+    min-height: 50px;
+  }
+  .app.odyssey40.lobby41 .lobby-assembly-label > span {
+    font-size: 10px;
+  }
+  .app.odyssey40.lobby41 .manage-teammate {
+    min-width: 32px;
+    min-height: 32px;
+  }
+  .app.odyssey40.lobby41 .job-grid {
+    max-height: 230px;
+  }
+  .app.odyssey40.lobby41 .career-filters button {
+    min-height: 36px;
+  }
+  .app.odyssey40.lobby41 .lobby-channels form input {
+    min-height: 44px;
+  }
+  .app.odyssey40.lobby41 .rental-ads {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .app.odyssey40.lobby41 .rental-ads > article {
+    min-width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app.odyssey40.lobby41 *,
+  .app.odyssey40.lobby41 *::before,
+  .app.odyssey40.lobby41 *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .app.odyssey40.lobby41 .mode-cards > button:hover {
+    transform: none;
+  }
+}
+
+.app.odyssey40.lobby41
+  .lobby-channels
+  :is(.lobby-chat, .squad-lobby-chat)
+  > header
+  > span {
+  color: #e0eacb;
+  font-weight: 700;
+}
+
+/* The AI count is part of assembly, reachable beside the room title. */
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar {
+  position: absolute;
+  top: 33px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #d7e3c3;
+  font-size: 10px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar .ai-seat-pills {
+  display: flex;
+  gap: 4px;
+}
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 32px;
+  height: 30px;
+  padding: 4px;
+  border: 1px solid #83956c;
+  border-radius: 4px;
+  background: #264139;
+  color: #e5edcf;
+  font: 700 12px var(--display);
+}
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar button small {
+  font-size: 8px;
+  color: inherit;
+}
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar button[aria-pressed="true"] {
+  background: #d4f778;
+  color: #153739;
+  border-color: #d4f778;
+}
+.app.odyssey40.lobby41.has-lobby .ready-ai-toolbar button:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+@media (min-width: 850px) {
+  .app.odyssey40.lobby41.has-lobby .ready-room-heading h2 {
+    padding-right: 225px;
+  }
+}
+@media (max-width: 620px) {
+  .app.odyssey40.lobby41.has-lobby .ready-ai-toolbar {
+    position: static;
+    margin: 9px 0 3px;
+  }
+  .app.odyssey40.lobby41.has-lobby .ready-ai-toolbar button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* Override historical light-theme !important success colors only in this scene. */
+.app.odyssey40.lobby41.has-lobby .ready-seat.is-ready > footer {
+  color: #d4f778 !important;
+}
+.app.odyssey40.lobby41.has-lobby .ready-seat.is-ready > footer svg {
+  color: inherit !important;
+}
+.app.odyssey40.lobby41.has-lobby .ready-skill-expand summary {
+  color: #c9d7b8;
+}
+.app.odyssey40.lobby41 .squad-chat-messages p > span {
+  color: #e7ecd3;
+}
+.app.odyssey40.lobby41 .squad-chat-messages :is(time, .system) {
+  color: #c2d2b7;
+}
+.app.odyssey40.lobby41 .squad-chat-messages p.system > span {
+  color: #c2d2b7;
+}
+.app.odyssey40.lobby41 .squad-side-rail .team-panel {
+  display: block;
+}
+.app.odyssey40.lobby41 .profession-portrait {
+  flex: 0 0 65px;
+}
+.app.odyssey40.lobby41 .profession-identity {
+  padding: 3px 0;
+}
+
+/* The project entry belongs to a visible stage toolbar on desktop and mobile. */
+.app.odyssey40.lobby41 .stage-heading .project-links {
+  margin: 0 0 0 8px;
+  flex: 0 0 auto;
+  display: flex;
+}
+.app.odyssey40.lobby41 .stage-heading .project-links a {
+  width: 28px;
+  height: 26px;
+  min-height: 26px;
+  padding: 4px;
+  border-color: #59735f;
+  background: #25453d;
+  color: #e0f3b6;
+}
+.app.odyssey40.lobby41 .stage-heading .project-links span {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  /* In the lobby chat is a real flow section. Combat retains its floating channel. */
+  .app.odyssey40.lobby41:not(.is-compact) .squad-side-rail .lobby-channels {
+    position: static;
+    inset: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Keep the actual mobile navigation; hiding it also hid codex/help/settings. */
+  .app.odyssey40.lobby41:not(.is-compact) .sidebar {
+    display: flex;
+    width: 100%;
+    height: 58px;
+    padding: 4px 8px;
+    inset: auto 0 0;
+    background: #122a2b;
+  }
+  .app.odyssey40.lobby41:not(.is-compact) .workspace {
+    margin-left: 0;
+    width: 100%;
+    padding-bottom: 58px;
+  }
+}

@@ -79,10 +79,10 @@ try {
     b = await open("公屏工友B"),
     viewer = await open("板凳观众"),
     outside = await open("围观工友");
-  assert.match(await a.locator(".page-heading h1").innerText(), /班是公司的/);
-  assert.match(await a.locator(".page-heading h1").innerText(), /鱼是自己的/);
+  assert.match(await a.locator(".scene-copy h2").innerText(), /班是公司的/);
+  assert.match(await a.locator(".scene-copy h2").innerText(), /鱼是自己的/);
   assert.match(
-    await a.locator(".heading-aside").innerText(),
+    await a.locator(".scene-copy p").innerText(),
     /摸到的鱼，才算自己挣到的/,
   );
   await say(a, "工资没涨，先涨点战斗力");
@@ -286,7 +286,39 @@ try {
     .getByText("我在图里也能吹水", { exact: true })
     .waitFor();
   const box = await tabs(outside).boundingBox();
-  assert.ok(box && box.x >= 0 && box.x + box.width <= 391);
+  if (!box || box.x < 0 || box.x + box.width > 391) {
+    await snap(outside, "mobile-overflow");
+    await fs.writeFile(
+      "test-results/community/mobile-geometry.json",
+      JSON.stringify(
+        await tabs(outside).evaluate((el) => {
+          const rows = [];
+          for (let n: Element | null = el; n; n = n.parentElement) {
+            const r = n.getBoundingClientRect(),
+              s = getComputedStyle(n);
+            rows.push({
+              tag: n.className,
+              x: r.x,
+              w: r.width,
+              grid: s.gridTemplateColumns,
+              position: s.position,
+              min: s.minWidth,
+              width: s.width,
+              transform: s.transform,
+            });
+          }
+          return {
+            rows,
+            viewport: innerWidth,
+            scroll: document.documentElement.scrollWidth,
+          };
+        }),
+        null,
+        2,
+      ),
+    );
+  }
+  assert.ok(box && box.x >= 0 && box.x + box.width <= 391, JSON.stringify(box));
   assert.ok(
     await outside.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

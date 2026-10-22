@@ -1,6 +1,7 @@
-import { useEffect, useState, type ReactNode } from "react";
-import type { RoomReply, RoomSummary } from "../shared/types";
+import { useEffect, useState } from "react";
+import type { Role, RoomReply, RoomSummary } from "../shared/types";
 import { Icon } from "./icons";
+import { LobbyScene, ModeIllustration } from "./LobbyScene";
 export function PublicLobby({
   name,
   role,
@@ -8,12 +9,10 @@ export function PublicLobby({
   onCreate,
   onJoin,
   online,
-  preview,
 }: {
   online?: number;
-  preview?: ReactNode;
   name: string;
-  role: string;
+  role: Role;
   request: (e: string, d?: unknown) => Promise<RoomReply>;
   onCreate: () => void;
   onJoin: () => void;
@@ -47,25 +46,13 @@ export function PublicLobby({
   );
   return (
     <section className="public-lobby" aria-label="公开房间大厅">
-      {preview && (
-        <div className="lobby-observation" aria-label="工友待命实景">
-          {preview}
-          <div className="observation-caption">
-            <span>
-              <i /> 工友待命
-            </span>
-            <p>1–4 人合作 · 随机构筑 · 队友互捞</p>
-          </div>
-          <span className="observation-seal" aria-hidden="true">
-            <Icon name="fish" size={32} />
-            <span>摸鱼有理</span>
-          </span>
-        </div>
-      )}
+      <LobbyScene role={role} />
       <header>
         <div>
-          <h2>找齐同事，一起下班。</h2>
-          <p>真实房间 · 随时加入 / 观战 · {rooms.length} 条在线信道</p>
+          <h2>
+            <b className="lobby-step">02</b> 找齐同事，一起下班。
+          </h2>
+          <p>公开房间 · 随时加入 / 观战 · {rooms.length} 队工友在摸鱼</p>
           <small className="lobby-online" aria-label="全站在线概况">
             <Icon name="users" size={12} />
             全站在线 <b>{online ?? "—"}</b> 位工友
@@ -100,10 +87,7 @@ export function PublicLobby({
             }
           >
             <span className="room-mode-art">
-              <Icon
-                name={r.mode === "survival" ? "shield" : "compass"}
-                size={29}
-              />
+              <ModeIllustration mode={r.mode} />
               <i />
             </span>
             <section>
@@ -175,7 +159,7 @@ export function PublicLobby({
                 ? "正在接收小队信号…"
                 : query
                   ? "没有匹配的房间"
-                  : "还没找到下班搭子？"}
+                  : "第一队工友，由你召集。"}
             </strong>
             <p>
               {query

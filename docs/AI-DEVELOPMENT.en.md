@@ -80,3 +80,8 @@ The user supplied a reversed slash screenshot, requested a major visual overhaul
 
 
 Verification corrections: independent review caught missing world translation in the new ribbon renderer and a real draw-boundary check reproduced it. Screenshot review exposed damage/vital and short-screen roster overlap, now covered by geometry checks. Native probes now require a matching GAME_URL version and playing phase, preventing old local previews from being reported as current results. Performance reports retain failed stages rather than only the best sample.
+
+
+## 4.1 — Responding to playtest evidence
+
+The author reported unclear E benefits, an unkillable first endless wave, mode selection too low, a report-like lobby and F8 background regressions. The agent reproduced reward/target inconsistencies and early pressure stacking, added behavioral regressions, then implemented authoritative personal receipts and a dedicated gradual endless curve. Independent file-scoped workers revised lobby presentation and work palettes; the main agent integrated real network/browser checks and 112 ordinary-attack opening damage cases. New lobby illustrations are editable SVG and use the game's actual profession artwork; no image model was called. See [4.1 design](PLAYABILITY-4.1.en.md).
