@@ -17,6 +17,6 @@
 
 ## 验证 / Verification
 
-本地通过113项核心测试+5项发行契约测试，28组真实浏览器回归，页面错误0；品牌/二维码位置、28职业普攻、1366×768准备大厅、390px布局、公共聊天、延迟重连与F10中性标题均通过。Windows包已核对启动文件「薪水小偷.exe」。详见[原始结果](validation-3.8.json)。发布物在发行后独立核验。
+本地通过113项核心测试+5项发行契约测试，28组真实浏览器回归，页面错误0；品牌/二维码位置、28职业普攻、1366×768准备大厅、390px布局、公共聊天、延迟重连与F10中性标题均通过。Windows包已核对启动文件「薪水小偷.exe」。详见[原始结果](validation-3.8.json)。正式发布物已通过匿名拉取、两种架构运行、二维码缺失检查与启动文件/摘要核对，见[发行验收](PUBLISHED-3.8.md)。
 
 Salary Thieves adopts paid-break satire and the author’s corrected support placement. Coffee QR support is displayed in GitHub documentation; the game retains its project link. The 3.7 combat implementation is retained.

@@ -137,7 +137,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.8.0**. This release introduces the Salary Thieves identity and paid-break satire, and keeps coffee support on GitHub. In-game profession basics and combat retain the verified 3.7 pipeline. See [3.8 notes](docs/RELEASE-3.8.md); publication results follow the matching release verification.
+Current version: **3.8.0**. This release introduces the Salary Thieves identity and paid-break satire, and keeps coffee support on GitHub. In-game profession basics and combat retain the verified 3.7 pipeline. See [3.8 notes](docs/RELEASE-3.8.md); see [published runtime/artifact verification](docs/PUBLISHED-3.8.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [3.7 frame-rate measurements](docs/PERFORMANCE-3.7.md) and the [dense-scene baseline](docs/PERFORMANCE-3.4.md).

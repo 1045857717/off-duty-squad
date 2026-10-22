@@ -1,0 +1,107 @@
+{
+  "version": "3.8.0",
+  "brand": {
+    "name": "薪水小偷",
+    "english": "Salary Thieves",
+    "headline": "班是公司的，鱼是自己的。",
+    "supporting": "摸到的鱼，才算自己挣到的。"
+  },
+  "releasedAt": "2026-10-22T11:27:36+08:00",
+  "sourceCommit": "294d022e5d511d6f57a62043f1eb8f2594b1bd63",
+  "repository": "https://github.com/1045857717/off-duty-squad",
+  "release": "https://github.com/1045857717/off-duty-squad/releases/tag/v3.8.0",
+  "ci": "https://github.com/1045857717/off-duty-squad/actions/runs/39715816597",
+  "releaseWorkflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39716090280",
+  "image": "ghcr.io/1045857717/off-duty-squad:3.8.0",
+  "imageDigest": "sha256:73487d13d4da81cfd26430545f378ca37a4f892419b1e0cf13df6ac0d62d77ad",
+  "latestMatchesVersion": true,
+  "anonymousPullVerified": true,
+  "imageDisplayTitle": "Salary Thieves",
+  "publishedImageSmoke": {
+    "image": "ghcr.io/1045857717/off-duty-squad:3.8.0",
+    "version": "3.8.0",
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "publicChat": true,
+    "innateBasicAttack": true,
+    "githubSupportQR": true,
+    "gameQRCodeAbsent": true,
+    "privatePublicIsolation": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true
+  },
+  "desktop": {
+    "version": "3.8.0",
+    "platform": "Windows x64",
+    "bytes": 142929370,
+    "sha256": "5eea26f113a144198c3bc3d420ea7efc9e0c64a9436398544e31b1316916bda6",
+    "signed": false,
+    "file": "offshift-desktop-win-x64.zip",
+    "renamedLauncherVerified": true,
+    "name": "薪水小偷.exe",
+    "matchesReleaseAndImage": true
+  },
+  "support": {
+    "location": "GitHub README and docs/SUPPORT.md",
+    "file": "docs/support/wechat-coffee.png",
+    "originalSHA256": "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+    "gameUIAbsent": true,
+    "webBuildAssetAbsent": true,
+    "publishedImageAssetAbsent": true
+  },
+  "platformVerification": {
+    "workflow": "https://github.com/1045857717/off-duty-squad/actions/runs/39716987040",
+    "amd64": {
+      "nodeArchitecture": "x64",
+      "twoClientSmoke": true,
+      "gameQRCodeAbsent": true
+    },
+    "arm64": {
+      "nodeArchitecture": "arm64",
+      "environment": "GitHub Linux runner with QEMU",
+      "twoClientSmoke": true,
+      "gameQRCodeAbsent": true
+    }
+  },
+  "serverDeployedToPublicHost": false,
+  "sourceTransfer": {
+    "method": "GitHub Git Data API using existing gh authorization",
+    "localCommitPreserved": true,
+    "fastForwardOnly": true
+  },
+  "assetsVerified": [
+    {
+      "name": "compose.prod.yaml",
+      "bytes": 589,
+      "digest": "sha256:cf93ff420bba1b33141d18cbc0f888f15f0d8ecd5b4dfd8960aa8f98330f7e11"
+    },
+    {
+      "name": "desktop-release.json",
+      "bytes": 225,
+      "digest": "sha256:d0c74abd2082a15f6d5138e2494cc248037097a70bc00005e11bb5458d675967"
+    },
+    {
+      "name": "env.example",
+      "bytes": 404,
+      "digest": "sha256:6a624932d85f906070e0da88cdc6dd25ee37f868769be38c6d40ff41f237c4ac"
+    },
+    {
+      "name": "image-digest.txt",
+      "bytes": 106,
+      "digest": "sha256:b5280951e23f7610ae354b3a520ec2b35835cef86f14e4b694fe09568aa1c51c"
+    },
+    {
+      "name": "offshift-desktop-win-x64.zip",
+      "bytes": 142929370,
+      "digest": "sha256:5eea26f113a144198c3bc3d420ea7efc9e0c64a9436398544e31b1316916bda6"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 427,
+      "digest": "sha256:dbaad8e22341562313acaad9b4f4dad590e1981a24bc354eadc9d89996e8407b"
+    }
+  ]
+}
