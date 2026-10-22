@@ -1,3 +1,4 @@
+import { survivalCurve } from "./survival";
 import type { GameState } from "./types";
 export const BALANCE = {
   enemyHp: 1.9,
@@ -15,7 +16,13 @@ export const BALANCE = {
 };
 export function squadPressure(s: GameState) {
   const n = Math.max(1, s.teamPeak || 0, s.players.length);
-  return { size: n, hp: n, damage: 1 + (n - 1) * 0.15, spawn: Math.sqrt(n) };
+  const endless = survivalCurve(s.wave, n);
+  return {
+    size: n,
+    hp: s.mode === "survival" ? endless.teamHp : n,
+    damage: 1 + (n - 1) * (s.mode === "survival" ? 0.1 : 0.15),
+    spawn: s.mode === "survival" ? endless.spawn : Math.sqrt(n),
+  };
 }
 export function ledger(value: number) {
   return Math.round((Number.isFinite(value) ? value : 0) * 100) / 100;

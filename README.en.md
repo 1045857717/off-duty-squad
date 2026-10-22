@@ -45,7 +45,7 @@ From the first prototype through the current release, an AI coding agent impleme
 
 ![Gameplay and mission brief](docs/images/gameplay.webp)
 
-Actual UI capture: one player plus three server bots, without fake-health injection. [Readiness](docs/images/ready-40.webp) · [Eight-direction swings](docs/images/directions-40.webp) · [Enemy motions](docs/images/enemies-40.webp).
+Actual UI capture: one player plus three server bots, without fake-health injection. [Readiness](docs/images/ready-41.webp) · [Eight-direction swings](docs/images/directions-40.webp) · [Enemy motions](docs/images/enemies-40.webp).
 
 ## Quick start
 
@@ -139,10 +139,10 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **4.0.0**. Night Office Oddities replaces the mixed visual world with coherent articulated people, workplace tools, themed creatures, environment materials, effects and UI. Directional slashes, authority-side windup facing and weapon contact curves now share the same conventions. See [4.0 notes](docs/RELEASE-4.0.md), [art and motion](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.en.md) and [protected-main policy](docs/BRANCH-PROTECTION.md).
+Current version: **4.1.0**. Mode selection comes before squad assembly in an illustrated game lobby. Endless mode opens with killable common enemies and introduces enemy combinations and elites gradually. E interactions explain actual benefits, costs and durations; F8 work surfaces retain their own palettes. See [4.1 gameplay and fixes](docs/PLAYABILITY-4.1.en.md) and the [opening damage audit](docs/balance-4.1.json). Historical [4.0 art](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.en.md) and [protected-main policy](docs/BRANCH-PROTECTION.md) remain available.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
-- A 144 FPS target setting is available. Hardware, resolution and enemy density determine actual performance; **144FPS is not guaranteed for every scene**. See [4.0 measurements](docs/PERFORMANCE-4.0.md); earlier measurements remain historical evidence.
+- A 144 FPS target setting is available. Hardware, resolution and enemy density determine actual performance; **144FPS is not guaranteed for every scene**. See historical [4.0 measurements](docs/PERFORMANCE-4.0.md); earlier measurements remain historical evidence.
 - Browser window support varies. The Windows portable client is unsigned; no macOS or Linux desktop package is currently provided.
 - Existing networking checks use multiple local clients and simulated latency. Cross-machine public-network soak testing remains outstanding.
 - Ranking periods use Asia/Shanghai time and retain the most recent 50,000 results. Chat and live rooms are not persisted.

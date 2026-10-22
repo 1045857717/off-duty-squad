@@ -240,7 +240,7 @@ try {
   await host
     .context()
     .grantPermissions(["clipboard-read", "clipboard-write"], { origin: base });
-  await host.getByTitle("复制邀请链接", { exact: true }).click();
+  await host.getByRole("button", { name: "复制邀请链接", exact: true }).click();
   assert.doesNotMatch(await host.locator(".toast").innerText(), /局域网/);
   await peer.getByRole("button", { name: "我已准备", exact: true }).click();
   await host.getByRole("button", { name: "小队出发", exact: true }).click();

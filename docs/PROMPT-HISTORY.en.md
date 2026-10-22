@@ -105,3 +105,8 @@ Implementation summary: diagnosed human profession textures in the actual enemy 
 Translated request: diagnose the reversed skill effect in the screenshot; overhaul all art and UI with The Spell Brigade as a quality reference; find a useful GitHub design skill/helper; inspect every profession’s melee/ranged action and smooth animation; add office-themed creatures beyond zombies.
 
 Implementation: research official references; use the installed Impeccable design method; create original office-oddity art within the existing Phaser pipeline. Diagnose texture basis, authority-side windup facing, contact curves and particle orientation instead of applying a screenshot-only rotation. Preserve profession basics, permanent Qs, growth prerequisites, multiplayer and windows. Validate actual eight-direction rendering, joint coverage, profession damage and multiplayer flows. The new art is editable Canvas code; no image-model generation is claimed.
+
+
+## 4.1 — Responding to playtest evidence
+
+The author reported unclear E benefits, an unkillable first endless wave, mode selection too low, a report-like lobby and F8 background regressions. The agent reproduced reward/target inconsistencies and early pressure stacking, added behavioral regressions, then implemented authoritative personal receipts and a dedicated gradual endless curve. Independent file-scoped workers revised lobby presentation and work palettes; the main agent integrated real network/browser checks and 112 ordinary-attack opening damage cases. New lobby illustrations are editable SVG and use the game's actual profession artwork; no image model was called. See [4.1 design](PLAYABILITY-4.1.en.md).

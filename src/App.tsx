@@ -508,7 +508,7 @@ export default function App() {
         (hidden ? "window-is-hidden " : "") +
         (immersive ? "window-immersive " : "") +
         (s && ["lobby", "countdown"].includes(s.phase) ? "has-lobby " : "") +
-        (inGame ? "in-run" : "")
+        (inGame ? "in-run" : "lobby41")
       }
       style={
         {
@@ -762,7 +762,6 @@ export default function App() {
               <div className="heading-aside">
                 <strong>今日收益：工资照领，鱼照摸</strong>
                 <span>摸到的鱼，才算自己挣到的。</span>
-                <ProjectLinks />
                 <button className="text-btn" onClick={() => setPanel("help")}>
                   第一次来？<span>看看怎么玩</span>
                   <Icon name="arrow" size={14} />
@@ -771,6 +770,14 @@ export default function App() {
             </div>
             <div className="main-grid">
               <section className="mission-column">
+                {!s && (
+                  <RulesSelector
+                    mode={gameMode}
+                    difficulty={difficulty}
+                    onMode={setGameMode}
+                    onDifficulty={setDifficulty}
+                  />
+                )}
                 <section className="stage-shell" aria-label="游戏与任务">
                   <div className="stage-heading">
                     <div className="stage-tabs">
@@ -806,6 +813,7 @@ export default function App() {
                           : ` / SECTOR ${String(Math.floor((s?.mission || 0) / 2) + 1).padStart(2, "0")}`}
                       </small>
                     </span>
+                    {!inGame && <ProjectLinks />}
                   </div>
                   <div className="game-stage">
                     {s?.phase === "playing" && (
@@ -847,7 +855,6 @@ export default function App() {
                           online={net.presence?.online}
                           name={name}
                           role={role}
-                          preview={<GameCanvas bridge={bridge} />}
                           request={net.request}
                           onCreate={() => setPanel("create")}
                           onJoin={() => setPanel("join")}
@@ -1037,14 +1044,6 @@ export default function App() {
                 </section>
                 {!inGame && (
                   <>
-                    {!s && (
-                      <RulesSelector
-                        mode={gameMode}
-                        difficulty={difficulty}
-                        onMode={setGameMode}
-                        onDifficulty={setDifficulty}
-                      />
-                    )}
                     <div className="lobby-social">
                       <button onClick={() => setPanel("ranks")}>
                         <Icon name="trophy" />

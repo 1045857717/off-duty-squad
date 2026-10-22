@@ -1,5 +1,6 @@
 import type { Mode, Difficulty } from "../shared/types";
 import { Icon } from "./icons";
+import { ModeIllustration } from "./LobbyScene";
 export const MODE_OPTIONS = [
   {
     id: "survival",
@@ -43,27 +44,38 @@ export function RulesSelector({
     >
       <fieldset>
         <legend>
-          今天怎么玩<span>选一种离谱</span>
+          <b className="lobby-step">01</b> 今天怎么玩<span>先选一种离谱</span>
         </legend>
         <div className="mode-cards" role="group" aria-label="行动模式">
           {MODE_OPTIONS.map((o) => (
             <button
               type="button"
               key={o.id}
+              className={"mode-panel mode-" + o.id}
               disabled={disabled}
               aria-label={"模式：" + o.name}
               aria-pressed={mode === o.id}
               onClick={() => onMode(o.id)}
             >
-              <span className="mode-icon">
-                <Icon name={o.icon} size={23} />
-              </span>
-              <span>
+              <ModeIllustration mode={o.id} />
+              <span className="mode-copy">
                 <small>{o.tag}</small>
                 <strong>{o.name}</strong>
                 <em>{o.desc}</em>
               </span>
-              <i>{mode === o.id ? <Icon name="check" size={15} /> : null}</i>
+              <i className="mode-choice">
+                {mode === o.id ? (
+                  <>
+                    <Icon name="check" size={13} />
+                    <span>已选择</span>
+                  </>
+                ) : (
+                  <>
+                    <Icon name="plus" size={13} />
+                    <span>选择</span>
+                  </>
+                )}
+              </i>
             </button>
           ))}
         </div>

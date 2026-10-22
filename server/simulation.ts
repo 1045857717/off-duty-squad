@@ -1,3 +1,6 @@
+import { interactionTarget } from "../shared/interactions";
+import { interactionReceipt } from "./interaction-feedback";
+import { survivalCurve, survivalEnemy } from "../shared/survival";
 import { ROLE_BASICS } from "../shared/basics";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../shared/combatProfiles";
 import { workerQuote } from "../shared/humor";
@@ -215,7 +218,13 @@ export function addPlayer(
     if (next > previous)
       for (const e of s.enemies) {
         const fraction = e.hp / Math.max(1, e.maxHp);
-        e.maxHp = Math.round((e.maxHp * next) / previous);
+        const before =
+          s.mode === "survival"
+            ? survivalCurve(s.wave, previous).teamHp
+            : previous;
+        const after =
+          s.mode === "survival" ? survivalCurve(s.wave, next).teamHp : next;
+        e.maxHp = Math.round((e.maxHp * after) / before);
         e.hp = ledger(e.maxHp * fraction);
       }
   }
@@ -485,7 +494,10 @@ function setupStage(g: Game, resetPosition = false) {
   s.stageTime = 0;
   s.spawnCd = 1.8;
   s.waveKills = 0;
-  s.waveTarget = Math.round((20 + s.wave * 8) * squadPressure(s).size);
+  s.waveTarget =
+    s.mode === "survival"
+      ? survivalCurve(s.wave, squadPressure(s).size).target
+      : Math.round((20 + s.wave * 8) * squadPressure(s).size);
   s.waveEnds = 65 + Math.min(35, s.wave * 3);
   s.breakTime = 0;
   s.enemies = [];
@@ -588,8 +600,9 @@ function effect(
 function danger(g: Game) {
   const s = g.state;
   return (
-    1 +
-    (s.mode === "survival" ? s.wave * 0.2 : s.mission * 0.3) +
+    (s.mode === "survival"
+      ? survivalCurve(s.wave, squadPressure(s).size).damage
+      : 1 + s.mission * 0.3) +
     s.players.reduce((a, p) => a + p.curse, 0) * 0.12
   );
 }
@@ -600,17 +613,19 @@ function spawnEnemy(g: Game, forced?: EnemyKind, point?: Vec) {
     r = g.random();
   let kind: EnemyKind =
     forced ||
-    (r < 0.25
-      ? "hound"
-      : r < 0.44
-        ? "shooter"
-        : r < 0.58
-          ? "mite"
-          : r < 0.73
-            ? "tank"
-            : r < 0.87
-              ? "wraith"
-              : "bomber");
+    (s.mode === "survival"
+      ? survivalEnemy(s.wave, r)
+      : r < 0.25
+        ? "hound"
+        : r < 0.44
+          ? "shooter"
+          : r < 0.58
+            ? "mite"
+            : r < 0.73
+              ? "tank"
+              : r < 0.87
+                ? "wraith"
+                : "bomber");
   if (level === 1 && kind === "wraith" && g.random() < 0.5) kind = "mite";
   const anchor = s.players.find((p) => p.alive && p.connected) || s.world.spawn;
   let pos = point || randomFloor(s.world, g.random, anchor, 440);
@@ -621,17 +636,23 @@ function spawnEnemy(g: Game, forced?: EnemyKind, point?: Vec) {
   const multi =
     s.difficulty === "relaxed" ? 0.72 : s.difficulty === "nightmare" ? 1.38 : 1;
   const base = ENEMY_DEFS[kind].hp;
+  const curve = survivalCurve(s.wave, squadPressure(s).size);
   const elite =
-    !forced && g.random() < Math.min(0.35, 0.08 + level * 0.014)
+    !forced &&
+    g.random() <
+      (s.mode === "survival"
+        ? curve.eliteChance
+        : Math.min(0.35, 0.08 + level * 0.014))
       ? (["swift", "armored", "vampiric", "volatile"] as const)[
           Math.floor(g.random() * 4)
         ]
       : undefined;
   const hp = Math.round(
     base *
-      BALANCE.enemyHp *
+      (s.mode === "survival"
+        ? curve.health * (1 + s.players.reduce((a, p) => a + p.curse, 0) * 0.12)
+        : BALANCE.enemyHp * danger(g)) *
       squadPressure(s).hp *
-      danger(g) *
       multi *
       (elite === "armored" ? 1.7 : elite ? 1.25 : 1),
   );
@@ -643,7 +664,9 @@ function spawnEnemy(g: Game, forced?: EnemyKind, point?: Vec) {
     maxHp: hp,
     speed:
       ENEMY_DEFS[kind].speed *
-      (1 + Math.min(0.75, level * 0.025)) *
+      (s.mode === "survival"
+        ? curve.speed
+        : 1 + Math.min(0.75, level * 0.025)) *
       (elite === "swift" ? 1.45 : 1),
     cd: 0.7 + g.random() * 1.7,
     angle: 0,
@@ -1552,14 +1575,26 @@ function eventDirector(g: Game, dt: number) {
       kind: "blackout" as const,
     },
   ];
+  // Opening randomness helps establish a build before punitive event combinations.
+  const pool =
+    s.mode === "survival" && s.wave === 1
+      ? [events[0], events[4]]
+      : s.mode === "survival" && s.wave === 2
+        ? [events[0], events[2], events[4]]
+        : events;
   s.event = {
-    ...events[Math.floor(g.random() * events.length)],
+    ...pool[Math.floor(g.random() * pool.length)],
     remaining: 24,
   };
   if (s.event.kind === "bonus") s.event.remaining = 16;
   s.message = `随机事件：${s.event.name} · ${s.event.desc}｜${workerQuote(s.seed + s.wave + s.serial)}`;
   if (s.event.kind === "swarm")
-    for (let i = 0; i < 9; i++) spawnEnemy(g, "hound");
+    for (
+      let i = 0;
+      i < (s.mode === "survival" ? Math.min(12, 3 + s.wave) : 9);
+      i++
+    )
+      spawnEnemy(g, "hound");
   if (s.event.kind === "fortune") {
     for (let i = 0; i < 3; i++)
       s.pickups.push({
@@ -1583,7 +1618,11 @@ function eventDirector(g: Game, dt: number) {
   }
 }
 function interactionFailed(g: Game, p: Player, message: string) {
-  if (p.bot || g.state.elapsed - (p.interactionFeedback?.at ?? -99) < 0.85)
+  if (
+    p.bot ||
+    (p.interactionFeedback?.status === "failed" &&
+      g.state.elapsed - p.interactionFeedback.at < 0.85)
+  )
     return;
   p.interactionFeedback = {
     seq: (p.interactionFeedback?.seq || 0) + 1,
@@ -1594,10 +1633,25 @@ function interactionFailed(g: Game, p: Player, message: string) {
 }
 function interact(g: Game, p: Player, dt: number) {
   const s = g.state;
-  if (useOffice(g, p, dt, (e, n, owner) => dealDamage(g, e, n, owner))) return;
-  const ally = s.players.find(
-    (q) => !q.alive && q.connected && dist(p, q) < 70,
-  );
+  if (
+    p.interaction?.status === "complete" &&
+    (p.interaction.until || 0) > s.elapsed
+  )
+    return;
+  const target = interactionTarget(s, p);
+  if (target?.kind === "office") {
+    if (target.object.cd > 0) {
+      interactionFailed(
+        g,
+        p,
+        `${target.object.label}冷却中，还需${Math.ceil(target.object.cd)}秒。`,
+      );
+      return;
+    }
+    useOffice(g, p, dt, (e, n, owner) => dealDamage(g, e, n, owner));
+    return;
+  }
+  const ally = target?.kind === "revive" ? target.object : undefined;
   if (ally) {
     ally.revive += dt * (p.role === "medic" ? 1.5 : 1);
     p.interaction = {
@@ -1614,13 +1668,16 @@ function interact(g: Game, p: Player, dt: number) {
       p.interaction.status = "complete";
       p.interaction.progress = 1;
       p.interaction.until = s.elapsed + 1.2;
+      interactionReceipt(
+        g,
+        p,
+        "队友救援",
+        `${ally.name}已站起来 · 生命${Math.round(ally.hp)} / ${ally.maxHp}`,
+      );
     }
     return;
   }
-  const relay =
-    s.objective.type === "relay"
-      ? s.objective.relays.find((r) => !r.active && dist(p, r) < 74)
-      : undefined;
+  const relay = target?.kind === "relay" ? target.object : undefined;
   if (relay) {
     p.interaction = {
       label: "配电箱充能",
@@ -1633,9 +1690,7 @@ function interact(g: Game, p: Player, dt: number) {
     };
     return;
   }
-  const obj = s.objects
-    .filter((o) => !o.used && dist(o, p) < 70)
-    .sort((a, b) => dist(a, p) - dist(b, p))[0];
+  const obj = target?.kind === "reward" ? target.object : undefined;
   if (!obj) {
     if (
       p.interaction?.status === "complete" &&
@@ -1666,6 +1721,22 @@ function interact(g: Game, p: Player, dt: number) {
     s.message = `${obj.label}需要 ${obj.cost} 零件`;
     return;
   }
+  if (
+    obj.kind === "fountain" &&
+    !s.players.some(
+      (q) =>
+        q.connected &&
+        dist(q, obj) < 190 &&
+        (!q.alive ||
+          q.hp < q.maxHp - 0.01 ||
+          q.shield < q.shieldCap + 20 - 0.01),
+    )
+  ) {
+    p.interaction.status = "blocked";
+    p.interaction.message = "附近队员生命与护盾已满，补给保留";
+    interactionFailed(g, p, p.interaction.message);
+    return;
+  }
   obj.progress += dt;
   p.interaction.progress = Math.min(1, obj.progress / 0.7);
   if (obj.progress < 0.7) return;
@@ -1680,22 +1751,34 @@ function interact(g: Game, p: Player, dt: number) {
     amount: obj.cost ? -obj.cost : undefined,
   });
   if (obj.kind === "fountain") {
-    for (const q of s.players)
-      if (dist(q, obj) < 190) {
-        if (!q.alive) revive(g, q, p);
-        q.hp = Math.min(q.maxHp, q.hp + q.maxHp * 0.35);
-        q.shield = Math.min(q.shieldCap + 20, q.shield + 20);
-      }
+    const recipients = s.players.filter(
+      (q) => q.connected && dist(q, obj) < 190,
+    );
+    for (const q of recipients) {
+      const beforeHp = q.hp,
+        beforeShield = q.shield,
+        wasDown = !q.alive;
+      if (wasDown) revive(g, q, p);
+      q.hp = Math.min(q.maxHp, q.hp + q.maxHp * 0.35);
+      q.shield = Math.min(q.shieldCap + 20, q.shield + 20);
+      const message = `${wasDown ? "已救起 · " : ""}生命 +${ledger(q.hp - beforeHp)} · 护盾 +${ledger(q.shield - beforeShield)} · 惠及${recipients.length}位工友`;
+      interactionReceipt(g, q, obj.label, message);
+    }
     s.message = "医药补给点已耗尽 · 治疗与护盾已补充";
   } else {
     p.pendingUpgrades++;
     if (!p.offers.length) p.offers = generateOffers(g, p);
     gainExperience(g, 8);
+    let consequence = "";
     if (obj.kind === "shrine") {
       p.curse++;
+      const beforeHp = p.hp;
       p.hp = Math.max(1, p.hp - p.maxHp * 0.18);
-      s.message = "加班审批已盖章：获得高风险强化，敌潮永久加重";
-    } else s.message = `${obj.label}已开启 · 获得强化，消耗${obj.cost}零件`;
+      consequence = ` · 生命 -${ledger(beforeHp - p.hp)} · 敌潮强度永久+12%`;
+    }
+    const receipt = `强化机会 +1 · 按1 / 2 / 3学习 · 消耗${obj.cost}零件${consequence}`;
+    interactionReceipt(g, p, obj.label, receipt);
+    s.message = `${obj.label} · ${receipt}`;
   }
 }
 const escortPaths = new WeakMap<Game, { points: Vec[]; index: number }>();
@@ -1888,7 +1971,14 @@ export function tickGame(g: Game, delta: number) {
         beginModule(g, p, attack);
     }
     if (input.skill && p.skillCd <= 0) skill(g, p);
-    if (input.interact) interact(g, p, dt);
+    if (!input.interact) {
+      p.interactionLatched = false;
+      if (p.interaction?.status === "complete") p.interaction = undefined;
+    }
+    if (input.interact && (p.bot || !p.interactionLatched)) {
+      interact(g, p, dt);
+      if (p.interaction?.status === "complete") p.interactionLatched = true;
+    }
     if (p.upgrades.includes("orbiting") && p.orbitCd <= 0) {
       const level = p.upgrades.filter((id) => id === "orbiting").length;
       p.orbitCd = Math.max(0.5, 1.3 - (level - 1) * 0.12);
@@ -1918,13 +2008,18 @@ export function tickGame(g: Game, delta: number) {
     eventDirector(g, dt);
     s.spawnCd -= dt;
     if (s.spawnCd <= 0 && !s.exitOpen) {
+      const curve = survivalCurve(s.wave, squadPressure(s).size);
       const count =
-        1 +
-        Math.floor((s.mode === "survival" ? s.wave : s.mission + 1) / 3) +
-        Math.floor(s.players.length / 2);
+        s.mode === "survival"
+          ? curve.batch
+          : 1 +
+            Math.floor((s.mission + 1) / 3) +
+            Math.floor(s.players.length / 2);
       for (let i = 0; i < Math.min(7, count); i++) spawnEnemy(g);
       s.spawnCd =
-        (Math.max(0.26, 1.8 - danger(g) * 0.14) *
+        ((s.mode === "survival"
+          ? curve.interval
+          : Math.max(0.26, 1.8 - danger(g) * 0.14)) *
           (s.difficulty === "nightmare"
             ? 0.64
             : s.difficulty === "relaxed"
@@ -2239,7 +2334,13 @@ export function tickGame(g: Game, delta: number) {
     for (const r of s.objective.relays) {
       if (r.active) continue;
       const operators = live.filter(
-        (p) => dist(p, r) < 74 && (p.bot || g.inputs.get(p.id)?.interact),
+        (p) =>
+          dist(p, r) < 74 &&
+          (p.bot || (!p.interactionLatched && g.inputs.get(p.id)?.interact)) &&
+          p.interaction?.type === "relay" &&
+          p.interaction.status === "charging" &&
+          p.interaction.targetX === r.x &&
+          p.interaction.targetY === r.y,
       );
       r.charge = Math.min(
         1,
@@ -2257,6 +2358,13 @@ export function tickGame(g: Game, delta: number) {
             p.interaction.status = "complete";
             p.interaction.progress = 1;
             p.interaction.until = s.elapsed + 1.2;
+            p.interactionLatched = true;
+            interactionReceipt(
+              g,
+              p,
+              "配电箱已充能",
+              `任务进度 +1 · 小队经验 +20 · ${s.objective.progress + 1} / ${s.objective.target}`,
+            );
           }
         s.objective.progress++;
         gainExperience(g, 20);
@@ -2314,7 +2422,10 @@ export function tickGame(g: Game, delta: number) {
       s.bullets = [];
       s.stageTime = 0;
       s.waveKills = 0;
-      s.waveTarget = Math.round((20 + s.wave * 8) * squadPressure(s).size);
+      s.waveTarget =
+        s.mode === "survival"
+          ? survivalCurve(s.wave, squadPressure(s).size).target
+          : Math.round((20 + s.wave * 8) * squadPressure(s).size);
       s.waveEnds = 65 + Math.min(35, s.wave * 3);
       s.breakTime = 9;
       s.spawnCd = 1;

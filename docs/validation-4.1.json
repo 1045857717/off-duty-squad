@@ -1,0 +1,292 @@
+{
+  "version": "4.1.0",
+  "completedLocal": "2026-10-23",
+  "core": {
+    "tests": 142,
+    "passed": 142,
+    "releaseTests": 5,
+    "releasePassed": 5,
+    "newRegressionCases": 15,
+    "types": true,
+    "productionBuild": true
+  },
+  "browserSuites": [
+    {
+      "file": "browser-lobby41.ts",
+      "code": 0,
+      "ms": 6504
+    },
+    {
+      "file": "browser-playability41.ts",
+      "code": 0,
+      "ms": 15160
+    },
+    {
+      "file": "browser-work41.ts",
+      "code": 0,
+      "ms": 9130
+    },
+    {
+      "file": "browser-art40.ts",
+      "code": 0,
+      "ms": 19236
+    },
+    {
+      "file": "art40-rig-audit.mjs",
+      "code": 0,
+      "ms": 3902
+    },
+    {
+      "file": "browser-clarity.ts",
+      "code": 0,
+      "ms": 49438
+    },
+    {
+      "file": "browser-feel.ts",
+      "code": 0,
+      "ms": 34424
+    },
+    {
+      "file": "browser-feedback.ts",
+      "code": 0,
+      "ms": 55668
+    },
+    {
+      "file": "browser-polish.ts",
+      "code": 0,
+      "ms": 33349
+    },
+    {
+      "file": "browser-community.ts",
+      "code": 0,
+      "ms": 13894
+    },
+    {
+      "file": "browser-quiet-undead.ts",
+      "code": 0,
+      "ms": 16744
+    },
+    {
+      "file": "browser-comedy.ts",
+      "code": 0,
+      "ms": 16294
+    }
+  ],
+  "executedRuns": [
+    {
+      "run": "verification41",
+      "results": [
+        {
+          "file": "browser-lobby41.ts",
+          "code": 0,
+          "ms": 6580
+        },
+        {
+          "file": "browser-playability41.ts",
+          "code": 0,
+          "ms": 15160
+        },
+        {
+          "file": "browser-work41.ts",
+          "code": 0,
+          "ms": 8874
+        },
+        {
+          "file": "browser-art40.ts",
+          "code": 0,
+          "ms": 19236
+        },
+        {
+          "file": "art40-rig-audit.mjs",
+          "code": 0,
+          "ms": 3902
+        },
+        {
+          "file": "browser-clarity.ts",
+          "code": 1,
+          "ms": 32805
+        },
+        {
+          "file": "browser-feel.ts",
+          "code": 0,
+          "ms": 34424
+        },
+        {
+          "file": "browser-feedback.ts",
+          "code": 1,
+          "ms": 42224
+        },
+        {
+          "file": "browser-polish.ts",
+          "code": 0,
+          "ms": 33349
+        },
+        {
+          "file": "browser-community.ts",
+          "code": 1,
+          "ms": 13991
+        },
+        {
+          "file": "browser-quiet-undead.ts",
+          "code": 0,
+          "ms": 16744
+        },
+        {
+          "file": "browser-comedy.ts",
+          "code": 0,
+          "ms": 16294
+        }
+      ]
+    },
+    {
+      "run": "verification41-followup",
+      "results": [
+        {
+          "file": "browser-lobby41.ts",
+          "code": 0,
+          "ms": 6380
+        },
+        {
+          "file": "browser-work41.ts",
+          "code": 0,
+          "ms": 9130
+        },
+        {
+          "file": "browser-clarity.ts",
+          "code": 1,
+          "ms": 79116
+        },
+        {
+          "file": "browser-feedback.ts",
+          "code": 1,
+          "ms": 84917
+        },
+        {
+          "file": "browser-community.ts",
+          "code": 0,
+          "ms": 13949
+        }
+      ]
+    },
+    {
+      "run": "verification41-final",
+      "results": [
+        {
+          "file": "browser-lobby41.ts",
+          "code": 0,
+          "ms": 6504
+        },
+        {
+          "file": "browser-clarity.ts",
+          "code": 0,
+          "ms": 49438
+        },
+        {
+          "file": "browser-feedback.ts",
+          "code": 0,
+          "ms": 55668
+        },
+        {
+          "file": "browser-community.ts",
+          "code": 0,
+          "ms": 13894
+        }
+      ]
+    }
+  ],
+  "lobby": {
+    "checks": [
+      "Public rooms default; one mode control; keyboard selection; native art; brand slogans; GitHub and QQ ads retained",
+      "F10 neutral resume button retains #eef0f2",
+      "Ready text/icon and actual chat system/message contrast >= 4.5:1: {\"readyText\":10.15491057026704,\"readyIcon\":10.15491057026704,\"chatSystem\":8.25764920097582,\"chatMessage\":10.848472881274777}",
+      "1366×768: top mode panels, four native workers, launch and chat share the viewport; live squad chat delivered",
+      "Host-only modes; unready launch gating; real ready; host countdown cancel and guest unready cancel preserved",
+      "390px: public lobby and ready room have no horizontal overflow; reduced motion disables lobby animation/transitions"
+    ],
+    "publicGeometry": {
+      "modeTop": 78,
+      "modeBottom": 269,
+      "rosterBottom": 748,
+      "targetTop": 314,
+      "chatTop": 78,
+      "chatBottom": 353,
+      "targetRight": 1015,
+      "chatLeft": 1034,
+      "width": 1366,
+      "scrollWidth": 1366
+    },
+    "readyGeometry": {
+      "modeTop": 125,
+      "modeBottom": 316,
+      "rosterBottom": 652.390625,
+      "targetTop": 394,
+      "chatTop": 78,
+      "chatBottom": 336,
+      "targetRight": 1000,
+      "chatLeft": 1034,
+      "launchBottom": 747.390625,
+      "width": 1366,
+      "scrollWidth": 1366
+    },
+    "neutral": "rgb(238, 240, 242)",
+    "contrasts": {
+      "readyText": 10.15491057026704,
+      "readyIcon": 10.15491057026704,
+      "chatSystem": 8.25764920097582,
+      "chatMessage": 10.848472881274777
+    },
+    "reduced": {
+      "animation": "none",
+      "transition": "0s"
+    },
+    "errors": []
+  },
+  "work": {
+    "checks": [
+      "Settings ThemedSelect: eleven options, real selected/hovered colors, last entry preserved",
+      "tasks: palette, controls, sidebar/menu, contrast, editing",
+      "board: palette, controls, sidebar/menu, contrast, editing",
+      "docs: palette, controls, sidebar/menu, contrast, editing",
+      "sheet: palette, controls, sidebar/menu, contrast, editing",
+      "excel: palette, controls, sidebar/menu, contrast, editing",
+      "mail: palette, controls, sidebar/menu, contrast, editing",
+      "metrics: palette, controls, sidebar/menu, contrast, editing",
+      "code: palette, controls, sidebar/menu, contrast, editing",
+      "idea: palette, controls, sidebar/menu, contrast, editing",
+      "Settings explicit sheet/IDEA entry works; restoring last preserves the last selected style",
+      "F8 collapsed default and reopen; reload persistence; IDE -> data report; F10 isolation checked; 1280x720"
+    ],
+    "controls": 212,
+    "contrastSamples": 113,
+    "minimumContrast": 4.634744196682049,
+    "failures": [],
+    "errors": []
+  },
+  "interactions": {
+    "passed": [
+      "真实键盘E开启补给，零件准确扣除，显示强化按键，回执不阻挡移动",
+      "两位真实联机玩家收到各自实际治疗/护盾回执",
+      "生命和护盾充足时明确说明补给保留，未消耗道具",
+      "环境机关操作前可预览用途，操作后显示持续时间及实际效果"
+    ],
+    "errors": []
+  },
+  "review": {
+    "importantFindingsInitially": 5,
+    "reproducedThenFixed": 5,
+    "remainingImportantFindings": 0
+  },
+  "balanceAudit": "balance-4.1.json",
+  "limitations": [
+    "Local multi-client and75ms-per-direction simulated latency; not a cross-machine public-network endurance guarantee.",
+    "Opening audit is controlled in-range ordinary-attack damage, not human survival.",
+    "This release does not make a new universal144FPS claim; 4.0 measurements remain historical."
+  ],
+  "resolvedIntegrationIssues": [
+    "Hidden project entry moved to visible toolbar.",
+    "Hidden legacy invitation locator updated to current accessible control.",
+    "Mobile chat width/fixed-position conflict removed.",
+    "Mobile navigation restored; codex/help usable.",
+    "Regression selectors updated from removed page heading to the visible lobby scene."
+  ]
+}

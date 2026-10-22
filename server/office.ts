@@ -1,3 +1,4 @@
+import { interactionReceipt } from "./interaction-feedback";
 import type { Game, Player, Enemy, Vec, RouteId } from "../shared/types";
 import { moveWorld, worldBlocked, randomFloor } from "../shared/world";
 export function officeNoise(
@@ -50,9 +51,12 @@ export function useOffice(
   damage: (e: Enemy, n: number, owner: string) => void,
 ) {
   const s = g.state,
-    obj = s.officeProps.find(
-      (o) => !o.cd && Math.hypot(o.x - p.x, o.y - p.y) < 78,
-    );
+    obj = s.officeProps
+      .filter((o) => !o.cd && Math.hypot(o.x - p.x, o.y - p.y) < 78)
+      .sort(
+        (a, b) =>
+          Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y),
+      )[0];
   if (!obj) return false;
   obj.progress = Math.min(1, obj.progress + dt / 0.9);
   p.interaction = {
@@ -75,6 +79,9 @@ export function useOffice(
     progress: 1,
     until: s.elapsed + 1.2,
   };
+  let hitCount = 0,
+    totalDamage = 0,
+    placed = false;
   if (obj.kind === "printer") officeNoise(g, obj, 900, "最后一份打印报告", 8);
   if (obj.kind === "cabinet") {
     const wall = { x: obj.x - 38, y: obj.y + 40, w: 76, h: 20 };
@@ -86,14 +93,18 @@ export function useOffice(
           Math.abs(q.y - (obj.y + 50)) < 28,
       )
     ) {
+      placed = true;
       s.world = {
         ...s.world,
         dynamicWalls: [...(s.world.dynamicWalls || []), wall],
       };
     }
     for (const e of s.enemies)
-      if (Math.hypot(e.x - obj.x, e.y - obj.y) < 100) {
+      if (e.hp > 0 && Math.hypot(e.x - obj.x, e.y - obj.y) < 100) {
+        hitCount++;
+        const before = e.hp;
         damage(e, 65 + p.damage, p.id);
+        totalDamage += Math.max(0, before - e.hp);
         e.stun = 1;
       }
   }
@@ -106,18 +117,34 @@ export function useOffice(
           Math.abs(q.x - obj.x) < 70 &&
           Math.abs(q.y - (obj.y + 49)) < 27,
       )
-    )
+    ) {
+      placed = true;
       s.world = {
         ...s.world,
         dynamicWalls: [...(s.world.dynamicWalls || []), wall],
       };
+    }
     for (const e of s.enemies)
-      if (Math.abs(e.x - obj.x) < 90 && Math.abs(e.y - obj.y) < 45) {
+      if (
+        e.hp > 0 &&
+        Math.abs(e.x - obj.x) < 90 &&
+        Math.abs(e.y - obj.y) < 45
+      ) {
+        hitCount++;
+        const before = e.hp;
         damage(e, 110 + p.damage, p.id);
+        totalDamage += Math.max(0, before - e.hp);
         e.stun = 2;
       }
     officeNoise(g, obj, 350, "卷帘门巨响", 2);
   }
+  const outcome =
+    obj.kind === "printer"
+      ? "吸引附近敌人8秒，不造成伤害 · 冷却30秒"
+      : obj.kind === "sprinkler"
+        ? "170范围内敌人减速50%，持续10秒 · 冷却30秒"
+        : `${placed ? "障碍已生效5秒" : "通道有人，未放置障碍"} · ${hitCount ? `命中${hitCount}只，造成${Math.round(totalDamage)}伤害，眩晕${obj.kind === "cabinet" ? 1 : 2}秒` : "未命中敌人"} · 冷却30秒`;
+  interactionReceipt(g, p, obj.label, outcome);
   s.message = [
     "打印机终于有用了：把它们引到加班区。",
     "喷淋已开，今天不用浇绿植了。",

@@ -938,7 +938,10 @@ export class StationScene extends Phaser.Scene {
       p.interactionFeedback.seq !== a.failureSeq
     ) {
       a.failureSeq = p.interactionFeedback.seq;
-      if ((this.bridge.state?.elapsed || 0) - p.interactionFeedback.at < 1) {
+      if (
+        p.interactionFeedback.status === "failed" &&
+        (this.bridge.state?.elapsed || 0) - p.interactionFeedback.at < 1
+      ) {
         this.bridge.sound("failure");
         if (!this.bridge.settings.lowMotion)
           this.cameras.main.shake(100, 0.0012);

@@ -1,3 +1,4 @@
+import { interactionTarget } from "../shared/interactions";
 import { SmoothInteraction } from "./SmoothInteraction";
 import { useState } from "react";
 import type { GameState, Player } from "../shared/types";
@@ -77,24 +78,17 @@ export function InteractionHUD({
   me: Player;
 }) {
   const current = me.interaction;
-  const ally = state.players.find(
-    (p) =>
-      !p.alive && p.id !== me.id && Math.hypot(p.x - me.x, p.y - me.y) < 95,
-  );
-  const relay =
-    state.objective.type === "relay"
-      ? state.objective.relays.find(
-          (r) => !r.active && Math.hypot(r.x - me.x, r.y - me.y) < 95,
-        )
-      : undefined;
-  const environment = state.officeProps?.find(
-    (o) => !o.cd && Math.hypot(o.x - me.x, o.y - me.y) < 100,
-  );
-  const object = environment
-    ? { ...environment, cost: 0, used: false }
-    : state.objects.find(
-        (o) => !o.used && Math.hypot(o.x - me.x, o.y - me.y) < 100,
-      );
+  const candidate = interactionTarget(state, me, 25);
+  const ally = candidate?.kind === "revive" ? candidate.object : undefined;
+  const relay = candidate?.kind === "relay" ? candidate.object : undefined;
+  const environment =
+    candidate?.kind === "office" ? candidate.object : undefined;
+  const object =
+    candidate?.kind === "reward"
+      ? candidate.object
+      : environment
+        ? { ...environment, cost: 0, used: false }
+        : undefined;
   if (!current && !ally && !relay && !object) return null;
   const target = current || {
     label: ally ? `救援 ${ally.name}` : relay ? "配电箱" : object!.label,
@@ -102,14 +96,16 @@ export function InteractionHUD({
       ? ally.revive / 2.7
       : relay
         ? relay.charge
-        : object!.progress / 0.7,
+        : environment
+          ? environment.progress
+          : object!.progress / 0.7,
     targetX: ally?.x ?? relay?.x ?? object!.x,
     targetY: ally?.y ?? relay?.y ?? object!.y,
     cost: object?.cost || 0,
     status: "idle",
   };
   const distance = Math.hypot(target.targetX - me.x, target.targetY - me.y),
-    close = distance <= (relay ? 74 : 70),
+    close = distance <= (candidate?.range || 70),
     blocked =
       target.status !== "complete" &&
       (target.status === "blocked" || target.cost > state.coins);
@@ -130,10 +126,12 @@ export function InteractionHUD({
             {target.status === "complete"
               ? "已完成"
               : blocked
-                ? `缺少 ${target.cost - state.coins} 零件`
+                ? current?.message || `缺少 ${target.cost - state.coins} 零件`
                 : current
                   ? "正在同步"
-                  : "等待交互"}
+                  : environment?.cd
+                    ? `冷却 ${Math.ceil(environment.cd)}秒`
+                    : "等待交互"}
           </b>
         </header>
         <SmoothInteraction
@@ -148,21 +146,28 @@ export function InteractionHUD({
                 ? me.role === "engineer"
                   ? 0.2
                   : 0.14
-                : 1 / 0.7
+                : environment
+                  ? 1 / 0.9
+                  : 1 / 0.7
           }
         />
         <small>
           {target.status === "complete"
-            ? "奖励与资源已同步"
+            ? current?.message || "互动已完成"
             : blocked
               ? "零件全队共享，击杀与门禁回收可获得"
               : !close
                 ? "再靠近一些，进入互动范围"
                 : current
                   ? "正在交互 · 保持按住 E"
-                  : "按住 E 开始 / 继续交互"}
+                  : candidate?.hint || "按住 E 开始 / 继续交互"}
           {target.cost > 0 && !blocked ? ` · 消耗 ${target.cost} 零件` : ""}
         </small>
+        {current?.status === "charging" && candidate?.hint && (
+          <small className="interaction-outcome-preview">
+            {candidate.hint}
+          </small>
+        )}
       </div>
     </section>
   );

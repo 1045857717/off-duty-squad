@@ -1,0 +1,320 @@
+/* F8 work surfaces own their palette. These selectors intentionally outrank the
+   game theme regardless of CSS import order; nothing escapes .work-screen. */
+.app.odyssey40 .work-screen {
+  --work-bg: #f7f8fa;
+  --work-panel: #ffffff;
+  --work-subtle: #f0f3f7;
+  --work-text: #26323e;
+  --work-muted: #566579;
+  --work-border: #d5dde6;
+  --work-input-bg: #ffffff;
+  --work-input-border: #c5cfdb;
+  --work-accent: #416993;
+  --work-selected: #e0e8f2;
+  --work-hover: #edf2f8;
+  --work-selection: #c7def5;
+  --work-on-accent: #ffffff;
+  --bg: var(--work-bg);
+  --panel: var(--work-panel);
+  --text: var(--work-text);
+  --muted: var(--work-muted);
+  --dim: var(--work-muted);
+  --border: var(--work-border);
+  --accent: var(--work-accent);
+  --accent-ink: var(--work-on-accent);
+  --paper: var(--work-panel);
+  --ink: var(--work-text);
+  --night: var(--work-bg);
+  --desk: var(--work-panel);
+  --raised: var(--work-subtle);
+  --brass: var(--work-accent);
+  --verdigris: var(--work-accent);
+  color-scheme: light;
+  background: var(--work-bg);
+  color: var(--work-text);
+}
+
+.app.odyssey40 .work-screen[data-work-style="excel"],
+.app.odyssey40 .work-screen[data-work-style="metrics"] {
+  --work-text: #243c30;
+  --work-muted: #506b59;
+  --work-subtle: #f0f5f1;
+  --work-border: #d2ded5;
+  --work-input-border: #bdcdbf;
+  --work-accent: #217346;
+  --work-selected: #e0ede3;
+  --work-hover: #edf5ef;
+  --work-selection: #c5e5cf;
+}
+
+.app.odyssey40 .work-screen[data-work-style="mail"] {
+  --work-text: #314759;
+  --work-muted: #536c80;
+  --work-accent: #246b9e;
+  --work-selected: #e0edf9;
+}
+
+.app.odyssey40 .work-screen :is(input, select, textarea) {
+  background: var(--work-input-bg);
+  color: var(--work-text);
+  border-color: var(--work-input-border);
+  accent-color: var(--work-accent);
+  caret-color: var(--work-text);
+}
+
+.app.odyssey40 .work-screen :is(input, textarea)::placeholder {
+  color: var(--work-muted);
+  opacity: 1;
+}
+
+.app.odyssey40 .work-screen :is(option, optgroup) {
+  color: var(--work-text);
+  background: var(--work-input-bg);
+}
+
+.app.odyssey40
+  .work-screen
+  :is(button, input, select, textarea, [contenteditable="true"]):focus-visible {
+  outline: 2px solid var(--work-accent);
+  outline-offset: -2px;
+}
+
+.app.odyssey40 .work-screen kbd {
+  background: var(--work-subtle);
+  border-color: var(--work-input-border);
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .work-screen ::selection {
+  color: var(--work-text);
+  background: var(--work-selection);
+}
+
+.app.odyssey40 .work-screen ::-webkit-scrollbar-thumb {
+  background: var(--work-input-border);
+}
+
+.app.odyssey40 .rich-work .work-nav {
+  background: var(--work-panel);
+  color: var(--work-muted);
+  border-color: var(--work-border);
+}
+
+.app.odyssey40 .rich-work :is(.work-nav > strong, h1) {
+  color: var(--work-text);
+}
+
+.app.odyssey40 .rich-work .work-nav input {
+  background: transparent;
+  border-color: transparent;
+  color: var(--work-muted);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(.work-nav button, .work-side button, .work-tabs button) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .rich-work .work-side {
+  background: var(--work-subtle);
+  border-color: var(--work-border);
+}
+
+.app.odyssey40 .rich-work .work-side button:hover,
+.app.odyssey40 .rich-work .work-nav button:hover {
+  background: var(--work-hover);
+}
+
+.app.odyssey40 .rich-work .work-side button.selected {
+  background: var(--work-selected);
+  color: var(--work-accent);
+}
+
+.app.odyssey40 .rich-work .work-tabs button.active {
+  color: var(--work-accent);
+}
+
+.app.odyssey40 .rich-work .work-tabs button.active::after {
+  background: var(--work-accent);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(
+    .work-saved,
+    .work-side > span,
+    .work-side small,
+    .work-breadcrumb,
+    .work-page-title p,
+    .work-footer,
+    .work-kanban header,
+    .work-kanban header b,
+    .work-kanban article p,
+    .work-kanban article p em,
+    .work-spreadsheet footer,
+    .formula-bar > span,
+    th,
+    td > button
+  ) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .rich-work .work-page-title > button {
+  background: var(--work-accent);
+  color: var(--work-on-accent);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(td input:not([type="checkbox"]), td select, .work-kanban article input) {
+  background: transparent;
+  border-color: transparent;
+  color: var(--work-text);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(td input:not([type="checkbox"]), td select):is(:hover, :focus) {
+  background: var(--work-input-bg);
+  border-color: var(--work-input-border);
+}
+
+/* Keep Excel's editable cells transparent so headers and selection stay visible. */
+.app.odyssey40 .rich-work .excel-grid td input {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  color: #294432;
+}
+
+.app.odyssey40
+  .rich-work
+  :is(.excel-ribbon label, .excel-ribbon > span, .excel-formula em) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(
+    .mail-workspace aside small,
+    .mail-list b,
+    .mail-list small,
+    .mail-workspace main > small
+  ) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .rich-work .mail-workspace aside > button {
+  background: var(--work-accent);
+  color: var(--work-on-accent);
+}
+
+.app.odyssey40
+  .rich-work
+  :is(
+    .metrics-workspace header span,
+    .metric-kpis small,
+    .metric-kpis span,
+    .metrics-chart article small,
+    .metrics-chart footer
+  ) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .work-screen.ide-workspace {
+  --work-bg: var(--ide-bg);
+  --work-panel: var(--ide-panel);
+  --work-subtle: #303030;
+  --work-text: var(--ide-text);
+  --work-muted: #a0a0a0;
+  --work-border: var(--ide-line);
+  --work-input-bg: #272727;
+  --work-input-border: #454545;
+  --work-accent: #4daafc;
+  --work-selected: #37373d;
+  --work-hover: #303034;
+  --work-selection: #264f78;
+  --work-on-accent: #ffffff;
+  color-scheme: dark;
+}
+
+.app.odyssey40 .work-screen.ide-idea {
+  --work-subtle: #3d4148;
+  --work-muted: #a1a3aa;
+  --work-input-bg: #2b2d30;
+  --work-input-border: #54565d;
+  --work-accent: #80a6ff;
+  --work-hover: #35373c;
+  --work-selection: #2e436e;
+}
+
+.app.odyssey40 .ide-workspace .ide-menu {
+  background: var(--work-input-bg);
+  border-color: var(--work-input-border);
+  color: var(--work-text);
+}
+
+.app.odyssey40 .ide-workspace .ide-menu > button:hover {
+  background: var(--work-selection);
+}
+
+.app.odyssey40
+  .ide-workspace
+  :is(.ide-menu > button small, .ide-window-title, .ide-gutter) {
+  color: var(--work-muted);
+}
+
+.app.odyssey40 .ide-workspace .ide-find {
+  background: var(--work-panel);
+  border-color: var(--work-input-border);
+  color: var(--work-text);
+}
+
+.app.odyssey40 .ide-workspace .ide-terminal > form input {
+  background: transparent;
+  border-color: transparent;
+  color: var(--work-text);
+}
+
+/* The textarea remains editable while the pre beneath it renders syntax. */
+.app.odyssey40 .ide-workspace .ide-code-layer textarea {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--work-text);
+}
+
+.app.odyssey40 .ide-workspace .ide-code-layer textarea:focus-visible {
+  outline: none;
+}
+
+.app.odyssey40 .ide-workspace .ide-code-layer textarea::selection {
+  background: #264f78aa;
+  color: transparent;
+}
+
+.app.odyssey40 .ide-idea .tok-comment {
+  color: #91959e;
+}
+
+.app.odyssey40 .rich-work .work-sidebar-toggle {
+  /* Historical toggle declarations are important, so match them locally. */
+  background: var(--work-subtle) !important;
+  border-color: var(--work-input-border) !important;
+  color: var(--work-accent) !important;
+}
+
+.app.odyssey40 .ide-workspace .ide-menu[data-menu="switch"] {
+  left: auto;
+  right: 12px;
+}
+
+.app.odyssey40 .ide-workspace .ide-menu > button:hover small {
+  color: var(--work-text);
+}
+
+.app.odyssey40 .ide-workspace kbd {
+  color: var(--work-text);
+}

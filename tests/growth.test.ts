@@ -26,7 +26,7 @@ test("non-projectile builds never roll projectile-only upgrades", () => {
     );
   }
 });
-test("two-person enemy endurance scales to at least double solo at same seed", () => {
+test("endless co-op increases enemy endurance without multiplying early HP by player count", () => {
   const spawn = (n: number) => {
     const g = createGame("TEAM25", "h", 52);
     g.state.mode = "survival";
@@ -39,7 +39,8 @@ test("two-person enemy endurance scales to at least double solo at same seed", (
     tickGame(g, 0.05);
     return g.state.enemies[0].maxHp;
   };
-  assert.ok(spawn(2) >= spawn(1) * 1.95);
+  assert.ok(spawn(2) > spawn(1));
+  assert.ok(spawn(2) < spawn(1) * 1.5);
 });
 import {
   attackAvailable,

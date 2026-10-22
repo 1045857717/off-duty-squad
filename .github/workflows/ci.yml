@@ -70,6 +70,9 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npx playwright install --with-deps --only-shell chromium
+      - run: npm run test:lobby
+      - run: npm run test:work
+      - run: npm run test:playability
       - run: npm run test:undead
       - run: npm run test:art
       - run: npm run test:rigs
@@ -78,6 +81,9 @@ jobs:
         with:
           name: browser-combat-and-compact-window
           path: |
+            test-results/lobby41
+            test-results/work41
+            test-results/playability41
             test-results/undead39
             test-results/art40
             test-results/art40-rig-audit

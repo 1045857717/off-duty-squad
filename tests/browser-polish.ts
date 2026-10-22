@@ -89,7 +89,7 @@ try {
   const host = await open(),
     peer = await open(true),
     viewer = await open();
-  const contrast = await readTextContrast(host, ".heading-aside", "span");
+  const contrast = await readTextContrast(host, ".scene-copy", "p");
   assert.ok(contrast > 4.5, `hero copy contrast ${contrast}`);
   assert.equal(await host.locator(".dossier-stop").count(), 6);
   assert.ok(
@@ -157,16 +157,16 @@ try {
   await snap(host, "ready-chat");
   await host.setViewportSize({ width: 1366, height: 768 });
   const rosterExtent = await host.locator(".ready-roster").evaluate((el) => ({
-    bottom: Math.max(
-      ...Array.from(el.children).map((c) => c.getBoundingClientRect().bottom),
+    top: Math.min(
+      ...Array.from(el.children).map((c) => c.getBoundingClientRect().top),
     ),
     rules: document
       .querySelector(".ready-room .rules-selector")!
-      .getBoundingClientRect().top,
+      .getBoundingClientRect().bottom,
   }));
   assert.ok(
-    rosterExtent.bottom <= rosterExtent.rules,
-    "ready seats overlap dispatch mode cards: " + JSON.stringify(rosterExtent),
+    rosterExtent.rules <= rosterExtent.top,
+    "top mode cards overlap squad staging: " + JSON.stringify(rosterExtent),
   );
   const footer = await host.locator(".ready-launch").boundingBox();
   const narrowChat = await host

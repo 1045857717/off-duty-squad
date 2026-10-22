@@ -32,7 +32,6 @@ export function TeamPanel({
   onLeave: () => void;
 }) {
   const players = state?.players || [],
-    host = state?.host === playerId,
     lobby = !state || state.phase === "lobby";
   return (
     <aside className="team-panel">
@@ -223,37 +222,6 @@ export function TeamPanel({
           </div>
         )}
       </div>
-      {state && lobby && (
-        <div className="room-options">
-          <div>
-            <span>AI 伙伴</span>
-            <div
-              className="ai-seat-pills"
-              role="group"
-              aria-label="AI 伙伴数量"
-            >
-              {Array.from(
-                { length: 5 - players.filter((p) => !p.bot).length },
-                (_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    disabled={!host || busy}
-                    aria-label={`添加${i}位AI`}
-                    aria-pressed={players.filter((p) => p.bot).length === i}
-                    onClick={() =>
-                      void request("room:options", { botCount: i })
-                    }
-                  >
-                    {i}
-                    <small>AI</small>
-                  </button>
-                ),
-              )}
-            </div>
-          </div>
-        </div>
-      )}
       {!state ? (
         <button className="solo-button" onClick={onSolo} disabled={busy}>
           <Icon name="play" size={13} />

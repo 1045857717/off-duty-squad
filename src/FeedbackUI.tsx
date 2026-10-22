@@ -1,3 +1,4 @@
+import "./interaction41.css";
 import { useState, useEffect } from "react";
 import type { GameState, Player } from "../shared/types";
 import { Modal, Key } from "./components";
@@ -98,6 +99,8 @@ export function CombatFeedback({
       seq: number;
       message: string;
       born: number;
+      status: "failed" | "complete";
+      label?: string;
     } | null>(null),
     [hit, setHit] = useState<{
       seq: number;
@@ -119,9 +122,17 @@ export function CombatFeedback({
   }, [me?.hitSeq]);
   useEffect(() => {
     const f = me?.interactionFeedback;
-    if (!f || state.elapsed - f.at > 1.6) return;
-    setFailed({ seq: f.seq, message: f.message, born: performance.now() });
-    if (!reduced && navigator.vibrate) navigator.vibrate([16, 25, 16]);
+    if (!f || state.elapsed - f.at > (f.status === "complete" ? 4.8 : 1.6))
+      return;
+    setFailed({
+      seq: f.seq,
+      message: f.message,
+      status: f.status,
+      label: f.label,
+      born: performance.now(),
+    });
+    if (f.status === "failed" && !reduced && navigator.vibrate)
+      navigator.vibrate([16, 25, 16]);
   }, [me?.interactionFeedback?.seq]);
   useEffect(() => {
     if (!hit && !failed) return;
@@ -135,7 +146,10 @@ export function CombatFeedback({
   }, [hit?.born]);
   useEffect(() => {
     if (!failed) return;
-    const timer = setTimeout(() => setFailed(null), 1650);
+    const timer = setTimeout(
+      () => setFailed(null),
+      failed.status === "complete" ? 4900 : 1650,
+    );
     return () => clearTimeout(timer);
   }, [failed?.born]);
   return (
@@ -155,18 +169,31 @@ export function CombatFeedback({
           {hit.text}
         </div>
       )}
-      {failed && now - failed.born < 1600 && (
-        <div
-          key={failed.seq}
-          className={"interaction-failed " + (reduced ? "reduced" : "")}
-          role="alert"
-          aria-label="交互失败反馈"
-        >
-          <Key>E</Key>
-          <Icon name="close" size={16} />
-          {failed.message}
-        </div>
-      )}
+      {failed &&
+        now - failed.born < (failed.status === "complete" ? 4800 : 1600) && (
+          <div
+            key={failed.seq}
+            className={
+              (failed.status === "complete"
+                ? "interaction-receipt "
+                : "interaction-failed ") + (reduced ? "reduced" : "")
+            }
+            role={failed.status === "complete" ? "status" : "alert"}
+            aria-label={
+              failed.status === "complete" ? "交互效果反馈" : "交互失败反馈"
+            }
+          >
+            <Key>E</Key>
+            <Icon
+              name={failed.status === "complete" ? "check" : "close"}
+              size={16}
+            />
+            <span>
+              {failed.label && <strong>{failed.label}</strong>}
+              {failed.message}
+            </span>
+          </div>
+        )}
     </>
   );
 }
