@@ -10,4 +10,4 @@ Tech Stack: Phaser3.90, React19, TypeScript, Socket.IO.
 - [x] StationScene.ts、joints.ts：攻击朝向锁定/接触恢复，射弹形态与武器相符，合理深度。
 - [x] UI助手负责src根目录tsx/css，敌人助手负责zombieRig/ArticulatedActor敌人分支，场景助手负责officeMap/abyssArt。互斥文件范围。
 - [x] 集成后npm run check，全部相关浏览器套件，多客户端/观战与小窗，8方向实际效果截图、参考性能。
-- [ ] docs当前版本、README双语、素材来源与验证报告。受保护PR经CI后常规合并，正式Release和Docker按验证结果发布。
+- [x] docs当前版本、README双语、素材来源与验证报告。受保护PR经CI后常规合并，正式Release和Docker按验证结果发布。

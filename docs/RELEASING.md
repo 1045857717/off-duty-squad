@@ -108,3 +108,6 @@ gh workflow run verify-release.yml --ref main --field version=4.0.0
 ## Release 列表保留策略
 
 正式验证当前版本的附件、匿名镜像拉取及双架构运行后，Releases 列表只保留最新稳定版。删除旧 Release 时保留 Git 标签和 GHCR 版本镜像，便于追溯和回滚。不要使用 `--cleanup-tag`。历史验收文档是当时的记录，旧 Release 附件链接可能已移除。
+
+
+浏览器CI仅下载实际运行的Chromium headless shell（--only-shell）及系统依赖；undead、art与rigs三套检查全部保留，主分支仍要求相同三项CI。此项减少无用完整浏览器下载，不跳过浏览器测试。

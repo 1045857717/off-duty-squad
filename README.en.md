@@ -139,7 +139,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **4.0.0**. Night Office Oddities replaces the mixed visual world with coherent articulated people, workplace tools, themed creatures, environment materials, effects and UI. Directional slashes, authority-side windup facing and weapon contact curves now share the same conventions. See [4.0 notes](docs/RELEASE-4.0.md), [art and motion](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.md) and [protected-main policy](docs/BRANCH-PROTECTION.md).
+Current version: **4.0.0**. Night Office Oddities replaces the mixed visual world with coherent articulated people, workplace tools, themed creatures, environment materials, effects and UI. Directional slashes, authority-side windup facing and weapon contact curves now share the same conventions. See [4.0 notes](docs/RELEASE-4.0.md), [art and motion](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.en.md) and [protected-main policy](docs/BRANCH-PROTECTION.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Hardware, resolution and enemy density determine actual performance; **144FPS is not guaranteed for every scene**. See [4.0 measurements](docs/PERFORMANCE-4.0.md); earlier measurements remain historical evidence.
