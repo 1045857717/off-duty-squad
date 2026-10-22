@@ -26,7 +26,7 @@ This document records observable work and design changes. Early iterations are r
 
 ## 3.8 author-directed branding correction
 
-The author steered the theme toward paid breaks as personally earned income. The game is now Salary Thieves / 薪水小偷, with the slogan “班是公司的，鱼是自己的。” Coffee support was explicitly requested on GitHub, so the in-game coffee panel was removed and the original QR moved into documentation for README/support display.
+The author steered the theme toward paid breaks as personally earned income. The game is now Paid Break Crew / 带薪摸鱼, with the slogan “班是公司的，鱼是自己的。” Coffee support was explicitly requested on GitHub, so the in-game coffee panel was removed and the original QR moved into documentation for README/support display.
 
 Publishing used the author’s existing local GitHub CLI login in the system credential store; Actions uses its automatically supplied GITHUB_TOKEN for releases. When local Git TLS failed, the same authorization transferred Git objects through the Git Data API while verifying identical tree, commit and tag SHAs.
 
@@ -70,3 +70,5 @@ A separate regression reproduced incorrect render depth after profession changes
 [Public commits](https://github.com/1045857717/off-duty-squad/commits/main/) · [Changelog](../CHANGELOG.md) · [Workflows](../.github/workflows) · [Tests](../tests) · [3.5 combat work](RELEASE-3.5.md) · [3.6 public chat](RELEASE-3.6.md) · [3.6 browser results](validation-3.6.json) · [3.6 release verification](PUBLISHED-3.6.md) · [Prompt evolution](PROMPT-HISTORY.en.md)
 
 Known boundaries remain explicit: single-instance rooms, memory-only live rooms/chat, an unsigned Windows client, and no claim of exhaustive long-duration load testing across all public networks. Consult the evidence and CI for the particular release.
+
+3.9 adds actual15-joint undead sprites, grounded attacks and corrected overhead wrist trajectories. F9/HUD and real rendered joints are covered by browser regression checks. See [art/motion implementation](ART-3.9.md) and [active branch policy](BRANCH-PROTECTION.md).

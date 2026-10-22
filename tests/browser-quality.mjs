@@ -190,9 +190,19 @@ try {
       raf: rafFrames / ((performance.now() - t) / 1000),
     };
   });
+  if (process.env.QUALITY_SCREENSHOT) {
+    await fs.mkdir("test-results", { recursive: true });
+    await page.screenshot({
+      path: process.env.QUALITY_SCREENSHOT,
+      fullPage: true,
+    });
+  }
   const cap = capSample.fps;
   console.log("CAP_SAMPLE", JSON.stringify(capSample));
-  const expectedFrameRate = Math.min(144, displayReferenceFps);
+  const expectedFrameRate =
+    process.env.BENCHMARK_UNCAPPED === "1"
+      ? 144
+      : Math.min(144, displayReferenceFps);
   assert.ok(
     cap > expectedFrameRate * 0.94 &&
       cap < Math.min(150, capSample.raf * 1.05 + 1),

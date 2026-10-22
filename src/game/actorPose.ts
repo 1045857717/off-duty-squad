@@ -69,3 +69,19 @@ export function windupProgress(
     ),
   );
 }
+
+/** Releasing a diagonal chord must not leave a one-frame cardinal facing behind. */
+export class MovementFacing {
+  private until = 0;
+  private last = { x: 1, y: 0 };
+  press() {
+    this.until = 0;
+  }
+  release(time: number) {
+    this.until = time + 50;
+  }
+  sample(x: number, y: number, time: number) {
+    if (Math.hypot(x, y) > 0 && time >= this.until) this.last = { x, y };
+    return this.last;
+  }
+}

@@ -1,4 +1,4 @@
-/* SALARY THIEVES / office-disaster visual system */
+/* PAID BREAK CREW / office-disaster visual system */
 :root {
   --office-paper: #f3f1e9;
   --office-ink: #203346;
@@ -1205,9 +1205,9 @@ body {
   color: #e5ddb8;
 }
 .damage-overlay {
-  background: linear-gradient(145deg, #213e4bd9, #183641c2) !important;
-  border-color: #9ab6a350 !important;
-  border-top-color: #c9bd8d88 !important;
+  background: linear-gradient(145deg, #213e4bd9, #183641c2);
+  border-color: #9ab6a350;
+  border-top-color: #c9bd8d88;
 }
 .report-overlay {
   background:

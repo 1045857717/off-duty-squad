@@ -95,17 +95,17 @@ export function useFloatingWindow(
     try {
       if (window.documentPictureInPicture && !preferPopup.current) {
         const w = await window.documentPictureInPicture.requestWindow({
-          width: 720,
-          height: 500,
+          width: 520,
+          height: 350,
         });
         child.current = w;
-        w.document.title = "下班特遣队 · 画中画";
+        w.document.title = "状态面板";
         w.document.body.style.cssText =
           "margin:0;background:#14221a;width:100vw;height:100vh;overflow:hidden";
         const f = w.document.createElement("iframe");
         frame.current = f;
         f.src = url.toString();
-        f.title = "下班特遣队独立游戏";
+        f.title = "状态面板";
         f.style.cssText = "border:0;display:block;width:100%;height:100%";
         w.addEventListener("message", (e) => {
           if (e.origin === location.origin && e.source === f.contentWindow) {
@@ -127,7 +127,7 @@ export function useFloatingWindow(
         const w = window.open(
           url,
           "off-duty-game",
-          "popup=yes,width=720,height=500,resizable=yes,scrollbars=no",
+          "popup=yes,width=520,height=350,resizable=yes,scrollbars=no",
         );
         if (!w) throw Error("popup");
         child.current = w;

@@ -117,8 +117,11 @@ export default function App() {
   ]);
   useEffect(() => {
     if (hidden || floating.concealed) document.title = "项目协作工作台";
-    else if (!boss) document.title = "薪水小偷 · SALARY THIEVES";
-  }, [hidden, boss, floating.concealed]);
+    else if (!boss)
+      document.title = settings.compact
+        ? "状态面板"
+        : "带薪摸鱼 · PAID BREAK CREW";
+  }, [hidden, boss, floating.concealed, settings.compact]);
   useEffect(() => {
     if (IS_FLOATING) update({ compact: true });
   }, [update]);
@@ -371,9 +374,7 @@ export default function App() {
       }
       if (e.key === "F9") {
         e.preventDefault();
-        if (!window.desktop && !IS_FLOATING && s && !settings.compact)
-          void floating.open();
-        else update({ compact: !settings.compact });
+        update({ compact: !settings.compact });
       }
       if (e.key.toLowerCase() === "m") {
         e.preventDefault();
@@ -494,6 +495,9 @@ export default function App() {
       className={
         "app " +
         (settings.compact ? "is-compact " : "") +
+        (!window.desktop && !IS_FLOATING && settings.compact
+          ? "quiet-embedded "
+          : "") +
         (floating.detached || floating.concealed ? "is-detached " : "") +
         (hidden ? "window-is-hidden " : "") +
         (immersive ? "window-immersive " : "") +
@@ -511,7 +515,7 @@ export default function App() {
         <nav className="sidebar" aria-label="主导航">
           <button
             className="brand-mark"
-            title="薪水小偷"
+            title="带薪摸鱼"
             aria-label="行动基地"
             onClick={() => {
               setBrief(false);
@@ -592,9 +596,9 @@ export default function App() {
         <div className="workspace">
           <header className="topbar">
             <div className="wordmark">
-              薪水小偷
+              带薪摸鱼
               <span>
-                SALARY THIEVES <b>CO-OP</b>
+                PAID BREAK CREW <b>CO-OP</b>
               </span>
             </div>
             <span className="header-divider" />
@@ -696,13 +700,12 @@ export default function App() {
               <button
                 className="quiet-button"
                 onClick={() => {
-                  if (!window.desktop && !IS_FLOATING && s && !settings.compact)
-                    void floating.open();
-                  else update({ compact: !settings.compact });
+                  update({ compact: !settings.compact });
                 }}
               >
                 <Icon name="window" size={15} />
-                低调一点<Key>F9</Key>
+                {settings.compact ? "恢复大小" : "低调小窗"}
+                <Key>F9</Key>
               </button>
               <button
                 className="icon-btn audio-toggle"
@@ -751,7 +754,7 @@ export default function App() {
               <div>
                 <div className="eyebrow">
                   <span />
-                  SALARY THIEVES / PAID BREAK / CO-OP
+                  PAID BREAK CREW / PAID BREAK / CO-OP
                 </div>
                 <h1>
                   班是公司的，<span>鱼是自己的。</span>
@@ -1134,7 +1137,7 @@ export default function App() {
                 一人走得快，一起下班更快乐。
               </span>
               <span>
-                MADE FOR YOUR LITTLE BREAK <i>✳</i> SALARY THIEVES / 2026
+                MADE FOR YOUR LITTLE BREAK <i>✳</i> PAID BREAK CREW / 2026
               </span>
             </footer>
           </main>
@@ -1142,11 +1145,12 @@ export default function App() {
         <div className="compact-bar">
           <span className="compact-title">
             <i />
-            薪水小偷{s && <small>{s.code}</small>}
+            状态面板
           </span>
           <div>
             <button
               aria-label="一键隐藏游戏"
+              data-quiet-action="hide"
               title="隐藏游戏 F10；桌面全局恢复 Ctrl+Shift+B"
               onClick={hideGame}
             >
@@ -1175,6 +1179,7 @@ export default function App() {
             )}
             <button
               aria-label="切换工作面板"
+              data-quiet-action="work"
               title="工作面板 F8"
               onClick={() => setBoss(true)}
             >
@@ -1235,6 +1240,7 @@ export default function App() {
             </button>
             <button
               aria-label="恢复完整窗口"
+              data-quiet-action="restore"
               title="恢复 F9"
               onClick={() => update({ compact: false })}
             >

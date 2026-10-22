@@ -1,0 +1,94 @@
+import Phaser from "phaser";
+import { circleRing, arcSpan } from "./circleTessellation";
+/** Direct triangle fans avoid ear-clipping every tiny particle on every display tick. */
+export class CombatGraphics extends Phaser.GameObjects.Graphics {
+  private pathPoint = false;
+  override beginPath() {
+    this.pathPoint = false;
+    return super.beginPath();
+  }
+  override moveTo(x: number, y: number) {
+    this.pathPoint = true;
+    return super.moveTo(x, y);
+  }
+  override lineTo(x: number, y: number) {
+    this.pathPoint = true;
+    return super.lineTo(x, y);
+  }
+  override arc(
+    x: number,
+    y: number,
+    radius: number,
+    start: number,
+    end: number,
+    anticlockwise = false,
+    _overshoot = 0,
+  ) {
+    if (radius <= 0) return this;
+    const span = arcSpan(start, end, anticlockwise),
+      count = Math.max(
+        1,
+        Math.ceil(
+          ((circleRing(radius).length / 2 - 1) * Math.abs(span)) /
+            (Math.PI * 2),
+        ),
+      );
+    let px = Math.cos(start),
+      py = Math.sin(start);
+    const cos = Math.cos(span / count),
+      sin = Math.sin(span / count);
+    if (this.pathPoint) this.lineTo(x + px * radius, y + py * radius);
+    else this.moveTo(x + px * radius, y + py * radius);
+    for (let i = 0; i < count; i++) {
+      const next = px * cos - py * sin;
+      py = px * sin + py * cos;
+      px = next;
+      this.lineTo(x + px * radius, y + py * radius);
+    }
+    return this;
+  }
+  override fillCircle(x: number, y: number, radius: number) {
+    return this.fillEllipse(x, y, radius * 2, radius * 2);
+  }
+  override strokeCircle(x: number, y: number, radius: number) {
+    return this.strokeEllipse(x, y, radius * 2, radius * 2);
+  }
+  override fillEllipse(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    _smoothness?: number,
+  ) {
+    if (width <= 0 || height <= 0) return this;
+    const r = circleRing(Math.max(width, height) / 2),
+      rx = width / 2,
+      ry = height / 2;
+    for (let i = 0; i < r.length - 2; i += 2)
+      this.fillTriangle(
+        x,
+        y,
+        x + r[i] * rx,
+        y + r[i + 1] * ry,
+        x + r[i + 2] * rx,
+        y + r[i + 3] * ry,
+      );
+    return this;
+  }
+  override strokeEllipse(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    _smoothness?: number,
+  ) {
+    if (width <= 0 || height <= 0) return this;
+    const r = circleRing(Math.max(width, height) / 2),
+      rx = width / 2,
+      ry = height / 2;
+    this.beginPath().moveTo(x + r[0] * rx, y + r[1] * ry);
+    for (let i = 2; i < r.length - 2; i += 2)
+      this.lineTo(x + r[i] * rx, y + r[i + 1] * ry);
+    return this.closePath().strokePath();
+  }
+}

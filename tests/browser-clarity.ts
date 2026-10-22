@@ -59,7 +59,7 @@ try {
     "https://github.com/1045857717/off-duty-squad",
   );
   assert.equal(await project.getAttribute("target"), "_blank");
-  assert.match(await host.title(), /薪水小偷/);
+  assert.match(await host.title(), /带薪摸鱼/);
   assert.equal(
     await host
       .getByRole("button", { name: "请作者喝咖啡", exact: true })
@@ -271,7 +271,7 @@ try {
         .map((o: any) => o.text),
     };
   });
-  assert.equal(world.width, 108);
+  assert.equal(world.width, 76);
   assert.equal(world.placement, "below-feet");
   assert.ok(world.y > world.actorY);
   assert.ok(world.ghost > world.ratio);
@@ -283,7 +283,7 @@ try {
     "rgb(49, 81, 79)",
   );
   await host.screenshot({ path: "test-results/clarity/vitals.png" });
-  done("脚下本机生命条108px并区分自己，护盾独立显示，危险状态与损血拖尾正确");
+  done("脚下本机生命条76px并区分自己，护盾独立显示，危险状态与损血拖尾正确");
   me.shield = 0;
   me.hitShield = true;
   me.hitSeq++;
@@ -329,7 +329,8 @@ try {
   const bounds = await host.locator(".combat-vitals").boundingBox();
   assert.ok(
     bounds &&
-      bounds.width >= 130 &&
+      bounds.width >= 100 &&
+      bounds.width <= 130 &&
       bounds.x >= 0 &&
       bounds.x + bounds.width <= 620,
   );

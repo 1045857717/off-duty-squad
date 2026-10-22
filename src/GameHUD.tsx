@@ -98,7 +98,6 @@ export function GameHUD({
         </div>
       </div>
       <BossVitals state={state} />
-      {me && <ArsenalStrip me={me} level={state.level} />}
       {me && me.alive && state.phase === "playing" && (
         <InteractionHUD state={state} me={me} />
       )}
@@ -170,37 +169,46 @@ export function GameHUD({
       )}
       {me ? (
         <>
-          <div className="combat-strip">
-            <PlayerVitalsHUD player={me} elapsed={state.elapsed} />
-            <div
-              className="micro-skill innate-basic"
-              title="固有普攻：跟随鼠标瞄准，与随机模块一起攻击；T切换自动攻击"
-            >
-              <Icon name="crosshair" size={13} />
-              <span>{ROLE_BASICS[me.role].name}</span>
-              <small>普攻</small>
+          <div className="combat-dock" aria-label="战斗状态与构筑">
+            <ArsenalStrip me={me} level={state.level} />
+            <div className="combat-strip">
+              <PlayerVitalsHUD player={me} elapsed={state.elapsed} />
+              <div
+                className="micro-skill innate-basic"
+                title="固有普攻：跟随鼠标瞄准，与随机模块一起攻击；T切换自动攻击"
+              >
+                <Icon name="crosshair" size={13} />
+                <span>{ROLE_BASICS[me.role].name}</span>
+                <small>普攻</small>
+              </div>
+              <div
+                className={
+                  "micro-skill signature-tier-" +
+                  (me.signatureLevel >= 8
+                    ? 2
+                    : me.signatureLevel >= 4
+                      ? 1
+                      : 0) +
+                  " " +
+                  (me.skillCd <= 0 ? "ready" : "")
+                }
+                title={ability?.desc}
+              >
+                <Key>Q</Key>
+                <Icon name={ability?.icon || "bolt"} size={13} />
+                <span>
+                  {me.skillCd > 0 ? `${Math.ceil(me.skillCd)}s` : ability?.name}
+                </span>
+              </div>
+              <div className={"micro-skill " + (me.dashCd <= 0 ? "ready" : "")}>
+                <Key>空格 / 右键</Key>
+                <Icon name="bolt" size={12} />
+                <span>
+                  {me.dashCd > 0 ? `${me.dashCd.toFixed(1)}s` : "冲刺"}
+                </span>
+              </div>
+              <PartsHelp coins={state.coins} />
             </div>
-            <div
-              className={
-                "micro-skill signature-tier-" +
-                (me.signatureLevel >= 8 ? 2 : me.signatureLevel >= 4 ? 1 : 0) +
-                " " +
-                (me.skillCd <= 0 ? "ready" : "")
-              }
-              title={ability?.desc}
-            >
-              <Key>Q</Key>
-              <Icon name={ability?.icon || "bolt"} size={13} />
-              <span>
-                {me.skillCd > 0 ? `${Math.ceil(me.skillCd)}s` : ability?.name}
-              </span>
-            </div>
-            <div className={"micro-skill " + (me.dashCd <= 0 ? "ready" : "")}>
-              <Key>空格 / 右键</Key>
-              <Icon name="bolt" size={12} />
-              <span>{me.dashCd > 0 ? `${me.dashCd.toFixed(1)}s` : "冲刺"}</span>
-            </div>
-            <PartsHelp coins={state.coins} />
           </div>
           {!me.alive &&
             state.phase === "playing" &&

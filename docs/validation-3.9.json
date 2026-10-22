@@ -1,0 +1,304 @@
+{
+  "version": "3.9.0",
+  "date": "2026-10-22",
+  "phase": "local pre-publication validation",
+  "coreTests": 120,
+  "releaseTests": 5,
+  "coreBuildFormatPassed": true,
+  "browser": [
+    {
+      "suite": "test-results/clarity/report.json",
+      "passed": [
+        "新品牌与摸鱼标题正确，GitHub链接可用；咖啡二维码仅在仓库文档，游戏与构建不含二维码",
+        "28职业在空随机构筑下均展示真实14关节普攻、连续手臂变化与贴手武器，并造成实际伤害",
+        "脚下本机生命条76px并区分自己，护盾独立显示，危险状态与损血拖尾正确",
+        "破盾状态独立呈现，生命数值没有被护盾替代",
+        "双人加观战正常，四模块与普攻/Q共存并能边走边打，队友重连不重复",
+        "620px战场生命条可读且位于可见范围",
+        "390px摸鱼标题和GitHub入口无横向溢出，游戏没有咖啡二维码入口"
+      ],
+      "errors": []
+    },
+    {
+      "suite": "test-results/feel/report.json",
+      "passed": [
+        "双人准备、共同初始选卡、观战与对局同步正常",
+        "脚下数字生命/独立护盾、危险状态和受伤拖尾清晰可见",
+        "护盾破裂使用独立状态文字，不与生命损失混为同一条",
+        "16种攻击逐一确认真实手臂变化、正确武器、握持点连续与有界挥击轨迹",
+        "四模块同时触发并移动时，动作队列不冻结行走",
+        "快速转身持续保持可见层总透明度，不出现人物闪烁",
+        "620像素小窗血条仍可读且不溢出画面"
+      ],
+      "errors": []
+    },
+    {
+      "suite": "test-results/feedback/report.json",
+      "passed": [
+        "全站在线人数包含大厅访客；3个真实浏览器会话显示3，不把AI算进去。",
+        "图鉴包含7敌人/16攻击/28职业/个人记录，搜索和成长等级预览真实可用。",
+        "指南使用统一纸面配色并纠正攻击快捷键；日/周/月/年/总榜按服务端时间边界筛选真实记录。",
+        "准备大厅点击任务简报会打开真正可见且可操作的独立面板，关闭可返回原小队。",
+        "队员管理入口独立成按钮，移出前确认可取消，实际移出后释放席位并让队员回到大厅。",
+        "左上使用真实斜后左素材、右上使用真实斜后右素材；实际可见14关节角色方向正确。",
+        "E零件不足由服务端明确拒绝，显示缺额、短促抖动和反馈，资源不会被错误扣除。",
+        "敌人先蓄力再出手，伤害来自实际敌人；受击界面显示来源、方向和护盾反馈。",
+        "7类敌人均使用可见15关节丧尸骨架和同一GPU图集，持续移动/蓄力/出手，并有连续倒地收尾。",
+        "逐项验证16种攻击的可见起手/出手/收招，高攻速也能完成动作，肘腕和下肢不被重置冻结。",
+        "28个职业Q都能驱动对应动作族，和16种随机攻击分开，不会覆盖职业技能。",
+        "真实队员重连保留身份与房间，不出现重复队员；在线汇总继续更新。"
+      ],
+      "errors": []
+    },
+    {
+      "suite": "test-results/polish/report.json",
+      "passed": [
+        "纸面六章档案可打开真实任务；右侧说明对比度达标；三处广告显示联系QQ。",
+        "准备大厅与右侧茶水间同屏；真实队友和观战者双向聊天，在每方向75ms的WebSocket延迟下送达。",
+        "真人准备约束、3秒内取消准备、全员地图内选卡等待均在延迟联机下正确。",
+        "近怪关闭自动开火仍正确转向；实际可见的十四关节角色在持续开火时下肢持续变化，不被攻击动作替换。",
+        "同屏队友位置与服务器一致；延迟客户端刷新重连保留原身份，没有重复队员，重连后仍能移动。",
+        "F10恢复界面与按钮不出现游戏相关文字，页签标题同步变为工作台。",
+        "VS Code/IntelliJ使用独立真实布局，文件各自持久编辑、查找、终端和切换可用；Excel不再套通用大标题。",
+        "联机全队结算展示真实整数统计、可查看队员构筑，390px布局无页面溢出；只有房主能重整，所有人回到同一准备大厅。",
+        "结算重整后切换六章模式，实际进入办公楼地图，重新选卡后可正常移动。",
+        "成功结算分支可见；房主从结算返回大厅后真实队友接任，房间继续保留。",
+        "1366×768整备按钮和茶水间同屏；手机提供原位折叠茶水间，无需滚动找聊天。"
+      ],
+      "errors": []
+    },
+    {
+      "suite": "test-results/community/report.json",
+      "passed": [
+        "大厅直接可见公共聊天室，跨浏览器同步昵称/时间/消息，发送后清空并退出输入；新标语显示正确",
+        "不同房间保持各自小队，公屏消息产生未读提示，查看后清零且不串入队内频道",
+        "小队私聊仅本队与观众可见；观战者可向公共聊天室发言并显示观战标识",
+        "频道切换保留各自未发送草稿",
+        "中文输入法确认候选词不会误提交消息",
+        "公屏输入不误触T开火，F8在输入中仍能切换工作并保留草稿",
+        "聊天中的 HTML 作为文本呈现",
+        "60条容量后仍能接收/自动跟随；翻阅旧消息时保持位置并提示新消息",
+        "对局中默认收起，展开后可跨房间发言，发送后仍能继续移动",
+        "390px 手机公共聊天室可用且不产生横向溢出"
+      ],
+      "errors": []
+    },
+    {
+      "suite": "test-results/undead39/report.json",
+      "passed": [
+        "新名称与轻松聊天文案正确",
+        "构筑与生命栏垂直流式对齐，展开详情也不会盖住血条",
+        "F9真实缩为520×350，安静标题和自动收起栏；移动、队友、观众不掉线，F9恢复",
+        "七类实际敌人全部使用独立丧尸贴图与15关节，下颌和手腕持续动作",
+        "七类丧尸的实际死亡均保留骨架连续倒地，并逐渐消退"
+      ],
+      "errors": []
+    }
+  ],
+  "quality": {
+    "normal": {
+      "dpr": 2,
+      "distinctWalkFrames": 126,
+      "motion": {
+        "samples": 56,
+        "moving": 56
+      },
+      "cap144": 142.81434135170284,
+      "targetCap": 144,
+      "displayReferenceFps": 142.85714285714286,
+      "rafFPS": 142.81434135170284,
+      "expectedFrameRate": 142.85714285714286,
+      "displayUncapped": false,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "laboratory": {
+      "dpr": 2,
+      "distinctWalkFrames": 126,
+      "motion": {
+        "samples": 58,
+        "moving": 58
+      },
+      "cap144": 143.8896845717311,
+      "targetCap": 144,
+      "displayReferenceFps": 57.142857142857146,
+      "rafFPS": 324.75102420703195,
+      "expectedFrameRate": 144,
+      "displayUncapped": true,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    }
+  },
+  "native": {
+    "physicalWidth": 520,
+    "physicalHeight": 350,
+    "menuVisible": false,
+    "gameplayCanvasVerified": true,
+    "gameplayFPS": 143.34470989761093,
+    "deviceScale": 1,
+    "opacityIPCPassed": true,
+    "hideTrayRestorePassed": true,
+    "resizeRestorePassed": true,
+    "pinAndPassthroughPassed": true
+  },
+  "browserWindowHandoff": {
+    "popupPassed": true,
+    "pipPassed": true,
+    "samePlayer": true,
+    "backgroundPipObservedFPS": 59
+  },
+  "dense": {
+    "latest": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 153.10797527431964,
+      "frames": 919,
+      "p95": 10.600000023841858,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 149,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 46839.44
+        },
+        {
+          "name": "同事1",
+          "damage": 64445.89
+        },
+        {
+          "name": "同事2",
+          "damage": 43075.51
+        },
+        {
+          "name": "同事3",
+          "damage": 60176.49
+        }
+      ],
+      "smallWindowFPS": 122.66684348082956
+    },
+    "target": 144,
+    "fullViewTargetMet": true,
+    "quietViewTargetMet": false,
+    "allStressTargetsMet": false,
+    "earlierAliveFixedSeedSample": {
+      "full": 137.71767875690662,
+      "quiet": 186.31267259318165,
+      "seed": 3900
+    },
+    "note": "Strict144assertions preserved. Samples vary with evolving encounter load and browser/hardware scheduling; do not guarantee every dense scene144."
+  },
+  "qr": {
+    "location": "docs/support/wechat-coffee.png",
+    "sha256": "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+    "inGame": false
+  },
+  "branchProtection": {
+    "actuallyApplied": true,
+    "administratorEnforcement": true,
+    "strictUpToDate": true,
+    "requiredPR": true,
+    "requiredChecks": [
+      "Tests, types and build",
+      "Source-only container smoke test",
+      "Browser combat and compact window"
+    ],
+    "allowForcePush": false,
+    "allowDeletion": false
+  },
+  "localPortableArchive": {
+    "version": "3.9.0",
+    "platform": "Windows x64",
+    "bytes": 142929483,
+    "sha256": "9ec8b1800092196a86b8206b866db90e99f097f14048bbe28c2d5ffc0ded26df",
+    "signed": false,
+    "file": "offshift-desktop-win-x64.zip",
+    "note": "Local archive; published Windows-runner artifact is independently verified and may differ in ZIP timestamps."
+  }
+}

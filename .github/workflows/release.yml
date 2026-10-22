@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Existing stable tag, e.g. v3.8.0"
+        description: "Existing stable tag, e.g. v3.9.0"
         required: true
         type: string
 
@@ -148,7 +148,7 @@ jobs:
             ${{ needs.verify.outputs.image }}:${{ needs.verify.outputs.version }}
             ${{ needs.verify.outputs.image }}:latest
           labels: |
-            org.opencontainers.image.title=Salary Thieves
+            org.opencontainers.image.title=Paid Break Crew
             org.opencontainers.image.description=Workplace comedy co-op survival game
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.version=${{ needs.verify.outputs.version }}
@@ -213,7 +213,7 @@ jobs:
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
             test "$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft)" = true || { echo "Release is already public; use a new version instead of replacing published assets."; exit 1; }
           else
-            gh release create "$RELEASE_TAG" --verify-tag --draft --title "Salary Thieves $RELEASE_TAG" --notes-file releases/notes.md
+            gh release create "$RELEASE_TAG" --verify-tag --draft --title "Paid Break Crew $RELEASE_TAG" --notes-file releases/notes.md
           fi
           gh release upload "$RELEASE_TAG" releases/offshift-desktop-win-x64.zip releases/desktop-release.json releases/compose.prod.yaml releases/env.example releases/image-digest.txt releases/SHA256SUMS.txt --clobber
           gh release edit "$RELEASE_TAG" --notes-file releases/notes.md --draft=false --latest

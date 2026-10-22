@@ -12,7 +12,7 @@ export function BossVitals({ state }: { state: GameState }) {
           <header>
             <span>
               <Icon name="target" size={12} />
-              巨饼总监
+              巨饼尸王
               {(b.bossPhase || 0) === 0
                 ? " · 护具阶段"
                 : b.bossPhase === 1

@@ -136,7 +136,7 @@ try {
   });
   assert.equal(health.data.hp, 24);
   assert.equal(health.data.status, "critical");
-  assert.equal(health.data.width, 108);
+  assert.equal(health.data.width, 76);
   assert.equal(health.data.placement, "below-feet");
   assert.ok(health.data.ghost > health.data.ratio);
   assert.match(health.armor, /盾 32/);
@@ -259,7 +259,8 @@ try {
   const bounds = await host.locator(".combat-vitals").boundingBox();
   assert.ok(
     bounds &&
-      bounds.width >= 108 &&
+      bounds.width >= 100 &&
+      bounds.width <= 130 &&
       bounds.x >= 0 &&
       bounds.x + bounds.width <= 620,
   );

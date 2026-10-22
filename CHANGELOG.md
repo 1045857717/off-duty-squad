@@ -1,5 +1,15 @@
 # Changelog / 更新日志
 
+## 3.9.0 — 2026-10-22
+
+- Name: 带薪摸鱼 / Paid Break Crew; friendly public-chat copy, GitHub-only support QR.
+- Coherent520×350F9 quiet view, neutral title, auto-hiding toolbar, same live player; F6 remains explicit PiP/pop-up.
+- Compact, flow-aligned vitals and build modules; world bars76/64px, separate armor and loss trail.
+- Grounded attacks, constant tool scale and blended profession casts; distinct undead attacks and15-joint anatomy for all seven enemy types.
+- Dedicated zombie faces, ragged uniforms, crawler/brute/exploder silhouettes, jaws, fingers and joint death recovery; actual art reused in codex. Removed seven unused legacy enemy atlases.
+- Main protection applied on GitHub with PR/required CI, administrator enforcement and blocked force push/deletion. New browser combat/quiet-window CI. Keep latest verified Release only; historical Git tags/images remain.
+
+
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
 ## [3.8.0] - 2026-10-22

@@ -123,7 +123,7 @@ export function weaponPose(frame: AttackFrame, facing: number) {
             : -prep * 0.15 + hit * 0.2;
   return {
     rotation: facing + offset * side,
-    scale: ["slash", "sweep", "overhead"].includes(kind) ? 0.96 : 0.76,
+    scale: 0.82,
     recoil: kind === "shoot" ? hit * 6.8 : 0,
     trail:
       frame.active &&
@@ -390,11 +390,11 @@ export function articulatedPose(
     torso = -step * 0.018;
   if (motion.active) {
     if (kind === "shoot") {
-      right -= 0.45 + prep * 0.4 + hit * 0.6;
-      left -= 0.25;
-      elbowR = -0.82 + hit * 0.45;
+      right -= 0.48 + prep * 0.34 - hit * 0.11;
+      left -= 0.3 + prep * 0.12;
+      elbowR = -0.68 - hit * 0.2;
       elbowL = 0.25;
-      torso += prep * 0.08 - hit * 0.12;
+      torso += prep * 0.035 - hit * 0.065;
     }
     if (kind === "slash" || kind === "sweep") {
       left += prep * 0.92 - hit * 1.25 + recoil * 0.16;
@@ -404,10 +404,10 @@ export function articulatedPose(
       torso += prep * 0.17 - hit * 0.28;
     }
     if (kind === "overhead") {
-      left -= prep * 1.14 + hit * 0.64;
-      right += prep * 0.85 + hit * 0.45;
-      elbowL = 0.55 + prep * 0.3;
-      elbowR = -0.55 - prep * 0.3;
+      left += prep * 1.85 - hit * 0.5;
+      right -= prep * 1.85 - hit * 0.5;
+      elbowL = 0.1 + prep * 0.65;
+      elbowR = -0.1 - prep * 0.65;
       torso += hit * 0.13;
     }
     if (kind === "throw") {
@@ -417,10 +417,10 @@ export function articulatedPose(
       torso += prep * 0.04 - hit * 0.08;
     }
     if (kind === "channel" || kind === "summon") {
-      left -= 0.38 + hit * 0.5;
-      right += 0.38 + hit * 0.5;
-      elbowL = 0.25 + prep * 0.3;
-      elbowR = -0.25 - prep * 0.3;
+      left += 0.3 + prep * 0.3 + hit * 0.2;
+      right -= 0.3 + prep * 0.3 + hit * 0.2;
+      elbowL = 0.85 + prep * 0.35;
+      elbowR = -0.85 - prep * 0.35;
     }
   }
   const rawBlend = motion.active
@@ -458,7 +458,8 @@ export function articulatedPose(
       Math.cos(phase * 2) * weight * 0.7 +
       Math.sin(time * 0.002) * (1 - weight) * 0.6 +
       hit * 0.8,
-    thrust: motion.active ? (hit * 4.5 - prep * 2.0) * blend : 0,
+    thrust: 0,
+    jaw: 0,
     breath: 1 + Math.sin(time * 0.002) * 0.006,
   };
 }
