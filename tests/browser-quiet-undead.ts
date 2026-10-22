@@ -213,6 +213,7 @@ try {
     await snap(host, "dock-" + viewport.width);
   }
   await host.setViewportSize({ width: 1440, height: 1000 });
+  await Promise.all([peer.close(), viewer.close()]);
   g.state.enemies = [];
   await host.waitForTimeout(100);
   const kinds = Object.keys(ENEMY_DEFS) as EnemyKind[];
@@ -390,19 +391,46 @@ try {
   );
   done("七类实际敌人全部使用独立丧尸贴图与15关节，下颌和手腕持续动作");
   const deathIds = g.state.enemies.map((e) => e.id);
-  for (const e of g.state.enemies) e.hp = 0;
-  await host.waitForTimeout(240);
-  const fallen = await host.evaluate((ids) => {
-    const s = (window as any).__scene;
-    return ids.map((id) => {
-      const r = s.children.list.find((c: any) => c.name === "rig-e" + id);
-      return r
-        ? { id, dying: r.pose.dying, fall: r.pose.fall, rotation: r.rotation }
-        : null;
-    });
+  await host.evaluate((ids) => {
+    const w = window as any,
+      s = w.__scene;
+    w.__deathSeen = {};
+    const capture = () => {
+      for (const id of ids) {
+        const r = s.children.list.find((c: any) => c.name === "rig-e" + id);
+        if (r?.pose.dying && r.rotation > 0)
+          w.__deathSeen[id] = {
+            id,
+            dying: r.pose.dying,
+            fall: r.pose.fall,
+            rotation: r.rotation,
+            alpha: r.alpha,
+          };
+      }
+    };
+    s.events.on("postupdate", capture);
+    w.__stopDeathCapture = () => s.events.off("postupdate", capture);
   }, deathIds);
+  for (const e of g.state.enemies) e.hp = 0;
+  await host.waitForFunction(
+    (ids) => ids.every((id) => (window as any).__deathSeen[id]),
+    deathIds,
+    { polling: 30, timeout: 15000 },
+  );
+  const fallen = await host.evaluate(() => {
+    const w = window as any;
+    w.__stopDeathCapture();
+    return Object.values(w.__deathSeen) as {
+      id: number;
+      dying: boolean;
+      rotation: number;
+      fall: number;
+      alpha: number;
+    }[];
+  });
+  assert.equal(fallen.length, 7);
   assert.ok(
-    fallen.every((f) => f && f.dying && f.rotation > 0),
+    fallen.every((f) => f.dying && f.rotation > 0 && f.alpha < 1),
     JSON.stringify(fallen),
   );
   await snap(host, "undead-fall");
