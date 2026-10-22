@@ -17,7 +17,7 @@ export function MissionBrief({
   return (
     <Modal
       title={
-        survival ? "今天的团建：工位发癫局" : "本章任务 · " + mission.title
+        survival ? "今天的团建：集体带薪摸鱼" : "本章任务 · " + mission.title
       }
       eyebrow="LIVE BRIEF / 当前行动简报"
       onClose={onClose}

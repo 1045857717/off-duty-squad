@@ -2,6 +2,16 @@
 
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
+## [3.8.0] - 2026-10-22
+
+### Changed / 调整
+
+- Rename the display brand to 薪水小偷 / Salary Thieves across web, native client and current documentation.
+- Hero: “班是公司的，鱼是自己的。” Supporting: “摸到的鱼，才算自己挣到的。”
+- Move the author-provided coffee QR into GitHub documentation; remove the in-game coffee panel and public game asset.
+- Preserve the existing combat implementation and neutral work/hidden view titles.
+- Extend bilingual prompt/development history with the author’s branding and support-location correction.
+
 ## [3.7.0] - 2026-10-22
 
 ### Added / 新增

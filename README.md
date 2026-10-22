@@ -1,8 +1,8 @@
 <div align="center">
 
-# 工位发癫局 · Off Duty Squad
+# 薪水小偷 · Salary Thieves
 
-**月薪三千，火力三亿。**
+**班是公司的，鱼是自己的。**
 
 一款由 AI 从零实现、把职场日常变成抽象战场的 1–4 人在线合作生存游戏。组队、随机成长、挑战丧尸与离谱 KPI，在下班前打出自己的构筑。
 
@@ -137,7 +137,7 @@ npm run test:feedback
 
 ## 当前状态与边界
 
-版本 **3.7.0**。本轮新增 28 职业固有普攻，重调攻击时序、工具握持和生命/护盾 UI，并加入 GitHub/咖啡入口及 AI 开发过程说明。详见[3.7更新](docs/RELEASE-3.7.md)；[正式发行验收](docs/PUBLISHED-3.7.md)已记录匿名拉取、两种架构运行、普攻与双人聊天结果。
+版本 **3.8.0**。游戏正式更名为「薪水小偷」，文案围绕“摸到的鱼，才算自己挣到的”。咖啡收款码仅展示在 GitHub README 和支持文档；游戏保留 GitHub 项目入口。战斗沿用已验收的3.7管线，详见[3.8更新](docs/RELEASE-3.8.md)。
 
 - 目前采用单实例房间服务，多个副本不会共享房间或在线人数。正式扩容前需要独立的房间路由与共享存储设计。
 - 支持 144 FPS 目标档位，实际帧率受设备、分辨率与怪物数量影响。已测密集场景约 79 FPS，**不保证全场景 144 FPS**，详见 [3.7 帧率记录](docs/PERFORMANCE-3.7.md)与[密集场景基线](docs/PERFORMANCE-3.4.md)。
@@ -156,7 +156,7 @@ npm run test:feedback
 
 自愿支持，不影响任何游戏内容。下图为作者提供的原始收款码，点击可查看原尺寸。
 
-<a href="public/wechat-coffee.png"><img src="public/wechat-coffee.png" alt="作者提供的微信咖啡赞助收款码" width="360" /></a>
+<a href="docs/support/wechat-coffee.png"><img src="docs/support/wechat-coffee.png" alt="作者提供的微信咖啡赞助收款码" width="360" /></a>
 
 [赞助说明](docs/SUPPORT.md)
 

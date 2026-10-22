@@ -45,36 +45,44 @@ try {
   const host = await open("普攻组长"),
     peer = await open("普攻队友"),
     viewer = await open("普攻观众");
-  assert.match(await host.locator(".page-heading h1").innerText(), /月薪三千/);
-  assert.match(await host.locator(".page-heading h1").innerText(), /火力三亿/);
+  assert.match(
+    await host.locator(".page-heading h1").innerText(),
+    /班是公司的/,
+  );
+  assert.match(
+    await host.locator(".page-heading h1").innerText(),
+    /鱼是自己的/,
+  );
   const project = host.getByRole("link", { name: "GitHub开源项目" });
   assert.equal(
     await project.getAttribute("href"),
     "https://github.com/1045857717/off-duty-squad",
   );
   assert.equal(await project.getAttribute("target"), "_blank");
-  await host.getByRole("button", { name: "请作者喝咖啡", exact: true }).click();
-  const coffee = host.getByRole("dialog", { name: "给下班续一杯" });
-  await coffee.waitFor();
-  await coffee.locator("img").evaluate((el: HTMLImageElement) => el.decode());
+  assert.match(await host.title(), /薪水小偷/);
   assert.equal(
-    await coffee.locator("img").getAttribute("src"),
-    "/wechat-coffee.png",
+    await host
+      .getByRole("button", { name: "请作者喝咖啡", exact: true })
+      .count(),
+    0,
   );
-  const qr = await (await fetch(base + "/wechat-coffee.png")).arrayBuffer();
+  assert.equal(await host.locator('img[src*="wechat-coffee"]').count(), 0);
   assert.equal(
-    createHash("sha256").update(Buffer.from(qr)).digest("hex"),
-    "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
-  );
-  await host.waitForTimeout(350);
-  await host.screenshot({ path: "test-results/clarity/coffee.png" });
-  await host.keyboard.press("Escape");
-  await coffee.waitFor({ state: "hidden" });
-  assert.equal(
-    await host.evaluate(() => !!document.querySelector("main")?.inert),
+    await fs.stat("dist/wechat-coffee.png").then(
+      () => true,
+      () => false,
+    ),
     false,
   );
-  done("GitHub入口指向真实项目，咖啡面板可关闭，二维码与作者原图SHA256一致");
+  assert.equal(
+    createHash("sha256")
+      .update(await fs.readFile("docs/support/wechat-coffee.png"))
+      .digest("hex"),
+    "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+  );
+  done(
+    "新品牌与摸鱼标题正确，GitHub链接可用；咖啡二维码仅在仓库文档，游戏与构建不含二维码",
+  );
   await host.screenshot({
     path: "test-results/clarity/lobby.png",
     fullPage: true,
@@ -338,19 +346,14 @@ try {
   );
   await mobile.locator(".page-heading").scrollIntoViewIfNeeded();
   await mobile.screenshot({ path: "test-results/clarity/mobile-lobby.png" });
-  await mobile
-    .getByRole("button", { name: "请作者喝咖啡", exact: true })
-    .click();
-  await mobile.getByRole("dialog", { name: "给下班续一杯" }).waitFor();
   assert.equal(
-    await mobile.evaluate(
-      () => document.documentElement.scrollWidth > innerWidth + 1,
-    ),
-    false,
+    await mobile
+      .getByRole("button", { name: "请作者喝咖啡", exact: true })
+      .count(),
+    0,
   );
-  await mobile.waitForTimeout(350);
-  await mobile.screenshot({ path: "test-results/clarity/mobile-coffee.png" });
-  done("390px标题、开源/咖啡入口和二维码面板无横向溢出");
+  await mobile.getByRole("link", { name: "GitHub开源项目" }).waitFor();
+  done("390px摸鱼标题和GitHub入口无横向溢出，游戏没有咖啡二维码入口");
   assert.deepEqual(errors, []);
   await fs.writeFile(
     "test-results/clarity/report.json",

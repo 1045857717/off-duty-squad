@@ -1,7 +1,7 @@
 # Production: pull a published version; no source checkout or build required.
 services:
   off-duty:
-    image: ${IMAGE_REPOSITORY:-ghcr.io/1045857717/off-duty-squad}:${GAME_VERSION:-3.7.0}
+    image: ${IMAGE_REPOSITORY:-ghcr.io/1045857717/off-duty-squad}:${GAME_VERSION:-3.8.0}
     ports:
       - "${PORT:-3000}:3000"
     restart: unless-stopped

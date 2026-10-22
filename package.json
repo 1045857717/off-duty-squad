@@ -1,9 +1,9 @@
 {
   "name": "off-duty-squad",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "private": true,
   "type": "module",
-  "description": "工位发癫局 — 1–4人抽象职场合作闯关 / 随机构筑无尽生存",
+  "description": "薪水小偷 — 1–4人带薪摸鱼合作闯关 / 随机构筑无尽生存",
   "scripts": {
     "dev": "concurrently -k -n server,web -c green,cyan \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
     "build": "tsc --noEmit && vite build",

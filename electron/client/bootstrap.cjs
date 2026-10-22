@@ -35,7 +35,7 @@ else
       height: 500,
       resizable: false,
       autoHideMenuBar: true,
-      title: "下班之前 · 连接服务器",
+      title: "薪水小偷 · 连接服务器",
       webPreferences: {
         preload: path.join(__dirname, "setup-preload.cjs"),
         nodeIntegration: false,

@@ -1,8 +1,8 @@
 <div align="center">
 
-# Off Duty Squad · 工位发癫局
+# Salary Thieves · 薪水小偷
 
-**Tiny paycheck. Outrageous firepower.**
+**The shift belongs to the company. The break belongs to us.**
 
 An AI-implemented 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
 
@@ -137,7 +137,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.7.0**. This release adds innate attacks for all 28 professions, aligned contact/grips, clearer life/shields, project/coffee links and AI development history. See [3.7 notes](docs/RELEASE-3.7.md); see [published image and artifact verification](docs/PUBLISHED-3.7.md) for anonymous pull, both architectures, innate attacks and two-client messaging.
+Current version: **3.8.0**. This release introduces the Salary Thieves identity and paid-break satire, and keeps coffee support on GitHub. In-game profession basics and combat retain the verified 3.7 pipeline. See [3.8 notes](docs/RELEASE-3.8.md); publication results follow the matching release verification.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [3.7 frame-rate measurements](docs/PERFORMANCE-3.7.md) and the [dense-scene baseline](docs/PERFORMANCE-3.4.md).
@@ -157,7 +157,7 @@ Sponsor placements appear in the lobby rather than combat. Advertising contact: 
 
 Optional support; all gameplay remains available. This is the original author-provided payment image. Click it to view full size.
 
-<a href="public/wechat-coffee.png"><img src="public/wechat-coffee.png" alt="Author-provided WeChat coffee support QR" width="360" /></a>
+<a href="docs/support/wechat-coffee.png"><img src="docs/support/wechat-coffee.png" alt="Author-provided WeChat coffee support QR" width="360" /></a>
 
 [Support details](docs/SUPPORT.md)
 

@@ -4,7 +4,7 @@ const port = Number(process.env.PORT) || 3000;
 const server = createServer();
 server.http.listen(port, "0.0.0.0", () => {
   console.log(
-    `\n  BEFORE CLOCKING OUT · 工位发癫局 ${APP_VERSION}\n  本机：http://localhost:${port}`,
+    `\n  SALARY THIEVES · 薪水小偷 ${APP_VERSION}\n  本机：http://localhost:${port}`,
   );
   if (process.env.PUBLIC_URL)
     console.log(`  公网入口：${process.env.PUBLIC_URL}`);

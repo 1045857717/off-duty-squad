@@ -1,4 +1,4 @@
-import { ProjectLinks, CoffeeSupport } from "./ProjectSupport";
+import { ProjectLinks } from "./ProjectSupport";
 import { CodexPanel } from "./CodexPanel";
 import { FieldGuide } from "./FieldGuide";
 import { MissionBrief, CombatFeedback } from "./FeedbackUI";
@@ -52,7 +52,6 @@ import { TeamPanel } from "./TeamPanel";
 import { GameHUD, StageOverlay, TouchControls } from "./GameHUD";
 
 type Panel =
-  | "coffee"
   | "desktop"
   | "create"
   | "join"
@@ -118,7 +117,7 @@ export default function App() {
   ]);
   useEffect(() => {
     if (hidden || floating.concealed) document.title = "项目协作工作台";
-    else if (!boss) document.title = "下班之前 · BEFORE CLOCKING OUT";
+    else if (!boss) document.title = "薪水小偷 · SALARY THIEVES";
   }, [hidden, boss, floating.concealed]);
   useEffect(() => {
     if (IS_FLOATING) update({ compact: true });
@@ -512,7 +511,7 @@ export default function App() {
         <nav className="sidebar" aria-label="主导航">
           <button
             className="brand-mark"
-            title="下班之前"
+            title="薪水小偷"
             aria-label="行动基地"
             onClick={() => {
               setBrief(false);
@@ -593,9 +592,9 @@ export default function App() {
         <div className="workspace">
           <header className="topbar">
             <div className="wordmark">
-              下班之前
+              薪水小偷
               <span>
-                BEFORE CLOCKING OUT <b>®</b>
+                SALARY THIEVES <b>CO-OP</b>
               </span>
             </div>
             <span className="header-divider" />
@@ -752,16 +751,16 @@ export default function App() {
               <div>
                 <div className="eyebrow">
                   <span />
-                  BEFORE CLOCKING OUT / OFFICE SURVIVAL / CO-OP
+                  SALARY THIEVES / PAID BREAK / CO-OP
                 </div>
                 <h1>
-                  月薪三千，<span>火力三亿。</span>
+                  班是公司的，<span>鱼是自己的。</span>
                 </h1>
               </div>
               <div className="heading-aside">
-                <strong>今日绩效：把加班怪优化掉</strong>
-                <span>老板画饼，我来清屏。</span>
-                <ProjectLinks onCoffee={() => setPanel("coffee")} />
+                <strong>今日收益：工资照领，鱼照摸</strong>
+                <span>摸到的鱼，才算自己挣到的。</span>
+                <ProjectLinks />
                 <button className="text-btn" onClick={() => setPanel("help")}>
                   第一次来？<span>看看怎么玩</span>
                   <Icon name="arrow" size={14} />
@@ -1135,7 +1134,7 @@ export default function App() {
                 一人走得快，一起下班更快乐。
               </span>
               <span>
-                MADE FOR YOUR LITTLE BREAK <i>✳</i> BEFORE CLOCKING OUT / 2026
+                MADE FOR YOUR LITTLE BREAK <i>✳</i> SALARY THIEVES / 2026
               </span>
             </footer>
           </main>
@@ -1143,7 +1142,7 @@ export default function App() {
         <div className="compact-bar">
           <span className="compact-title">
             <i />
-            下班之前{s && <small>{s.code}</small>}
+            薪水小偷{s && <small>{s.code}</small>}
           </span>
           <div>
             <button
@@ -1354,7 +1353,6 @@ export default function App() {
         </Modal>
       )}
       {brief && <MissionBrief state={s} mode={gameMode} onClose={closeBrief} />}
-      {panel === "coffee" && <CoffeeSupport onClose={close} />}
       {panel === "desktop" && (
         <DesktopDownload onClose={() => setPanel(null)} />
       )}

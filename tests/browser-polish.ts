@@ -331,7 +331,10 @@ try {
   await host.keyboard.press("F10");
   const veil = host.locator(".hidden-veil");
   await veil.waitFor();
-  assert.doesNotMatch(await veil.innerText(), /游戏|怪物|联机|房间|角色/);
+  assert.doesNotMatch(
+    await veil.innerText(),
+    /游戏|怪物|联机|房间|角色|薪水小偷|SALARY THIEVES/,
+  );
   assert.equal(await host.title(), "项目协作工作台");
   await veil.getByRole("button", { name: /继续/ }).click();
   await host.waitForTimeout(100);

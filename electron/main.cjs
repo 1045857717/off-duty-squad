@@ -123,7 +123,7 @@ async function create() {
     resizable: false,
     alwaysOnTop: true,
     show: false,
-    title: "下班之前 · BEFORE CLOCKING OUT",
+    title: "薪水小偷 · SALARY THIEVES",
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
       nodeIntegration: false,
@@ -351,7 +351,7 @@ if (!app.requestSingleInstanceLock()) {
         return;
       }
       const { dialog } = require("electron");
-      dialog.showErrorBox("下班之前无法启动", String(err.message || err));
+      dialog.showErrorBox("薪水小偷无法启动", String(err.message || err));
       app.quit();
     }
   });

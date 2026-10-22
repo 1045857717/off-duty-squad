@@ -79,11 +79,11 @@ try {
     b = await open("公屏工友B"),
     viewer = await open("板凳观众"),
     outside = await open("围观工友");
-  assert.match(await a.locator(".page-heading h1").innerText(), /月薪三千/);
-  assert.match(await a.locator(".page-heading h1").innerText(), /火力三亿/);
+  assert.match(await a.locator(".page-heading h1").innerText(), /班是公司的/);
+  assert.match(await a.locator(".page-heading h1").innerText(), /鱼是自己的/);
   assert.match(
     await a.locator(".heading-aside").innerText(),
-    /老板画饼，我来清屏/,
+    /摸到的鱼，才算自己挣到的/,
   );
   await say(a, "工资没涨，先涨点战斗力");
   await publicLog(b)

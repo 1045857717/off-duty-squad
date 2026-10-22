@@ -22,7 +22,13 @@ This document records observable work and design changes. Early iterations are r
 | Readability            | Unclear health/damage and obstructive UI                       | Separate health/shields, damage sources, critical hits, collapsible objectives and transparent feeds/rankings            |
 | Releases               | Professional bilingual docs and Docker updates                 | MIT, CI, stable tags, portable Windows package, multi-platform GHCR images and artifact checks                           |
 | Public chat            | Keep public communication after entering rooms                 | Public/squad tabs, timestamps, unread badges, drafts, Chinese IME, scroll locking and cross-room/spectator checks        |
-| Current iteration      | Innate attacks, clearer combat, support links                  | Independent profession basics, contact timing/tool geometry, local foot-level vitals, GitHub and optional coffee support |
+| 3.7 combat iteration   | Innate attacks, clearer combat, support links                  | Independent profession basics, contact timing/tool geometry, local foot-level vitals, GitHub and optional coffee support |
+
+## 3.8 author-directed branding correction
+
+The author steered the theme toward paid breaks as personally earned income. The game is now Salary Thieves / 薪水小偷, with the slogan “班是公司的，鱼是自己的。” Coffee support was explicitly requested on GitHub, so the in-game coffee panel was removed and the original QR moved into documentation for README/support display.
+
+Publishing used the author’s existing local GitHub CLI login in the system credential store; Actions uses its automatically supplied GITHUB_TOKEN for releases. When local Git TLS failed, the same authorization transferred Git objects through the Git Data API while verifying identical tree, commit and tag SHAs.
 
 ## A concrete iteration
 

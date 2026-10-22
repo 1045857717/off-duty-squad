@@ -48,7 +48,7 @@ export function DesktopDownload({ onClose }: { onClose: () => void }) {
         </div>
         <ol>
           <li>下载并解压 Windows x64 便携包，无需安装 Node。</li>
-          <li>运行「下班之前.exe」，输入下方同一个服务器地址。</li>
+          <li>运行「薪水小偷.exe」，输入下方同一个服务器地址。</li>
           <li>
             加入同一个房间；F9 迷你窗口，F10 隐藏，Ctrl+Shift+B 全局恢复。
           </li>

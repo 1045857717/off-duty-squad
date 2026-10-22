@@ -31,14 +31,14 @@ Images receive exact `X.Y.Z` and convenience `latest` tags. Pin the exact versio
 Update the changelog and relevant docs:
 
 ```bash
-# package.json is currently 3.7.0; bump when preparing the next patch.
+# package.json is currently 3.8.0; bump when preparing the next patch.
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
-npm run release:check -- --tag v3.7.1
+npm run release:check -- --tag v3.8.1
 
 git add .
-git commit -m "chore(release): prepare v3.7.1"
+git commit -m "chore(release): prepare v3.8.1"
 git push origin main
 gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --limit 5
 ```
@@ -46,8 +46,8 @@ gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --l
 Replace the example version with your intended version. Wait for CI on the exact main commit, then tag:
 
 ```bash
-git tag -a v3.7.1 -m "Off Duty Squad v3.7.1"
-git push origin v3.7.1
+git tag -a v3.8.1 -m "Salary Thieves v3.8.1"
+git push origin v3.8.1
 gh run list --workflow release.yml --limit 5
 # Substitute the run ID returned above:
 gh run watch RUN_ID --exit-status
@@ -91,7 +91,7 @@ The READMEs include real screenshots, bilingual navigation, status badges and St
 ## 已发布镜像复验 / Verify an existing published image
 
 ```bash
-gh workflow run verify-release.yml --ref main --field version=3.7.0
+gh workflow run verify-release.yml --ref main --field version=3.8.0
 ```
 
 此工作流拉取指定版本并在 Linux amd64 / arm64 上执行真实双客户端检查；ARM64 使用 GitHub Linux 测试环境的 QEMU。它不会重建或覆盖已发布镜像。This checks the existing version on both platforms without rebuilding or replacing it.

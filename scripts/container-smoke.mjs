@@ -66,8 +66,18 @@ try {
   const page = await fetch(base);
   assert.equal(page.status, 200);
   assert.match(await page.text(), /<html/i);
-  const qr = Buffer.from(
-    await (await fetch(base + "/wechat-coffee.png")).arrayBuffer(),
+  const qr = readFileSync(
+    new URL("../docs/support/wechat-coffee.png", import.meta.url),
+  );
+  assert.equal(
+    docker(
+      "exec",
+      name,
+      "node",
+      "-e",
+      "console.log(require('node:fs').existsSync('/app/dist/wechat-coffee.png'))",
+    ),
+    "false",
   );
   assert.equal(
     createHash("sha256").update(qr).digest("hex"),
@@ -236,7 +246,8 @@ try {
       chat: true,
       publicChat: true,
       innateBasicAttack: true,
-      qrImage: true,
+      githubSupportQR: true,
+      gameQRCodeAbsent: true,
       privatePublicIsolation: true,
       countdownAndDraft: true,
       scorePersistence: true,
