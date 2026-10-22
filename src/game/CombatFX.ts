@@ -1,5 +1,8 @@
 import Phaser from "phaser";
+import type { CombatGraphics } from "./CombatGraphics";
 import type { Effect, Ability } from "../../shared/types";
+import { effectStamp, meleeRibbon } from "./combatGeometry";
+import { ensureCombatTextures } from "./combatTextures40";
 type Particle = {
   image: Phaser.GameObjects.Image;
   born: number;
@@ -9,11 +12,34 @@ type Particle = {
   vx: number;
   vy: number;
   spin: number;
+  angle: number;
   size: number;
   active: boolean;
   shape: string;
 };
 const tint = (s: string) => parseInt(s.slice(1), 16);
+const ABILITY_FAMILIES: Record<string, Ability> = {
+  decoy: "chain",
+  supply: "mend",
+  wok: "nova",
+  sanitize: "frost",
+  bell: "aegis",
+  rush: "volley",
+  flash: "nova",
+  injunction: "reaper",
+  stampede: "volley",
+  takeblame: "nova",
+  paidbreak: "mend",
+  paperstorm: "orbit",
+  quack: "chain",
+  crunch: "nova",
+  espresso: "mend",
+  bugfix: "frost",
+  pie: "nova",
+  funding: "chain",
+  slides: "orbit",
+  rent: "reaper",
+};
 export class CombatFX {
   private particles: Particle[] = [];
   private index = 0;
@@ -27,19 +53,25 @@ export class CombatFX {
   private stampIndex = 0;
   private lastAttackStamp = -1000;
   constructor(private scene: Phaser.Scene) {
+    const atlas = ensureCombatTextures(scene);
     for (let i = 0; i < 28; i++)
       this.stamps.push({
         image: scene.add
-          .image(0, 0, "art-fx-atlas", 0)
+          .image(0, 0, atlas, "impact")
           .setVisible(false)
           .setDepth(62)
-          .setBlendMode(Phaser.BlendModes.ADD),
+          .setBlendMode(Phaser.BlendModes.NORMAL),
         born: 0,
         life: 0,
         size: 0,
         active: false,
       });
-    for (const type of ["spark", "cross", "shard", "blade", "snow", "hex"]) {
+    const glyphs = ["spark", "cross", "shard", "blade", "snow", "hex"];
+    const glyphCanvas = document.createElement("canvas");
+    glyphCanvas.width = glyphs.length * 40;
+    glyphCanvas.height = 40;
+    const glyphCtx = glyphCanvas.getContext("2d")!;
+    for (const type of glyphs) {
       const c = document.createElement("canvas");
       c.width = 40;
       c.height = 40;
@@ -103,12 +135,18 @@ export class CombatFX {
         ctx.closePath();
         ctx.fill();
       }
-      if (!scene.textures.exists("fx-" + type))
-        scene.textures.addCanvas("fx-" + type, c);
+      glyphCtx.drawImage(c, glyphs.indexOf(type) * 40, 0);
+    }
+    if (!scene.textures.exists("combat-particles40")) {
+      const glyphAtlas = scene.textures.addCanvas(
+        "combat-particles40",
+        glyphCanvas,
+      )!;
+      glyphs.forEach((name, i) => glyphAtlas.add(name, 0, i * 40, 0, 40, 40));
     }
     for (let i = 0; i < 360; i++) {
       const image = scene.add
-        .image(0, 0, "fx-spark")
+        .image(0, 0, "combat-particles40", "spark")
         .setVisible(false)
         .setDepth(66)
         .setBlendMode(Phaser.BlendModes.ADD);
@@ -121,6 +159,7 @@ export class CombatFX {
         vx: 0,
         vy: 0,
         spin: 0,
+        angle: 0,
         size: 0,
         active: false,
         shape: "spark",
@@ -152,12 +191,13 @@ export class CombatFX {
         vx: Math.cos(a) * v,
         vy: Math.sin(a) * v,
         spin: (jitter - 0.5) * 4,
+        angle: a,
         size: size * (0.65 + jitter * 0.7),
         active: true,
         shape,
       });
       p.image
-        .setTexture("fx-" + shape)
+        .setTexture("combat-particles40", shape)
         .setTint(tint(e.color))
         .setPosition(p.x, p.y)
         .setVisible(true)
@@ -168,30 +208,9 @@ export class CombatFX {
   }
   burst(e: Effect, time: number, reduced = false) {
     this.stamp(e, time, reduced);
-    const aliases: Record<string, Ability> = {
-      decoy: "chain",
-      supply: "mend",
-      wok: "nova",
-      sanitize: "frost",
-      bell: "aegis",
-      rush: "volley",
-      flash: "nova",
-      injunction: "reaper",
-      stampede: "volley",
-      takeblame: "nova",
-      paidbreak: "mend",
-      paperstorm: "orbit",
-      quack: "chain",
-      crunch: "nova",
-      espresso: "mend",
-      bugfix: "frost",
-      pie: "nova",
-      funding: "chain",
-      slides: "orbit",
-      rent: "reaper",
-    };
-    if (e.ability && aliases[e.ability])
-      e = { ...e, ability: aliases[e.ability] };
+
+    if (e.ability && ABILITY_FAMILIES[e.ability])
+      e = { ...e, ability: ABILITY_FAMILIES[e.ability] };
     const c = (n: number) => (reduced ? Math.ceil(n * 0.4) : n);
     if (e.critical && e.kind === "hit") {
       this.emit(e, time, "spark", c(18), 200, 11, 0.4);
@@ -287,81 +306,33 @@ export class CombatFX {
     }
   }
   private stamp(e: Effect, time: number, reduced: boolean) {
-    if (
-      e.warning ||
-      e.kind === "death" ||
-      e.kind === "rescue" ||
-      (e.kind === "attack" && !!e.attackSkill && e.owner !== "enemy")
-    )
-      return;
+    const shape = effectStamp(e);
+    if (!shape || (reduced && e.kind !== "skill" && !e.critical)) return;
     if (e.attackSkill) {
       if (time - this.lastAttackStamp < 45) return;
       this.lastAttackStamp = time;
     }
-    const ability = e.ability,
-      attack = e.attackSkill;
-    let shape = "slash";
-    if (e.critical) shape = "critical";
-    else if (
-      e.kind === "heal" ||
-      ["mend", "supply", "paidbreak"].includes(ability || "")
-    )
-      shape = "heal";
-    else if (["aegis", "injunction", "takeblame"].includes(ability || ""))
-      shape = "shield";
-    else if (["frost", "bugfix"].includes(ability || "") || attack === "frost")
-      shape = "frost";
-    else if (
-      ["sanitize"].includes(ability || "") ||
-      attack === "venom" ||
-      attack === "gravity"
-    )
-      shape = "mist";
-    else if (
-      ["chain", "decoy", "quack"].includes(ability || "") ||
-      attack === "arc" ||
-      attack === "ricochet"
-    )
-      shape = "electric";
-    else if (
-      ability === "espresso" ||
-      attack === "coffee" ||
-      attack === "flame"
-    )
-      shape = "coffee";
-    if (e.kind === "hit" && !e.critical) return;
-    if (reduced && e.kind !== "skill" && !e.critical) return;
     const p = this.stamps[this.stampIndex++ % this.stamps.length];
-    const size =
-      e.kind === "skill"
-        ? Math.min(270, e.size * 1.2)
-        : e.critical
-          ? 64
-          : Math.min(135, Math.max(46, e.size * 0.8));
+    const size = e.critical
+      ? 58
+      : e.kind === "skill"
+        ? Math.min(230, Math.max(90, e.size * 0.95))
+        : Math.min(120, Math.max(44, e.size * 0.8));
     Object.assign(p, {
       born: time,
-      life: e.kind === "skill" ? 650 : 340,
+      life: e.kind === "skill" ? 480 : 240,
       size,
       active: true,
     });
     p.image
-      .setTexture(
-        "art-fx-atlas",
-        [
-          "slash",
-          "electric",
-          "frost",
-          "mist",
-          "shield",
-          "coffee",
-          "critical",
-          "heal",
-        ].indexOf(shape),
-      )
+      .setTexture("combat-fx-40", shape)
       .setPosition(e.x, e.y)
       .setDisplaySize(size, size)
-      .setRotation(shape === "slash" ? e.angle || 0 : 0)
-      .setAlpha(e.kind === "skill" ? 0.62 : 0.5)
+      .setRotation(
+        shape === "slash" || shape === "electric" ? (e.angle ?? 0) : 0,
+      )
+      .setTint(tint(e.color))
+      .setAlpha(e.kind === "skill" ? 0.6 : 0.8)
       .setVisible(true);
   }
   update(time: number) {
@@ -396,34 +367,12 @@ export class CombatFX {
         .setScale(
           (p.size / 40) * (p.shape === "hex" ? 1 + t * 0.5 : 1 - t * 0.6),
         )
-        .setRotation(p.spin * age);
+        .setRotation(p.angle + p.spin * age);
     }
   }
-  draw(g: Phaser.GameObjects.Graphics, e: Effect, time: number, age: number) {
-    const aliases: Record<string, Ability> = {
-      decoy: "chain",
-      supply: "mend",
-      wok: "nova",
-      sanitize: "frost",
-      bell: "aegis",
-      rush: "volley",
-      flash: "nova",
-      injunction: "reaper",
-      stampede: "volley",
-      takeblame: "nova",
-      paidbreak: "mend",
-      paperstorm: "orbit",
-      quack: "chain",
-      crunch: "nova",
-      espresso: "mend",
-      bugfix: "frost",
-      pie: "nova",
-      funding: "chain",
-      slides: "orbit",
-      rent: "reaper",
-    };
-    if (e.ability && aliases[e.ability])
-      e = { ...e, ability: aliases[e.ability] };
+  draw(g: CombatGraphics, e: Effect, time: number, age: number) {
+    if (e.ability && ABILITY_FAMILIES[e.ability])
+      e = { ...e, ability: ABILITY_FAMILIES[e.ability] };
     const t = Math.max(0, Math.min(1, age / e.maxLife)),
       alpha = 1 - t,
       col = tint(e.color),
@@ -446,22 +395,59 @@ export class CombatFX {
           e.x + Math.cos(a) * far,
           e.y + Math.sin(a) * far,
         );
+      } else if (e.attackSkill === "coffee") {
+        for (let i = 0; i < 9; i++) {
+          const spread = (i - 4) * 0.15,
+            dist = e.size * (0.22 + t * 0.72);
+          g.fillStyle(0x252032, alpha * 0.75).fillEllipse(
+            e.x + Math.cos(a + spread) * dist,
+            e.y + Math.sin(a + spread) * dist,
+            7,
+            5,
+          );
+          g.fillStyle(col, alpha).fillEllipse(
+            e.x + Math.cos(a + spread) * dist,
+            e.y + Math.sin(a + spread) * dist - 1,
+            4,
+            3,
+          );
+        }
+      } else if (e.attackSkill === "wrench" || e.attackSkill === "meteor") {
+        const x = e.x + Math.cos(a) * e.size * 0.72,
+          y = e.y + Math.sin(a) * e.size * 0.72;
+        g.lineStyle(3, 0x191827, alpha * 0.8).strokeEllipse(
+          x,
+          y,
+          18 + t * 54,
+          10 + t * 28,
+          24,
+        );
+        g.lineStyle(2, col, alpha).strokeEllipse(
+          x,
+          y,
+          16 + t * 50,
+          9 + t * 26,
+          24,
+        );
+        for (let i = 0; i < 5; i++) {
+          const b = a + (i - 2) * 0.5;
+          g.lineStyle(2, 0xf2dfb2, alpha).lineBetween(
+            x + Math.cos(b) * 8,
+            y + Math.sin(b) * 8,
+            x + Math.cos(b) * (16 + t * 26),
+            y + Math.sin(b) * (16 + t * 26),
+          );
+        }
       } else {
-        const r = e.size * (0.7 + t * 0.3),
-          start = a - 1.05 + t * 0.4,
-          end = a + 0.75 + t * 0.35;
-        g.lineStyle(8, 0x152622, alpha * 0.65)
-          .beginPath()
-          .arc(e.x, e.y - 8, r, start, end, false)
-          .strokePath();
-        g.lineStyle(4, col, alpha * 0.95)
-          .beginPath()
-          .arc(e.x, e.y - 8, r, start, end, false)
-          .strokePath();
-        g.lineStyle(1.5, 0xfff1cf, alpha)
-          .beginPath()
-          .arc(e.x, e.y - 8, r - 2, start, end, false)
-          .strokePath();
+        const points = meleeRibbon(a, e.size, t).map((point) => ({
+          x: e.x + point.x,
+          y: e.y + point.y,
+        }));
+        g.fillStyle(0x171622, alpha * 0.8).fillRibbon(points);
+        g.lineStyle(1.5, 0x171622, alpha).strokePoints(points, true);
+        g.fillStyle(col, alpha * 0.85).fillPoints(points, true);
+        const outer = points.slice(0, 13);
+        g.lineStyle(1.4, 0xffeed2, alpha * 0.9).strokePoints(outer, false);
       }
       return;
     }

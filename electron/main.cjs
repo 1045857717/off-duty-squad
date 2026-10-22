@@ -172,6 +172,29 @@ async function create() {
       `document.dispatchEvent(new KeyboardEvent('keydown',{key:'F9',bubbles:true}))`,
     );
   if (process.argv.includes("--smoke-test")) {
+    const sourceHealth = await (
+      await fetch(new URL("/api/health", url))
+    ).json();
+    const expectedVersion = require("../package.json").version;
+    if (sourceHealth.version !== expectedVersion)
+      throw Error(
+        "Native test must connect to matching GAME_URL: expected " +
+          expectedVersion +
+          ", received " +
+          sourceHealth.version,
+      );
+    const testedDisplay = screen.getDisplayMatching(win.getBounds());
+    console.log(
+      "NATIVE_DISPLAY",
+      JSON.stringify({
+        frequency: testedDisplay.displayFrequency,
+        scaleFactor: testedDisplay.scaleFactor,
+      }),
+    );
+    console.log(
+      "NATIVE_ASSET_SOURCE",
+      JSON.stringify({ origin: url.origin, version: sourceHealth.version }),
+    );
     await new Promise((r) => setTimeout(r, 1600));
     if (process.argv.includes("--perf-test")) {
       await win.webContents.executeJavaScript(
@@ -187,8 +210,10 @@ async function create() {
       );
       await new Promise((r) => setTimeout(r, 1600));
       const perf = await win.webContents.executeJavaScript(
-        `new Promise(resolve=>{let frames=0;const proto=window.Phaser.Renderer.WebGL.WebGLRenderer.prototype,original=proto.render,start=performance.now();proto.render=function(...args){frames++;return original.apply(this,args)};setTimeout(()=>{proto.render=original;resolve({frames,duration:performance.now()-start,fps:frames/((performance.now()-start)/1000),pixelRatio:devicePixelRatio,canvasWidth:document.querySelector('canvas').width,cssWidth:document.querySelector('canvas').getBoundingClientRect().width})},6000)})`,
+        `new Promise(resolve=>{let frames=0,rafs=0,running=true;const tick=()=>{if(running){rafs++;requestAnimationFrame(tick)}};requestAnimationFrame(tick);const proto=window.Phaser.Renderer.WebGL.WebGLRenderer.prototype,original=proto.render,start=performance.now();proto.render=function(...args){frames++;return original.apply(this,args)};setTimeout(()=>{running=false;proto.render=original;resolve({selectedCap:JSON.parse(localStorage.getItem("offduty-settings")||"{}").frameCap,raf:rafs/((performance.now()-start)/1000),phase:window.__OFFDUTY__?.state?.phase,frames,duration:performance.now()-start,fps:frames/((performance.now()-start)/1000),pixelRatio:devicePixelRatio,canvasWidth:document.querySelector('canvas').width,cssWidth:document.querySelector('canvas').getBoundingClientRect().width})},6000)})`,
       );
+      if (perf.phase !== "playing" || perf.frames <= 0)
+        throw Error("Native FPS check did not enter the actual game");
       console.log("NATIVE_HIGH_REFRESH", JSON.stringify(perf));
     }
     // Exercise the actual settings path, including useSettings -> IPC and no

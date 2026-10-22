@@ -11,7 +11,7 @@ import { ENEMY_DEFS, ATTACK_MOTIONS } from "../shared/combatProfiles";
 import { ATTACKS, ATTACK_IDS, attackStats } from "../shared/arsenal";
 import { ATTACK_BRANCHES } from "../shared/growth";
 import { ROLES } from "../shared/content";
-import { careerPortrait } from "../shared/careers";
+import { careerPortrait40 } from "./game/humanArt40";
 import { gameplayModel } from "./game/paintedActors";
 import { Modal, Key } from "./components";
 import { Icon } from "./icons";
@@ -210,7 +210,7 @@ export function CodexPanel({
                       >
                         <img
                           className="codex-portrait"
-                          src={careerPortrait(id)}
+                          src={careerPortrait40(id)}
                           alt=""
                         />
                         <span>
@@ -370,7 +370,7 @@ export function CodexPanel({
                     <header>
                       <img
                         className="codex-role-large"
-                        src={careerPortrait(job)}
+                        src={careerPortrait40(job)}
                         alt={ROLES[job].name}
                       />
                       <div>

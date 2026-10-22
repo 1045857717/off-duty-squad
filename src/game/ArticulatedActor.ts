@@ -11,6 +11,8 @@ import {
   ZOMBIE_DESIGNS,
   zombieGeometry,
   zombiePose,
+  ZOMBIE_DEATH,
+  zombieDeathJoint,
 } from "./zombieRig";
 import { gameplayModel } from "./paintedActors";
 import { directionView, locomotionWeight, windupProgress } from "./actorPose";
@@ -47,6 +49,7 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
   private model: string;
   private batchJointQuads = false;
   private deathPose: { rotation: number; parts: number[][] } | null = null;
+  private enemyFallBase: { y: number; scaleY: number }[] | null = null;
   private geometry(column: number, name: string) {
     return this.enemyKind
       ? zombieGeometry(column, name, this.enemyKind)
@@ -68,6 +71,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
   private phase = 0;
   private clock = new AttackTimeline();
   attackFrame: AttackFrame = this.clock.sample(undefined, -1, 0);
+  castFrame?: AttackFrame;
+  castWeight = 0;
   private gear: Phaser.GameObjects.Image;
   private blink: Phaser.GameObjects.Image;
   private lastTint: number | null = null;
@@ -323,7 +328,15 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
           this.role !== "workhorse" &&
           time % 4300 > 4170,
       );
-    this.setRotation(alive ? 0 : 1.35).setAlpha(connected ? 1 : 0.35);
+    const downRotation = alive ? 0 : 1.35;
+    if (Math.abs(this.rotation - downRotation) > 0.0001)
+      this.setRotation(
+        this.rotation +
+          (downRotation - this.rotation) *
+            (1 - Math.exp(-Math.min(60, dt) / 90)),
+      );
+    else if (this.rotation !== downRotation) this.setRotation(downRotation);
+    this.setAlpha(connected ? 1 : 0.35);
     Object.assign(this.diag, {
       phase: this.phase,
       weight: this.weight,
@@ -392,6 +405,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       assist,
     );
     const signature = SIGNATURE_MOTIONS[p.ability];
+    this.castFrame = undefined;
+    this.castWeight = 0;
     if (cast > 0) {
       const signatureFrame: AttackFrame = {
         id: undefined,
@@ -409,6 +424,8 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
         ),
       };
       signatureFrame.windup = Math.max(0, signatureFrame.windup);
+      this.castFrame = signatureFrame;
+      this.castWeight = cast;
       const signaturePose = articulatedPose(
         this.phase,
         this.weight,
@@ -484,6 +501,7 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       fire: strike,
       windup: !!e.windup,
       attackPhase: motion.progress,
+      form: ZOMBIE_DESIGNS[e.kind].form,
     });
   }
   private flattenBones(bones: Bone[]) {
@@ -547,7 +565,54 @@ export class ArticulatedActor extends Phaser.GameObjects.Container {
       for (const image of layer.images.values())
         value === null ? image.clearTint() : image.setTint(value);
   }
+  private fallEnemy(time: number, born: number) {
+    const kind = this.enemyKind!;
+    if (!this.deathPose) {
+      this.deathPose = {
+        rotation: this.rotation,
+        parts: this.layers.map((layer) =>
+          layer.bones.map((bone) => bone.rotation),
+        ),
+      };
+      this.enemyFallBase = this.layers.map((layer) => ({
+        y: layer.group.y,
+        scaleY: layer.group.scaleY,
+      }));
+    }
+    const t = Math.max(0, Math.min(1, (time - born) / 660)),
+      ease = t * t * (3 - 2 * t),
+      style = ZOMBIE_DEATH[kind],
+      fade = Math.max(0, (t - 0.32) / 0.68),
+      flutter =
+        kind === "mite"
+          ? Math.sin(t * Math.PI * 4) * ease * (1 - ease) * 0.4
+          : 0;
+    this.diag.dying = true;
+    this.diag.fall = t;
+    this.setRotation(this.deathPose.rotation + style.roll * ease).setAlpha(
+      1 - fade * fade * (3 - 2 * fade),
+    );
+    for (let l = 0; l < this.layers.length; l++) {
+      const layer = this.layers[l],
+        base = this.enemyFallBase![l];
+      layer.group
+        .setY(base.y + style.sink * ease)
+        .setScale(layer.group.scaleX, base.scaleY * (1 - style.squash * ease));
+      for (let i = 0; i < layer.bones.length; i++) {
+        const name = this.parts[i].name;
+        layer.bones[i].rotation =
+          this.deathPose.parts[l][i] * (1 - ease * 0.32) +
+          zombieDeathJoint(kind, name, ease) +
+          (name.endsWith("Hand") ? flutter : 0);
+      }
+      this.flattenBones(layer.bones);
+    }
+  }
   fall(time: number, born: number) {
+    if (this.enemyKind) {
+      this.fallEnemy(time, born);
+      return;
+    }
     if (!this.deathPose)
       this.deathPose = {
         rotation: this.rotation,

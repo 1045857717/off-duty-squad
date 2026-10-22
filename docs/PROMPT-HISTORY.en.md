@@ -98,3 +98,10 @@ Convert “make it better” into an observable problem: which element obstructs
 Translated user request: use 带薪摸鱼 for now; suggest alternate names; replace the attendance/survival chat line; make F9 quieter; reduce and align health/build UI; redesign awkward attacks; replace all endless enemies with fully animated zombie models; protect main and retain only the newest Release.
 
 Implementation summary: diagnosed human profession textures in the actual enemy rig, recoil dragging feet, overlapping independently positioned UI and obsolete viewport-height rules clipping the mini canvas. Added dedicated zombie anatomy, grounded attacks/cast blending, a flowing HUD and bounded quiet windows. Main protection is applied through GitHub; source changes use PRs and required CI. Old Release objects are removed only after validating the new release; source tags/images remain.
+
+
+## 4.0 — Reversed effects and visual-world overhaul
+
+Translated request: diagnose the reversed skill effect in the screenshot; overhaul all art and UI with The Spell Brigade as a quality reference; find a useful GitHub design skill/helper; inspect every profession’s melee/ranged action and smooth animation; add office-themed creatures beyond zombies.
+
+Implementation: research official references; use the installed Impeccable design method; create original office-oddity art within the existing Phaser pipeline. Diagnose texture basis, authority-side windup facing, contact curves and particle orientation instead of applying a screenshot-only rotation. Preserve profession basics, permanent Qs, growth prerequisites, multiplayer and windows. Validate actual eight-direction rendering, joint coverage, profession damage and multiplayer flows. The new art is editable Canvas code; no image-model generation is claimed.

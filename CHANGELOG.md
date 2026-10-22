@@ -1,5 +1,26 @@
 # Changelog / 更新日志
 
+## [4.0.0] - 2026-10-23
+
+### Changed / 调整
+
+- Replace the mixed painted/AI-poster visual world with original night-office oddities: cel materials, authored six-view articulated people, role-specific tools, restrained brass/verdigris/coral UI and a live lobby scene.
+- Redesign lobby/readiness/professions/codex/guide/settings/results/combat HUD with shared typography and materials; self-host an OFL Chinese heading subset.
+- Add office-themed paper/printer/cabinet/meeting/coffee enemies alongside undead crawlers and the executive boss, each with separate silhouette, joint motion, windup, contact and collapse.
+- Match ordinary-attack effects, held tools and projectile shapes to melee, ranged and profession mechanics. Keep Q and the four growth-tree slots independent.
+
+### Fixed / 修复
+
+- Correct the old slash texture’s intrinsic left-facing orientation and stop radial signatures from using a default directional slash.
+- Capture an ordinary attack’s authoritative facing at windup; use it for body presentation, projectile direction, hit sector and feedback.
+- Rework weapon contact curves to point into the actual hit sector, preserve particle initial angles, blend Q tool motion with the same body pose, and place weapons behind the body when appropriate.
+- Move local world health below the shoes, retain shield/break/loss information, and eliminate unused per-profession full-body compatibility atlases.
+
+### Verification / 验证
+
+- Add eight-direction real-game attack captures, 672 human joint-frame coverage and reproducible 630 enemy-frame/WebGL rig audits. Commands and measured results are recorded in docs/ART-4.0.md and docs/validation-4.0.json.
+
+
 ## 3.9.0 — 2026-10-22
 
 - Name: 带薪摸鱼 / Paid Break Crew; friendly public-chat copy, GitHub-only support QR.

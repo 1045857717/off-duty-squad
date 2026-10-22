@@ -746,6 +746,7 @@ function shoot(
   const crit =
     g.random() < Math.min(0.95, p.crit + ((p.critBoost || 0) > 0 ? 0.18 : 0));
   g.state.bullets.push({
+    basic: false,
     id: ++g.state.serial,
     x: p.x + Math.cos(angle) * 23,
     y: p.y + Math.sin(angle) * 23,
@@ -1144,6 +1145,7 @@ const pendingAttacks = new WeakMap<
     world: number;
     run: string;
     basic?: boolean;
+    angle?: number;
   }[]
 >();
 function motionAvailable(g: Game, p: Player) {
@@ -1173,34 +1175,29 @@ function beginBasic(g: Game, p: Player) {
     player: p.id,
     id: b.weapon,
     basic: true,
+    angle: p.angle,
     release: g.state.elapsed + ATTACK_MOTIONS[b.weapon].duration * 0.0003,
     world: g.state.world.seed,
     run: g.state.runId,
   });
   pendingAttacks.set(g, list);
 }
-function fireBasic(g: Game, p: Player) {
+function fireBasic(g: Game, p: Player, facing = p.angle) {
   const b = ROLE_BASICS[p.role],
     damage = p.damage * b.power;
-  effect(
-    g,
-    p,
-    "attack",
-    p.color,
-    b.ranged ? 52 : Math.min(94, b.range * 0.65),
-    {
-      angle: p.angle,
-      attackSkill: b.weapon,
-      owner: p.id,
-      life: 0.22,
-      maxLife: 0.22,
-    },
-  );
+  effect(g, p, "attack", p.color, b.ranged ? 52 : b.range, {
+    angle: facing,
+    attackSkill: b.weapon,
+    owner: p.id,
+    life: 0.22,
+    maxLife: 0.22,
+  });
   officeNoise(g, p, b.ranged ? 170 : 105, b.name, 0.6);
   if (b.ranged) {
-    shoot(g, p, p.angle, damage);
+    shoot(g, p, facing, damage);
     const bolt = g.state.bullets.at(-1)!;
     bolt.attackSkill = b.weapon;
+    bolt.basic = true;
     bolt.level = 1;
     bolt.life = b.range / 620;
     bolt.color = p.color;
@@ -1209,7 +1206,7 @@ function fireBasic(g: Game, p: Player) {
     for (const e of g.state.enemies) {
       if (e.hp <= 0 || dist(p, e) > b.range || !visible(g, p, e)) continue;
       const angle = Math.atan2(e.y - p.y, e.x - p.x);
-      if (Math.abs(PhaserAngle(angle - p.angle)) > 1.05) continue;
+      if (Math.abs(PhaserAngle(angle - facing)) > 1.05) continue;
       const crit =
         g.random() <
         Math.min(0.95, p.crit + ((p.critBoost || 0) > 0 ? 0.18 : 0));
@@ -1268,7 +1265,7 @@ function releaseAttacks(g: Game) {
     }
     const p = g.state.players.find((p) => p.id === a.player);
     if (p?.alive && p.connected) {
-      if (a.basic) fireBasic(g, p);
+      if (a.basic) fireBasic(g, p, a.angle);
       else if (p.arsenal[a.id]) fireModule(g, p, a.id);
     }
   }
@@ -1461,6 +1458,7 @@ function enemyAttack(g: Game, e: Enemy) {
           ? e.angle + (i * Math.PI * 2) / count
           : e.angle + (i - (count - 1) / 2) * 0.15;
       s.bullets.push({
+        basic: false,
         id: ++s.serial,
         x: e.x,
         y: e.y,

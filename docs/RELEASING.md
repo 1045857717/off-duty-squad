@@ -33,15 +33,15 @@
 更新 CHANGELOG 和说明后运行：
 
 ```bash
-# 当前 package.json 为 3.9.0；准备下一个修复版本时递增。
+# 当前 package.json 为 4.0.0；准备下一个修复版本时递增。
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
-npm run release:check -- --tag v3.9.1
+npm run release:check -- --tag v4.0.1
 
-git switch -c release/3.9.1
+git switch -c release/4.0.1
 git add .
-git commit -m "chore(release): prepare v3.9.1"
+git commit -m "chore(release): prepare v4.0.1"
 git push -u origin HEAD
 gh pr create --base main --fill
 # Merge only after required PR checks succeed, then update local main.
@@ -52,11 +52,11 @@ git pull --ff-only
 gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --limit 5
 ```
 
-示例版本 3.9.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
+示例版本 4.0.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
 
 ```bash
-git tag -a v3.9.1 -m "Paid Break Crew v3.9.1"
-git push origin v3.9.1
+git tag -a v4.0.1 -m "Paid Break Crew v4.0.1"
+git push origin v4.0.1
 gh run list --workflow release.yml --limit 5
 # 使用上条命令返回的 run ID：
 gh run watch RUN_ID --exit-status
@@ -100,7 +100,7 @@ README 提供中英文切换、真实截图、状态徽章和 Star History。CI 
 ## 已发布镜像复验 / Verify an existing published image
 
 ```bash
-gh workflow run verify-release.yml --ref main --field version=3.9.0
+gh workflow run verify-release.yml --ref main --field version=4.0.0
 ```
 
 此工作流拉取指定版本并在 Linux amd64 / arm64 上执行真实双客户端检查；ARM64 使用 GitHub Linux 测试环境的 QEMU。它不会重建或覆盖已发布镜像。This checks the existing version on both platforms without rebuilding or replacing it.

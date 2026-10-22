@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { RoomReply, RoomSummary } from "../shared/types";
 import { Icon } from "./icons";
 export function PublicLobby({
@@ -8,8 +8,10 @@ export function PublicLobby({
   onCreate,
   onJoin,
   online,
+  preview,
 }: {
   online?: number;
+  preview?: ReactNode;
   name: string;
   role: string;
   request: (e: string, d?: unknown) => Promise<RoomReply>;
@@ -45,11 +47,23 @@ export function PublicLobby({
   );
   return (
     <section className="public-lobby" aria-label="公开房间大厅">
+      {preview && (
+        <div className="lobby-observation" aria-label="工友待命实景">
+          {preview}
+          <div className="observation-caption">
+            <span>
+              <i /> 工友待命
+            </span>
+            <p>1–4 人合作 · 随机构筑 · 队友互捞</p>
+          </div>
+          <span className="observation-seal" aria-hidden="true">
+            <Icon name="fish" size={32} />
+            <span>摸鱼有理</span>
+          </span>
+        </div>
+      )}
       <header>
         <div>
-          <span className="eyebrow">
-            <i /> LIVE OPERATIONS / 实时公开房间
-          </span>
           <h2>找齐同事，一起下班。</h2>
           <p>真实房间 · 随时加入 / 观战 · {rooms.length} 条在线信道</p>
           <small className="lobby-online" aria-label="全站在线概况">

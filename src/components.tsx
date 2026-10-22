@@ -74,8 +74,8 @@ export function Modal({
       >
         <div className="modal-heading">
           <div>
-            {eyebrow && <span className="eyebrow">{eyebrow}</span>}
             <h2>{title}</h2>
+            {eyebrow && <span className="modal-context">{eyebrow}</span>}
           </div>
           <button
             className="icon-btn"

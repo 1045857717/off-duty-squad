@@ -10,7 +10,11 @@ import { ROLES, EMPTY_INPUT } from "../shared/content";
 import { ROLE_BASICS } from "../shared/basics";
 import { ROLE_SIGNATURE } from "../shared/arsenal";
 import type { Role } from "../shared/types";
-import { prepareInBrowser, finishDeployment } from "./browser-support";
+import {
+  prepareInBrowser,
+  finishDeployment,
+  readTextContrast,
+} from "./browser-support";
 const dir = mkdtempSync(path.join(tmpdir(), "clarity37-")),
   app = createServer({ dataDir: dir });
 await new Promise<void>((r) => app.http.listen(0, "127.0.0.1", r));
@@ -148,12 +152,21 @@ try {
     me.hp = me.maxHp = ROLES[role].hp;
     me.shield = 0;
     me.rate = 0.32;
+    const intendedAim = await host.evaluate(() => {
+      const scene = (window as any).__rig.scene,
+        ptr = scene.input.activePointer,
+        pos = scene.cameras.main.getWorldPoint(ptr.x, ptr.y),
+        me = window.__OFFDUTY__!.state!.players.find(
+          (p) => p.id === window.__OFFDUTY__!.playerId,
+        )!;
+      return Math.atan2(pos.y - me.y, pos.x - me.x);
+    });
     game.state.enemies = [
       {
         id: 900,
         kind: "tank",
-        x: me.x + Math.cos(me.angle) * 62,
-        y: me.y + Math.sin(me.angle) * 62,
+        x: me.x + Math.cos(intendedAim) * 62,
+        y: me.y + Math.sin(intendedAim) * 62,
         hp: 100000,
         maxHp: 100000,
         speed: 0,
@@ -229,6 +242,23 @@ try {
       Math.min(...active.map((s) => s.arm));
     assert.ok(armRange > 0.18, role + " stiff ordinary arms");
     assert.deepEqual(me.arsenal, {});
+    if (!(me.damageDealt > before)) {
+      await host.screenshot({ path: "test-results/clarity/failure-basic.png" });
+      console.error(
+        "BASIC_DIAGNOSTIC",
+        JSON.stringify({
+          role,
+          x: me.x,
+          y: me.y,
+          angle: me.angle,
+          motion: me.attackMotion,
+          input: game.inputs.get(me.id),
+          target: game.state.enemies[0],
+          bullets: game.state.bullets,
+          effects: game.state.effects.filter((e) => e.owner === me.id),
+        }),
+      );
+    }
     assert.ok(me.damageDealt > before, role + " ordinary did not hit");
     actions[role] = {
       frames: active.length,
@@ -276,11 +306,9 @@ try {
   assert.ok(world.y > world.actorY);
   assert.ok(world.ghost > world.ratio);
   assert.ok(world.label.includes("盾 40"));
-  assert.equal(
-    await host
-      .locator(".innate-attack p")
-      .evaluate((el) => getComputedStyle(el).color),
-    "rgb(49, 81, 79)",
+  assert.ok(
+    (await readTextContrast(host, ".innate-attack p")) >= 4.5,
+    "ordinary attack description must remain readable on the new theme",
   );
   await host.screenshot({ path: "test-results/clarity/vitals.png" });
   done("脚下本机生命条76px并区分自己，护盾独立显示，危险状态与损血拖尾正确");

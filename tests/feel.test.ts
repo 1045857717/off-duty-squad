@@ -165,3 +165,17 @@ test("ordinary fire has a readable held-tool silhouette and recoil at contact", 
   assert.ok(pose.scale >= 0.74);
   assert.ok(pose.recoil >= 5);
 });
+
+test("melee contact points towards the actual strike instead of crossing behind it", () => {
+  for (const id of ["bat", "mop", "wrench", "meteor"] as const)
+    for (let dir = 0; dir < 8; dir++) {
+      const facing = (dir * Math.PI) / 4,
+        clock = new AttackTimeline();
+      clock.sample(id, 1, 0);
+      const frame = clock.sample(id, 1, ATTACK_MOTIONS[id].duration * 0.3);
+      assert.ok(
+        Math.cos(weaponPose(frame, facing).rotation - facing) > 0.85,
+        id + " contact is pointing sideways/backwards",
+      );
+    }
+});

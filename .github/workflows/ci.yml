@@ -71,10 +71,15 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:undead
+      - run: npm run test:art
+      - run: npm run test:rigs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: browser-combat-and-compact-window
-          path: test-results/undead39
+          path: |
+            test-results/undead39
+            test-results/art40
+            test-results/art40-rig-audit
           if-no-files-found: ignore
           retention-days: 7

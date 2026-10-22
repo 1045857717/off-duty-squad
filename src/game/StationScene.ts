@@ -1,4 +1,6 @@
 import { CombatGraphics } from "./CombatGraphics";
+import { ensureRigAtlas } from "./RigAtlas";
+import { projectileVisual } from "./projectileIdentity";
 import { ROLE_BASICS } from "../../shared/basics";
 import { PlayerVitals } from "./PlayerVitals";
 import { WeaponRibbon } from "./WeaponRibbon";
@@ -127,10 +129,11 @@ type Float = {
 };
 const color = (s: string) => parseInt(s.slice(1), 16);
 export class StationScene extends Phaser.Scene {
+  private rigTexture = "joint-atlas-v40";
   private bridge: SceneBridge;
   private map!: Phaser.GameObjects.Image;
-  private fx!: Phaser.GameObjects.Graphics;
-  private weather!: Phaser.GameObjects.Graphics;
+  private fx!: CombatGraphics;
+  private weather!: CombatGraphics;
   private combatFX!: CombatFX;
   private areaRenderer!: AreaRenderer;
   private actors = new Map<string, Actor>();
@@ -178,22 +181,34 @@ export class StationScene extends Phaser.Scene {
     super("station");
     this.bridge = bridge;
   }
-  preload() {
-    for (const model of GAMEPLAY_MODELS)
-      this.load.image(
-        "painted-" + model,
-        "/art/gameplay-v34/" + model + ".png",
-      );
-    this.load.spritesheet("art-fx-atlas", "/art/effects/combat-atlas.png", {
-      frameWidth: 256,
-      frameHeight: 256,
-    });
-  }
+  preload() {}
   create() {
     this.playing = !!this.bridge.state && this.bridge.state.phase !== "lobby";
     const add = (key: string, canvas: HTMLCanvasElement) =>
       this.textures.addCanvas(key, canvas)!;
-    for (const id of ATTACK_IDS) add("tool-" + id, makeOfficeWeapon(id));
+    this.rigTexture = ensureRigAtlas(this);
+    const dash = document.createElement("canvas");
+    dash.width = 96;
+    dash.height = 112;
+    const dc = dash.getContext("2d")!;
+    dc.fillStyle = "#ecf3df";
+    dc.beginPath();
+    dc.ellipse(48, 24, 10, 13, 0, 0, Math.PI * 2);
+    dc.fill();
+    dc.beginPath();
+    dc.moveTo(37, 37);
+    dc.lineTo(60, 37);
+    dc.lineTo(65, 76);
+    dc.lineTo(55, 105);
+    dc.lineTo(47, 105);
+    dc.lineTo(48, 78);
+    dc.lineTo(40, 102);
+    dc.lineTo(31, 102);
+    dc.lineTo(34, 72);
+    dc.lineTo(29, 56);
+    dc.closePath();
+    dc.fill();
+    add("dash-silhouette-40", dash);
     // Actor state still keeps an invisible compatibility sprite. Actual enemies are
     // articulated zombies; avoid allocating seven unused full-body atlases.
     for (const k of Object.keys(ENEMY_DEFS)) {
@@ -351,15 +366,7 @@ export class StationScene extends Phaser.Scene {
       this.game.canvas?.removeEventListener("mousedown", pointer);
       this.game.canvas?.removeEventListener("contextmenu", context);
     });
-    for (let i = 0; i < 14; i++) {
-      const sp = this.add
-        .image(65 + i * 77, 70 + ((i * 137) % 525), "glow")
-        .setScale(0.45)
-        .setAlpha(0.25)
-        .setBlendMode(Phaser.BlendModes.ADD)
-        .setDepth(8);
-      this.environment.push(sp);
-    }
+    // Environment lighting is baked into the furnished floor chunks.
     const font = ensureDamageFont(this);
     for (let i = 0; i < 24; i++) {
       const text = this.add
@@ -430,8 +437,8 @@ export class StationScene extends Phaser.Scene {
             .text(0, 0, name, {
               fontFamily: '"Microsoft YaHei",sans-serif',
               fontSize: "11px",
-              color: "#e5f1d7",
-              stroke: "#153142",
+              color: "#eee5d2",
+              stroke: "#211e2b",
               strokeThickness: 3,
               resolution: 2,
             })
@@ -733,21 +740,14 @@ export class StationScene extends Phaser.Scene {
   }
   private ensureRole(role: Role) {
     if (this.textures.exists("hero-" + role)) return;
-    const atlas = this.textures.addCanvas(
-      "hero-" + role,
-      this.textures.exists("painted-" + gameplayModel(role))
-        ? makePaintedAtlas(
-            this.textures
-              .get("painted-" + gameplayModel(role))
-              .getSourceImage() as HTMLImageElement,
-            role,
-          )
-        : makeDarkHeroAtlas(role),
-    )!;
-    for (let d = 0; d < 8; d++)
-      for (let f = 0; f < 24; f++)
-        atlas.add(d * 24 + f, 0, f * 96, d * 112, 96, 112);
+    // Actual bodies live in the joint atlas; the hidden compatibility sprite needs no 192-frame painted atlas.
+    const placeholder = document.createElement("canvas");
+    placeholder.width = 1;
+    placeholder.height = 1;
+    const atlas = this.textures.addCanvas("hero-" + role, placeholder)!;
+    for (let i = 0; i < 192; i++) atlas.add(i, 0, 0, 0, 1, 1);
   }
+
   private ensureAction(role: Role, rescue: boolean) {
     const key = (rescue ? "assist-" : "action-") + role;
     if (this.textures.exists(key)) return key;
@@ -774,7 +774,7 @@ export class StationScene extends Phaser.Scene {
     if (!a) {
       a = this.actor(p.id, "hero-" + p.role, p.name);
       a.weapon = this.add
-        .image(0, 0, "tool-pulse")
+        .image(0, 0, this.rigTexture, "tool-pulse")
         .setScale(0.5)
         .setOrigin(0.22, 0.5);
       a.muzzle = this.add
@@ -802,8 +802,18 @@ export class StationScene extends Phaser.Scene {
       this.nextFootstep = time + 285;
       this.bridge.sound("step");
     }
-    const targetFacing =
-      p.id === this.bridge.playerId && !preview
+    const actionAge =
+      (this.bridge.state?.elapsed || 0) +
+      this.age -
+      (p.attackMotion?.at ?? -999);
+    const actionLocked =
+      !preview &&
+      p.attackMotion?.source === "basic" &&
+      actionAge >= 0 &&
+      actionAge < ATTACK_MOTIONS[p.attackMotion.id].duration / 1000;
+    const targetFacing = actionLocked
+      ? p.attackMotion!.angle
+      : p.id === this.bridge.playerId && !preview
         ? Math.atan2(this.control.aimY, this.control.aimX)
         : p.angle;
     a.aim = Phaser.Math.Angle.RotateTo(a.aim, targetFacing, dt * 0.022);
@@ -879,8 +889,7 @@ export class StationScene extends Phaser.Scene {
           .image(
             a.x - Math.cos(facing) * i * 15,
             a.y - 10 - Math.sin(facing) * i * 15,
-            "hero-" + p.role,
-            frame,
+            "dash-silhouette-40",
           )
           .setScale(0.68)
           .setTint(color(p.color))
@@ -943,6 +952,17 @@ export class StationScene extends Phaser.Scene {
       ROLE_BASICS[p.role].weapon,
     );
     const transform = weaponPose(motion, facing);
+    const signatureFrame = a.rig!.castFrame;
+    if (signatureFrame) {
+      const casting = weaponPose(signatureFrame, facing);
+      const delta = Math.atan2(
+        Math.sin(casting.rotation - transform.rotation),
+        Math.cos(casting.rotation - transform.rotation),
+      );
+      transform.rotation += delta * a.rig!.castWeight;
+      transform.trail =
+        a.rig!.castWeight > 0.5 ? casting.trail : transform.trail;
+    }
     const hand = a.rig!.handWorld();
     const wx = hand.x;
     const wy = hand.y;
@@ -950,10 +970,17 @@ export class StationScene extends Phaser.Scene {
     const reach = (geometry.tip - geometry.origin * 80) * transform.scale;
     const tipX = wx + Math.cos(transform.rotation) * reach;
     const tipY = wy + Math.sin(transform.rotation) * reach;
-    a.weapon!.setTexture("tool-" + (held || "pulse"))
+    const basicVisual =
+      held === ROLE_BASICS[p.role].weapon &&
+      (!motion.active || p.attackMotion?.source === "basic");
+    a.weapon!.setTexture(
+      this.rigTexture,
+      basicVisual ? "basic-tool-" + p.role : "tool-" + (held || "pulse"),
+    )
       .setOrigin(geometry.origin, 0.5)
       .setPosition(wx, wy)
       .setRotation(transform.rotation)
+      .setDepth(depth + (Math.sin(facing) < -0.2 ? -0.3 : 1))
       .setScale(transform.scale)
       .setFlipY(Math.cos(facing) < 0)
       .setVisible(p.alive && !!held)
@@ -961,6 +988,7 @@ export class StationScene extends Phaser.Scene {
         id: held || "",
         phase: motion.progress,
         active: motion.active,
+        source: basicVisual ? "basic" : "module",
         handX: hand.x,
         handY: hand.y,
         tipX,
@@ -973,22 +1001,37 @@ export class StationScene extends Phaser.Scene {
       time,
       held ? color(ATTACKS[held].color) : 0xeac489,
       this.bridge.settings.lowMotion,
-      depth + 0.8,
+      depth + (Math.sin(facing) < -0.2 ? -0.15 : 0.8),
     );
     a.muzzle!.setPosition(tipX, tipY)
       .setVisible(p.alive && held === "pulse" && motion.strike > 0.45)
       .setAlpha(motion.strike * 0.85)
       .setScale(0.32 + motion.strike * 0.2, 0.17 + motion.strike * 0.1);
     if (a.name) {
-      a.name.setVisible(preview || p.id !== this.bridge.playerId);
+      const localPlayer = this.bridge.state?.players.find(
+        (v) => v.id === this.bridge.playerId,
+      );
+      const wanted =
+        preview ||
+        (p.id !== this.bridge.playerId &&
+          (!localPlayer ||
+            !p.alive ||
+            !p.connected ||
+            p.hp / p.maxHp < 0.35 ||
+            Math.hypot(p.x - localPlayer.x, p.y - localPlayer.y) >
+              (a.name.visible ? 90 : 115)));
+      const target = wanted ? (p.connected ? 1 : 0.4) : 0;
+      const nameAlpha =
+        a.name.alpha + (target - a.name.alpha) * (1 - Math.exp(-dt / 90));
+      a.name.setVisible(wanted || nameAlpha > 0.02);
       const text = (p.id === this.bridge.playerId ? "你 · " : "") + p.name;
       if (a.name.text !== text) a.name.setText(text);
       if (a.name.style.color !== "#fff2da")
         a.name
           .setColor("#fff2da")
-          .setBackgroundColor("#12231f")
-          .setPadding(4, 2);
-      a.name.setPosition(a.x, a.y - 77).setAlpha(p.connected ? 1 : 0.4);
+          .setBackgroundColor("#211e2b")
+          .setPadding(3, 1);
+      a.name.setPosition(a.x, a.y - 77).setAlpha(nameAlpha);
     }
     a.hpBg.setVisible(false);
     a.hp.setVisible(false);
@@ -1211,44 +1254,36 @@ export class StationScene extends Phaser.Scene {
   private drawBullets(s: GameState) {
     const seen = new Set<number>();
     for (const b of s.bullets) {
-      if (b.enemy) {
-        const len = Math.hypot(b.vx, b.vy) || 1,
-          px = b.x + b.vx * this.age,
-          py = b.y + b.vy * this.age;
-        const trail = this.item(
-          "enemy-trail-" + b.id,
-          "bullet",
-          px - (b.vx / len) * 13,
-          py - (b.vy / len) * 13,
-          29,
-          6,
-        );
-        trail.sprite
-          .setRotation(Math.atan2(b.vy, b.vx))
-          .setTint(b.sourceEnemyKind === "shooter" ? 0xb7c484 : 0xf1a77a)
-          .setAlpha(0.5)
-          .setDepth(64);
-      }
       seen.add(b.id);
       let sp = this.bullets.get(b.id);
       if (!sp) {
-        sp = this.add.image(0, 0, "bullet").setDepth(65);
+        sp = this.add
+          .image(0, 0, "bullet")
+          .setDepth(65)
+          .setOrigin(2 / 3, 0.5);
         this.bullets.set(b.id, sp);
       }
-      sp.setPosition(b.x + b.vx * this.age, b.y + b.vy * this.age)
-        .setRotation(Math.atan2(b.vy, b.vx))
-        .setDisplaySize(
-          b.enemy ? 18 : 20 + (b.level || 1) * 1.2,
-          b.enemy ? 9 : 4 + (b.level || 1) * 0.15,
-        )
-        .setTint(
-          b.enemy
-            ? b.sourceEnemyKind === "shooter"
-              ? 0xd1dc97
-              : 0xffe6bf
-            : color(b.color),
-        )
-        .setAlpha(0.95);
+      const owner = s.players.find((p) => p.id === b.owner);
+      const shape = projectileVisual(b, owner?.role);
+      const frame = "projectile-" + shape;
+      if (sp.frame.name !== frame || sp.getData("level") !== (b.level || 1)) {
+        sp.setTexture(this.rigTexture, frame)
+          .setData("level", b.level || 1)
+          .setDisplaySize(
+            (b.enemy
+              ? 23
+              : shape === "coin"
+                ? 21
+                : 26 + Math.min(8, b.level || 1)) * 1.5,
+            b.enemy ? 15 : shape === "ricochet" ? 16 : 15,
+          )
+          .setTint(0xffffff)
+          .setAlpha(0.95);
+      }
+      sp.setPosition(
+        b.x + b.vx * this.age,
+        b.y + b.vy * this.age - 10,
+      ).setRotation(Math.atan2(b.vy, b.vx));
     }
     for (const [id, sp] of this.bullets)
       if (!seen.has(id)) {
@@ -1817,6 +1852,19 @@ export class StationScene extends Phaser.Scene {
             .setFontSize(e.critical ? 22 : 15)
             .setVisible(true)
             .setAlpha(1);
+          const own = this.actors.get(this.bridge.playerId)?.vitals;
+          if (own?.visible) {
+            const b = own.getBounds(),
+              pad = float.text.width / 2 + 12;
+            if (
+              float.x > b.left - pad &&
+              float.x < b.right + pad &&
+              float.y + 12 > b.top &&
+              float.y - 38 < b.bottom
+            ) {
+              float.x = float.x < own.x ? b.left - pad : b.right + pad;
+            }
+          }
         }
         if (
           ["death", "collect", "heal", "skill"].includes(e.kind) ||
@@ -1884,7 +1932,14 @@ export class StationScene extends Phaser.Scene {
     }
     const ptr = this.input.activePointer;
     let fire = ptr.leftButtonDown() || t.fire;
-    if (time - this.aimAt > 25) {
+    if (ptr.leftButtonDown()) {
+      // Manual aim and the fire edge must enter the same network packet.
+      const pos = ptr.positionToCamera(
+        this.cameras.main,
+      ) as Phaser.Math.Vector2;
+      this.aim = { x: pos.x - me.x, y: pos.y - me.y };
+      this.control.fire = fire;
+    } else if (time - this.aimAt > 25) {
       this.aimAt = time;
       let nearest: Vec | undefined,
         best = 470 * 470;
@@ -1913,11 +1968,6 @@ export class StationScene extends Phaser.Scene {
       ) {
         this.aim = { x: nearest.x - me.x, y: nearest.y - me.y };
         fire = true;
-      } else if (ptr.leftButtonDown()) {
-        const pos = ptr.positionToCamera(
-          this.cameras.main,
-        ) as Phaser.Math.Vector2;
-        this.aim = { x: pos.x - me.x, y: pos.y - me.y };
       } else if (len > 0) this.aim = this.movementFacing.sample(x, y, time);
       this.control.fire = fire;
     }
@@ -1928,7 +1978,7 @@ export class StationScene extends Phaser.Scene {
       y,
       aimX: this.aim.x / al,
       aimY: this.aim.y / al,
-      fire: fire || old.fire,
+      fire: fire || ((this.bridge.settings.autoFire || t.fire) && old.fire),
       dash: t.dash || this.pendingDash,
       skill: t.skill || this.pendingSkill,
       interact: this.held.has("KeyE") || t.interact,

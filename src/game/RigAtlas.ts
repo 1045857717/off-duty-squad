@@ -5,24 +5,44 @@ import {
   zombieGeometry,
   paintZombiePart,
 } from "./zombieRig";
-import type { EnemyKind } from "../../shared/types";
+import type { EnemyKind, Role } from "../../shared/types";
+import { ATTACK_IDS } from "../../shared/arsenal";
+import { makeProfessionTool, makeProjectile } from "./professionTools40";
+import { makeOfficeWeapon } from "./officeHero";
+import { PROJECTILE_KINDS40 } from "./projectileIdentity";
 import { GAMEPLAY_MODELS } from "./paintedActors";
 import { JOINT_PARTS, rigPartGeometry } from "./joints";
+import { paintHumanPart } from "./humanArt40";
 import { ROLES } from "../../shared/content";
 import { ENEMY_DEFS } from "../../shared/combatProfiles";
 /** One bounded atlas for human/undead joints; each dimension stays below4096. */
 export function ensureRigAtlas(scene: Phaser.Scene) {
-  const key = "joint-atlas-v39";
+  const key = "joint-atlas-v40";
   if (scene.textures.exists(key)) return key;
   const props = [
     ...Object.keys(ROLES),
     ...Object.keys(ENEMY_DEFS).map((k) => "enemy-" + k),
     "blink",
   ];
+  const tools = [
+    ...ATTACK_IDS.map((id) => ({
+      key: "tool-" + id,
+      canvas: makeOfficeWeapon(id),
+    })),
+    ...(Object.keys(ROLES) as Role[]).map((role) => ({
+      key: "basic-tool-" + role,
+      canvas: makeProfessionTool(role),
+    })),
+    ...PROJECTILE_KINDS40.map((kind) => ({
+      key: "projectile-" + kind,
+      canvas: makeProjectile(kind),
+    })),
+  ];
   const count =
     GAMEPLAY_MODELS.length * 6 * JOINT_PARTS.length +
     Object.keys(ZOMBIE_DESIGNS).length * 6 * ZOMBIE_PARTS.length +
-    props.length;
+    props.length +
+    tools.length;
   const canvas = document.createElement("canvas");
   const columns = 40;
   canvas.width = columns * 96;
@@ -33,9 +53,6 @@ export function ensureRigAtlas(scene: Phaser.Scene) {
   let slot = 0;
   const temp = document.createElement("canvas");
   for (const model of GAMEPLAY_MODELS) {
-    const image = scene.textures
-      .get("painted-" + model)
-      .getSourceImage() as HTMLImageElement;
     for (let col = 0; col < 6; col++)
       for (const part of JOINT_PARTS) {
         const geometry = rigPartGeometry(col, part.name, model),
@@ -45,58 +62,10 @@ export function ensureRigAtlas(scene: Phaser.Scene) {
         temp.width = w;
         temp.height = h;
         const t = temp.getContext("2d")!;
-        t.drawImage(
-          image,
-          col * 256 + rx * 256,
-          ry * 320,
-          rw * 256,
-          rh * 320,
-          0,
-          0,
-          w,
-          h,
-        );
-        const point = (x: number, y: number): [number, number] => [
-          ((x - rx) / rw) * w,
-          ((y - ry) / rh) * h,
-        ];
-        // Remove the baked near arm from a profile torso before articulating it.
-        if (part.name === "torso" && col === 2) {
-          const x = ((0.405 - rx) / rw) * w,
-            band = (0.095 / rw) * w;
-          t.drawImage(
-            image,
-            col * 256 + 0.545 * 256,
-            ry * 320,
-            0.018 * 256,
-            rh * 320,
-            x,
-            0,
-            band,
-            h,
-          );
-        }
-        if (geometry.polygon) {
-          t.globalCompositeOperation = "destination-in";
-          t.fillStyle = "#fff";
-          t.beginPath();
-          geometry.polygon.forEach((p, i) => {
-            const q = point(...p);
-            if (i) t.lineTo(...q);
-            else t.moveTo(...q);
-          });
-          t.closePath();
-          t.fill();
-        } else if (geometry.tip && geometry.radius) {
-          t.globalCompositeOperation = "destination-in";
-          t.strokeStyle = "#fff";
-          t.lineWidth = geometry.radius * 2 * 126;
-          t.lineCap = "round";
-          t.beginPath();
-          t.moveTo(...point(...geometry.pivot));
-          t.lineTo(...point(...geometry.tip));
-          t.stroke();
-        }
+        t.save();
+        t.translate(-rx * 126, -ry * 157.5);
+        paintHumanPart(t, model, col, part.name, geometry);
+        t.restore();
         const x = (slot % columns) * 96,
           y = Math.floor(slot / columns) * 112;
         slot++;
@@ -134,6 +103,13 @@ export function ensureRigAtlas(scene: Phaser.Scene) {
     drawProp(c, prop);
     c.restore();
     rects["prop-" + prop] = { x, y, w: 96, h: 112 };
+  }
+  for (const tool of tools) {
+    const x = (slot % columns) * 96,
+      y = Math.floor(slot / columns) * 112;
+    slot++;
+    c.drawImage(tool.canvas, x, y);
+    rects[tool.key] = { x, y, w: tool.canvas.width, h: tool.canvas.height };
   }
   const atlas = scene.textures.addCanvas(key, canvas)!;
   for (const [id, r] of Object.entries(rects))

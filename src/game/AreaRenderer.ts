@@ -6,10 +6,10 @@ type Visual = {
   seen: number;
 };
 const COLORS = {
-  orbit: "#c4b4ec",
-  venom: "#add47c",
-  gravity: "#c09de6",
-  flame: "#f1a16e",
+  orbit: "#b9adca",
+  venom: "#8fb79d",
+  gravity: "#b29bc9",
+  flame: "#df9c73",
 };
 // Outlines are rasterized once; hundreds of animated curves become two cheap
 // textured quads per area. The texture radius maps exactly to server radius.

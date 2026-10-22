@@ -1,0 +1,294 @@
+{
+  "version": "4.0.0",
+  "started": "2026-10-22",
+  "completedLocal": "2026-10-23",
+  "core": {
+    "tests": 127,
+    "passed": 127,
+    "releaseTests": 5,
+    "releasePassed": 5,
+    "types": true,
+    "productionBuild": true
+  },
+  "browserSuites": [
+    {
+      "file": "browser-art40.ts",
+      "code": 0,
+      "ms": 20211
+    },
+    {
+      "file": "art40-rig-audit.mjs",
+      "code": 0,
+      "ms": 4639
+    },
+    {
+      "file": "browser-clarity.ts",
+      "code": 0,
+      "ms": 54908
+    },
+    {
+      "file": "browser-feel.ts",
+      "code": 0,
+      "ms": 39660
+    },
+    {
+      "file": "browser-feedback.ts",
+      "code": 0,
+      "ms": 67115
+    },
+    {
+      "file": "browser-polish.ts",
+      "code": 0,
+      "ms": 39164
+    },
+    {
+      "file": "browser-community.ts",
+      "code": 0,
+      "ms": 18866
+    },
+    {
+      "file": "browser-quiet-undead.ts",
+      "code": 0,
+      "ms": 21276
+    },
+    {
+      "file": "browser-comedy.ts",
+      "code": 0,
+      "ms": 20574
+    }
+  ],
+  "latestRendererRechecks": [
+    "test:art",
+    "test:clarity",
+    "test:undead",
+    "test:polish"
+  ],
+  "coverage": {
+    "professions": 28,
+    "ordinaryIndependent": true,
+    "signatures": 28,
+    "randomModules": 16,
+    "directions": 8,
+    "renderedProjectileIdentities": 9,
+    "projectileMaterials": 22,
+    "humanFrames": 672,
+    "enemyFrames": 630,
+    "enemyViews": 6,
+    "enemyJoints": 15,
+    "playerJoints": 14,
+    "atlas": [
+      3840,
+      4032
+    ],
+    "enemyRuntime": {
+      "actors": 42,
+      "renderer": "WebGL",
+      "atlas": {
+        "key": "joint-atlas-v40",
+        "width": 3840,
+        "height": 4032
+      },
+      "invalid": [],
+      "continuityFailures": []
+    },
+    "enemySamples": {
+      "directionSamples": 56,
+      "deathSamples": 35,
+      "idleSamples": 432,
+      "failures": [],
+      "relaxedIdle": {
+        "shooter": {
+          "maxHandFlare": 0.9995007296674281,
+          "minHandDrop": 34.702101025655935,
+          "minForearmDrop": 17.066314287235045
+        },
+        "bomber": {
+          "maxHandFlare": 4.971179870661038,
+          "minHandDrop": 35.03112999123135,
+          "minForearmDrop": 17.504530611977202
+        },
+        "boss": {
+          "maxHandFlare": 5.1716264987221265,
+          "minHandDrop": 33.745114258280466,
+          "minForearmDrop": 16.758262911133833
+        }
+      }
+    }
+  },
+  "network": {
+    "independentBrowserContexts": 3,
+    "oneWayInjectedDelayMs": 75,
+    "readinessCountdownCancel": true,
+    "sharedInitialDraft": true,
+    "reconnectIdentity": true,
+    "spectators": true,
+    "lateJoin": true,
+    "publicSquadIsolation": true,
+    "allDownRestart": true,
+    "modeSwitchRestartMovement": true
+  },
+  "windows": {
+    "popupSamePlayer": true,
+    "pipSamePlayer": true,
+    "parentRendererWhenDetached": 0,
+    "childRenderers": 1,
+    "pipBackgroundFPS": "about59",
+    "F9": [
+      520,
+      350
+    ],
+    "F10Neutral": true
+  },
+  "native": {
+    "source": {
+      "origin": "http://localhost:3106",
+      "version": "4.0.0"
+    },
+    "display": {
+      "frequency": 144,
+      "scaleFactor": 1
+    },
+    "performance": {
+      "selectedCap": 0,
+      "raf": 142.61437472813296,
+      "phase": "playing",
+      "frames": 856,
+      "duration": 6002.200000047684,
+      "fps": 142.61437472813296,
+      "pixelRatio": 1,
+      "canvasWidth": 520,
+      "cssWidth": 520
+    },
+    "wholeOpacity": {
+      "native": 0.43,
+      "ui": "1"
+    },
+    "windowControls": {
+      "opacity": 0.55,
+      "pinned": false,
+      "passthrough": true
+    },
+    "visibility": {
+      "hiddenThenShown": true,
+      "trayReady": true,
+      "backgroundThrottling": false
+    },
+    "resize": {
+      "compactBefore": {
+        "x": 2024,
+        "y": 1026,
+        "width": 520,
+        "height": 350
+      },
+      "expanded": {
+        "x": 570,
+        "y": 206,
+        "width": 1420,
+        "height": 980
+      },
+      "compactAfter": {
+        "x": 2024,
+        "y": 1026,
+        "width": 520,
+        "height": 350
+      }
+    }
+  },
+  "localArchive": {
+    "version": "4.0.0",
+    "platform": "Windows x64",
+    "bytes": 142930118,
+    "sha256": "e924b5580e2a74b39d00dca095c544cb59f86554e1765e1cdb546d2156eff62b",
+    "signed": false,
+    "file": "offshift-desktop-win-x64.zip",
+    "verification": {
+      "version": "4.0.0",
+      "files": 87,
+      "crc": true,
+      "sourceFilesMatch": true,
+      "privateConfigAbsent": true,
+      "launcher": "带薪摸鱼.exe",
+      "bytes": 142930118,
+      "sha256": "e924b5580e2a74b39d00dca095c544cb59f86554e1765e1cdb546d2156eff62b"
+    }
+  },
+  "container": {
+    "image": "off-duty:4.0-local",
+    "version": "4.0.0",
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "publicChat": true,
+    "innateBasicAttack": true,
+    "githubSupportQR": true,
+    "gameQRCodeAbsent": true,
+    "privatePublicIsolation": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true
+  },
+  "artMethod": "Editable native Canvas/vector source and Phaser articulated sprites; no image model invoked in4.0",
+  "styleReview": {
+    "impeccableMechanicalFindings": 0,
+    "reference": "The Spell Brigade official Steam screenshots, principles only"
+  },
+  "coffeeQR": {
+    "sha256": "a342ad5d660da97c4834fb9d0c01ade2e52969272943896fb32001217e2da20a",
+    "inGame": false
+  },
+  "performanceReport": "performance-4.0.json",
+  "boundaries": [
+    "No public game host was configured or deployed; GitHub/GHCR publication is separate.",
+    "No claim of four physical machines or long-duration public-network load testing.",
+    "144 is a target; measured results depend on device, scene, display and power state.",
+    "Windows portable client is unsigned; GUI checks use the source wrapper, archive checks use exact source/integrity."
+  ],
+  "capture": {
+    "version": "4.0.0",
+    "method": "Real UI, no state injection; one human client plus three actual server bots",
+    "state": {
+      "phase": "playing",
+      "players": [
+        {
+          "name": "下班搭子",
+          "bot": false,
+          "hp": 100,
+          "maxHp": 100
+        },
+        {
+          "name": "守夜者 · AI",
+          "bot": true,
+          "hp": 100,
+          "maxHp": 100
+        },
+        {
+          "name": "巡灯者 · AI",
+          "bot": true,
+          "hp": 160,
+          "maxHp": 160
+        },
+        {
+          "name": "破晓者 · AI",
+          "bot": true,
+          "hp": 120,
+          "maxHp": 120
+        }
+      ],
+      "enemies": 15
+    }
+  },
+  "finalPressure": {
+    "fps": 209.1973550533799,
+    "smallWindowFPS": 306.8525976044024,
+    "threshold": 144,
+    "passed": true,
+    "guaranteedAllScenes": false
+  },
+  "latestFriendlyHud": {
+    "localWidth": 76,
+    "healthyAllyWidth": 42,
+    "criticalAllyWidth": 64,
+    "exactPartyHP": true
+  }
+}

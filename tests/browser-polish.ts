@@ -1,3 +1,4 @@
+import { readTextContrast } from "./browser-support";
 import { chromium, type Page } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -88,23 +89,7 @@ try {
   const host = await open(),
     peer = await open(true),
     viewer = await open();
-  const contrast = await host.locator(".heading-aside").evaluate((el) => {
-    const s = getComputedStyle(el),
-      rgb = (v: string) =>
-        v
-          .match(/[\d.]+/g)!
-          .slice(0, 3)
-          .map(Number),
-      lum = (a: number[]) =>
-        a
-          .map((v) => v / 255)
-          .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
-          .reduce((n, v, i) => n + v * [0.2126, 0.7152, 0.0722][i], 0);
-    return (
-      (lum(rgb(s.backgroundColor)) + 0.05) /
-      (lum(rgb(getComputedStyle(el.querySelector("span")!).color)) + 0.05)
-    );
-  });
+  const contrast = await readTextContrast(host, ".heading-aside", "span");
   assert.ok(contrast > 4.5, `hero copy contrast ${contrast}`);
   assert.equal(await host.locator(".dossier-stop").count(), 6);
   assert.ok(
@@ -171,6 +156,18 @@ try {
   );
   await snap(host, "ready-chat");
   await host.setViewportSize({ width: 1366, height: 768 });
+  const rosterExtent = await host.locator(".ready-roster").evaluate((el) => ({
+    bottom: Math.max(
+      ...Array.from(el.children).map((c) => c.getBoundingClientRect().bottom),
+    ),
+    rules: document
+      .querySelector(".ready-room .rules-selector")!
+      .getBoundingClientRect().top,
+  }));
+  assert.ok(
+    rosterExtent.bottom <= rosterExtent.rules,
+    "ready seats overlap dispatch mode cards: " + JSON.stringify(rosterExtent),
+  );
   const footer = await host.locator(".ready-launch").boundingBox();
   const narrowChat = await host
     .getByRole("region", { name: "小队大厅聊天" })
@@ -336,9 +333,17 @@ try {
     /游戏|怪物|联机|房间|角色|带薪摸鱼|PAID BREAK CREW/,
   );
   assert.equal(await host.title(), "项目协作工作台");
+  assert.match(
+    (await host.locator('link[rel="icon"]').getAttribute("href")) || "",
+    /workspace\.svg$/,
+  );
   await veil.getByRole("button", { name: /继续/ }).click();
   await host.waitForTimeout(100);
   assert.equal(await veil.count(), 0);
+  assert.match(
+    (await host.locator('link[rel="icon"]').getAttribute("href")) || "",
+    /favicon\.svg$/,
+  );
   passed.push("F10恢复界面与按钮不出现游戏相关文字，页签标题同步变为工作台。");
   await host.keyboard.press("F2");
   await host

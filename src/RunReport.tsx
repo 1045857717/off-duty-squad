@@ -5,7 +5,7 @@ import { rankDamage } from "../shared/ranking";
 import { whole } from "../shared/balance";
 import { ROLES } from "../shared/content";
 import { ATTACKS } from "../shared/arsenal";
-import { careerPortrait } from "../shared/careers";
+import { careerPortrait40 } from "./game/humanArt40";
 import { workerQuote } from "../shared/humor";
 import { Icon } from "./icons";
 export function RunReport({
@@ -187,7 +187,7 @@ export function RunReport({
                           <span className="debrief-rank">
                             {String(rank).padStart(2, "0")}
                           </span>
-                          <img src={careerPortrait(r.role)} alt="" />
+                          <img src={careerPortrait40(r.role)} alt="" />
                           <span>
                             <strong>
                               {r.name}
@@ -251,7 +251,7 @@ export function RunReport({
           {p && (
             <aside className="debrief-build" aria-label="结算构筑详情">
               <header>
-                <img src={careerPortrait(p.role)} alt={ROLES[p.role].name} />
+                <img src={careerPortrait40(p.role)} alt={ROLES[p.role].name} />
                 <div>
                   <span>本次构筑档案</span>
                   <h3>{p.name}</h3>

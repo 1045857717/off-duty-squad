@@ -389,7 +389,7 @@ try {
     "test-results/undead39/actual-rigs.json",
     JSON.stringify(audit, null, 2),
   );
-  done("七类实际敌人全部使用独立丧尸贴图与15关节，下颌和手腕持续动作");
+  done("七类办公室异变敌人全部使用独立分件贴图与15关节，下颌和手腕持续动作");
   const deathIds = g.state.enemies.map((e) => e.id);
   await host.evaluate((ids) => {
     const w = window as any,
@@ -398,7 +398,7 @@ try {
     const capture = () => {
       for (const id of ids) {
         const r = s.children.list.find((c: any) => c.name === "rig-e" + id);
-        if (r?.pose.dying && r.rotation > 0)
+        if (r?.pose.dying && r.rotation > 0 && r.alpha < 0.995)
           w.__deathSeen[id] = {
             id,
             dying: r.pose.dying,
@@ -434,7 +434,7 @@ try {
     JSON.stringify(fallen),
   );
   await snap(host, "undead-fall");
-  done("七类丧尸的实际死亡均保留骨架连续倒地，并逐渐消退");
+  done("七类异变敌人的实际死亡均连续倒地，完成保形阶段后逐渐消退");
   assert.deepEqual(errors, []);
   await fs.writeFile(
     "test-results/undead39/report.json",
