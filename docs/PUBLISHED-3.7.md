@@ -1,5 +1,7 @@
 # v3.7.0 已发布 / Published
 
+> 历史验收记录：旧Release对象已按维护者要求移除，原附件链接可能不再可用；Git标签与版本镜像保留。当前正式版见[3.9发行验收](PUBLISHED-3.9.md)。 Archived verification: old Release objects/assets were removed; source tags and versioned images remain.
+
 发布时间：**2026-10-22 10:38:45 Asia/Shanghai**。
 
 - [正式Release](https://github.com/1045857717/off-duty-squad/releases/tag/v3.7.0)：Windows便携包、部署模板、镜像摘要与校验文件。

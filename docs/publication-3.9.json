@@ -1,0 +1,172 @@
+{
+  "version": "3.9.0",
+  "verifiedAt": "2026-10-22T06:16:28.688Z",
+  "releasedCommit": "a457ba46bbe39219d253b86eceed160b09d4653e",
+  "annotatedTag": "d34008dca68f5982dabcd7b1ed05692f9b932856",
+  "sourcePR": "https://github.com/1045857717/off-duty-squad/pull/6",
+  "sourceCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39730464974",
+  "releaseCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39730836439",
+  "runtimeCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39731738727",
+  "release": {
+    "version": "3.9.0",
+    "publishedAt": "2026-10-22T06:03:51Z",
+    "release": "https://github.com/1045857717/off-duty-squad/releases/tag/v3.9.0",
+    "desktop": {
+      "version": "3.9.0",
+      "platform": "Windows x64",
+      "bytes": 142929483,
+      "sha256": "3db74966a3355bba2a7dc1a0560158ae37f45c10ca0089c72b6fc33141e1c9cb",
+      "signed": false,
+      "file": "offshift-desktop-win-x64.zip"
+    },
+    "digest": "ghcr.io/1045857717/off-duty-squad@sha256:043b619a67b0491622b711b6f41e74f37fa736b10c9be8a771b235c31dd57ad2",
+    "assetsVerified": [
+      {
+        "name": "compose.prod.yaml",
+        "bytes": 589,
+        "digest": "sha256:6d8d5f1b85c90e52d1b5a3a290341a4a889b67305b6cc62d5b61e5c46d5d588b"
+      },
+      {
+        "name": "desktop-release.json",
+        "bytes": 225,
+        "digest": "sha256:8ad33fe64dafb430e4fd4785c64598585ff483f9a85917219ba9221a7ff593ac"
+      },
+      {
+        "name": "env.example",
+        "bytes": 404,
+        "digest": "sha256:94f77d53606fe321d52de5c10954056869025144056ae5faafa54a4f2e6c4182"
+      },
+      {
+        "name": "image-digest.txt",
+        "bytes": 106,
+        "digest": "sha256:f902abf1c112f654b8afa6ad2dfae77e3a3f68695aebfeb094cba22b6f189954"
+      },
+      {
+        "name": "offshift-desktop-win-x64.zip",
+        "bytes": 142929483,
+        "digest": "sha256:3db74966a3355bba2a7dc1a0560158ae37f45c10ca0089c72b6fc33141e1c9cb"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 427,
+        "digest": "sha256:816fc2dd46f5c7d82f294f7b4e69a5959957eed8e1a54e9d038e4d903f779d9e"
+      }
+    ],
+    "smallFileChecksums": true,
+    "zipDigestMatchesGitHubAndManifest": true
+  },
+  "image": {
+    "repository": "ghcr.io/1045857717/off-duty-squad",
+    "tag": "3.9.0",
+    "digest": "ghcr.io/1045857717/off-duty-squad@sha256:043b619a67b0491622b711b6f41e74f37fa736b10c9be8a771b235c31dd57ad2",
+    "latestDigestMatches": true,
+    "anonymousLocalPull": true
+  },
+  "runtime": {
+    "architectures": [
+      {
+        "architecture": "arm64",
+        "platform": "linux"
+      },
+      {
+        "architecture": "x64",
+        "platform": "linux"
+      }
+    ],
+    "results": [
+      {
+        "image": "ghcr.io/1045857717/off-duty-squad:3.9.0",
+        "version": "3.9.0",
+        "health": true,
+        "page": true,
+        "desktop": true,
+        "websocketClients": 2,
+        "chat": true,
+        "publicChat": true,
+        "innateBasicAttack": true,
+        "githubSupportQR": true,
+        "gameQRCodeAbsent": true,
+        "privatePublicIsolation": true,
+        "countdownAndDraft": true,
+        "scorePersistence": true
+      },
+      {
+        "image": "ghcr.io/1045857717/off-duty-squad:3.9.0",
+        "version": "3.9.0",
+        "health": true,
+        "page": true,
+        "desktop": true,
+        "websocketClients": 2,
+        "chat": true,
+        "publicChat": true,
+        "innateBasicAttack": true,
+        "githubSupportQR": true,
+        "gameQRCodeAbsent": true,
+        "privatePublicIsolation": true,
+        "countdownAndDraft": true,
+        "scorePersistence": true
+      }
+    ],
+    "conclusion": "success"
+  },
+  "localContainer": {
+    "image": "ghcr.io/1045857717/off-duty-squad:3.9.0",
+    "version": "3.9.0",
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "publicChat": true,
+    "innateBasicAttack": true,
+    "githubSupportQR": true,
+    "gameQRCodeAbsent": true,
+    "privatePublicIsolation": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true,
+    "source": "Observed successful output from scripts/container-smoke.mjs --desktop against the anonymously pulled published image"
+  },
+  "publicArchive": {
+    "publicArchiveIntegrity": true,
+    "nativeSourceMatchesReleasedSource": true,
+    "currentBrandLauncher": true,
+    "privateServerConfigAbsent": true,
+    "files": 87
+  },
+  "embeddedArchive": {
+    "image": "ghcr.io/1045857717/off-duty-squad:3.9.0",
+    "zipMatchesPublicRelease": true,
+    "sha256": "3db74966a3355bba2a7dc1a0560158ae37f45c10ca0089c72b6fc33141e1c9cb",
+    "bytes": 142929483
+  },
+  "releaseRetention": {
+    "retainedRelease": "v3.9.0",
+    "releaseCount": 1,
+    "deletedReleaseObjects": ["v3.5.0", "v3.6.0", "v3.7.0", "v3.8.0"],
+    "gitTagsPreserved": true,
+    "imagesPruned": false
+  },
+  "mainProtection": {
+    "requiredPR": true,
+    "approvals": 0,
+    "strict": true,
+    "checks": [
+      {
+        "context": "Tests, types and build",
+        "app_id": 15368
+      },
+      {
+        "context": "Source-only container smoke test",
+        "app_id": 15368
+      },
+      {
+        "context": "Browser combat and compact window",
+        "app_id": 15368
+      }
+    ],
+    "admins": true,
+    "allowForcePush": false,
+    "allowDeletion": false,
+    "conversations": true
+  }
+}

@@ -18,10 +18,11 @@
 | Esc                              | 退出输入、面板或当前小窗交互                   | Dismiss input or panel                                                    |
 | F2                               | 设置                                           | Settings                                                                  |
 | F3                               | 桌面端下载 / 入口                              | Desktop client download / entry                                           |
-| F6                               | 独立窗口                                       | Independent window                                                        |
+| F4                               | 小窗工具栏自动收起 / 常驻                      | Auto-hide / keep the compact toolbar visible                              |
+| F6                               | 画中画 / 独立浏览器窗口，同一玩家会话          | Explicit PiP / popup with the same player session                         |
 | F7                               | 实时伤害排名                                   | Live damage board                                                         |
 | F8                               | 工作模式                                       | Work view                                                                 |
-| F9                               | 小窗模式                                       | Compact window                                                            |
+| F9                               | 520×350低调视图 / 原生小窗，按同键恢复         | 520×350 quiet view / native window; press again to restore                |
 | F10                              | 隐藏 / 恢复当前界面或桌面窗口                  | Hide / restore the current view or desktop window                         |
 | Ctrl + Shift + B                 | 桌面端全局恢复                                 | Desktop global restore                                                    |
 | Ctrl + Shift + X                 | 桌面端鼠标穿透开关                             | Desktop click-through toggle                                              |
@@ -31,6 +32,12 @@
 每个职业自带固定普攻，不占四个随机模块槽，也不替换职业Q。鼠标左键或自动攻击会同时触发普攻和已装配模块；T切换自动攻击。进入地图后的首张随机模块选择仍保留，全员完成后开始战斗。
 
 Every profession has a fixed ordinary attack independent of the four random-module slots and Q. Left-click or auto attack triggers the innate attack alongside equipped modules; T toggles auto attack. The shared first-module draft remains inside the map, with combat starting once everyone has chosen.
+
+## F9低调视图 / Quiet view
+
+F9在网页中把画面缩到当前页面角落；在Windows客户端中调整真正无边框窗口的尺寸。两者都使用520×350目标尺寸、静音和自动收起工具栏，标题为「状态面板」。F6单独负责浏览器画中画/弹出窗口，关闭小窗会收回原玩家；F4切换工具栏自动收起/常驻。
+
+F9 shrinks the web view inside its current page, and resizes the actual frameless window in the Windows client. Both target520×350, mute sound and retract the toolbar with a neutral title. F6explicitly detaches through browser PiP/popup; closing it returns the same player. F4keeps the toolbar visible or enables auto-hide.
 
 ## 平台边界 / Platform limits
 

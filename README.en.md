@@ -137,7 +137,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.9.0**. The current name is Paid Break Crew (带薪摸鱼). This release reworks quiet windows, compact vitals/build layout, grounded attacks and seven articulated undead models with 15 joints. Main requires PRs and CI, and blocks force pushes/deletion. See [3.9 notes](docs/RELEASE-3.9.md) and [branch/release policy](docs/BRANCH-PROTECTION.md). 144FPS is a target mode; see the [measured dense-scene limits](docs/PERFORMANCE-3.9.en.md).
+Current version: **3.9.0**. The current name is Paid Break Crew (带薪摸鱼). This release reworks quiet windows, compact vitals/build layout, grounded attacks and seven articulated undead models with 15 joints. Main requires PRs and CI, and blocks force pushes/deletion. See [3.9 notes](docs/RELEASE-3.9.md), [published verification](docs/PUBLISHED-3.9.md) and [branch/release policy](docs/BRANCH-PROTECTION.md). 144FPS is a target mode; see the [measured dense-scene limits](docs/PERFORMANCE-3.9.en.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. The fixed-seed four-player/100-enemy/DPR 2 stress fixture measured about 138–153 FPS in full view and 123–186 FPS in quiet view (unrestricted laboratory configuration). **144FPS is not guaranteed for every scene**; see the [3.9 performance measurements](docs/PERFORMANCE-3.9.en.md).
