@@ -1,0 +1,236 @@
+{
+  "version": "4.0.0",
+  "verifiedAt": "2026-10-22T18:40:25.715Z",
+  "releasedCommit": "2d731054063eff9694457d4cb00b865f5f8fa560",
+  "annotatedTag": "570b7dbfe5979441265d24d72810b3305d765b05",
+  "sourcePR": "https://github.com/1045857717/off-duty-squad/pull/8",
+  "sourcePRCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39823659846",
+  "sourceCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39824439085",
+  "releaseCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39826209904",
+  "runtimeCI": "https://github.com/1045857717/off-duty-squad/actions/runs/39831489687",
+  "release": {
+    "version": "4.0.0",
+    "publishedAt": "2026-10-22T18:00:59Z",
+    "release": "https://github.com/1045857717/off-duty-squad/releases/tag/v4.0.0",
+    "desktop": {
+      "version": "4.0.0",
+      "platform": "Windows x64",
+      "bytes": 142930118,
+      "sha256": "be0d70d7ae6bc81a9e0cd216bcc9c6f2679bb6458438a23e3962d8af8f6862ef",
+      "signed": false,
+      "file": "offshift-desktop-win-x64.zip"
+    },
+    "digest": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "assetsVerified": [
+      {
+        "name": "compose.prod.yaml",
+        "bytes": 589,
+        "digest": "sha256:6ef60c88b3d475b47d6c3f062b35cb6ced4ae34d64d719cddc3daba6143b9b1c"
+      },
+      {
+        "name": "desktop-release.json",
+        "bytes": 225,
+        "digest": "sha256:d4c0fe008b80c23442e957b85c201f1d1b29f5b62607d437d77f04761d5f53f6"
+      },
+      {
+        "name": "env.example",
+        "bytes": 404,
+        "digest": "sha256:8f8d94ec2b80cdfe3cdf86eaf18befd74f7c979f5f2990bd22163c04cb576b15"
+      },
+      {
+        "name": "image-digest.txt",
+        "bytes": 106,
+        "digest": "sha256:f485c41cb26bdc52ae8ee535f453a866a9f1e3ebd4a893339ba55eb4dd4b32e6"
+      },
+      {
+        "name": "offshift-desktop-win-x64.zip",
+        "bytes": 142930118,
+        "digest": "sha256:be0d70d7ae6bc81a9e0cd216bcc9c6f2679bb6458438a23e3962d8af8f6862ef"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 427,
+        "digest": "sha256:893f559dadb88e568d9b0b92848e4840130d9b594e9e7e6d86b6d354edadd6e4"
+      }
+    ],
+    "smallFileChecksums": true,
+    "zipDigestMatchesGitHubAndManifest": true
+  },
+  "image": {
+    "repository": "ghcr.io/1045857717/off-duty-squad",
+    "tag": "4.0.0",
+    "digest": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "latestDigestMatches": true,
+    "anonymousLocalPull": true
+  },
+  "anonymousImage": {
+    "verified": true,
+    "image": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "version": "4.0.0",
+    "source": "2d731054063eff9694457d4cb00b865f5f8fa560",
+    "emptyCredentialsVerified": true,
+    "versionTagDigest": "sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "latestTagDigest": "sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "pullCompleted": true,
+    "repoDigests": [
+      "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4"
+    ],
+    "labels": {
+      "version": "4.0.0",
+      "revision": "2d731054063eff9694457d4cb00b865f5f8fa560"
+    },
+    "verifiedAt": "2026-10-22T18:29:54.418Z"
+  },
+  "runtime": {
+    "architectures": [
+      {
+        "architecture": "x64",
+        "platform": "linux"
+      },
+      {
+        "architecture": "arm64",
+        "platform": "linux"
+      }
+    ],
+    "results": [
+      {
+        "image": "ghcr.io/1045857717/off-duty-squad:4.0.0",
+        "version": "4.0.0",
+        "health": true,
+        "page": true,
+        "desktop": true,
+        "websocketClients": 2,
+        "chat": true,
+        "publicChat": true,
+        "innateBasicAttack": true,
+        "githubSupportQR": true,
+        "gameQRCodeAbsent": true,
+        "privatePublicIsolation": true,
+        "countdownAndDraft": true,
+        "scorePersistence": true
+      },
+      {
+        "image": "ghcr.io/1045857717/off-duty-squad:4.0.0",
+        "version": "4.0.0",
+        "health": true,
+        "page": true,
+        "desktop": true,
+        "websocketClients": 2,
+        "chat": true,
+        "publicChat": true,
+        "innateBasicAttack": true,
+        "githubSupportQR": true,
+        "gameQRCodeAbsent": true,
+        "privatePublicIsolation": true,
+        "countdownAndDraft": true,
+        "scorePersistence": true
+      }
+    ],
+    "conclusion": "success",
+    "runId": 39831489687,
+    "runAttempt": 1,
+    "source": "2d731054063eff9694457d4cb00b865f5f8fa560",
+    "image": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "jobs": [
+      {
+        "id": 120008508420,
+        "name": "Runtime linux/amd64",
+        "run_id": 39831489687,
+        "head_sha": "2d731054063eff9694457d4cb00b865f5f8fa560",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "platform": "linux/amd64",
+        "architecture": "x64",
+        "pullDigest": "sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+        "pullCompleted": true,
+        "logSha256": "ca873074cd32b5dc27004d8d49e5a4c95034507bbcf4ec067cf47ce489e95c08"
+      },
+      {
+        "id": 120008508766,
+        "name": "Runtime linux/arm64",
+        "run_id": 39831489687,
+        "head_sha": "2d731054063eff9694457d4cb00b865f5f8fa560",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "platform": "linux/arm64",
+        "architecture": "arm64",
+        "pullDigest": "sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+        "pullCompleted": true,
+        "logSha256": "e95591a4927e7f62004a9c59ab074e15ad5db00f6146ce4b751e252dbeb69276"
+      }
+    ],
+    "logSha256": "f41481d9c4538675c4d19acc3ed00ad4eefacccbd257bd4c9ca854f357813899"
+  },
+  "localContainer": {
+    "image": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "version": "4.0.0",
+    "health": true,
+    "page": true,
+    "desktop": true,
+    "websocketClients": 2,
+    "chat": true,
+    "publicChat": true,
+    "innateBasicAttack": true,
+    "githubSupportQR": true,
+    "gameQRCodeAbsent": true,
+    "privatePublicIsolation": true,
+    "countdownAndDraft": true,
+    "scorePersistence": true
+  },
+  "publicArchive": {
+    "publicArchiveIntegrity": true,
+    "nativeSourceMatchesReleasedSource": true,
+    "currentBrandLauncher": true,
+    "privateServerConfigAbsent": true,
+    "files": 87
+  },
+  "embeddedArchive": {
+    "image": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4",
+    "zipMatchesPublicRelease": true,
+    "sha256": "be0d70d7ae6bc81a9e0cd216bcc9c6f2679bb6458438a23e3962d8af8f6862ef",
+    "bytes": 142930118
+  },
+  "releaseRetention": {
+    "releaseCount": 1,
+    "retained": [
+      "v4.0.0"
+    ],
+    "removed": [
+      {
+        "id": 420359301,
+        "tag": "v3.9.0"
+      }
+    ],
+    "oldGitTagPreserved": true,
+    "oldVersionImagesUntouched": true,
+    "runtimeRunId": 39831489687,
+    "runtimeRunAttempt": 1,
+    "source": "2d731054063eff9694457d4cb00b865f5f8fa560",
+    "image": "ghcr.io/1045857717/off-duty-squad@sha256:a531ef97f7adae97d46e3e43d9b15cda0c69ba3295f0f7ada9645fffe84857c4"
+  },
+  "mainProtection": {
+    "requiredPR": true,
+    "approvals": 0,
+    "strict": true,
+    "checks": [
+      {
+        "context": "Tests, types and build",
+        "app_id": 15368
+      },
+      {
+        "context": "Source-only container smoke test",
+        "app_id": 15368
+      },
+      {
+        "context": "Browser combat and compact window",
+        "app_id": 15368
+      }
+    ],
+    "admins": true,
+    "allowForcePush": false,
+    "allowDeletion": false,
+    "conversations": true
+  }
+}

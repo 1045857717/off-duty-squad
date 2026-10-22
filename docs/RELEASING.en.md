@@ -106,3 +106,6 @@ gh workflow run verify-release.yml --ref main --field version=4.0.0
 ## Release list retention
 
 After validating current assets, anonymous image pulls and both runtime architectures, keep only the latest stable Release. Preserve Git tags and versioned GHCR images for history and rollback; do not use `--cleanup-tag`. Historical verification documents record their original run; old Release asset links may have been removed.
+
+
+Browser CI installs the actual Chromium headless shell with --only-shell and system dependencies. All undead/art/rig checks and the same three protected-main contexts remain required. It skips an unused full-browser download, not browser validation.

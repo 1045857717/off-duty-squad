@@ -1,3 +1,5 @@
+> 历史记录：v3.9.0的Release附件在v4.0.0正式验收后移除；Git标签和历史Docker镜像保留。当前公开产物见[PUBLISHED-4.0.md](PUBLISHED-4.0.md)。
+
 # 3.9.0正式发行验收 / Published release verification
 
 [项目主页](../README.md) · [English README](../README.en.md) · [原始验收数据](publication-3.9.json) · [本地回归](validation-3.9.json) · [性能实测](PERFORMANCE-3.9.md)
