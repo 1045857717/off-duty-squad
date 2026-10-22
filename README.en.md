@@ -4,7 +4,7 @@
 
 **Tiny paycheck. Outrageous firepower.**
 
-A 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
+An AI-implemented 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
 
 [简体中文](README.md) · [Docker deployment](docs/DEPLOYMENT.en.md) · [Releasing](docs/RELEASING.en.md) · [Controls](docs/CONTROLS.md) · [Changelog](CHANGELOG.md)
 
@@ -81,7 +81,7 @@ To update, back up the score data, set `GAME_VERSION` to a new release and repea
 
 | Key                 | Action                                 | Key              | Action                           |
 | ------------------- | -------------------------------------- | ---------------- | -------------------------------- |
-| WASD / arrows       | Move                                   | Mouse            | Aim                              |
+| WASD / arrows       | Move                                   | Mouse            | Aim / left-click attack          |
 | Space / right mouse | Dash; optional Shift setting           | Q                | Profession signature             |
 | E                   | Hold to interact / revive              | T                | Toggle auto attack               |
 | 1 / 2 / 3           | Select upgrade                         | H                | Call for help while downed       |
@@ -121,7 +121,11 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 <details>
 <summary>View results and work-style interface</summary>
 
-**3.5 health and shield acceptance scene**
+**3.7 health and shield acceptance scene**
+
+![3.7 health and shields](docs/images/vitals-37.webp)
+
+**3.5 archived acceptance scene**
 
 ![3.5 health and shields](docs/images/vitals-35.webp)
 
@@ -133,7 +137,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.7.0**. This release adds innate attacks for all 28 professions, aligned contact/grips, clearer life/shields, project/coffee links and AI development history. See [3.7 notes](docs/RELEASE-3.7.md); consult the matching verification record and workflow for publication results.
+Current version: **3.7.0**. This release adds innate attacks for all 28 professions, aligned contact/grips, clearer life/shields, project/coffee links and AI development history. See [3.7 notes](docs/RELEASE-3.7.md); see [published image and artifact verification](docs/PUBLISHED-3.7.md) for anonymous pull, both architectures, innate attacks and two-client messaging.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [3.7 frame-rate measurements](docs/PERFORMANCE-3.7.md) and the [dense-scene baseline](docs/PERFORMANCE-3.4.md).
@@ -147,6 +151,17 @@ Current version: **3.7.0**. This release adds innate attacks for all 28 professi
 Please read [CONTRIBUTING](CONTRIBUTING.md) before opening an issue or pull request. Report vulnerabilities through the [security policy](SECURITY.md).
 
 Sponsor placements appear in the lobby rather than combat. Advertising contact: **QQ 1045857717**. The default AI gateway sponsor link is [api.xiebc.cc](https://api.xiebc.cc).
+
+<details>
+<summary>Buy the author a coffee · WeChat</summary>
+
+Optional support; all gameplay remains available. This is the original author-provided payment image. Click it to view full size.
+
+<a href="public/wechat-coffee.png"><img src="public/wechat-coffee.png" alt="Author-provided WeChat coffee support QR" width="360" /></a>
+
+[Support details](docs/SUPPORT.md)
+
+</details>
 
 Released under the [MIT License](LICENSE). Third-party dependencies retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md). Project artwork provenance is documented in [ART-3.4](docs/ART-3.4.md).
 

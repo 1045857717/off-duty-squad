@@ -26,6 +26,12 @@
 | Ctrl + Shift + B                 | 桌面端全局恢复                                 | Desktop global restore                                                    |
 | Ctrl + Shift + X                 | 桌面端鼠标穿透开关                             | Desktop click-through toggle                                              |
 
+## 固有普攻 / Innate ordinary attacks
+
+每个职业自带固定普攻，不占四个随机模块槽，也不替换职业Q。鼠标左键或自动攻击会同时触发普攻和已装配模块；T切换自动攻击。进入地图后的首张随机模块选择仍保留，全员完成后开始战斗。
+
+Every profession has a fixed ordinary attack independent of the four random-module slots and Q. Left-click or auto attack triggers the innate attack alongside equipped modules; T toggles auto attack. The shared first-module draft remains inside the map, with combat starting once everyone has chosen.
+
 ## 平台边界 / Platform limits
 
 网页无法隐藏整个浏览器进程，也不能通过页面透明度显示浏览器后方桌面。画中画 / 弹出窗口需要浏览器支持，并可能要求一次用户点击。真正的无边框透明窗口、鼠标穿透与全局恢复由 Windows 客户端实现。
