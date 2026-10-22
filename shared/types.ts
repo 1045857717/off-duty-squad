@@ -259,6 +259,8 @@ export type Enemy = Vec & {
   screamCd?: number;
 };
 export type Bullet = Vec & {
+  /** Ordinary profession shot; independent from a random module using the same attack id. */
+  basic?: boolean;
   sourceEnemyId?: number;
   sourceEnemyKind?: EnemyKind;
   id: number;

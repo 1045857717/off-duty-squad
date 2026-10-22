@@ -95,3 +95,40 @@ test("ordinary attacks remain available after restart, late joining and AI creat
     assert.ok((player as any).basicCd >= 0, player.role);
   assert.ok(ATTACK_MOTIONS.bat.duration >= 380);
 });
+
+test("melee windup, hit sector and attack effect keep one authoritative direction", () => {
+  const { g, p } = basicFixture("guardian");
+  const target = g.state.enemies[0];
+  tickGame(g, 1 / 60);
+  assert.equal(p.attackMotion?.angle, 0);
+  setInput(g, p.id, { ...EMPTY_INPUT, fire: false, aimX: -1, aimY: 0 });
+  for (let i = 0; i < 12; i++) tickGame(g, 1 / 60);
+  assert.ok(
+    p.damageDealt > 0,
+    "turning during windup redirected the established swing behind the player",
+  );
+  assert.ok(target.hp < target.maxHp);
+  const feedback = g.state.effects.find(
+    (e) => e.kind === "attack" && e.owner === p.id,
+  );
+  assert.equal(feedback?.angle, p.attackMotion?.angle);
+});
+
+test("ordinary ranged shots publish their source independently of an equal-id random module", () => {
+  const { g, p } = basicFixture("scout");
+  g.state.enemies = [];
+  p.basicCd = 0;
+  p.attackMotion = undefined;
+  let seen = false;
+  for (let i = 0; i < 12; i++) {
+    tickGame(g, 1 / 60);
+    const bolt = g.state.bullets.find((b) => b.owner === p.id);
+    if (bolt) {
+      assert.equal(bolt.basic, true);
+      assert.equal(bolt.attackSkill, "pulse");
+      seen = true;
+      break;
+    }
+  }
+  assert.ok(seen, "ordinary projectile was never released");
+});

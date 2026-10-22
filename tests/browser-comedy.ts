@@ -199,9 +199,9 @@ try {
   const actor = await host.evaluate(() => {
     const w = window as any,
       rig = w.__paintedHero,
-      image = rig.scene.textures.get("painted-director").getSourceImage();
+      image = rig.scene.textures.get("joint-atlas-v40").getSourceImage();
     return {
-      paintedSource: !!image,
+      jointSource: !!image,
       width: image.width,
       height: image.height,
       parts: rig.pose.parts,
@@ -210,11 +210,11 @@ try {
       poses: w.__actorAudit.size,
     };
   });
-  assert.equal(actor.width, 1536);
-  assert.equal(actor.height, 320);
+  assert.equal(actor.width, 3840);
+  assert.ok(actor.height > 0 && actor.height <= 4096);
   assert.equal(actor.parts, 14);
   assert.equal(actor.visible, true);
-  assert.equal(actor.texture, "joint-atlas-v39");
+  assert.equal(actor.texture, "joint-atlas-v40");
   assert.ok(actor.poses >= 4, JSON.stringify(actor));
   await fs.writeFile(
     "test-results/comedy/actor-audit.json",

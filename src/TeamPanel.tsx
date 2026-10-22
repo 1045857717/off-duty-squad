@@ -1,11 +1,11 @@
 import { SkillDetails } from "./SkillDetails";
+import { ProfessionCard } from "./ProfessionCard";
 import { JobPicker } from "./JobPicker";
 import type { GameState, Role, RoomReply } from "../shared/types";
 import { ROLES } from "../shared/content";
 import { Avatar } from "./hooks";
 import { Icon } from "./icons";
 import { ABILITIES } from "../shared/rogue";
-import { DamageBoard } from "./DamageBoard";
 export function TeamPanel({
   state,
   playerId,
@@ -38,7 +38,6 @@ export function TeamPanel({
     <aside className="team-panel">
       <div className="panel-top">
         <div>
-          <span className="eyebrow">YOUR SQUAD</span>
           <h2>
             小队集结{" "}
             <span>
@@ -169,6 +168,7 @@ export function TeamPanel({
         </div>
         {lobby ? (
           <>
+            <ProfessionCard role={role} />
             <JobPicker role={role} onRole={onRole} />
             <div className="role-description">
               <span style={{ color: ROLES[role].color }}>
@@ -212,15 +212,17 @@ export function TeamPanel({
               {state?.players.find((p) => p.id === playerId)?.signatureLevel ||
                 1}
             </span>
-            <SkillDetails
-              role={role}
-              player={state?.players.find((p) => p.id === playerId)}
-              compact
-            />
+            <details className="battle-role-guide">
+              <summary>查看职业招式与详细数值</summary>
+              <SkillDetails
+                role={role}
+                player={state?.players.find((p) => p.id === playerId)}
+                compact
+              />
+            </details>
           </div>
         )}
       </div>
-      {state && !lobby && <DamageBoard state={state} playerId={playerId} />}
       {state && lobby && (
         <div className="room-options">
           <div>

@@ -28,10 +28,10 @@ export function healthReadout(
     status,
     color:
       status === "critical"
-        ? 0xff6f62
+        ? 0xe98a7d
         : status === "wounded"
-          ? 0xf4bf62
-          : 0x83e0ae,
+          ? 0xdfb678
+          : 0x8fc6b1,
   };
 }
 /** Frame-rate-independent recent damage trail. Healing must never look like damage. */

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { whole } from "../shared/balance";
 import { rankDamage } from "../shared/ranking";
 import { MAP_WALLS, EXIT } from "../shared/content";
@@ -73,6 +74,13 @@ export function MiniMap({
   state: GameState;
   playerId: string;
 }) {
+  const wallPath = useMemo(
+    () =>
+      state.world.walls
+        .map((w) => `M${w.x} ${w.y}h${w.w}v${w.h}h${-w.w}z`)
+        .join(""),
+    [state.world.walls],
+  );
   return (
     <div className="mini-map" aria-label="任务雷达">
       <span>
@@ -80,18 +88,8 @@ export function MiniMap({
         {state.mode === "survival" ? "CATASTROPHE RADAR" : "MISSION RADAR"}
       </span>
       <svg viewBox={`0 0 ${state.world.w} ${state.world.h}`} aria-hidden="true">
-        <rect width={state.world.w} height={state.world.h} fill="#111920" />
-        {state.world.walls.map((w, i) => (
-          <rect
-            key={i}
-            x={w.x}
-            y={w.y}
-            width={w.w}
-            height={w.h}
-            fill="#648b81"
-            opacity=".65"
-          />
-        ))}
+        <rect width={state.world.w} height={state.world.h} fill="#201d2b" />
+        <path d={wallPath} fill="#817b8e" opacity=".65" />
         {state.pickups
           .filter((p) => p.kind === "crystal")
           .map((p) => (

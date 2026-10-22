@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ROLES } from "../shared/content";
 import type { Settings, Role } from "../shared/types";
-import { careerPortrait } from "../shared/careers";
+import { careerPortrait40 } from "./game/humanArt40";
 export const DEFAULT_SETTINGS: Settings = {
   volume: 0.35,
   sound: false,
@@ -78,7 +78,7 @@ export function Avatar({
   size?: number;
   className?: string;
 }) {
-  if (!avatars.has(role)) avatars.set(role, careerPortrait(role));
+  if (!avatars.has(role)) avatars.set(role, careerPortrait40(role));
   return (
     <img
       className={"pixel-avatar " + className}

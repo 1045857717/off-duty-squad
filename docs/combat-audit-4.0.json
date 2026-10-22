@@ -1,0 +1,1457 @@
+{
+  "version": "4.0.0",
+  "roles": [
+    {
+      "role": "scout",
+      "name": "开发工程师",
+      "basic": {
+        "name": "键盘回车拳",
+        "weapon": "pulse",
+        "power": 0.9,
+        "cooldown": 0.74,
+        "range": 560,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 16.2,
+        "dps": 21.9,
+        "motion": "shoot",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-scout"
+      },
+      "signature": {
+        "name": "一键清缓存",
+        "ability": "volley",
+        "power": 1,
+        "level": 1,
+        "damage": 32.4,
+        "radius": 850,
+        "cooldown": 7,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "7 秒"
+          ],
+          [
+            "范围",
+            "850 距离"
+          ],
+          [
+            "基础伤害",
+            "32.4 × 7"
+          ]
+        ],
+        "notes": "每枚穿透2个目标；下列伤害为单枚",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "electric"
+      }
+    },
+    {
+      "role": "engineer",
+      "name": "运维维修师",
+      "basic": {
+        "name": "物理重启",
+        "weapon": "wrench",
+        "power": 1.15,
+        "cooldown": 0.9,
+        "range": 122,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 24.2,
+        "dps": 26.8,
+        "motion": "overhead",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-engineer"
+      },
+      "signature": {
+        "name": "断电重启",
+        "ability": "nova",
+        "power": 1,
+        "level": 1,
+        "damage": 112,
+        "radius": 220,
+        "cooldown": 10,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0.8,
+        "rows": [
+          [
+            "冷却",
+            "10 秒"
+          ],
+          [
+            "范围",
+            "220 距离"
+          ],
+          [
+            "基础伤害",
+            "112"
+          ],
+          [
+            "控制时间",
+            "0.8 秒"
+          ]
+        ],
+        "notes": "击退45距离",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "medic",
+      "name": "行政支援员",
+      "basic": {
+        "name": "关怀泼水",
+        "weapon": "coffee",
+        "power": 0.9,
+        "cooldown": 0.78,
+        "range": 148,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 13.5,
+        "dps": 17.3,
+        "motion": "throw",
+        "contactMs": 114,
+        "displayTexture": "basic-tool-medic"
+      },
+      "signature": {
+        "name": "关怀不是邮件",
+        "ability": "mend",
+        "power": 1,
+        "level": 1,
+        "damage": 0,
+        "radius": 260,
+        "cooldown": 12,
+        "heal": 60,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "12 秒"
+          ],
+          [
+            "范围",
+            "260 距离"
+          ],
+          [
+            "恢复生命",
+            "60 HP"
+          ]
+        ],
+        "notes": "立即救起范围内倒地队友，实际治疗不超过生命上限",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "heal"
+      }
+    },
+    {
+      "role": "guardian",
+      "name": "夜班安保",
+      "basic": {
+        "name": "下班警棍",
+        "weapon": "bat",
+        "power": 1.1,
+        "cooldown": 0.86,
+        "range": 136,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 25.3,
+        "dps": 29.4,
+        "motion": "slash",
+        "contactMs": 141,
+        "displayTexture": "basic-tool-guardian"
+      },
+      "signature": {
+        "name": "此路已下班",
+        "ability": "aegis",
+        "power": 1,
+        "level": 1,
+        "damage": 0,
+        "radius": 270,
+        "cooldown": 11,
+        "heal": 0,
+        "shield": 65,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "11 秒"
+          ],
+          [
+            "范围",
+            "270 距离"
+          ],
+          [
+            "获得护盾",
+            "65"
+          ],
+          [
+            "持续时间",
+            "1.5 秒"
+          ]
+        ],
+        "notes": "同伴无敌1.5秒；护盾最多累计180",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "shield"
+      }
+    },
+    {
+      "role": "designer",
+      "name": "视觉设计师",
+      "basic": {
+        "name": "一刀过稿",
+        "weapon": "blade",
+        "power": 0.85,
+        "cooldown": 0.76,
+        "range": 530,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 14.5,
+        "dps": 19,
+        "motion": "throw",
+        "contactMs": 99,
+        "displayTexture": "basic-tool-designer"
+      },
+      "signature": {
+        "name": "冻结这一版",
+        "ability": "frost",
+        "power": 1,
+        "level": 1,
+        "damage": 27.200000000000003,
+        "radius": 280,
+        "cooldown": 13,
+        "heal": 0,
+        "shield": 0,
+        "stun": 2.2,
+        "rows": [
+          [
+            "冷却",
+            "13 秒"
+          ],
+          [
+            "范围",
+            "280 距离"
+          ],
+          [
+            "基础伤害",
+            "27.2"
+          ],
+          [
+            "控制时间",
+            "2.2 秒"
+          ]
+        ],
+        "notes": "减速6秒，首领眩晕0.8秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "frost"
+      }
+    },
+    {
+      "role": "accountant",
+      "name": "财务会计",
+      "basic": {
+        "name": "算你一笔",
+        "weapon": "ricochet",
+        "power": 0.95,
+        "cooldown": 0.8,
+        "range": 550,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 18.1,
+        "dps": 22.6,
+        "motion": "throw",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-accountant"
+      },
+      "signature": {
+        "name": "当场清账",
+        "ability": "chain",
+        "power": 1,
+        "level": 1,
+        "damage": 57,
+        "radius": 650,
+        "cooldown": 9,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "9 秒"
+          ],
+          [
+            "范围",
+            "650 距离"
+          ],
+          [
+            "基础伤害",
+            "57 × 8"
+          ]
+        ],
+        "notes": "最多8目标，每目标独立受伤",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "electric"
+      }
+    },
+    {
+      "role": "hr",
+      "name": "人事专员",
+      "basic": {
+        "name": "简历直投",
+        "weapon": "blade",
+        "power": 0.88,
+        "cooldown": 0.78,
+        "range": 520,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 15,
+        "dps": 19.2,
+        "motion": "throw",
+        "contactMs": 99,
+        "displayTexture": "basic-tool-hr"
+      },
+      "signature": {
+        "name": "全员调休",
+        "ability": "orbit",
+        "power": 1,
+        "level": 1,
+        "damage": 25.5,
+        "radius": 850,
+        "cooldown": 10,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "10 秒"
+          ],
+          [
+            "范围",
+            "850 距离"
+          ],
+          [
+            "基础伤害",
+            "25.5 × 16"
+          ]
+        ],
+        "notes": "16方向发射，每枚穿透1次",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "orbit"
+      }
+    },
+    {
+      "role": "manager",
+      "name": "项目经理",
+      "basic": {
+        "name": "需求拍板",
+        "weapon": "bat",
+        "power": 1.08,
+        "cooldown": 0.86,
+        "range": 134,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 20.5,
+        "dps": 23.9,
+        "motion": "slash",
+        "contactMs": 141,
+        "displayTexture": "basic-tool-manager"
+      },
+      "signature": {
+        "name": "会议到此结束",
+        "ability": "reaper",
+        "power": 1,
+        "level": 1,
+        "damage": 57,
+        "radius": 300,
+        "cooldown": 16,
+        "heal": 5,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "16 秒"
+          ],
+          [
+            "范围",
+            "300 距离"
+          ],
+          [
+            "基础伤害",
+            "57"
+          ],
+          [
+            "恢复生命",
+            "5 HP"
+          ]
+        ],
+        "notes": "普通敌人低于45%血直接处决；每命中目标回5HP；首领不处决",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "slash",
+        "stamp": "orbit"
+      }
+    },
+    {
+      "role": "sales",
+      "name": "销售顾问",
+      "basic": {
+        "name": "名片直达",
+        "weapon": "ricochet",
+        "power": 0.9,
+        "cooldown": 0.74,
+        "range": 560,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 15.3,
+        "dps": 20.7,
+        "motion": "throw",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-sales"
+      },
+      "signature": {
+        "name": "客户在这边",
+        "ability": "decoy",
+        "power": 1,
+        "level": 1,
+        "damage": 0,
+        "radius": 900,
+        "cooldown": 12,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "12 秒"
+          ],
+          [
+            "范围",
+            "900 距离"
+          ],
+          [
+            "持续时间",
+            "8 秒"
+          ]
+        ],
+        "notes": "前方130放置诱饵8秒；自己无敌1.2秒，无直接伤害",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "summon",
+        "stamp": "summon"
+      }
+    },
+    {
+      "role": "logistics",
+      "name": "仓储配送员",
+      "basic": {
+        "name": "快递到脸",
+        "weapon": "wrench",
+        "power": 1.05,
+        "cooldown": 0.86,
+        "range": 132,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 21,
+        "dps": 24.4,
+        "motion": "overhead",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-logistics"
+      },
+      "signature": {
+        "name": "加急件到了",
+        "ability": "supply",
+        "power": 1,
+        "level": 1,
+        "damage": 0,
+        "radius": 260,
+        "cooldown": 18,
+        "heal": 24,
+        "shield": 18,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "18 秒"
+          ],
+          [
+            "范围",
+            "260 距离"
+          ],
+          [
+            "恢复生命",
+            "24 HP"
+          ],
+          [
+            "获得护盾",
+            "18"
+          ]
+        ],
+        "notes": "队伍获得5零件",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "heal"
+      }
+    },
+    {
+      "role": "chef",
+      "name": "食堂主厨",
+      "basic": {
+        "name": "锅铲翻面",
+        "weapon": "wrench",
+        "power": 1.12,
+        "cooldown": 0.9,
+        "range": 128,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 25.8,
+        "dps": 28.6,
+        "motion": "overhead",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-chef"
+      },
+      "signature": {
+        "name": "这锅我来扛",
+        "ability": "wok",
+        "power": 1,
+        "level": 1,
+        "damage": 92,
+        "radius": 220,
+        "cooldown": 10,
+        "heal": 0,
+        "shield": 0,
+        "stun": 1.2,
+        "rows": [
+          [
+            "冷却",
+            "10 秒"
+          ],
+          [
+            "范围",
+            "220 距离"
+          ],
+          [
+            "基础伤害",
+            "92"
+          ],
+          [
+            "控制时间",
+            "1.2 秒"
+          ]
+        ],
+        "notes": "击退50距离，首领眩晕0.4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "cleaner",
+      "name": "保洁专员",
+      "basic": {
+        "name": "扫除班味",
+        "weapon": "mop",
+        "power": 0.87,
+        "cooldown": 0.84,
+        "range": 158,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 15.7,
+        "dps": 18.6,
+        "motion": "sweep",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-cleaner"
+      },
+      "signature": {
+        "name": "深度消杀",
+        "ability": "sanitize",
+        "power": 1,
+        "level": 1,
+        "damage": 5.669999999999999,
+        "radius": 136,
+        "cooldown": 14,
+        "heal": 0,
+        "shield": 15,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "14 秒"
+          ],
+          [
+            "范围",
+            "136 距离"
+          ],
+          [
+            "每跳伤害",
+            "5.7"
+          ],
+          [
+            "获得护盾",
+            "15"
+          ],
+          [
+            "持续时间",
+            "4.2 秒"
+          ]
+        ],
+        "notes": "每0.5秒一跳（伤害为每跳），护盾范围200",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "mist"
+      }
+    },
+    {
+      "role": "teacher",
+      "name": "培训讲师",
+      "basic": {
+        "name": "重点敲黑板",
+        "weapon": "bat",
+        "power": 1,
+        "cooldown": 0.84,
+        "range": 144,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 18,
+        "dps": 21.4,
+        "motion": "slash",
+        "contactMs": 141,
+        "displayTexture": "basic-tool-teacher"
+      },
+      "signature": {
+        "name": "现在下课",
+        "ability": "bell",
+        "power": 1,
+        "level": 1,
+        "damage": 32.4,
+        "radius": 220,
+        "cooldown": 14,
+        "heal": 0,
+        "shield": 0,
+        "stun": 2,
+        "rows": [
+          [
+            "冷却",
+            "14 秒"
+          ],
+          [
+            "范围",
+            "220 距离"
+          ],
+          [
+            "基础伤害",
+            "32.4"
+          ],
+          [
+            "控制时间",
+            "2 秒"
+          ]
+        ],
+        "notes": "减速4秒；270内队友冲刺冷却清零；首领眩晕0.4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "shield"
+      }
+    },
+    {
+      "role": "driver",
+      "name": "通勤司机",
+      "basic": {
+        "name": "扳手超车",
+        "weapon": "wrench",
+        "power": 1.15,
+        "cooldown": 0.9,
+        "range": 124,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 24.2,
+        "dps": 26.8,
+        "motion": "overhead",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-driver"
+      },
+      "signature": {
+        "name": "末班车不等人",
+        "ability": "rush",
+        "power": 1,
+        "level": 1,
+        "damage": 63,
+        "radius": 150,
+        "cooldown": 11,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "11 秒"
+          ],
+          [
+            "范围",
+            "150 距离"
+          ],
+          [
+            "基础伤害",
+            "63"
+          ],
+          [
+            "持续时间",
+            "0.38 秒"
+          ]
+        ],
+        "notes": "900速度连续突进0.38秒；无敌0.65秒，近敌眩晕0.7秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "slash",
+        "stamp": "electric"
+      }
+    },
+    {
+      "role": "creator",
+      "name": "内容创作者",
+      "basic": {
+        "name": "切片输出",
+        "weapon": "blade",
+        "power": 0.86,
+        "cooldown": 0.74,
+        "range": 540,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 15.5,
+        "dps": 20.9,
+        "motion": "throw",
+        "contactMs": 99,
+        "displayTexture": "basic-tool-creator"
+      },
+      "signature": {
+        "name": "补光开到最大",
+        "ability": "flash",
+        "power": 1,
+        "level": 1,
+        "damage": 45,
+        "radius": 280,
+        "cooldown": 13,
+        "heal": 0,
+        "shield": 0,
+        "stun": 2,
+        "rows": [
+          [
+            "冷却",
+            "13 秒"
+          ],
+          [
+            "范围",
+            "280 距离"
+          ],
+          [
+            "基础伤害",
+            "45"
+          ],
+          [
+            "控制时间",
+            "2 秒"
+          ]
+        ],
+        "notes": "自身暴击率+18%持续4秒，无敌1秒；首领眩晕0.4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "lawyer",
+      "name": "法务顾问",
+      "basic": {
+        "name": "当面举证",
+        "weapon": "ricochet",
+        "power": 0.95,
+        "cooldown": 0.8,
+        "range": 540,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 19,
+        "dps": 23.8,
+        "motion": "throw",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-lawyer"
+      },
+      "signature": {
+        "name": "禁止强制加班",
+        "ability": "injunction",
+        "power": 1,
+        "level": 1,
+        "damage": 50,
+        "radius": 220,
+        "cooldown": 15,
+        "heal": 0,
+        "shield": 25,
+        "stun": 2,
+        "rows": [
+          [
+            "冷却",
+            "15 秒"
+          ],
+          [
+            "范围",
+            "220 距离"
+          ],
+          [
+            "基础伤害",
+            "50"
+          ],
+          [
+            "获得护盾",
+            "25"
+          ],
+          [
+            "控制时间",
+            "2 秒"
+          ]
+        ],
+        "notes": "减速4秒；250内同伴加盾，首领眩晕0.4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "shield"
+      }
+    },
+    {
+      "role": "workhorse",
+      "name": "牛马",
+      "basic": {
+        "name": "牛马甩蹄",
+        "weapon": "bat",
+        "power": 1.15,
+        "cooldown": 0.88,
+        "range": 140,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 25.3,
+        "dps": 28.7,
+        "motion": "slash",
+        "contactMs": 141,
+        "displayTexture": "basic-tool-workhorse"
+      },
+      "signature": {
+        "name": "牛马冲锋",
+        "ability": "stampede",
+        "power": 1,
+        "level": 1,
+        "damage": 74.8,
+        "radius": 180,
+        "cooldown": 13,
+        "heal": 0,
+        "shield": 30,
+        "stun": 0.7,
+        "rows": [
+          [
+            "冷却",
+            "13 秒"
+          ],
+          [
+            "范围",
+            "180 距离"
+          ],
+          [
+            "基础伤害",
+            "74.8"
+          ],
+          [
+            "获得护盾",
+            "30"
+          ],
+          [
+            "控制时间",
+            "0.7 秒"
+          ]
+        ],
+        "notes": "连续突进0.35秒，无敌0.5秒，击退近敌",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "blametaker",
+      "name": "背锅侠",
+      "basic": {
+        "name": "黑锅回旋",
+        "weapon": "meteor",
+        "power": 1.1,
+        "cooldown": 0.92,
+        "range": 144,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 23.1,
+        "dps": 25.1,
+        "motion": "overhead",
+        "contactMs": 150,
+        "displayTexture": "basic-tool-blametaker"
+      },
+      "signature": {
+        "name": "锅从天上来",
+        "ability": "takeblame",
+        "power": 1,
+        "level": 1,
+        "damage": 75.60000000000001,
+        "radius": 240,
+        "cooldown": 15,
+        "heal": 0,
+        "shield": 40,
+        "stun": 1.4,
+        "rows": [
+          [
+            "冷却",
+            "15 秒"
+          ],
+          [
+            "范围",
+            "240 距离"
+          ],
+          [
+            "基础伤害",
+            "75.6"
+          ],
+          [
+            "获得护盾",
+            "40"
+          ],
+          [
+            "控制时间",
+            "1.4 秒"
+          ]
+        ],
+        "notes": "为同伴加盾；产生600强度噪声6秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "slacker",
+      "name": "摸鱼大师",
+      "basic": {
+        "name": "带薪泼咖啡",
+        "weapon": "coffee",
+        "power": 0.88,
+        "cooldown": 0.82,
+        "range": 154,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 14.1,
+        "dps": 17.2,
+        "motion": "throw",
+        "contactMs": 114,
+        "displayTexture": "basic-tool-slacker"
+      },
+      "signature": {
+        "name": "带薪午休",
+        "ability": "paidbreak",
+        "power": 1,
+        "level": 1,
+        "damage": 0,
+        "radius": 260,
+        "cooldown": 17,
+        "heal": 20,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "17 秒"
+          ],
+          [
+            "范围",
+            "260 距离"
+          ],
+          [
+            "恢复生命",
+            "20 HP"
+          ],
+          [
+            "持续时间",
+            "6 秒"
+          ]
+        ],
+        "notes": "650强度诱饵6秒；附近队友冲刺冷却清零",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "heal"
+      }
+    },
+    {
+      "role": "intern",
+      "name": "实习生",
+      "basic": {
+        "name": "文件飞送",
+        "weapon": "blade",
+        "power": 0.88,
+        "cooldown": 0.74,
+        "range": 540,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 15,
+        "dps": 20.2,
+        "motion": "throw",
+        "contactMs": 99,
+        "displayTexture": "basic-tool-intern"
+      },
+      "signature": {
+        "name": "收到收到",
+        "ability": "paperstorm",
+        "power": 1,
+        "level": 1,
+        "damage": 44.2,
+        "radius": 280,
+        "cooldown": 9,
+        "heal": 0,
+        "shield": 0,
+        "stun": 1.4,
+        "rows": [
+          [
+            "冷却",
+            "9 秒"
+          ],
+          [
+            "范围",
+            "280 距离"
+          ],
+          [
+            "基础伤害",
+            "44.2"
+          ],
+          [
+            "控制时间",
+            "1.4 秒"
+          ]
+        ],
+        "notes": "纸张风暴减速3秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "orbit"
+      }
+    },
+    {
+      "role": "duck",
+      "name": "小黄鸭调试员",
+      "basic": {
+        "name": "鸭力反弹",
+        "weapon": "ricochet",
+        "power": 0.92,
+        "cooldown": 0.78,
+        "range": 530,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 16.6,
+        "dps": 21.2,
+        "motion": "throw",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-duck"
+      },
+      "signature": {
+        "name": "嘎嘎调试",
+        "ability": "quack",
+        "power": 1,
+        "level": 1,
+        "damage": 32.4,
+        "radius": 200,
+        "cooldown": 12,
+        "heal": 0,
+        "shield": 0,
+        "stun": 1.5,
+        "rows": [
+          [
+            "冷却",
+            "12 秒"
+          ],
+          [
+            "范围",
+            "200 距离"
+          ],
+          [
+            "基础伤害",
+            "32.4"
+          ],
+          [
+            "控制时间",
+            "1.5 秒"
+          ],
+          [
+            "持续时间",
+            "7 秒"
+          ]
+        ],
+        "notes": "900强度鸭叫诱饵7秒，附近敌人被打断",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "electric"
+      }
+    },
+    {
+      "role": "deadline",
+      "name": "DDL战神",
+      "basic": {
+        "name": "截止日砸场",
+        "weapon": "meteor",
+        "power": 1.16,
+        "cooldown": 0.94,
+        "range": 142,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 25.5,
+        "dps": 27.1,
+        "motion": "overhead",
+        "contactMs": 150,
+        "displayTexture": "basic-tool-deadline"
+      },
+      "signature": {
+        "name": "最后一分钟",
+        "ability": "crunch",
+        "power": 1,
+        "level": 1,
+        "damage": 99,
+        "radius": 230,
+        "cooldown": 14,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0.6,
+        "rows": [
+          [
+            "冷却",
+            "14 秒"
+          ],
+          [
+            "范围",
+            "230 距离"
+          ],
+          [
+            "基础伤害",
+            "99"
+          ],
+          [
+            "控制时间",
+            "0.6 秒"
+          ]
+        ],
+        "notes": "自己冲刺冷却清零，无敌0.8秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "barista",
+      "name": "咖啡师",
+      "basic": {
+        "name": "意式提神",
+        "weapon": "coffee",
+        "power": 0.92,
+        "cooldown": 0.78,
+        "range": 158,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 17.5,
+        "dps": 22.4,
+        "motion": "throw",
+        "contactMs": 114,
+        "displayTexture": "basic-tool-barista"
+      },
+      "signature": {
+        "name": "双倍浓缩",
+        "ability": "espresso",
+        "power": 1,
+        "level": 1,
+        "damage": 47.5,
+        "radius": 230,
+        "cooldown": 12,
+        "heal": 12,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "12 秒"
+          ],
+          [
+            "范围",
+            "230 距离"
+          ],
+          [
+            "基础伤害",
+            "47.5"
+          ],
+          [
+            "恢复生命",
+            "12 HP"
+          ]
+        ],
+        "notes": "队友恢复生命；后续热浪区持续1.05秒，每0.5秒伤害",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "coffee"
+      }
+    },
+    {
+      "role": "qa",
+      "name": "测试工程师",
+      "basic": {
+        "name": "缺陷回传",
+        "weapon": "pulse",
+        "power": 0.88,
+        "cooldown": 0.74,
+        "range": 560,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 17.6,
+        "dps": 23.8,
+        "motion": "shoot",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-qa"
+      },
+      "signature": {
+        "name": "强制回归",
+        "ability": "bugfix",
+        "power": 1,
+        "level": 1,
+        "damage": 64,
+        "radius": 300,
+        "cooldown": 13,
+        "heal": 0,
+        "shield": 0,
+        "stun": 2,
+        "rows": [
+          [
+            "冷却",
+            "13 秒"
+          ],
+          [
+            "范围",
+            "300 距离"
+          ],
+          [
+            "基础伤害",
+            "64"
+          ],
+          [
+            "控制时间",
+            "2 秒"
+          ]
+        ],
+        "notes": "附近队友冲刺冷却清零，敌人减速4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "frost"
+      }
+    },
+    {
+      "role": "director",
+      "name": "画饼总监",
+      "basic": {
+        "name": "大饼拍脸",
+        "weapon": "meteor",
+        "power": 1.12,
+        "cooldown": 0.94,
+        "range": 148,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 25.8,
+        "dps": 27.4,
+        "motion": "overhead",
+        "contactMs": 150,
+        "displayTexture": "basic-tool-director"
+      },
+      "signature": {
+        "name": "饼从天降",
+        "ability": "pie",
+        "power": 1,
+        "level": 1,
+        "damage": 87.39999999999999,
+        "radius": 280,
+        "cooldown": 14,
+        "heal": 0,
+        "shield": 15,
+        "stun": 1,
+        "rows": [
+          [
+            "冷却",
+            "14 秒"
+          ],
+          [
+            "范围",
+            "280 距离"
+          ],
+          [
+            "基础伤害",
+            "87.4"
+          ],
+          [
+            "获得护盾",
+            "15"
+          ],
+          [
+            "控制时间",
+            "1 秒"
+          ]
+        ],
+        "notes": "巨饼范围击退，附近同伴加盾",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "overhead",
+        "stamp": "impact"
+      }
+    },
+    {
+      "role": "investor",
+      "name": "天使投资人",
+      "basic": {
+        "name": "硬币天使轮",
+        "weapon": "ricochet",
+        "power": 0.96,
+        "cooldown": 0.8,
+        "range": 550,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 20.2,
+        "dps": 25.2,
+        "motion": "throw",
+        "contactMs": 90,
+        "displayTexture": "basic-tool-investor"
+      },
+      "signature": {
+        "name": "天使轮暴投",
+        "ability": "funding",
+        "power": 1,
+        "level": 1,
+        "damage": 50.4,
+        "radius": 600,
+        "cooldown": 13,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "13 秒"
+          ],
+          [
+            "范围",
+            "600 距离"
+          ],
+          [
+            "基础伤害",
+            "50.4 × 6"
+          ]
+        ],
+        "notes": "最多六个目标，单目标独立电击",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "throw",
+        "stamp": "electric"
+      }
+    },
+    {
+      "role": "ppt",
+      "name": "首席PPT官",
+      "basic": {
+        "name": "翻页如飞刀",
+        "weapon": "blade",
+        "power": 0.9,
+        "cooldown": 0.76,
+        "range": 540,
+        "ranged": true,
+        "description": "朝瞄准方向发射职场工具，命中造成伤害。",
+        "damage": 17.1,
+        "dps": 22.5,
+        "motion": "throw",
+        "contactMs": 99,
+        "displayTexture": "basic-tool-ppt"
+      },
+      "signature": {
+        "name": "一页定乾坤",
+        "ability": "slides",
+        "power": 1,
+        "level": 1,
+        "damage": 31.349999999999998,
+        "radius": 850,
+        "cooldown": 11,
+        "heal": 0,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "11 秒"
+          ],
+          [
+            "范围",
+            "850 距离"
+          ],
+          [
+            "基础伤害",
+            "31.4 × 16"
+          ]
+        ],
+        "notes": "十六页环射，每页穿透1目标",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "sweep",
+        "stamp": "orbit"
+      }
+    },
+    {
+      "role": "landlord",
+      "name": "收租包租婆",
+      "basic": {
+        "name": "钥匙催租",
+        "weapon": "wrench",
+        "power": 1.12,
+        "cooldown": 0.9,
+        "range": 126,
+        "ranged": false,
+        "description": "朝瞄准方向挥击，命中前方扇形内的敌人。",
+        "damage": 23.5,
+        "dps": 26.1,
+        "motion": "overhead",
+        "contactMs": 135,
+        "displayTexture": "basic-tool-landlord"
+      },
+      "signature": {
+        "name": "到点交租",
+        "ability": "rent",
+        "power": 1,
+        "level": 1,
+        "damage": 58.8,
+        "radius": 300,
+        "cooldown": 16,
+        "heal": 3,
+        "shield": 0,
+        "stun": 0,
+        "rows": [
+          [
+            "冷却",
+            "16 秒"
+          ],
+          [
+            "范围",
+            "300 距离"
+          ],
+          [
+            "基础伤害",
+            "58.8"
+          ],
+          [
+            "恢复生命",
+            "3 HP"
+          ]
+        ],
+        "notes": "每个命中目标恢复3HP×强度，减速4秒",
+        "growth": "每级效果强度 +20%，冷却分母 +5%；装备属性同时参与计算。",
+        "motion": "channel",
+        "stamp": "impact"
+      }
+    }
+  ]
+}

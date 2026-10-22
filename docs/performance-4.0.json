@@ -1,0 +1,519 @@
+{
+  "version": "4.0.0",
+  "date": "2026-10-22–2026-10-23",
+  "method": "Actual WebGL render calls, not a target counter; Windows Chromium, 1440x1000 viewport, DPR2. Headless default compositor is approximately60Hz; unrestricted measurements explicitly disable frame/vsync limits.",
+  "strictDenseThreshold": 144,
+  "initial": {
+    "normal": {
+      "dpr": 2,
+      "distinctWalkFrames": 54,
+      "motion": {
+        "samples": 24,
+        "moving": 24
+      },
+      "cap144": 59.65075979833524,
+      "targetCap": 144,
+      "displayReferenceFps": 59.88023952095792,
+      "rafFPS": 59.65075979833524,
+      "expectedFrameRate": 59.88023952095792,
+      "displayUncapped": false,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "uncapped": {
+      "dpr": 2,
+      "distinctWalkFrames": 128,
+      "motion": {
+        "samples": 57,
+        "moving": 57
+      },
+      "cap144": 142.19587731407609,
+      "targetCap": 144,
+      "displayReferenceFps": 57.47126436781579,
+      "rafFPS": 174.83099669763456,
+      "expectedFrameRate": 144,
+      "displayUncapped": true,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "dense": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 110.30999767462372,
+      "frames": 664,
+      "p95": 13.700000047683716,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 152,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 47241.18
+        },
+        {
+          "name": "同事1",
+          "damage": 63261.41
+        },
+        {
+          "name": "同事2",
+          "damage": 42847.32
+        },
+        {
+          "name": "同事3",
+          "damage": 60765.32
+        }
+      ],
+      "smallWindowFPS": 144.43076308810393
+    }
+  },
+  "intermediate": {
+    "atlasBevel": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 142.24396086874057,
+      "frames": 855,
+      "p95": 11.599999904632568,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 150,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 46792.12
+        },
+        {
+          "name": "同事1",
+          "damage": 64128.81
+        },
+        {
+          "name": "同事2",
+          "damage": 42852.89
+        },
+        {
+          "name": "同事3",
+          "damage": 60241.23
+        }
+      ],
+      "smallWindowFPS": 185.1790174854288
+    },
+    "withCpuProfiler": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 121.38670574082622,
+      "frames": 729,
+      "p95": 13.199999928474426,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 160,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 48192.89
+        },
+        {
+          "name": "同事1",
+          "damage": 65466.62
+        },
+        {
+          "name": "同事2",
+          "damage": 44182.24
+        },
+        {
+          "name": "同事3",
+          "damage": 62106.16
+        }
+      ],
+      "smallWindowFPS": 157.57212338887652
+    },
+    "directTriangleStrips": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 177.0162028935038,
+      "frames": 1063,
+      "p95": 9.899999976158142,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 143,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 46593.57
+        },
+        {
+          "name": "同事1",
+          "damage": 63866.28
+        },
+        {
+          "name": "同事2",
+          "damage": 42928.79
+        },
+        {
+          "name": "同事3",
+          "damage": 60049.39
+        }
+      ],
+      "smallWindowFPS": 201.3064924692706
+    },
+    "fullMaterialPass": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 132.77207460631433,
+      "frames": 798,
+      "p95": 11.799999952316284,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 150,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 46669.98
+        },
+        {
+          "name": "同事1",
+          "damage": 64036.09
+        },
+        {
+          "name": "同事2",
+          "damage": 42863.07
+        },
+        {
+          "name": "同事3",
+          "damage": 60146.65
+        }
+      ],
+      "smallWindowFPS": 167.19851083765002
+    },
+    "uniformBulletRadar": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 146.06068671696755,
+      "frames": 878,
+      "p95": 12.200000047683716,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 152,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 46982.57
+        },
+        {
+          "name": "同事1",
+          "damage": 63769.17
+        },
+        {
+          "name": "同事2",
+          "damage": 43261.22
+        },
+        {
+          "name": "同事3",
+          "damage": 60733.71
+        }
+      ],
+      "smallWindowFPS": 273.36596411049015
+    }
+  },
+  "final": {
+    "normal": {
+      "dpr": 2,
+      "distinctWalkFrames": 52,
+      "motion": {
+        "samples": 24,
+        "moving": 24
+      },
+      "cap144": 59.65075979596556,
+      "targetCap": 144,
+      "displayReferenceFps": 59.88023952095874,
+      "rafFPS": 59.65075979596556,
+      "expectedFrameRate": 59.88023952095874,
+      "displayUncapped": false,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "uncapped": {
+      "dpr": 2,
+      "distinctWalkFrames": 128,
+      "motion": {
+        "samples": 58,
+        "moving": 58
+      },
+      "cap144": 143.64272621229793,
+      "targetCap": 144,
+      "displayReferenceFps": 57.47126436781598,
+      "rafFPS": 630.8738252299403,
+      "expectedFrameRate": 144,
+      "displayUncapped": true,
+      "toolbarHints": [
+        {
+          "name": "一键工作摸鱼",
+          "keys": "F8"
+        },
+        {
+          "name": "独立小窗",
+          "keys": "F6"
+        },
+        {
+          "name": "桌面端F3",
+          "keys": "F3"
+        },
+        {
+          "name": "自动开火快捷开关",
+          "keys": "T"
+        },
+        {
+          "name": "一键隐藏",
+          "keys": "F10"
+        },
+        {
+          "name": "低调小窗F9",
+          "keys": "F9"
+        },
+        {
+          "name": "开启音效",
+          "keys": "M"
+        },
+        {
+          "name": "切换伤害排名",
+          "keys": "F7"
+        },
+        {
+          "name": "快捷设置",
+          "keys": "F2"
+        }
+      ],
+      "border": {
+        "width": "0px",
+        "radius": "0px"
+      },
+      "errors": []
+    },
+    "dense": {
+      "displayUncapped": true,
+      "worldSeed": 3900,
+      "measurementSeconds": 6,
+      "phase": "playing",
+      "modulesPerPlayer": 4,
+      "fps": 209.1973550533799,
+      "frames": 1256,
+      "p95": 8.5,
+      "players": 4,
+      "enemies": 100,
+      "bullets": 156,
+      "ratio": 2,
+      "damage": [
+        {
+          "name": "下班同学",
+          "damage": 47374.86
+        },
+        {
+          "name": "同事1",
+          "damage": 63145.25
+        },
+        {
+          "name": "同事2",
+          "damage": 42728.64
+        },
+        {
+          "name": "同事3",
+          "damage": 60407.11
+        }
+      ],
+      "smallWindowFPS": 306.8525976044024
+    },
+    "jobs": [
+      {
+        "name": "normal-quality",
+        "code": 0,
+        "ms": 23613
+      },
+      {
+        "name": "uncapped-quality",
+        "code": 0,
+        "ms": 28299
+      },
+      {
+        "name": "dense-100-final",
+        "code": 0,
+        "threshold": 144
+      }
+    ],
+    "canGuarantee144InAllScenes": false,
+    "note": "Shipping source with compact healthy-ally world bars and hidden nearby healthy names. All earlier complete stages retained."
+  },
+  "limitations": [
+    "One browser plus three real Socket.IO peers; not four physical computers.",
+    "Stress enemies are kept alive artificially to hold100 enemies continuously; this is a stress fixture.",
+    "No guarantee of144FPS on every device/scene. Intermediate stages are diagnostic samples, not a controlled statistical A/B study."
+  ],
+  "native": {
+    "origin": "http://localhost:3106",
+    "sourceVersion": "4.0.0",
+    "phase": "playing",
+    "displayFrequency": 144,
+    "pixelRatio": 1,
+    "selectedCap": 0,
+    "frames": 856,
+    "durationMs": 6002.200000047684,
+    "raf": 142.61437472813296,
+    "fps": 142.61437472813296,
+    "viewport": [
+      520,
+      350
+    ],
+    "earlierDisplayContext": {
+      "pixelRatio": 1.25,
+      "fps": 57.81598853608329,
+      "frames": 347,
+      "durationMs": 6001.800000071526,
+      "displayFrequency": null,
+      "note": "Earlier native4.0 display/scale context. The frequency was not captured. These native contexts are not a software A/B comparison."
+    }
+  }
+}

@@ -1,3 +1,5 @@
+> 当前4.0请看 [RELEASE-4.0.md](RELEASE-4.0.md)、[ART-4.0.md](ART-4.0.md)、[PERFORMANCE-4.0.md](PERFORMANCE-4.0.md) 与 [validation-4.0.json](validation-4.0.json)。以下为历史记录。
+
 > 当前3.4请看 [RELEASE-3.4.md](RELEASE-3.4.md)、[PERFORMANCE-3.4.md](PERFORMANCE-3.4.md)、[DESIGN-3.4.md](DESIGN-3.4.md)。以下为历史记录。
 
 > 当前3.3请看 [RELEASE-3.3.md](RELEASE-3.3.md)、[PERFORMANCE-3.3.md](PERFORMANCE-3.3.md)、[DESIGN-3.3.md](DESIGN-3.3.md)。以下为历史记录。

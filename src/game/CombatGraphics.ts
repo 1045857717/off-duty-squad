@@ -3,6 +3,43 @@ import { circleRing, arcSpan } from "./circleTessellation";
 /** Direct triangle fans avoid ear-clipping every tiny particle on every display tick. */
 export class CombatGraphics extends Phaser.GameObjects.Graphics {
   private pathPoint = false;
+  /** A two-sided melee strip has known connectivity; skip general polygon ear clipping. */
+  fillRibbon(points: readonly { x: number; y: number }[]) {
+    const half = points.length / 2;
+    for (let i = 0; i < half - 1; i++) {
+      const a = points[i],
+        b = points[i + 1],
+        c = points[points.length - 1 - i],
+        d = points[points.length - 2 - i];
+      this.fillTriangle(a.x, a.y, b.x, b.y, d.x, d.y);
+      this.fillTriangle(a.x, a.y, d.x, d.y, c.x, c.y);
+    }
+    return this;
+  }
+  /** Small HUD panels need eight edges, not four dense arc paths tessellated every render. */
+  fillBevelRect(x: number, y: number, w: number, h: number, cut = 3) {
+    const c = Math.min(cut, w / 2, h / 2);
+    this.fillRect(x + c, y, w - 2 * c, h).fillRect(x, y + c, w, h - 2 * c);
+    this.fillTriangle(x + c, y, x + c, y + c, x, y + c);
+    this.fillTriangle(x + w - c, y, x + w, y + c, x + w - c, y + c);
+    this.fillTriangle(x + w, y + h - c, x + w - c, y + h, x + w - c, y + h - c);
+    this.fillTriangle(x, y + h - c, x + c, y + h - c, x + c, y + h);
+    return this;
+  }
+  strokeBevelRect(x: number, y: number, w: number, h: number, cut = 3) {
+    const c = Math.min(cut, w / 2, h / 2);
+    return this.beginPath()
+      .moveTo(x + c, y)
+      .lineTo(x + w - c, y)
+      .lineTo(x + w, y + c)
+      .lineTo(x + w, y + h - c)
+      .lineTo(x + w - c, y + h)
+      .lineTo(x + c, y + h)
+      .lineTo(x, y + h - c)
+      .lineTo(x, y + c)
+      .closePath()
+      .strokePath();
+  }
   override beginPath() {
     this.pathPoint = false;
     return super.beginPath();

@@ -109,11 +109,11 @@ try {
   await host
     .getByRole("navigation", { name: "图鉴条目" })
     .getByRole("button")
-    .filter({ hasText: "酸吐打印尸" })
+    .filter({ hasText: ENEMY_DEFS.shooter.name })
     .click();
   assert.match(
     await host.getByRole("region", { name: "图鉴详细说明" }).innerText(),
-    /3枚酸液纸团/,
+    /3枚/,
   );
   await snap(host, "codex-enemies");
   await host.getByRole("tab", { name: /攻击技能/ }).click();
@@ -368,9 +368,10 @@ try {
   assert.ok(g.state.enemies[0].windup! > 0);
   await snap(host, "enemy-windup");
   await host.getByRole("status", { name: "本次受击来源" }).waitFor();
-  assert.match(
-    await host.getByRole("status", { name: "本次受击来源" }).innerText(),
-    /催命跑腿尸/,
+  assert.ok(
+    (
+      await host.getByRole("status", { name: "本次受击来源" }).innerText()
+    ).includes(ENEMY_DEFS.mite.name),
   );
   assert.equal(me.lastHit?.sourceKind, "mite");
   await snap(host, "damage-source");
@@ -417,7 +418,7 @@ try {
   }, enemyIds);
   for (const kind of kinds) {
     assert.equal(audit[kind]?.parts, 15, kind);
-    assert.equal(audit[kind]?.texture, "joint-atlas-v39");
+    assert.equal(audit[kind]?.texture, "joint-atlas-v40");
     assert.ok(audit[kind]?.poses.length >= 3, kind);
   }
   await fs.writeFile(

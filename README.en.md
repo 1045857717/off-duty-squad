@@ -33,7 +33,7 @@ From the first prototype through the current release, an AI coding agent impleme
 - **Builds that grow:** 16 attack modules, prerequisite-aware upgrades, and level 4 / level 8 evolutions. Upgrade offers follow your available growth branches.
 - **Public chat:** cross-room conversations for lobby users, squads, players and spectators, with separate public/squad channels, unread indicators, preserved drafts and return to controls after sending.
 - **Actual multiplayer:** host-controlled departure, player readiness, a cancellable three-second countdown, mid-run joining, 0–3 AI teammates, spectators, chat, rescue calls and revives.
-- **Readable combat:** high-contrast numeric health/shields, recent-damage trails, direction-specific painted arms and continuous held weapons; enemy wind-ups and articulated attacks, persistent area effects, critical-hit and shield feedback, damage sources, a global boss bar and live damage rankings.
+- **Readable combat:** high-contrast numeric health/shields, recent-damage trails, coherent six-view articulated people, profession-specific tools and continuous attacks; enemy wind-ups and articulated attacks, persistent area effects, critical-hit and shield feedback, damage sources, a global boss bar and live damage rankings.
 - **Codex and leaderboards:** enemies, professions and skills; daily, weekly, monthly, yearly and all-time squad rankings, separated by mode and difficulty.
 - **Browser and optional Windows client:** independent browser windows; a portable Electron client adds frameless transparency, always-on-top, hiding and global restore.
 - **Nine work-style views:** tasks, board, documents, spreadsheet, Excel-style sheet, mail, VS Code-style editor, IDEA-style editor and metrics. Editors are local interactive simulations.
@@ -44,6 +44,8 @@ From the first prototype through the current release, an AI coding agent impleme
 | Chapter progression and a defined finish              | Continuous builds and survival records                       |
 
 ![Gameplay and mission brief](docs/images/gameplay.webp)
+
+Actual UI capture: one player plus three server bots, without fake-health injection. [Readiness](docs/images/ready-40.webp) · [Eight-direction swings](docs/images/directions-40.webp) · [Enemy motions](docs/images/enemies-40.webp).
 
 ## Quick start
 
@@ -121,13 +123,13 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 <details>
 <summary>View results and work-style interface</summary>
 
-**3.9 compact health, shield and build acceptance scene**
+**4.0 health, shield and build acceptance scene**
 
-![3.9 health and build HUD](docs/images/vitals-39.webp)
+![4.0 health and build HUD](docs/images/vitals-40.webp)
 
 **F9 quiet view (four-player, 100-enemy stress fixture)**
 
-![520×350 quiet view](docs/images/quiet-39.webp)
+![520×350 quiet view](docs/images/quiet-40.webp)
 
 ![Run results](docs/images/results.webp)
 
@@ -137,10 +139,10 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.9.0**. The current name is Paid Break Crew (带薪摸鱼). This release reworks quiet windows, compact vitals/build layout, grounded attacks and seven articulated undead models with 15 joints. Main requires PRs and CI, and blocks force pushes/deletion. See [3.9 notes](docs/RELEASE-3.9.md), [published verification](docs/PUBLISHED-3.9.md) and [branch/release policy](docs/BRANCH-PROTECTION.md). 144FPS is a target mode; see the [measured dense-scene limits](docs/PERFORMANCE-3.9.en.md).
+Current version: **4.0.0**. Night Office Oddities replaces the mixed visual world with coherent articulated people, workplace tools, themed creatures, environment materials, effects and UI. Directional slashes, authority-side windup facing and weapon contact curves now share the same conventions. See [4.0 notes](docs/RELEASE-4.0.md), [art and motion](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.md) and [protected-main policy](docs/BRANCH-PROTECTION.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
-- A 144 FPS target setting is available. The fixed-seed four-player/100-enemy/DPR 2 stress fixture measured about 138–153 FPS in full view and 123–186 FPS in quiet view (unrestricted laboratory configuration). **144FPS is not guaranteed for every scene**; see the [3.9 performance measurements](docs/PERFORMANCE-3.9.en.md).
+- A 144 FPS target setting is available. Hardware, resolution and enemy density determine actual performance; **144FPS is not guaranteed for every scene**. See [4.0 measurements](docs/PERFORMANCE-4.0.md); earlier measurements remain historical evidence.
 - Browser window support varies. The Windows portable client is unsigned; no macOS or Linux desktop package is currently provided.
 - Existing networking checks use multiple local clients and simulated latency. Cross-machine public-network soak testing remains outstanding.
 - Ranking periods use Asia/Shanghai time and retain the most recent 50,000 results. Chat and live rooms are not persisted.
@@ -163,7 +165,7 @@ Optional support; all gameplay remains available. This is the original author-pr
 
 </details>
 
-Released under the [MIT License](LICENSE). Third-party dependencies retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md). Project artwork provenance is documented in [ART-3.4](docs/ART-3.4.md).
+Released under the [MIT License](LICENSE). Third-party dependencies retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md). Project artwork provenance is documented in [ART-4.0](docs/ART-4.0.md).
 
 ## Star History
 

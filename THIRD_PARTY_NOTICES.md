@@ -28,3 +28,7 @@ Paid Break Crew is released under the [MIT License](LICENSE). Third-party softwa
 Artwork generated for this project is documented in [ART-3.4](docs/ART-3.4.md) and the related art specifications. No third-party character pack is represented as original project work. References to editor products describe interface simulations and do not imply endorsement.
 
 项目美术的生成、派生与规格见美术记录。编辑器产品名称用于描述模拟界面，不代表这些产品为游戏背书。
+
+
+## Noto Serif SC heading subset (4.0)
+Original font: Google / Adobe Noto Serif SC, SIL Open Font License 1.1. Self-hosted subset for game headings in public/fonts/office-title-sc.ttf; license retained in public/fonts/OFL-NotoSerifSC.txt. Downloaded via official Google Fonts CSS text subsetting on 2026-10-22. No runtime Google Fonts request. Source https://github.com/google/fonts/tree/main/ofl/notoserifsc .

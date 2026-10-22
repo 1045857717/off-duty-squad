@@ -17,7 +17,8 @@ function useChatUnread(messages: ChatMessage[], visible: boolean) {
     }
     previous.current = last;
   }, [last, visible]);
-  return unread;
+  // The active channel is already read in this render; the effect resets stored history.
+  return visible ? 0 : unread;
 }
 export function LobbyChannels({
   state,

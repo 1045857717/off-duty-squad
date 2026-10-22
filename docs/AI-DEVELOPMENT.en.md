@@ -72,3 +72,11 @@ A separate regression reproduced incorrect render depth after profession changes
 Known boundaries remain explicit: single-instance rooms, memory-only live rooms/chat, an unsigned Windows client, and no claim of exhaustive long-duration load testing across all public networks. Consult the evidence and CI for the particular release.
 
 3.9 adds actual15-joint undead sprites, grounded attacks and corrected overhead wrist trajectories. F9/HUD and real rendered joints are covered by browser regression checks. See [art/motion implementation](ART-3.9.md) and [active branch policy](BRANCH-PROTECTION.md).
+
+
+## 4.0: visual-world replacement and directional evidence
+
+The user supplied a reversed slash screenshot, requested a major visual overhaul informed by The Spell Brigade, and required profession-appropriate melee/ranged actions and themed enemies beyond zombies. AI inspected the actual texture basis, reproduced a windup/turn hit mismatch, and caught a sideways contact curve with failing tests before fixing them. Independent UI, enemy and environment helpers worked in disjoint files; the main agent integrated the combat pipeline and ran the game-level checks. Impeccable provided a design audit method, not an automatic anti-AI filter. New artwork is editable Canvas/vector code using the existing Phaser atlas/rig pipeline; no image model was invoked. The current tool surface did not expose image_gen, and no unapproved CLI fallback was used. See [art and motion](ART-4.0.md), [profession matrix](COMBAT-4.0.md), [validation](validation-4.0.json).
+
+
+Verification corrections: independent review caught missing world translation in the new ribbon renderer and a real draw-boundary check reproduced it. Screenshot review exposed damage/vital and short-screen roster overlap, now covered by geometry checks. Native probes now require a matching GAME_URL version and playing phase, preventing old local previews from being reported as current results. Performance reports retain failed stages rather than only the best sample.

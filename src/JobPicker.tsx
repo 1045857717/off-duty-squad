@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ProfessionCard } from "./ProfessionCard";
 import { ROLES } from "../shared/content";
 import {
   CAREER_CATEGORIES,
@@ -34,6 +35,7 @@ export function JobPicker({
       className={"job-picker " + (large ? "large" : "")}
       aria-label="打工人职业选择"
     >
+      {large && <ProfessionCard role={role} />}
       <header>
         <span>
           <Icon name="users" size={12} />

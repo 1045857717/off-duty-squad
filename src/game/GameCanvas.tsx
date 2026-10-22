@@ -78,7 +78,7 @@ export default function GameCanvas({ bridge }: { bridge: SceneBridge }) {
     <div
       className="game-canvas"
       ref={parent}
-      aria-label="办公发癫游戏场景"
+      aria-label="带薪摸鱼游戏场景"
       role="img"
     />
   );

@@ -1,0 +1,57 @@
+{
+  "command": "node tests/art40-rig-audit.mjs",
+  "status": "passed",
+  "coverage": "Isolated real Canvas atlas and WebGL enemy rigs; not the full game direction test.",
+  "browser": "149.0.7827.55",
+  "frames": {
+    "count": 630,
+    "views": 6,
+    "bonesPerKind": 15,
+    "maxWidth": 86,
+    "maxHeight": 95,
+    "dimensionMismatches": [],
+    "empty": [],
+    "outsideCrop": [],
+    "disconnected": [],
+    "violations": []
+  },
+  "runtime": {
+    "actors": 42,
+    "renderer": "WebGL",
+    "atlas": {
+      "key": "joint-atlas-v40",
+      "width": 3840,
+      "height": 4032
+    },
+    "invalid": [],
+    "continuityFailures": []
+  },
+  "matrices": {
+    "directionSamples": 56,
+    "deathSamples": 35,
+    "idleSamples": 432,
+    "failures": [],
+    "relaxedIdle": {
+      "shooter": {
+        "maxHandFlare": 0.9995007296674281,
+        "minHandDrop": 34.702101025655935,
+        "minForearmDrop": 17.066314287235045
+      },
+      "bomber": {
+        "maxHandFlare": 4.971179870661038,
+        "minHandDrop": 35.03112999123135,
+        "minForearmDrop": 17.504530611977202
+      },
+      "boss": {
+        "maxHandFlare": 5.1716264987221265,
+        "minHandDrop": 33.745114258280466,
+        "minForearmDrop": 16.758262911133833
+      }
+    }
+  },
+  "browserErrors": [],
+  "artifacts": [
+    "test-results/art40-rig-audit/six-views.png",
+    "test-results/art40-rig-audit/webgl-motion.png"
+  ]
+}

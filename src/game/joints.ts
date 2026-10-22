@@ -110,19 +110,30 @@ export function visibleAttack(
 export function weaponPose(frame: AttackFrame, facing: number) {
   const { windup: prep, strike: hit, recovery, kind } = frame;
   const side = Math.cos(facing) < 0 ? -1 : 1;
+  const phase = frame.progress;
+  const swing =
+    phase < 0.16
+      ? -0.95 * smooth(0, 0.16, phase)
+      : phase < 0.48
+        ? -0.95 + 1.85 * smooth(0.16, 0.48, phase)
+        : 0.9 * (1 - smooth(0.48, 1, phase));
+  const up = Math.atan2(
+    Math.sin(-Math.PI / 2 - facing),
+    Math.cos(-Math.PI / 2 - facing),
+  );
   const offset = !frame.active
     ? 0
     : kind === "slash" || kind === "sweep"
-      ? -prep * 1.2 + hit * 1.4 + recovery * 0.14
+      ? swing * side
       : kind === "overhead"
-        ? -prep * 1.5 + hit * 0.8 + recovery * 0.12
+        ? up * prep * (1 - hit)
         : kind === "throw"
-          ? -prep * 0.65 + hit * 0.36
+          ? (-prep * 0.65 + hit * 0.18) * side
           : kind === "shoot"
-            ? -hit * 0.075
-            : -prep * 0.15 + hit * 0.2;
+            ? -hit * 0.075 * side
+            : (-prep * 0.15 + hit * 0.2) * side;
   return {
-    rotation: facing + offset * side,
+    rotation: facing + offset,
     scale: 0.82,
     recoil: kind === "shoot" ? hit * 6.8 : 0,
     trail:

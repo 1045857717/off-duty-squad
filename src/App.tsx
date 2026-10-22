@@ -116,6 +116,12 @@ export default function App() {
     floating.open,
   ]);
   useEffect(() => {
+    const favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+    if (favicon)
+      favicon.href =
+        hidden || floating.concealed || boss || settings.compact
+          ? "/workspace.svg"
+          : "/favicon.svg";
     if (hidden || floating.concealed) document.title = "项目协作工作台";
     else if (!boss)
       document.title = settings.compact
@@ -493,7 +499,7 @@ export default function App() {
   return (
     <div
       className={
-        "app " +
+        "app odyssey40 " +
         (settings.compact ? "is-compact " : "") +
         (!window.desktop && !IS_FLOATING && settings.compact
           ? "quiet-embedded "
@@ -522,10 +528,7 @@ export default function App() {
               setPanel(null);
             }}
           >
-            <i />
-            <i />
-            <i />
-            <i />
+            <Icon name="fish" size={32} />
           </button>
           <div className="nav-items">
             <button
@@ -752,10 +755,6 @@ export default function App() {
           <main className="main-content">
             <div className="page-heading">
               <div>
-                <div className="eyebrow">
-                  <span />
-                  PAID BREAK CREW / PAID BREAK / CO-OP
-                </div>
                 <h1>
                   班是公司的，<span>鱼是自己的。</span>
                 </h1>
@@ -848,6 +847,7 @@ export default function App() {
                           online={net.presence?.online}
                           name={name}
                           role={role}
+                          preview={<GameCanvas bridge={bridge} />}
                           request={net.request}
                           onCreate={() => setPanel("create")}
                           onJoin={() => setPanel("join")}

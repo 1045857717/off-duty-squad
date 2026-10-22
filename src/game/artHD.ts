@@ -1,5 +1,6 @@
 import { MAP_WALLS, ROLES, WORLD } from "../../shared/content";
 import type { Role } from "../../shared/types";
+import { ENV40 } from "./environment40";
 export const ART_SCALE = 2,
   HERO_FRAME = { w: 96, h: 112, columns: 24, rows: 8 };
 type C = CanvasRenderingContext2D;
@@ -580,18 +581,58 @@ export function makeCrystal() {
   line(c, 16, 21, 18, 38, "#e3fbd19e");
   return canvas;
 }
+// Live environmental terminals and support stations share the office hardware.
 export function makeRelay(active = false) {
   const { canvas, c } = surface(54, 65);
-  ellipse(c, 27, 54, 24, 7, "#0d273c80");
-  rect(c, 9, 15, 36, 42, 7, "#456f79", "#b2c6b5");
-  rect(c, 13, 18, 28, 23, 4, "#132f44", "#88aea5");
-  rect(c, 16, 21, 22, 17, 2, active ? "#457d67" : "#3d6d75");
-  line(c, 19, 27, 25, 32, active ? "#d0f3b0" : "#d0e8d2", 2);
-  line(c, 25, 32, 35, 25, active ? "#d0f3b0" : "#d0e8d2", 2);
+  ellipse(c, 27, 57, 23, 6, "#19172270");
+  c.beginPath();
+  c.moveTo(13, 12);
+  c.lineTo(40, 12);
+  c.lineTo(46, 19);
+  c.lineTo(46, 53);
+  c.lineTo(40, 59);
+  c.lineTo(12, 59);
+  c.lineTo(7, 53);
+  c.lineTo(7, 20);
+  c.closePath();
+  c.fillStyle = ENV40.outline;
+  c.fill();
+  rect(c, 10, 16, 33, 34, 2, ENV40.brassShade);
+  rect(c, 11, 16, 29, 29, 1, ENV40.brass);
+  line(c, 13, 16, 38, 16, ENV40.brassLight, 1.5);
+  line(c, 11, 19, 11, 42, "#d1bc9177");
+  rect(c, 14, 20, 25, 20, 2, ENV40.outline);
+  rect(c, 16, 22, 21, 15, 1, active ? "#425f60" : "#343340");
+  if (active) {
+    line(c, 20, 29, 25, 33, "#b1d2bf", 2);
+    line(c, 25, 33, 33, 25, "#b1d2bf", 2);
+  } else {
+    // A physical time-clock dial, legible without a text label.
+    c.beginPath();
+    c.arc(27, 29, 6, 0, Math.PI * 2);
+    c.strokeStyle = ENV40.brassLight;
+    c.lineWidth = 1.3;
+    c.stroke();
+    line(c, 27, 25, 27, 29, ENV40.brassLight, 1.5);
+    line(c, 27, 29, 30, 30, ENV40.brassLight, 1.5);
+  }
+  rect(c, 14, 44, 24, 9, 1, "#302b3a");
   for (let i = 0; i < 3; i++)
-    rect(c, 16 + i * 8, 46, 5, 4, 1, active ? "#b9ef82" : "#eac583");
-  rect(c, 19, 9, 16, 7, 3, "#aac2ae", "#2e535f");
-  rect(c, 22, 6, 10, 5, 2, active ? "#c9f5aa" : "#95d7d0");
+    rect(
+      c,
+      17 + i * 7,
+      46,
+      4,
+      3,
+      0.5,
+      active ? ENV40.patina : ENV40.brassLight,
+    );
+  line(c, 14, 55, 37, 55, "#75616c");
+  // A small paper timecard and its dark slot replace the old beacon antenna.
+  rect(c, 16, 10, 22, 5, 1, ENV40.outline);
+  rect(c, 19, 4, 16, 10, 0.5, "#c0b69e");
+  line(c, 22, 7, 31, 7, "#746775");
+  line(c, 22, 10, 29, 10, "#746775");
   return canvas;
 }
 export function makeDrone() {
