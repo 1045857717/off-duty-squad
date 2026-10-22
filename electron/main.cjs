@@ -123,7 +123,7 @@ async function create() {
     resizable: false,
     alwaysOnTop: true,
     show: false,
-    title: "薪水小偷 · SALARY THIEVES",
+    title: "带薪摸鱼 · PAID BREAK CREW",
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
       nodeIntegration: false,
@@ -138,7 +138,11 @@ async function create() {
     try {
       if (
         new URL(target).origin === url.origin ||
-        new URL(target).origin === "https://api.xiebc.cc"
+        new URL(target).origin === "https://api.xiebc.cc" ||
+        (new URL(target).origin === "https://github.com" &&
+          /^\/1045857717\/off-duty-squad(?:\/|$)/.test(
+            new URL(target).pathname,
+          ))
       )
         void shell.openExternal(target);
     } catch {}
@@ -273,8 +277,8 @@ async function create() {
     const compactAfter = win.getContentBounds();
     if (
       expanded.width <= compactBefore.width ||
-      Math.abs(compactAfter.width - 660) > 2 ||
-      Math.abs(compactAfter.height - 440) > 2
+      Math.abs(compactAfter.width - 520) > 2 ||
+      Math.abs(compactAfter.height - 350) > 2
     )
       throw Error("F9 did not resize native window correctly");
     console.log(
@@ -299,16 +303,17 @@ ipcMain.on("desktop:opacity", (e, v) => {
 ipcMain.on("desktop:compact", (e, v) => {
   if (!trusted(e) || typeof v !== "boolean" || v === compact) return;
   compact = v;
+  win.setTitle(v ? "状态面板" : "带薪摸鱼 · PAID BREAK CREW");
   if (v) {
     normalBounds = win.getBounds();
     const area = screen.getDisplayMatching(normalBounds).workArea;
-    win.setMinimumSize(500, 340);
-    win.setContentSize(660, 440);
+    win.setMinimumSize(420, 300);
+    win.setContentSize(520, 350);
     win.setBounds({
-      width: 660,
-      height: 440,
-      x: area.x + area.width - 680,
-      y: area.y + area.height - 470,
+      width: 520,
+      height: 350,
+      x: area.x + area.width - 536,
+      y: area.y + area.height - 366,
     });
   } else if (normalBounds) win.setBounds(normalBounds);
 });
@@ -351,7 +356,7 @@ if (!app.requestSingleInstanceLock()) {
         return;
       }
       const { dialog } = require("electron");
-      dialog.showErrorBox("薪水小偷无法启动", String(err.message || err));
+      dialog.showErrorBox("带薪摸鱼无法启动", String(err.message || err));
       app.quit();
     }
   });

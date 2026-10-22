@@ -1,6 +1,6 @@
 # Third-party notices / 第三方声明
 
-Salary Thieves is released under the [MIT License](LICENSE). Third-party software retains its own copyright and license. The table records direct dependencies used by this release; transitive dependencies also retain their original licenses and notices in their installed packages.
+Paid Break Crew is released under the [MIT License](LICENSE). Third-party software retains its own copyright and license. The table records direct dependencies used by this release; transitive dependencies also retain their original licenses and notices in their installed packages.
 
 本项目采用 MIT 许可。以下为当前版本的直接依赖；所有第三方软件（含间接依赖）保留各自的著作权、许可与声明。发布桌面包时保留 Electron / Chromium 自带的许可与声明文件。
 

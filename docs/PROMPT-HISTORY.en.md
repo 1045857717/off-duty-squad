@@ -92,3 +92,9 @@ Convert “make it better” into an observable problem: which element obstructs
 29. Replace 工位发癫局 with a funnier, more absurd game name: Salary Thieves / 薪水小偷.
 30. “我说的二维码放在github上”: keep the original QR in GitHub README/support documents, and remove the in-game coffee panel.
 31. “你是怎么连通我的github的？”: explain the existing local gh login, system keyring, same-account API transfer and Actions publication without exposing credentials.
+
+## 3.9 — Paid Break Crew, quiet play and actual undead
+
+Translated user request: use 带薪摸鱼 for now; suggest alternate names; replace the attendance/survival chat line; make F9 quieter; reduce and align health/build UI; redesign awkward attacks; replace all endless enemies with fully animated zombie models; protect main and retain only the newest Release.
+
+Implementation summary: diagnosed human profession textures in the actual enemy rig, recoil dragging feet, overlapping independently positioned UI and obsolete viewport-height rules clipping the mini canvas. Added dedicated zombie anatomy, grounded attacks/cast blending, a flowing HUD and bounded quiet windows. Main protection is applied through GitHub; source changes use PRs and required CI. Old Release objects are removed only after validating the new release; source tags/images remain.

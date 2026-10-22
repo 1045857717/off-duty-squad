@@ -1,21 +1,32 @@
 import type Phaser from "phaser";
+import {
+  ZOMBIE_PARTS,
+  ZOMBIE_DESIGNS,
+  zombieGeometry,
+  paintZombiePart,
+} from "./zombieRig";
+import type { EnemyKind } from "../../shared/types";
 import { GAMEPLAY_MODELS } from "./paintedActors";
 import { JOINT_PARTS, rigPartGeometry } from "./joints";
 import { ROLES } from "../../shared/content";
 import { ENEMY_DEFS } from "../../shared/combatProfiles";
-/** One bounded atlas, 672 painted joint frames plus props; no runtime per-limb canvas work. */
+/** One bounded atlas for human/undead joints; each dimension stays below4096. */
 export function ensureRigAtlas(scene: Phaser.Scene) {
-  const key = "joint-atlas-v35";
+  const key = "joint-atlas-v39";
   if (scene.textures.exists(key)) return key;
   const props = [
     ...Object.keys(ROLES),
     ...Object.keys(ENEMY_DEFS).map((k) => "enemy-" + k),
     "blink",
   ];
-  const count = GAMEPLAY_MODELS.length * 6 * JOINT_PARTS.length + props.length;
+  const count =
+    GAMEPLAY_MODELS.length * 6 * JOINT_PARTS.length +
+    Object.keys(ZOMBIE_DESIGNS).length * 6 * ZOMBIE_PARTS.length +
+    props.length;
   const canvas = document.createElement("canvas");
-  canvas.width = 24 * 96;
-  canvas.height = Math.ceil(count / 24) * 112;
+  const columns = 40;
+  canvas.width = columns * 96;
+  canvas.height = Math.ceil(count / columns) * 112;
   const c = canvas.getContext("2d")!;
   const rects: Record<string, { x: number; y: number; w: number; h: number }> =
     {};
@@ -86,16 +97,37 @@ export function ensureRigAtlas(scene: Phaser.Scene) {
           t.lineTo(...point(...geometry.tip));
           t.stroke();
         }
-        const x = (slot % 24) * 96,
-          y = Math.floor(slot / 24) * 112;
+        const x = (slot % columns) * 96,
+          y = Math.floor(slot / columns) * 112;
         slot++;
         c.drawImage(temp, x, y);
         rects[model + "-" + col + "-" + part.name] = { x, y, w, h };
       }
   }
+  for (const kind of Object.keys(ZOMBIE_DESIGNS) as EnemyKind[]) {
+    for (let col = 0; col < 6; col++)
+      for (const part of ZOMBIE_PARTS) {
+        const geometry = zombieGeometry(col, part.name, kind),
+          [rx, ry, rw, rh] = geometry.rect;
+        const w = Math.max(2, Math.ceil(rw * 126)),
+          h = Math.max(2, Math.ceil(rh * 157.5));
+        temp.width = w;
+        temp.height = h;
+        const t = temp.getContext("2d")!;
+        t.save();
+        t.translate(-rx * 126, -ry * 157.5);
+        paintZombiePart(t, kind, col, part.name, geometry);
+        t.restore();
+        const x = (slot % columns) * 96,
+          y = Math.floor(slot / columns) * 112;
+        slot++;
+        c.drawImage(temp, x, y);
+        rects["zombie-" + kind + "-" + col + "-" + part.name] = { x, y, w, h };
+      }
+  }
   for (const prop of props) {
-    const x = (slot % 24) * 96,
-      y = Math.floor(slot / 24) * 112;
+    const x = (slot % columns) * 96,
+      y = Math.floor(slot / columns) * 112;
     slot++;
     c.save();
     c.translate(x + 48, y + 56);

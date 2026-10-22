@@ -245,7 +245,7 @@ export function EmptySignal() {
         <i />
         <i />
       </div>
-      <span className="eyebrow">SALARY THIEVES / 第七整活部门</span>
+      <span className="eyebrow">PAID BREAK CREW / 第七整活部门</span>
       <h2>
         信号仍在。
         <br />

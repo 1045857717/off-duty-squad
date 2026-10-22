@@ -109,11 +109,11 @@ try {
   await host
     .getByRole("navigation", { name: "图鉴条目" })
     .getByRole("button")
-    .filter({ hasText: "吐纸打印机" })
+    .filter({ hasText: "酸吐打印尸" })
     .click();
   assert.match(
     await host.getByRole("region", { name: "图鉴详细说明" }).innerText(),
-    /3枚纸团/,
+    /3枚酸液纸团/,
   );
   await snap(host, "codex-enemies");
   await host.getByRole("tab", { name: /攻击技能/ }).click();
@@ -297,8 +297,8 @@ try {
   await host.keyboard.down("w");
   await host.keyboard.down("a");
   await host.waitForTimeout(280);
-  await host.keyboard.up("a");
-  await host.keyboard.up("w");
+  await host.waitForFunction(() => (window as any).__rig?.pose.column === 5);
+  await Promise.all([host.keyboard.up("a"), host.keyboard.up("w")]);
   await host.waitForTimeout(100);
   let col = await host.evaluate(() => (window as any).__rig.pose.column);
   assert.equal(col, 5);
@@ -306,8 +306,8 @@ try {
   await host.keyboard.down("w");
   await host.keyboard.down("d");
   await host.waitForTimeout(280);
-  await host.keyboard.up("d");
-  await host.keyboard.up("w");
+  await host.waitForFunction(() => (window as any).__rig?.pose.column === 4);
+  await Promise.all([host.keyboard.up("d"), host.keyboard.up("w")]);
   await host.waitForTimeout(100);
   col = await host.evaluate(() => (window as any).__rig.pose.column);
   assert.equal(col, 4);
@@ -370,7 +370,7 @@ try {
   await host.getByRole("status", { name: "本次受击来源" }).waitFor();
   assert.match(
     await host.getByRole("status", { name: "本次受击来源" }).innerText(),
-    /催进度专员/,
+    /催命跑腿尸/,
   );
   assert.equal(me.lastHit?.sourceKind, "mite");
   await snap(host, "damage-source");
@@ -416,8 +416,8 @@ try {
     return records;
   }, enemyIds);
   for (const kind of kinds) {
-    assert.equal(audit[kind]?.parts, 14, kind);
-    assert.equal(audit[kind]?.texture, "joint-atlas-v35");
+    assert.equal(audit[kind]?.parts, 15, kind);
+    assert.equal(audit[kind]?.texture, "joint-atlas-v39");
     assert.ok(audit[kind]?.poses.length >= 3, kind);
   }
   await fs.writeFile(
@@ -441,7 +441,7 @@ try {
   );
   await snap(host, "enemy-fall");
   done(
-    "7类敌人均使用可见14关节骨架和同一GPU图集，持续移动/蓄力/出手，并有连续倒地收尾。",
+    "7类敌人均使用可见15关节丧尸骨架和同一GPU图集，持续移动/蓄力/出手，并有连续倒地收尾。",
   );
   g.state.enemies = [];
   g.state.bullets = [];

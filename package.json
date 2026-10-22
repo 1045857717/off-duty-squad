@@ -1,14 +1,14 @@
 {
   "name": "off-duty-squad",
-  "version": "3.8.0",
+  "version": "3.9.0",
   "private": true,
   "type": "module",
-  "description": "薪水小偷 — 1–4人带薪摸鱼合作闯关 / 随机构筑无尽生存",
+  "description": "带薪摸鱼 — 1–4人带薪摸鱼合作闯关 / 随机构筑无尽生存",
   "scripts": {
     "dev": "concurrently -k -n server,web -c green,cyan \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
-    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts tests/feel.test.ts tests/community.test.ts tests/basics.test.ts && node --test tests/release.test.mjs",
+    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts tests/feel.test.ts tests/community.test.ts tests/basics.test.ts tests/quiet-undead.test.ts && node --test tests/release.test.mjs",
     "desktop": "electron electron/main.cjs",
     "check": "npm test && npm run build",
     "browser:install": "playwright install chromium",
@@ -39,7 +39,8 @@
     "test:feel": "tsx tests/browser-feel.ts",
     "test:community": "tsx tests/browser-community.ts",
     "test:clarity": "tsx tests/browser-clarity.ts",
-    "test:quality:local": "tsx tests/browser-quality-local.ts"
+    "test:quality:local": "tsx tests/browser-quality-local.ts",
+    "test:undead": "tsx tests/browser-quiet-undead.ts"
   },
   "dependencies": {
     "express": "4.22.3",

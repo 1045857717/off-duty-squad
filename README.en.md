@@ -1,6 +1,6 @@
 <div align="center">
 
-# Salary Thieves · 薪水小偷
+# Paid Break Crew · 带薪摸鱼
 
 **The shift belongs to the company. The break belongs to us.**
 
@@ -121,13 +121,13 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 <details>
 <summary>View results and work-style interface</summary>
 
-**3.7 health and shield acceptance scene**
+**3.9 compact health, shield and build acceptance scene**
 
-![3.7 health and shields](docs/images/vitals-37.webp)
+![3.9 health and build HUD](docs/images/vitals-39.webp)
 
-**3.5 archived acceptance scene**
+**F9 quiet view (four-player, 100-enemy stress fixture)**
 
-![3.5 health and shields](docs/images/vitals-35.webp)
+![520×350 quiet view](docs/images/quiet-39.webp)
 
 ![Run results](docs/images/results.webp)
 
@@ -137,10 +137,10 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **3.8.0**. This release introduces the Salary Thieves identity and paid-break satire, and keeps coffee support on GitHub. In-game profession basics and combat retain the verified 3.7 pipeline. See [3.8 notes](docs/RELEASE-3.8.md); see [published runtime/artifact verification](docs/PUBLISHED-3.8.md).
+Current version: **3.9.0**. The current name is Paid Break Crew (带薪摸鱼). This release reworks quiet windows, compact vitals/build layout, grounded attacks and seven articulated undead models with 15 joints. Main requires PRs and CI, and blocks force pushes/deletion. See [3.9 notes](docs/RELEASE-3.9.md) and [branch/release policy](docs/BRANCH-PROTECTION.md). 144FPS is a target mode; see the [measured dense-scene limits](docs/PERFORMANCE-3.9.en.md).
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
-- A 144 FPS target setting is available. Measured dense scenes reached approximately 79 FPS; **144 FPS is not guaranteed**. See [3.7 frame-rate measurements](docs/PERFORMANCE-3.7.md) and the [dense-scene baseline](docs/PERFORMANCE-3.4.md).
+- A 144 FPS target setting is available. The fixed-seed four-player/100-enemy/DPR 2 stress fixture measured about 138–153 FPS in full view and 123–186 FPS in quiet view (unrestricted laboratory configuration). **144FPS is not guaranteed for every scene**; see the [3.9 performance measurements](docs/PERFORMANCE-3.9.en.md).
 - Browser window support varies. The Windows portable client is unsigned; no macOS or Linux desktop package is currently provided.
 - Existing networking checks use multiple local clients and simulated latency. Cross-machine public-network soak testing remains outstanding.
 - Ranking periods use Asia/Shanghai time and retain the most recent 50,000 results. Chat and live rooms are not persisted.

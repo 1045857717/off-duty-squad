@@ -2,7 +2,7 @@
 
 [中文主页](../README.md) · [English README](../README.en.md) · [GitHub](https://github.com/1045857717/off-duty-squad)
 
-喜欢「薪水小偷」这个项目的话，欢迎请作者喝一杯咖啡。赞助完全自愿，不影响职业、技能、排名或任何游戏内容；也欢迎通过试玩反馈、Issue、PR 或 Star 支持项目。
+喜欢「带薪摸鱼」这个项目的话，欢迎请作者喝一杯咖啡。赞助完全自愿，不影响职业、技能、排名或任何游戏内容；也欢迎通过试玩反馈、Issue、PR 或 Star 支持项目。
 
 Coffee support is optional and does not unlock gameplay advantages. Playtesting, useful issues, contributions and stars are welcome too.
 

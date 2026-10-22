@@ -1,12 +1,12 @@
+import { CombatGraphics } from "./CombatGraphics";
 import { ROLE_BASICS } from "../../shared/basics";
 import { PlayerVitals } from "./PlayerVitals";
 import { WeaponRibbon } from "./WeaponRibbon";
 import { visibleAttack, weaponPose, toolGeometry } from "./joints";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../../shared/combatProfiles";
-import { windupProgress } from "./actorPose";
+import { windupProgress, MovementFacing } from "./actorPose";
 import { ensureDamageFont } from "./damageFont";
 import { ArticulatedActor } from "./ArticulatedActor";
-import { COMIC_ENEMY_MODELS, makeComicEnemyAtlas } from "./comicEnemies";
 import {
   GAMEPLAY_MODELS,
   gameplayModel,
@@ -134,6 +134,7 @@ export class StationScene extends Phaser.Scene {
   private combatFX!: CombatFX;
   private areaRenderer!: AreaRenderer;
   private actors = new Map<string, Actor>();
+  private movementFacing = new MovementFacing();
   private items = new Map<string, Item>();
   private bullets = new Map<number, Phaser.GameObjects.Image>();
   private lastMission = -2;
@@ -193,38 +194,14 @@ export class StationScene extends Phaser.Scene {
     const add = (key: string, canvas: HTMLCanvasElement) =>
       this.textures.addCanvas(key, canvas)!;
     for (const id of ATTACK_IDS) add("tool-" + id, makeOfficeWeapon(id));
-    for (const k of [
-      "mite",
-      "shooter",
-      "tank",
-      "boss",
-      "hound",
-      "wraith",
-      "bomber",
-    ]) {
-      const enemyModel =
-        COMIC_ENEMY_MODELS[k as keyof typeof COMIC_ENEMY_MODELS];
-      const tex = add(
-        "enemy-" + k,
-        this.textures.exists("painted-" + enemyModel)
-          ? makeComicEnemyAtlas(
-              this.textures
-                .get("painted-" + enemyModel)
-                .getSourceImage() as HTMLImageElement,
-              k as keyof typeof COMIC_ENEMY_MODELS,
-            )
-          : makeDarkEnemyAtlas(k),
-      );
-      const { cell, columns, frames } = ENEMY_ATLAS;
-      for (let i = 0; i < frames; i++)
-        tex.add(
-          i,
-          0,
-          (i % columns) * cell,
-          Math.floor(i / columns) * cell,
-          cell,
-          cell,
-        );
+    // Actor state still keeps an invisible compatibility sprite. Actual enemies are
+    // articulated zombies; avoid allocating seven unused full-body atlases.
+    for (const k of Object.keys(ENEMY_DEFS)) {
+      const placeholder = document.createElement("canvas");
+      placeholder.width = 1;
+      placeholder.height = 1;
+      const texture = add("enemy-" + k, placeholder);
+      for (let i = 0; i < 68; i++) texture.add(i, 0, 0, 0, 1, 1);
     }
     add("glow", makeGlow());
     add("crystal", makeOfficeBadge());
@@ -312,8 +289,8 @@ export class StationScene extends Phaser.Scene {
     sc.fillRect(0, 0, 80, 32);
     add("shadow", shadow);
     this.loadMap(0);
-    this.fx = this.add.graphics().setDepth(45);
-    this.weather = this.add.graphics().setDepth(105);
+    this.fx = this.add.existing(new CombatGraphics(this)).setDepth(45);
+    this.weather = this.add.existing(new CombatGraphics(this)).setDepth(105);
     this.combatFX = new CombatFX(this);
     this.areaRenderer = new AreaRenderer(this);
     this.fit();
@@ -331,6 +308,8 @@ export class StationScene extends Phaser.Scene {
       if (action === "hold") {
         e.preventDefault();
         this.held.add(e.code);
+        if (/^(Key[WASD]|Arrow(Up|Down|Left|Right))$/.test(e.code))
+          this.movementFacing.press();
       }
       if (action === "dash") {
         e.preventDefault();
@@ -341,7 +320,13 @@ export class StationScene extends Phaser.Scene {
         this.pendingSkill = true;
       }
     };
-    const up = (e: KeyboardEvent) => this.held.delete(e.code);
+    const up = (e: KeyboardEvent) => {
+      if (
+        this.held.delete(e.code) &&
+        /^(Key[WASD]|Arrow(Up|Down|Left|Right))$/.test(e.code)
+      )
+        this.movementFacing.release(performance.now());
+    };
     const composing = () => clear();
     const pointer = (e: MouseEvent) => {
       if (e.button === 2 && this.bridge.enabled) {
@@ -1045,7 +1030,10 @@ export class StationScene extends Phaser.Scene {
   private drawEnemy(e: GameState["enemies"][number], time: number, dt: number) {
     const key = "e" + e.id;
     let a = this.actors.get(key);
-    if (!a) a = this.actor(key, "enemy-" + e.kind);
+    if (!a) {
+      a = this.actor(key, "enemy-" + e.kind);
+      a.sprite.setVisible(false).setActive(false);
+    }
     a.seen = this.serial;
     const beforeX = a.x,
       beforeY = a.y;
@@ -1085,59 +1073,10 @@ export class StationScene extends Phaser.Scene {
       bomber: 0.73,
       boss: 1.3,
     }[e.kind];
-    a.sprite
-      .setFrame(
-        Math.floor(
-          time / (e.kind === "mite" || e.kind === "hound" ? 17 : 25) + e.id * 7,
-        ) % 32,
-      )
-      .setScale(scale)
-      .setPosition(a.x, a.y - 3 + Math.sin(time * 0.005 + e.id) * 0.6)
-      .setRotation(Math.cos(e.angle) < 0 ? -0.04 : 0.04)
-      .setFlipX(Math.cos(e.angle) < 0);
     a.shadow.setPosition(a.x, a.y + 12).setDisplaySize(80 * scale, 30 * scale);
-    const depth = 20 + a.y * 0.005;
-    if (a.depth !== depth) {
-      a.depth = depth;
-      a.sprite.setDepth(depth);
-    }
-    if (this.fresh && (e.attackSeq || 0) !== a.fire) {
-      a.fire = e.attackSeq || 0;
-      a.recoilUntil = time + 230;
-    }
-    const strike = Math.max(0, (a.recoilUntil - time) / 230);
-    if (strike > 0) {
-      const lunge = Math.sin((1 - strike) * Math.PI) * 13;
-      a.sprite
-        .setPosition(
-          a.x + Math.cos(e.angle) * lunge,
-          a.y - 3 + Math.sin(e.angle) * lunge,
-        )
-        .setRotation(Math.sin((1 - strike) * Math.PI) * 0.16);
-    }
-    if (strike > 0)
-      a.sprite.setFrame(32 + Math.min(15, Math.floor((1 - strike) * 16)));
-    const windup = e.windup || 0,
-      lunging = Math.hypot(e.vx || 0, e.vy || 0) > 50;
-    a.sprite.setScale(
-      scale *
-        (windup ? 1.05 + Math.sin(time * 0.05) * 0.025 : lunging ? 1.16 : 1),
-      scale * (windup ? 0.92 : lunging ? 0.85 : 1),
-    );
-    if (e.elite)
-      a.sprite.setTint(
-        e.elite === "armored"
-          ? 0xd9c8a8
-          : e.elite === "swift"
-            ? 0xaab3ce
-            : e.elite === "volatile"
-              ? 0xe2a18a
-              : 0xc8a4b3,
-      );
-    if ((e.slow || 0) > 0) a.sprite.setTint(0x8dbbd2);
-    if (e.hitFlash > 0) a.sprite.setTint(0xffdad0);
-    else if (!e.elite && !(e.slow! > 0)) a.sprite.clearTint();
-    a.sprite.setVisible(false);
+    const depth = 20 + a.y * 0.005,
+      windup = e.windup || 0;
+    a.depth = depth;
     const hitBack = this.bridge.settings.lowMotion
       ? 0
       : Math.sin(Math.max(0, e.hitFlash / 0.14) * Math.PI) * 3;
@@ -1286,7 +1225,7 @@ export class StationScene extends Phaser.Scene {
         );
         trail.sprite
           .setRotation(Math.atan2(b.vy, b.vx))
-          .setTint(0xf1a77a)
+          .setTint(b.sourceEnemyKind === "shooter" ? 0xb7c484 : 0xf1a77a)
           .setAlpha(0.5)
           .setDepth(64);
       }
@@ -1302,7 +1241,13 @@ export class StationScene extends Phaser.Scene {
           b.enemy ? 18 : 20 + (b.level || 1) * 1.2,
           b.enemy ? 9 : 4 + (b.level || 1) * 0.15,
         )
-        .setTint(b.enemy ? 0xffe6bf : color(b.color))
+        .setTint(
+          b.enemy
+            ? b.sourceEnemyKind === "shooter"
+              ? 0xd1dc97
+              : 0xffe6bf
+            : color(b.color),
+        )
         .setAlpha(0.95);
     }
     for (const [id, sp] of this.bullets)
@@ -1704,21 +1649,76 @@ export class StationScene extends Phaser.Scene {
           35,
         );
         light.sprite
-          .setTint(enemy.kind === "bomber" ? 0xe78b5c : 0xffcc79)
+          .setTint(
+            enemy.kind === "bomber"
+              ? 0xe78b5c
+              : enemy.kind === "shooter"
+                ? 0xbdcf84
+                : 0xffcc79,
+          )
           .setAlpha(0.13 + p * 0.22)
           .setDepth(28 + actor.y * 0.005);
       }
-      if (s.elapsed - (enemy.attackStartedAt ?? -999) < 0.18) {
-        const x = actor.x + Math.cos(enemy.angle) * 24,
-          y = actor.y - 18 + Math.sin(enemy.angle) * 15;
-        this.fx
-          .lineStyle(3, 0xffd09b, 0.9)
-          .lineBetween(
-            x,
-            y,
-            x + Math.cos(enemy.angle) * 19,
-            y + Math.sin(enemy.angle) * 19,
-          );
+      const attackAge = s.elapsed + this.age - (enemy.attackStartedAt ?? -999);
+      if (attackAge >= 0 && attackAge < 0.32) {
+        const t = attackAge / 0.32,
+          a = 1 - t,
+          angle = enemy.angle,
+          dx = Math.cos(angle),
+          dy = Math.sin(angle),
+          x = actor.x + dx * 22,
+          y = actor.y - 19 + dy * 13;
+        if (enemy.kind === "tank") {
+          this.fx
+            .lineStyle(2.5, 0xd9bc85, a * 0.8)
+            .strokeEllipse(x, y + 13, 22 + t * 80, 9 + t * 27);
+          for (const side of [-1, 1])
+            this.fx
+              .lineStyle(3, 0xffdc9d, a)
+              .lineBetween(
+                x - dy * side * 9,
+                y + dx * side * 9 - 9 * (1 - t),
+                x - dy * side * 9 + dx * 13 * t,
+                y + dx * side * 9 + 12 * t,
+              );
+        } else if (enemy.kind === "shooter") {
+          for (let i = 0; i < 5; i++) {
+            const spread = (i - 2) * 0.22,
+              r = 8 + t * (18 + i * 2);
+            this.fx
+              .fillStyle(i % 2 ? 0xd6df9c : 0x96ad64, a)
+              .fillEllipse(
+                x + Math.cos(angle + spread) * r,
+                y + Math.sin(angle + spread) * r,
+                3 + t * 3,
+                2 + t * 2,
+              );
+          }
+        } else if (enemy.kind === "wraith" || enemy.kind === "boss") {
+          for (let i = 0; i < 3; i++)
+            this.fx
+              .lineStyle(
+                1.8,
+                enemy.kind === "wraith" ? 0xc7a9c1 : 0xe3c693,
+                a * (1 - i * 0.18),
+              )
+              .beginPath()
+              .arc(x, y, 9 + t * 35 + i * 7, angle - 0.9, angle + 0.9, false)
+              .strokePath();
+        } else if (enemy.kind !== "bomber") {
+          for (let i = -1; i <= 1; i++) {
+            const ox = -dy * i * 5,
+              oy = dx * i * 5;
+            this.fx
+              .lineStyle(1.8, 0xe6d1a4, a)
+              .lineBetween(
+                x + ox - dx * 7,
+                y + oy - dy * 7,
+                x + ox + dx * (12 + t * 13),
+                y + oy + dy * (12 + t * 13),
+              );
+          }
+        }
       }
     }
     for (const e of s.effects) {
@@ -1918,7 +1918,7 @@ export class StationScene extends Phaser.Scene {
           this.cameras.main,
         ) as Phaser.Math.Vector2;
         this.aim = { x: pos.x - me.x, y: pos.y - me.y };
-      } else if (len > 0) this.aim = { x, y };
+      } else if (len > 0) this.aim = this.movementFacing.sample(x, y, time);
       this.control.fire = fire;
     }
     const al = Math.hypot(this.aim.x, this.aim.y) || 1;

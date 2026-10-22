@@ -1,0 +1,601 @@
+/* One flowing dock owns vitals and modules. Expanded build details grow upward. */
+.combat-dock {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: calc(100% - 100px);
+  pointer-events: none;
+}
+.combat-dock .arsenal-strip {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  max-width: 100%;
+  z-index: auto;
+  min-height: 24px;
+  gap: 5px;
+  pointer-events: auto;
+}
+.combat-dock .arsenal-toggle,
+.combat-dock .arsenal-modules button {
+  height: 24px;
+  min-height: 24px;
+  border-radius: 5px;
+  padding: 3px 6px;
+  background: #172c25df;
+}
+.combat-dock .arsenal-modules {
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.combat-dock .arsenal-strip.expanded .arsenal-modules {
+  flex-wrap: nowrap;
+}
+.combat-dock .arsenal-strip.expanded .arsenal-modules span {
+  display: none;
+}
+.combat-dock .build-details {
+  bottom: 32px;
+  max-width: min(385px, calc(100vw - 40px));
+  max-height: min(340px, 52vh);
+  border-radius: 9px;
+  background: #15261ff5;
+  border-color: #9da98b66;
+  padding: 14px;
+}
+.combat-dock .combat-strip {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 7px;
+  max-width: 100%;
+  border: 1px solid #a4b29b60;
+  border-radius: 8px;
+  background: #0f211be0;
+  box-shadow: 0 3px 14px #0003;
+  min-height: 40px;
+}
+.combat-dock .combat-strip .combat-vitals {
+  box-sizing: border-box;
+  width: 126px;
+  min-width: 126px;
+  padding: 0 8px 0 0;
+  border: 0;
+  border-right: 1px solid #c6c9a82e;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.combat-dock .combat-vitals .vital-label {
+  height: 16px;
+  line-height: 16px;
+  gap: 3px;
+  align-items: baseline;
+}
+.combat-dock .combat-vitals .vital-label > svg {
+  align-self: center;
+  width: 12px;
+  height: 12px;
+}
+.combat-dock .combat-vitals .vital-label strong {
+  font-size: 15px;
+  line-height: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.combat-dock .combat-vitals .vital-label small {
+  font-size: 9px;
+}
+.combat-dock .combat-vitals .vital-label em {
+  font-size: 9px;
+  margin-left: auto;
+}
+.combat-dock .combat-vitals .vital-track {
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+.combat-dock .combat-vitals .vital-shield,
+.combat-dock .combat-vitals .vital-shield b {
+  height: 3px;
+}
+.combat-dock .combat-vitals .vital-shield {
+  margin-top: 2px;
+}
+.combat-dock .combat-vitals .vital-shield-amount {
+  font-size: 9px;
+  gap: 1px;
+}
+.combat-dock .combat-vitals .vital-label em:has(+ .vital-shield-amount) {
+  display: none;
+}
+.combat-dock .micro-skill {
+  min-height: 29px;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 10px;
+}
+.combat-dock .micro-skill kbd {
+  font-size: 9px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-content: center;
+  padding: 1px 4px;
+}
+.combat-dock .innate-basic {
+  padding: 3px 5px;
+  border-radius: 4px;
+}
+.combat-dock .innate-basic span {
+  max-width: 76px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}
+.combat-dock .innate-basic small {
+  display: none;
+}
+.combat-dock .micro-skill.ready {
+  color: #e4eed3;
+}
+.combat-dock .parts-help {
+  align-self: center;
+}
+/* F9 uses a quiet 520x350 view; F6 remains the explicit browser PiP/pop-up command. */
+.app.quiet-embedded {
+  position: fixed;
+  inset: auto 14px 14px auto;
+  width: min(520px, 100vw);
+  height: min(350px, 100dvh);
+  min-height: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 28px #1b2d2626;
+  border: 1px solid #a6b4a54d;
+  border-radius: 6px;
+}
+.is-compact .app-body,
+.is-compact .workspace,
+.is-compact .main-content,
+.is-compact .main-grid,
+.is-compact .stage-shell {
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+.is-compact .app-body {
+  display: block;
+}
+.is-compact .main-grid {
+  display: block;
+}
+.is-compact .game-stage {
+  height: 100%;
+  min-height: 0;
+  border-radius: 0;
+}
+.is-compact:not(.quiet-embedded) {
+  height: 100dvh;
+}
+.is-compact .compact-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  min-height: 28px;
+  padding: 0 5px 0 9px;
+  background: #233a31e8;
+  box-shadow: 0 1px #a9baa938;
+  z-index: 80;
+  gap: 4px;
+}
+.is-compact .compact-title {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.is-compact .compact-title > i {
+  width: 4px;
+  height: 4px;
+  background: #9ab198;
+  box-shadow: none;
+  animation: none;
+}
+.is-compact .compact-bar > div {
+  gap: 1px;
+}
+.is-compact .compact-bar button {
+  height: 24px;
+  min-width: 29px;
+  padding: 1px 4px;
+  gap: 3px;
+}
+.is-compact .compact-bar button svg {
+  width: 12px;
+  height: 12px;
+}
+.is-compact .compact-bar button kbd {
+  font-size: 8px;
+  min-width: 15px;
+  height: 14px;
+}
+.is-compact.window-immersive .compact-bar {
+  transform: translateY(-24px);
+  opacity: 0.18;
+}
+.is-compact.window-immersive .compact-bar:hover,
+.is-compact.window-immersive .compact-bar:focus-within {
+  transform: translateY(0);
+  opacity: 1;
+}
+.is-compact .combat-dock {
+  left: 7px;
+  bottom: 7px;
+  gap: 3px;
+  max-width: calc(100% - 82px);
+}
+.is-compact .combat-dock .combat-strip {
+  padding: 4px 5px;
+  min-height: 33px;
+  gap: 5px;
+}
+.is-compact .combat-dock .combat-vitals {
+  width: 102px;
+  min-width: 102px;
+  padding-right: 5px;
+}
+.is-compact .combat-dock .vital-label strong {
+  font-size: 14px;
+}
+.is-compact .combat-dock .vital-label em {
+  display: none;
+}
+.is-compact .combat-dock .innate-basic,
+.is-compact .combat-dock .micro-skill > span {
+  display: none;
+}
+.is-compact .combat-dock .micro-skill {
+  min-height: 23px;
+}
+.is-compact .combat-dock .arsenal-toggle,
+.is-compact .combat-dock .arsenal-modules button {
+  height: 21px;
+  min-height: 21px;
+  padding: 2px 5px;
+}
+.is-compact .combat-dock .build-details {
+  width: 340px;
+  max-width: calc(100vw - 30px);
+  max-height: 205px;
+  bottom: 29px;
+}
+.is-compact .mission-peek {
+  left: 8px;
+  top: 16px;
+  max-width: calc(100% - 148px);
+}
+.is-compact .mission-peek.folded button {
+  padding: 5px 7px;
+  font-size: 9px;
+}
+.is-compact .run-clock {
+  right: 8px;
+  top: 17px;
+  font-size: 12px;
+}
+.is-compact .run-clock small {
+  display: none;
+}
+.is-compact .damage-overlay {
+  right: 7px;
+  top: 51px;
+  width: 126px;
+  font-size: 9px;
+}
+.is-compact .damage-overlay header {
+  font-size: 9px;
+  padding: 4px;
+}
+.is-compact .damage-overlay article {
+  padding: 4px;
+}
+.is-compact .mini-map {
+  right: 7px;
+  bottom: 29px;
+  width: 70px;
+  height: 70px;
+  opacity: 0.7;
+}
+.is-compact .fps-meter {
+  right: 7px;
+  bottom: 8px;
+  font-size: 8px;
+  opacity: 0.65;
+}
+.is-compact .chat-feed {
+  max-width: 230px;
+  left: 8px;
+  bottom: 80px;
+}
+.is-compact .team-xp {
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 3px;
+}
+.is-compact .team-xp > span,
+.is-compact .team-xp > small {
+  display: none;
+}
+.is-compact .boss-vitals {
+  top: 20px;
+  max-width: 46%;
+  font-size: 10px;
+}
+@media (max-width: 620px) {
+  .combat-dock {
+    left: 7px;
+    bottom: 7px;
+    max-width: calc(100% - 75px);
+  }
+  .combat-dock .combat-strip {
+    gap: 4px;
+    padding: 4px;
+  }
+  .combat-dock .combat-strip .combat-vitals {
+    width: 105px;
+    min-width: 105px;
+    padding-right: 5px;
+  }
+  .combat-dock .innate-basic {
+    display: none;
+  }
+  .combat-dock .micro-skill > span {
+    display: none;
+  }
+  .combat-dock .micro-skill {
+    gap: 2px;
+  }
+  .combat-dock .vital-label em {
+    display: none;
+  }
+  .app.quiet-embedded {
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+  }
+  .is-compact .compact-bar button:not([data-quiet-action]) {
+    display: none;
+  }
+  .combat-dock .build-details {
+    max-height: 200px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-compact .compact-bar {
+    transition: none;
+  }
+}
+
+.codex-avatar .codex-zombie-thumb {
+  display: block;
+  width: 52px;
+  height: 62px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px #15271a44);
+}
+
+.app.is-compact .app-body,
+.app.is-compact.in-run:not(.window-immersive) .app-body {
+  height: 100%;
+  padding-top: 0;
+}
+.app.is-compact .main-content,
+.app.is-compact.in-run .main-content {
+  padding: 0;
+  height: 100%;
+  min-height: 0;
+}
+.app.is-compact .game-stage,
+.app.is-compact.in-run .game-stage,
+.app.is-compact.in-run:not(.window-immersive) .game-stage {
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+}
+.is-compact .global-boss-vitals {
+  top: 18px;
+  left: 29%;
+  right: 29%;
+  width: 42%;
+  max-width: none;
+}
+.is-compact .global-boss-vitals header b {
+  display: none;
+}
+.is-compact .live-chat-feed {
+  right: 8px;
+  bottom: 108px;
+  width: 180px;
+  max-width: 37%;
+  font-size: 8px;
+  opacity: 0.75;
+}
+.is-compact .mini-map {
+  top: auto;
+}
+
+.combat-dock .combat-vitals.status-critical .vital-label em {
+  display: inline;
+  color: #ffca9d;
+  font-weight: 700;
+  font-size: 9px;
+}
+.combat-dock
+  .combat-vitals.status-critical
+  .vital-label:has(.vital-shield-amount)
+  > svg {
+  display: none;
+}
+
+.app.is-compact .mission-column {
+  height: 100%;
+  min-height: 0;
+}
+.is-compact .fps-meter {
+  top: auto;
+  left: auto;
+  transform: none;
+}
+.app.quiet-embedded.window-immersive:after {
+  position: absolute;
+  top: 1px;
+  left: calc(50% - 18px);
+}
+
+.app.is-compact .damage-overlay {
+  top: 51px;
+  right: 7px;
+  width: 120px;
+  padding: 6px;
+  border: 1px solid #acb6a14d;
+  border-radius: 5px;
+  background: #172a23cc;
+  box-shadow: none;
+  opacity: 0.88;
+}
+.is-compact .damage-overlay .damage-heading {
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+.is-compact .damage-overlay .damage-summary {
+  padding: 3px 0 5px;
+  margin-bottom: 1px;
+}
+.is-compact .damage-overlay .damage-summary > strong {
+  font-size: 15px;
+}
+.is-compact .damage-overlay .damage-summary > span {
+  font-size: 7px;
+}
+.is-compact .damage-overlay .damage-row {
+  padding: 4px 0;
+  gap: 4px;
+}
+.is-compact .damage-overlay .damage-person strong,
+.is-compact .damage-overlay .damage-total {
+  font-size: 8px;
+}
+.is-compact .damage-overlay .damage-person small {
+  font-size: 6px;
+  margin-top: 2px;
+}
+.is-compact .damage-overlay .damage-note {
+  display: none;
+}
+.is-compact .mission-peek {
+  max-width: 54%;
+}
+.is-compact .mission-peek button {
+  padding: 5px 7px;
+  gap: 4px;
+  font-size: 9px;
+}
+.is-compact .mission-peek strong {
+  font-size: 9px;
+}
+.is-compact .mission-peek:not(:hover):not(:focus-within) .mission-detail {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.is-compact .battle-intro {
+  left: 8%;
+  right: 8%;
+  top: 36%;
+}
+.is-compact .battle-intro > strong {
+  font-size: 19px;
+  letter-spacing: 1px;
+  margin: 7px 0;
+}
+.is-compact .battle-intro > span {
+  font-size: 7px;
+  letter-spacing: 2px;
+}
+.is-compact .battle-intro p {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.is-compact .battle-intro .intro-worker-quote {
+  display: none;
+}
+.is-compact .battle-intro > i {
+  width: 100px;
+  margin: 10px auto;
+}
+
+.is-compact .global-boss-vitals {
+  top: 48px;
+  left: 8px;
+  right: 140px;
+  width: auto;
+  max-width: none;
+}
+.is-compact .live-chat-feed {
+  left: 8px;
+  right: auto;
+  bottom: 80px;
+  width: 190px;
+  max-width: 42%;
+}
+
+.is-compact .global-boss-vitals {
+  transform: none;
+  translate: 0 0;
+}
+.is-compact .global-boss-vitals article {
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #14281fd9;
+}
+.is-compact .global-boss-vitals header {
+  font-size: 8px;
+  line-height: 11px;
+  margin-bottom: 3px;
+}
+.is-compact .global-boss-vitals header b {
+  display: inline;
+  font-size: 8px;
+}
+.is-compact .global-boss-vitals > small {
+  font-size: 7px;
+}
+.is-compact .fps-meter {
+  top: 18px;
+  right: 66px;
+  bottom: auto;
+  font-size: 7px;
+  opacity: 0.5;
+}
+
+.is-compact .global-boss-vitals article > div {
+  height: 4px;
+}
+.is-compact .global-boss-vitals header span {
+  font-size: 8px;
+  letter-spacing: 0.4px;
+  gap: 4px;
+}

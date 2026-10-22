@@ -248,7 +248,7 @@ try {
   }, ids);
   for (const kind of kinds) {
     assert.ok(poses[kind]?.length > 4, kind);
-    assert.equal(poses[kind][0].parts, 14);
+    assert.equal(poses[kind][0].parts, 15);
     assert.ok(
       new Set(poses[kind].map((p: any) => p.head.toFixed(5))).size > 4,
       kind + " continuous joints",

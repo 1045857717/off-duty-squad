@@ -9,7 +9,7 @@
 | `compose.prod.yaml` | 公网服务器，推荐   | 拉取 GHCR 已发布镜像 |
 | `compose.yaml`      | 本地验证、源码自建 | 更新源码后重新构建   |
 
-正式镜像为 `ghcr.io/1045857717/off-duty-squad:<版本号>`，支持 Linux amd64 / arm64。本文以 3.8.0 为例；部署前确认对应 Release 与发布工作流成功。镜像公开权限独立于代码仓库，首次发布后需确认 Package 可见性。公开镜像可匿名拉取；私有镜像需要服务器自行登录 GHCR，不要把令牌写入 Compose 或提交到 Git。
+正式镜像为 `ghcr.io/1045857717/off-duty-squad:<版本号>`，支持 Linux amd64 / arm64。本文以 3.9.0 为例；部署前确认对应 Release 与发布工作流成功。镜像公开权限独立于代码仓库，首次发布后需确认 Package 可见性。公开镜像可匿名拉取；私有镜像需要服务器自行登录 GHCR，不要把令牌写入 Compose 或提交到 Git。
 
 服务采用单进程权威房间模型。不要直接增加 Compose replicas 或让负载均衡随机分配同一房间请求；多个实例暂不共享在线数、会话或房间。
 
@@ -27,7 +27,7 @@ cp .env.example .env
 
 ```dotenv
 IMAGE_REPOSITORY=ghcr.io/1045857717/off-duty-squad
-GAME_VERSION=3.8.0
+GAME_VERSION=3.9.0
 PORT=3000
 PUBLIC_URL=https://game.example.com
 ```

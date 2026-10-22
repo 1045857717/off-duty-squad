@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { drawProp } from "./game/RigAtlas";
+import {
+  ZOMBIE_PARTS,
+  zombieGeometry,
+  paintZombiePart,
+  zombiePose,
+} from "./game/zombieRig";
+import { enemyAttackFrame } from "./game/joints";
 import type { Role, AttackId, EnemyKind } from "../shared/types";
 import { ENEMY_DEFS, ATTACK_MOTIONS } from "../shared/combatProfiles";
 import { ATTACKS, ATTACK_IDS, attackStats } from "../shared/arsenal";
@@ -156,10 +162,7 @@ export function CodexPanel({
                         onClick={() => setEnemy(id)}
                       >
                         <div className={"codex-avatar enemy-" + id}>
-                          <img
-                            src={careerPortrait(ENEMY_DEFS[id].role as Role)}
-                            alt=""
-                          />
+                          <EnemyFigure kind={id} mini />
                           <Icon name={ENEMY_DEFS[id].icon} size={13} />
                         </div>
                         <span>
@@ -251,10 +254,10 @@ export function CodexPanel({
                 {tab === "enemies" ? (
                   <>
                     <header>
-                      <EnemyFigure kind={enemy} model={def.model} />
+                      <EnemyFigure kind={enemy} />
                       <div>
                         <span className="codex-kicker">
-                          OFFICE MONSTER / {def.title}
+                          OFFICE UNDEAD / {def.title}
                         </span>
                         <h3>{def.name}</h3>
                         <p>{def.attack}</p>
@@ -283,8 +286,8 @@ export function CodexPanel({
                     <h4>看哪里，才知道它要出手</h4>
                     <p>
                       {enemy === "bomber"
-                        ? "看桶体闪烁和地面红圈。其他敌人不画地面红圈，改看肢体蓄力、手中道具、头顶符号和弹丸轨迹。"
-                        : "看抬肘、收腿、后仰和头顶警示；出手后有清晰挥击或枪口/打印口反馈。挨打时会显示伤害来源与方向。"}
+                        ? "看腹囊膨胀、痉挛和地面红圈。其他丧尸不画地面红圈，观察抬臂蓄力、张口、头顶符号与弹丸轨迹。"
+                        : "看抬肘、收腿、后仰、张口和头顶警示；出手后有爪击、重砸、酸液喷吐或嚎叫反馈。挨打时会显示伤害来源与方向。"}
                     </p>
                     <p className="codex-footnote">
                       数值为未缩放基础参数；实际生命、伤害会随模式、关卡、难度、人数与精英词缀变化。
@@ -403,33 +406,78 @@ export function CodexPanel({
   );
 }
 
-function EnemyFigure({ kind, model }: { kind: EnemyKind; model: string }) {
+function EnemyFigure({
+  kind,
+  mini = false,
+}: {
+  kind: EnemyKind;
+  mini?: boolean;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    let active = true;
-    const image = new Image();
-    image.onload = () => {
-      if (!active || !ref.current) return;
-      const c = ref.current.getContext("2d")!;
+    const canvas = ref.current!,
+      c = canvas.getContext("2d")!;
+    let frame = 0,
+      start = performance.now(),
+      last = -999;
+    const draw = (now: number) => {
+      frame = requestAnimationFrame(draw);
+      if (document.hidden || now - last < 32) return;
+      last = now;
+      const time = now - start,
+        pose = zombiePose(kind, 0, 0, time, enemyAttackFrame("slash", 0, -99));
       c.clearRect(0, 0, 220, 270);
       c.save();
-      c.scale(2, 2);
-      c.translate(55, 74);
-      c.drawImage(image, 256, 0, 256, 320, -42, -53, 84, 105);
-      drawProp(c, "enemy-" + kind);
+      c.translate(110, 8);
+      c.scale(1.6, 1.6);
+      c.translate(-63, 0);
+      const transforms = new Map<string, { x: number; y: number; r: number }>();
+      const resolve = (name: string): { x: number; y: number; r: number } => {
+        const cached = transforms.get(name);
+        if (cached) return cached;
+        const part = ZOMBIE_PARTS.find((p) => p.name === name)!,
+          g = zombieGeometry(0, name, kind),
+          [px, py] = g.pivot;
+        let value = {
+          x: px * 126,
+          y: py * 157.5,
+          r: pose[name as keyof typeof pose],
+        };
+        if (part.parent !== "root") {
+          const parent = resolve(part.parent),
+            pg = zombieGeometry(0, part.parent, kind),
+            dx = (px - pg.pivot[0]) * 126,
+            dy = (py - pg.pivot[1]) * 157.5;
+          value = {
+            x: parent.x + Math.cos(parent.r) * dx - Math.sin(parent.r) * dy,
+            y: parent.y + Math.sin(parent.r) * dx + Math.cos(parent.r) * dy,
+            r: parent.r + value.r,
+          };
+        }
+        transforms.set(name, value);
+        return value;
+      };
+      for (const part of ZOMBIE_PARTS) {
+        const g = zombieGeometry(0, part.name, kind),
+          m = resolve(part.name);
+        c.save();
+        c.translate(m.x, m.y);
+        c.rotate(m.r);
+        c.translate(-g.pivot[0] * 126, -g.pivot[1] * 157.5);
+        paintZombiePart(c, kind, 0, part.name, g);
+        c.restore();
+      }
       c.restore();
     };
-    image.src = "/art/gameplay-v34/" + model + ".png";
-    return () => {
-      active = false;
-    };
-  }, [kind, model]);
+    draw(start);
+    return () => cancelAnimationFrame(frame);
+  }, [kind]);
   return (
     <canvas
       ref={ref}
       width={220}
       height={270}
-      className="codex-enemy-figure"
+      className={mini ? "codex-zombie-thumb" : "codex-enemy-figure"}
       aria-label={ENEMY_DEFS[kind].name + "外观"}
     />
   );

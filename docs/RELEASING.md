@@ -7,13 +7,13 @@
 1. 使用维护者自己的 GitHub 账号创建仓库，确认公开范围与许可；仓库地址统一为 `1045857717/off-duty-squad`。若改名，需要同时更新 README、package.json、Compose 和发布资料中的地址。
 2. 本机使用 `gh auth login` 完成浏览器授权即可。已有登录可用 `gh auth status` 确认；不要把 PAT 发到聊天、写入文件或提交到 Git。
 3. 启用 GitHub Actions。工作流使用仓库自动提供的 `GITHUB_TOKEN`：检查任务只读，镜像任务写 packages，Release 任务写 contents，无须配置长期发布密钥。
-4. 如需保护 `main`，在仓库设置中配置规则，要求 PR 和 CI。是否可用取决于仓库可见性与账号套餐；不要通过虚假的工作流声明代替实际设置。
+4. `main` 已启用实际保护，管理员同样受约束：要求 PR、分支更新到最新、通过必需 CI、解决所有讨论；禁止强推与删除。单人维护不要求自我审批；见 [保护策略](BRANCH-PROTECTION.md)。
 5. 首次发布镜像后，确认 GHCR Package 关联了仓库，公开项目的镜像也设为 public。代码仓库公开不会自动保证镜像公开。
 6. 在 Security 设置中启用 private vulnerability reporting。Star History 使用外部公开数据，私有仓库不应期待显示增长图。
 
 ## 更新源码与发布版本是两步
 
-日常 `git push origin main` 触发 CI，不直接更新服务器，也不会覆盖稳定镜像。正式推送 `vX.Y.Z` 标签才会进入发布流程。
+日常推送功能分支并创建 PR，必需 CI 通过后合并到 `main` 触发 CI，不直接更新服务器，也不会覆盖稳定镜像。正式推送 `vX.Y.Z` 标签才会进入发布流程。
 
 发布时各阶段为：
 
@@ -33,23 +33,30 @@
 更新 CHANGELOG 和说明后运行：
 
 ```bash
-# 当前 package.json 为 3.8.0；准备下一个修复版本时递增。
+# 当前 package.json 为 3.9.0；准备下一个修复版本时递增。
 npm version patch --no-git-tag-version
 npm run check
 npm run format:check
-npm run release:check -- --tag v3.8.1
+npm run release:check -- --tag v3.9.1
 
+git switch -c release/3.9.1
 git add .
-git commit -m "chore(release): prepare v3.8.1"
-git push origin main
+git commit -m "chore(release): prepare v3.9.1"
+git push -u origin HEAD
+gh pr create --base main --fill
+# Merge only after required PR checks succeed, then update local main.
+gh pr checks --watch
+gh pr merge --merge --delete-branch
+git switch main
+git pull --ff-only
 gh run list --workflow ci.yml --branch main --commit "$(git rev-parse HEAD)" --limit 5
 ```
 
-示例版本 3.8.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
+示例版本 3.9.1 按实际修改。确认 main 的对应提交 CI 成功，再建立标签：
 
 ```bash
-git tag -a v3.8.1 -m "Salary Thieves v3.8.1"
-git push origin v3.8.1
+git tag -a v3.9.1 -m "Paid Break Crew v3.9.1"
+git push origin v3.9.1
 gh run list --workflow release.yml --limit 5
 # 使用上条命令返回的 run ID：
 gh run watch RUN_ID --exit-status
@@ -93,7 +100,11 @@ README 提供中英文切换、真实截图、状态徽章和 Star History。CI 
 ## 已发布镜像复验 / Verify an existing published image
 
 ```bash
-gh workflow run verify-release.yml --ref main --field version=3.8.0
+gh workflow run verify-release.yml --ref main --field version=3.9.0
 ```
 
 此工作流拉取指定版本并在 Linux amd64 / arm64 上执行真实双客户端检查；ARM64 使用 GitHub Linux 测试环境的 QEMU。它不会重建或覆盖已发布镜像。This checks the existing version on both platforms without rebuilding or replacing it.
+
+## Release 列表保留策略
+
+正式验证当前版本的附件、匿名镜像拉取及双架构运行后，Releases 列表只保留最新稳定版。删除旧 Release 时保留 Git 标签和 GHCR 版本镜像，便于追溯和回滚。不要使用 `--cleanup-tag`。历史验收文档是当时的记录，旧 Release 附件链接可能已移除。

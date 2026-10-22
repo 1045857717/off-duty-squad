@@ -18,17 +18,17 @@ export class PlayerVitals extends Phaser.GameObjects.Container {
     this.panel = new Phaser.GameObjects.Graphics(scene);
     const style = {
       fontFamily: "Arial, Microsoft YaHei, sans-serif",
-      fontSize: "11px",
+      fontSize: "9px",
       fontStyle: "bold",
       color: "#fffbed",
       stroke: "#07130f",
       strokeThickness: 3,
       resolution: 2,
     };
-    this.label = new Phaser.GameObjects.Text(scene, 0, 7, "", style).setOrigin(
+    this.label = new Phaser.GameObjects.Text(scene, 0, 5, "", style).setOrigin(
       0.5,
     );
-    this.armor = new Phaser.GameObjects.Text(scene, 0, 23, "", {
+    this.armor = new Phaser.GameObjects.Text(scene, 0, 17, "", {
       ...style,
       fontSize: "9px",
       color: "#ccf0ff",
@@ -61,11 +61,11 @@ export class PlayerVitals extends Phaser.GameObjects.Container {
     this.hitSeq = player.hitSeq;
     this.previousShield = v.shield;
     const ghost = this.trail.sample(v.ratio, time),
-      width = local ? 108 : 86,
+      width = local ? 76 : 64,
       hasShield = v.shield > 0,
       flash = time < this.flashUntil;
-    this.setPosition(x, y + (local ? 24 : -60)).setScale(
-      Math.min(1.65, Math.max(1, 1 / Math.max(0.1, zoom))),
+    this.setPosition(x, y + (local ? 19 : -58)).setScale(
+      Math.min(1.35, Math.max(0.9, 1 / Math.max(0.1, zoom))),
     );
     this.setDepth(local ? 92 : 84);
     const text = !player.alive
@@ -102,11 +102,11 @@ export class PlayerVitals extends Phaser.GameObjects.Container {
         left - 3,
         -3,
         width + 6,
-        armorText ? 34 : 21,
+        armorText ? 24 : 15,
         5,
       );
       g.lineStyle(
-        local ? 1.6 : 1,
+        local ? 1.2 : 1,
         flash
           ? 0xfff5c9
           : v.status === "critical"
@@ -115,33 +115,33 @@ export class PlayerVitals extends Phaser.GameObjects.Container {
               ? 0xf4dfad
               : 0xa8c6b8,
         local ? 0.95 : 0.75,
-      ).strokeRoundedRect(left - 3, -3, width + 6, armorText ? 34 : 21, 5);
-      g.fillStyle(0x253b30).fillRoundedRect(left, -1, width, 15, 2);
-      g.fillStyle(0xf4cd80, 0.9).fillRect(left + 1, 0, (width - 2) * ghost, 13);
+      ).strokeRoundedRect(left - 3, -3, width + 6, armorText ? 24 : 15, 5);
+      g.fillStyle(0x253b30).fillRoundedRect(left, -1, width, 11, 2);
+      g.fillStyle(0xf4cd80, 0.9).fillRect(left + 1, 0, (width - 2) * ghost, 9);
       g.fillStyle(v.color).fillRect(
         left + 1,
         0,
         (width - 2) *
           (player.alive ? v.ratio : Math.min(1, player.revive / 2.5)),
-        13,
+        9,
       );
       for (let i = 1; i < 5; i++)
         g.lineStyle(1, 0x112c22, 0.45).lineBetween(
           left + (i * width) / 5,
           0,
           left + (i * width) / 5,
-          13,
+          9,
         );
       if (local) {
         g.fillStyle(0xf9e3a8).fillTriangle(-4, -8, 4, -8, 0, -4);
       }
       if (hasShield) {
-        g.fillStyle(0x153b50).fillRect(left + 1, 17, width - 2, 11);
+        g.fillStyle(0x153b50).fillRect(left + 1, 13, width - 2, 7);
         g.fillStyle(0x4898bc).fillRect(
           left + 1,
-          17,
+          13,
           (width - 2) * v.shieldRatio,
-          11,
+          7,
         );
       }
       this.setData("vitals", {

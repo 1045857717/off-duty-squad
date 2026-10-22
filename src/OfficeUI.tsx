@@ -88,7 +88,7 @@ export const LobbyChat = memo(function LobbyChat({
           ))
         ) : (
           <p className="chat-welcome">
-            <strong>本群不查考勤，只查谁还活着。</strong>
+            <strong>工资照领，摸鱼搭子先到位。</strong>
             <span>
               可以没有工作进度，不能没有精神状态。发句话，找个下班搭子。
             </span>

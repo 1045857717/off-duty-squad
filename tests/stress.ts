@@ -3,13 +3,17 @@ import { launchFromDraft, prepareInBrowser } from "./browser-support";
 import { chromium } from "playwright";
 import { io, type Socket } from "socket.io-client";
 import { createServer } from "../server/app";
-import { randomFloor } from "../shared/world";
+import { randomFloor, generateWorld, seededRandom } from "../shared/world";
+import path from "node:path";
+import { tmpdir } from "node:os";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-const app = createServer();
+const directory = await fs.mkdtemp(path.join(tmpdir(), "stress-offduty-"));
+const app = createServer({ dataDir: directory });
 await new Promise<void>((r) => app.http.listen(0, "127.0.0.1", r));
 const url = `http://127.0.0.1:${(app.http.address() as any).port}`;
 const peers: Socket[] = [];
+let protectFixture: ReturnType<typeof setInterval> | undefined;
 const browser = await chromium.launch({
   ...(process.env.PLAYWRIGHT_BROWSER
     ? { executablePath: process.env.PLAYWRIGHT_BROWSER }
@@ -69,6 +73,19 @@ try {
     () => window.__OFFDUTY__?.state?.phase === "playing",
   );
   const game = app.rooms.get(code)!;
+  if (process.env.STRESS_SEED) {
+    const seed = Number(process.env.STRESS_SEED);
+    assert.ok(Number.isSafeInteger(seed));
+    game.state.world = generateWorld(
+      seed,
+      game.state.mode,
+      game.state.world.theme,
+    );
+    game.random = seededRandom(seed + 73);
+    game.state.bullets = [];
+    game.state.areas = [];
+    game.state.effects = [];
+  }
   // Controlled benchmark fixture: long-lived actors keep draw load stable; only this test owns the server reference.
   const room =
     game.state.world.rooms[Math.floor(game.state.world.rooms.length / 2)];
@@ -85,8 +102,23 @@ try {
           (id) => [id, 8],
         ),
       );
+    if (process.env.STRESS_SEED) {
+      p.attackCooldowns = {};
+      p.basicCd = 0;
+      p.skillCd = 0;
+      p.damageDealt = 0;
+      p.kills = 0;
+    }
     p.shield = 45;
   });
+  // Q grants can replace the fixture invulnerability timer; keep this renderer benchmark alive.
+  for (const p of game.state.players) {
+    p.alive = true;
+    p.hp = p.maxHp;
+  }
+  protectFixture = setInterval(() => {
+    for (const p of game.state.players) p.invulnerable = 9999;
+  }, 50);
   const count = Number(process.env.ENEMY_COUNT || 100);
   game.state.enemies = Array.from({ length: count }, (_, i) => {
     const point =
@@ -157,6 +189,9 @@ try {
     const c = document.querySelector("canvas")!;
     return {
       displayUncapped: (window as any).__BENCH_UNCAPPED === true,
+      worldSeed: window.__OFFDUTY__!.state!.world.seed,
+      measurementSeconds: 6,
+      phase: window.__OFFDUTY__!.state!.phase,
       modulesPerPlayer: Object.keys(
         window.__OFFDUTY__!.state!.players[0].arsenal,
       ).length,
@@ -187,20 +222,18 @@ try {
     "test-results/stress-latest-attempt.json",
     JSON.stringify(result, null, 2),
   );
+  await page.screenshot({ path: "test-results/stress-attempt.png" });
+  assert.equal(result.phase, "playing");
   assert.equal(result.players, 4);
   assert.equal(result.enemies, count);
   assert.ok(result.ratio > 1.9);
-  assert.ok(
-    result.fps >= Number(process.env.MIN_FPS || 144),
-    `dense 2xDPR frame rate ${result.fps}`,
-  );
   console.log("DENSE_COMBAT", JSON.stringify(result));
   await fs.mkdir("test-results", { recursive: true });
   await fs.writeFile(
     "test-results/stress.json",
     JSON.stringify(result, null, 2),
   );
-  // Ranking is always initially visible in2.0.
+  // Measure both viewports before enforcing either target so failures retain both results.
   await page.screenshot({ path: "test-results/stress-scene.png" });
   await page.getByRole("button", { name: "快捷设置" }).click();
   await page.getByLabel("迷你模式").check();
@@ -220,10 +253,6 @@ try {
     proto.render = old;
     return n / ((performance.now() - start) / 1000);
   });
-  assert.ok(
-    smallWindowFPS >= Number(process.env.MIN_FPS || 144),
-    `small window dense FPS ${smallWindowFPS}`,
-  );
   console.log("SMALL_WINDOW_DAMAGE_OVERLAY_FPS", smallWindowFPS);
   await fs.writeFile(
     "test-results/stress.json",
@@ -239,8 +268,23 @@ try {
   }));
   assert.ok(damage.every((p) => p.damage > 0));
   assert.equal(await page.locator(".damage-overlay .damage-row").count(), 4);
+  assert.ok(
+    result.fps >= Number(process.env.MIN_FPS || 144),
+    `dense 2xDPR frame rate ${result.fps}`,
+  );
+  assert.ok(
+    smallWindowFPS >= Number(process.env.MIN_FPS || 144),
+    `small window dense FPS ${smallWindowFPS}`,
+  );
 } finally {
+  clearInterval(protectFixture);
   for (const peer of peers) peer.disconnect();
   await browser.close();
   await app.close();
+  if (
+    !path.resolve(directory).startsWith(path.resolve(tmpdir()) + path.sep) ||
+    !path.basename(directory).startsWith("stress-offduty-")
+  )
+    throw Error("Unsafe benchmark cleanup");
+  await fs.rm(directory, { recursive: true, force: true });
 }

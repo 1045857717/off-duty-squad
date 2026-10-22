@@ -1,6 +1,6 @@
 # 贡献指南 / Contributing
 
-感谢帮助改进薪水小偷。游戏以轻松荒诞的职场合作体验为方向，优先保证联机正确性、战斗可读性与运行性能。
+感谢帮助改进带薪摸鱼。游戏以轻松荒诞的职场合作体验为方向，优先保证联机正确性、战斗可读性与运行性能。
 
 Thanks for contributing. The project prioritizes reliable co-op play, readable combat and performance while keeping its absurd workplace humor.
 

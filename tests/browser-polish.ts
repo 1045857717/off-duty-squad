@@ -333,7 +333,7 @@ try {
   await veil.waitFor();
   assert.doesNotMatch(
     await veil.innerText(),
-    /游戏|怪物|联机|房间|角色|薪水小偷|SALARY THIEVES/,
+    /游戏|怪物|联机|房间|角色|带薪摸鱼|PAID BREAK CREW/,
   );
   assert.equal(await host.title(), "项目协作工作台");
   await veil.getByRole("button", { name: /继续/ }).click();

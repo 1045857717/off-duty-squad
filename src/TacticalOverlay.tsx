@@ -19,15 +19,36 @@ export function TacticalOverlay({
     latest = useRef(state),
     seen = useRef(new Set<number>());
   latest.current = state;
+  const rosterKey = state.players.map((p) => p.id).join("|") + "/" + me?.id;
   useEffect(() => {
     let frame = 0;
+    const element = root.current!;
+    let width = element.clientWidth,
+      height = element.clientHeight;
+    const resize = new ResizeObserver((entries) => {
+      const rect = entries[0]?.contentRect;
+      if (rect) {
+        width = rect.width;
+        height = rect.height;
+      }
+    });
+    resize.observe(element);
+    const nodes = new Map<
+      string,
+      { marker: HTMLElement | null; bubble: HTMLElement | null }
+    >();
+    for (const p of latest.current.players)
+      nodes.set(p.id, {
+        marker: element.querySelector<HTMLElement>(`[data-marker="${p.id}"]`),
+        bubble: element.querySelector<HTMLElement>(`[data-bubble="${p.id}"]`),
+      });
     const update = () => {
       const host = root.current,
         view = bridge.metrics.view,
         s = latest.current;
       if (host && view && !document.hidden && !bridge.hidden) {
-        const w = host.clientWidth,
-          h = host.clientHeight;
+        const w = width,
+          h = height;
         const project = (x: number, y: number) => ({
           x: ((x - view.x) / view.w) * w,
           y: ((y - view.y) / view.h) * h,
@@ -35,16 +56,14 @@ export function TacticalOverlay({
         for (const p of s.players) {
           const pos = bridge.metrics.positions?.[p.id] || p,
             point = project(pos.x, pos.y);
-          const marker = host.querySelector<HTMLElement>(
-            `[data-marker="${p.id}"]`,
-          );
+          const marker = nodes.get(p.id)?.marker;
           if (marker) {
             const off =
               point.x < 18 ||
               point.y < 18 ||
               point.x > w - 18 ||
               point.y > h - 18;
-            marker.hidden = !off;
+            if (marker.hidden === off) marker.hidden = !off;
             const dx = point.x - w / 2,
               dy = point.y - h / 2;
             const scale = Math.min(
@@ -65,9 +84,7 @@ export function TacticalOverlay({
               if (label.textContent !== text) label.textContent = text;
             }
           }
-          const bubble = host.querySelector<HTMLElement>(
-            `[data-bubble="${p.id}"]`,
-          );
+          const bubble = nodes.get(p.id)?.bubble;
           if (bubble) {
             const last = s.chat
               .filter((m) => m.playerId === p.id && !m.system)
@@ -80,7 +97,7 @@ export function TacticalOverlay({
                 : s.rescuePing?.name === p.name) &&
               (s.rescuePing?.until || 0) > s.elapsed;
             const show = rescue || (last && Date.now() - last.at < 5500);
-            bubble.hidden = !show;
+            if (bubble.hidden === !!show) bubble.hidden = !show;
             if (show) {
               bubble.style.transform = `translate3d(${Math.max(80, Math.min(w - 80, point.x))}px,${Math.max(55, Math.min(h - 65, point.y - 72))}px,0)`;
               bubble.classList.toggle("rescue-speech", !!rescue);
@@ -160,8 +177,11 @@ export function TacticalOverlay({
       frame = requestAnimationFrame(update);
     };
     frame = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(frame);
-  }, [bridge]);
+    return () => {
+      cancelAnimationFrame(frame);
+      resize.disconnect();
+    };
+  }, [bridge, rosterKey]);
   return (
     <div ref={root} className="tactical-overlay" aria-label="队友方向与发言">
       {state.players
