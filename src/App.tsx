@@ -870,7 +870,10 @@ export default function App() {
                         />
                       ))}
                     {inGame && !floating.detached && !floating.concealed && (
-                      <PerformanceMeter bridge={bridge} />
+                      <PerformanceMeter
+                        bridge={bridge}
+                        networkHealth={net.networkHealth}
+                      />
                     )}
                     {s &&
                       inGame &&

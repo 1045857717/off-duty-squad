@@ -1,5 +1,16 @@
 # Changelog / 更新日志
 
+## [4.1.2] - 2026-10-23
+
+### Changed / 优化
+
+- 游戏内同时显示实际 FPS 和服务器 RTT，明确未测得、无响应与断线状态；小窗和手机布局可读。
+- 屏幕外敌人在分配骨骼之前剔除，弹丸和掉落物提前剔除；保留视口边缘的安全余量。
+- 远端角色使用有界位置历史与 50ms 插值，断流时保持最后确认位置，处理传送、障碍、切图与重开；自己的移动和冲刺保持即时预测。
+- 实体密集时使用 20Hz 视觉快照预算，普通场景 30Hz，战斗模拟 60Hz；保留压缩与 volatile 发送。
+- Add real RTT/FPS HUD states, early visibility culling and bounded remote interpolation. Heavy combat uses a 20Hz visual snapshot budget with hysteresis; local prediction and 60Hz simulation remain intact.
+- Add clustered-visible four-browser measurements and regressions for visibility, motion and network-health lifecycle. See [performance report](docs/PERFORMANCE-4.1.2.md) for results and limitations.
+
 ## [4.1.1] - 2026-10-23
 
 ### Performance / 性能

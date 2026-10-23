@@ -38,6 +38,7 @@ Run: node node_modules/tsx/dist/cli.mjs tests/browser-multiplayer411.ts [options
   --display-paced      Omit unconstrained Chromium flags; retain game cap 144
   --help               Print usage without opening browsers or starting a server
 Environment: LIVE_URL=https://host selects a basic public session, with no fixtures.
+BENCH_CLUSTER=1 clusters local enemies in view; it never alters a public server.
 Local mode requires an existing dist/index.html; this harness does not build it.
 Each player moves with 300ms W/D/S/A holds and alternating Space dashes (~4.2s).
 Default throughput is simulated/display-unconstrained, NOT physical 144Hz evidence.
@@ -556,12 +557,17 @@ export function installFixture(game: Game, enemyCount: 6 | 150) {
             : i % 4 === 2
               ? "hound"
               : "wraith",
-    ...(i < 24
+    ...(process.env.BENCH_CLUSTER === "1"
       ? {
-          x: center.x + 90 + (i % 4) * 24,
-          y: center.y - 55 + Math.floor(i / 4) * 24,
+          x: center.x - 132 + (i % 15) * 19,
+          y: center.y - 95 + Math.floor(i / 15) * 19,
         }
-      : randomFloor(state.world, game.random, center, 200)),
+      : i < 24
+        ? {
+            x: center.x + 90 + (i % 4) * 24,
+            y: center.y - 55 + Math.floor(i / 4) * 24,
+          }
+        : randomFloor(state.world, game.random, center, 200)),
     hp: 1_000_000_000,
     maxHp: 1_000_000_000,
     speed: 0,
