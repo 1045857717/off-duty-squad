@@ -1,0 +1,53 @@
+{
+  "version": "4.1.1",
+  "date": "2026-10-23",
+  "transport": {
+    "fixture": "Actual local server, four real WS clients, fixed varied-position snapshot with150 enemies and350 projectiles; three compression clients, one opt-out;16 measured frames",
+    "baselineMain": "3cecda3b6763c176ca0f47d220113f6c3549c568",
+    "baselineBytes": 2032380,
+    "patchBytes": 319308,
+    "savingPercent": 84.28896170991645,
+    "tlsOverheadIncluded": false,
+    "productionMeasurement": false
+  },
+  "sustainedCombat": {
+    "displayUncapped": false,
+    "worldSeed": 3900,
+    "measurementSeconds": 90,
+    "phase": "playing",
+    "modulesPerPlayer": 4,
+    "fps": 58.93208921146559,
+    "frames": 5304,
+    "p95": 18.300000071525574,
+    "players": 4,
+    "enemies": 150,
+    "bullets": 212,
+    "ratio": 2,
+    "damage": [
+      {
+        "name": "下班同学",
+        "damage": 270616.49
+      },
+      {
+        "name": "同事1",
+        "damage": 716306.49
+      },
+      {
+        "name": "同事2",
+        "damage": 496790.13
+      },
+      {
+        "name": "同事3",
+        "damage": 749256.85
+      }
+    ],
+    "smallWindowFPS": 58.60610702227789,
+    "displayReferenceHz": 60,
+    "minimumFPSForThisEnvironment": 50,
+    "smallWindowFps": 58.60610702227789,
+    "scope": "Controlled four-player invulnerability/long-lived-enemy fixture; not a player survival or144Hz display claim"
+  },
+  "coreTests": 147,
+  "releaseTests": 5,
+  "productionRootCauseConfirmed": false
+}
