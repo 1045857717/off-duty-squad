@@ -71,8 +71,8 @@
     "@vitejs/plugin-react": "4.4.1",
     "concurrently": "9.1.2",
     "electron": "41.10.7",
-    "playwright": "1.61.1",
-    "prettier": "3.5.3",
+    "playwright": "1.64.1",
+    "prettier": "3.9.10",
     "typescript": "5.8.3",
     "vite": "6.4.4"
   },
