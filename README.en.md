@@ -6,6 +6,10 @@
 
 An AI-implemented 1–4 player online co-op survival game that turns workplace absurdity into a roguelite battlefield. Pick a profession, assemble a build, and survive office zombies, outrageous KPIs, and your next performance review.
 
+**[🎮 Play online · moyu.xiebc.com](https://moyu.xiebc.com)**
+
+Play in your browser without installing anything. Use the same online address in the optional desktop client.
+
 [简体中文](README.md) · [Docker deployment](docs/DEPLOYMENT.en.md) · [Releasing](docs/RELEASING.en.md) · [Controls](docs/CONTROLS.md) · [Changelog](CHANGELOG.md)
 
 [![CI](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml/badge.svg)](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml)

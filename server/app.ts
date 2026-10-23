@@ -1,3 +1,4 @@
+import { transientSnapshot } from "./snapshot";
 import { APP_VERSION } from "./version";
 import { rankPeriod, rankingWindow } from "../shared/rankPeriod";
 import { statSync } from "node:fs";
@@ -46,7 +47,19 @@ type Session = {
 export function createServer(options: { dataDir?: string } = {}) {
   const app = express(),
     http = createHttpServer(app),
-    io = new Server(http, { maxHttpBufferSize: 8192, serveClient: false });
+    io = new Server(http, {
+      maxHttpBufferSize: 8192,
+      serveClient: false,
+      // Dense late-game JSON otherwise costs tens of Mbps per viewer. Keep
+      // compression cheap and bound concurrent zlib work and retained contexts.
+      perMessageDeflate: {
+        threshold: 1024,
+        serverNoContextTakeover: true,
+        clientNoContextTakeover: true,
+        concurrencyLimit: 4,
+        zlibDeflateOptions: { level: 1, memLevel: 7 },
+      },
+    });
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
     rooms = new Map<string, Game>(),
     sessions = new Map<string, Session>(),
@@ -162,7 +175,7 @@ export function createServer(options: { dataDir?: string } = {}) {
   const broadcast = (g: Game) => {
     const full = lastWorld.get(g) !== g.state.world;
     lastWorld.set(g, g.state.world);
-    const packet = { ...g.state, world: full ? g.state.world : undefined };
+    const packet = full ? g.state : transientSnapshot(g.state);
     if (full) io.to(g.state.code).emit("state", g.state);
     else io.to(g.state.code).volatile.emit("state", packet);
   };
