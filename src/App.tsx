@@ -315,7 +315,16 @@ export default function App() {
         void chooseCard(numberIndex % 3);
         return;
       }
-      if (e.key === "Enter" && s) {
+      if (
+        e.key === "Enter" &&
+        s &&
+        !(
+          e.target instanceof Element &&
+          e.target.closest(
+            "button, summary, a[href], [role=button], [role=tab]",
+          )
+        )
+      ) {
         e.preventDefault();
         if (["lobby", "countdown"].includes(s.phase))
           window.dispatchEvent(new Event("squad-chat:focus"));

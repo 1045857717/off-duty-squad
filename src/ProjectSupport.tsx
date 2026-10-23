@@ -10,8 +10,11 @@ export function ProjectLinks() {
         aria-label="GitHub开源项目"
         title="GitHub开源项目"
       >
-        <Icon name="github" size={16} />
-        <span>GitHub</span>
+        <Icon name="github" size={21} />
+        <span>
+          GitHub <small>开源项目</small>
+        </span>
+        <Icon name="arrow" size={13} />
       </a>
     </nav>
   );

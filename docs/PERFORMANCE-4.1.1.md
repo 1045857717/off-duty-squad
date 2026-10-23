@@ -16,10 +16,10 @@ v4.1.1 对支持压缩的客户端启用 WebSocket deflate：阈值 1024 字节�
 
 握手预热后，读取实际 TCP 连接收取的字节数。记录包含 WebSocket 帧开销，不包含 TLS 开销。该次同机样本为：
 
-| 16 帧 / 16 frames | v4.1.0 | v4.1.1 |
-| --- | ---: | ---: |
-| 解码后的 JSON 字节 | 2,031,952 | 1,704,416 |
-| 每个协商压缩客户端的实际传输字节 | 2,032,380 | 319,308 |
+| 16 帧 / 16 frames                |    v4.1.0 |    v4.1.1 |
+| -------------------------------- | --------: | --------: |
+| 解码后的 JSON 字节               | 2,031,952 | 1,704,416 |
+| 每个协商压缩客户端的实际传输字节 | 2,032,380 |   319,308 |
 
 实际传输量减少约 **84.3%**。这是指定压力样本的结果，不代表线上每个场景的带宽。回归测试还验证权威状态未被序列化修改、生命与伤害等值保持一致、压缩关闭兼容、延迟探测和房间请求正常。
 
@@ -51,3 +51,22 @@ The original server sent uncompressed dynamic JSON snapshots. Dense matches ther
 The four-client regression uses fixed, varied-position snapshots to isolate actual wire size. The measured 16-frame sample dropped from 2,032,380 to 319,308 bytes per compressed connection, about 84.3%. These are measured WebSocket bytes after handshake, excluding TLS. This result does not establish the user's exact production bottleneck; CPU load, uplink capacity, client frame time and latency still need to be correlated during the reported stutter.
 
 Use the transport test and sustained browser fixture above to reproduce verification. An update ends active in-memory matches; retain the score volume and update after the current match ends.
+
+## 四个真实浏览器的专项复测
+
+四个独立 Chromium 进程、四份隔离存储、四个真实玩家身份与四个 Phaser 渲染器。全部通过真实界面入房/准备/选技能，并持续使用 WASD、空格冲刺、自动攻击与职业Q。视口1366×768、DPR2，每个阶段采样12秒，原始结果保存在运行目录；公开精简结果见 [multiplayer-4.1.1.json](multiplayer-4.1.1.json)。
+
+| 条件                                           | 四端实际渲染平均帧率范围 | 关键限制                                 |
+| ---------------------------------------------- | ------------------------ | ---------------------------------------- |
+| 本地4.1.1，解除浏览器限制，6敌人/四人各4模块   | 143.99–144.03 FPS        | 渲染吞吐实验，单机共享GPU                |
+| 本地4.1.1，解除浏览器限制，150敌人/四人各4模块 | 127.32–132.75 FPS        | 全世界150敌人，不是同屏150；同机四份画面 |
+| 公网4.1.0，解除浏览器限制，自然开局            | 143.41–143.82 FPS        | 此时生产服尚未安装补丁，非后期满构筑     |
+| 本地4.1.1，普通浏览器显示节拍                  | 约59.5 FPS               | 实测RAF也约60Hz，不能作为144Hz显示验收   |
+
+公网游戏RTT样本约59–78ms，状态约30Hz到达；四端最差P95同步间隔42.64ms，单端曾出现约200ms间隔。同期HTTP健康接口83次采样无失败，中位76.59ms、P95约86.51ms。这个短时开局样本没有重现持续网络拥塞，不能用它断言后期一定没有带宽、服务器或客户端问题。
+
+本机密集场景的Phaser帧内工作P95约5.0–5.2ms。四个浏览器共享一块GPU会引入额外争用；单渲染器+三个协议同伴的独立对照约239.58FPS，这一项明确不算四浏览器证据。驱动报告240Hz，但当前桌面会话连原生空白浏览器也只有约57–60Hz调度；报告保留该限制，不把解除限帧的提交次数称为物理144Hz显示通过。
+
+因此目前确认并修复的是原始状态同步占用过大的隐患；保留了同机极端渲染压力和实际显示环境的限制。线上4.1.1的效果需要服务器升级后，在真实卡顿时段继续复测。
+
+English: Four independent browser processes and real player identities were tested with actual keyboard movement, attacks and dashes. Display-unconstrained throughput and ordinary browser scheduling are reported separately. The local dense fixture reached127.32–132.75FPS per window on a shared GPU; a single-renderer control reached239.58FPS. The public4.1.0 opening sample averaged143.41–143.82FPS but is neither a patched-production nor late-game result. The current desktop session provides about60Hz RAF even with a driver-reported240Hz panel. No physical144Hz scanout claim is made. Authoritative150-enemy population includes offscreen entities; the fixture is not150 visible enemies. Production stutter still needs correlated during-match evidence after the update.

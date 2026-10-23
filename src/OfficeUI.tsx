@@ -48,17 +48,12 @@ export const LobbyChat = memo(function LobbyChat({
       className="lobby-chat public-community-chat"
       aria-label="公共大厅聊天"
     >
-      <header>
+      <header className="public-chat-status">
         <span>
-          <Icon name="users" size={14} />
-          全服茶水间
-        </span>
-        <small>
           <i className={connected ? "is-online" : "is-offline"} />
-          {connected
-            ? "全服在线 " + (online ?? "—") + " 人 · 跨房间聊天"
-            : "连接中 · 草稿会保留"}
-        </small>
+          {connected ? "全服在线 " + (online ?? "—") + " 人" : "正在重新连接"}
+        </span>
+        <small>{connected ? "跨房间实时聊天" : "草稿会保留"}</small>
       </header>
       <div
         className="public-chat-log"
@@ -77,14 +72,21 @@ export const LobbyChat = memo(function LobbyChat({
       >
         {messages.length ? (
           messages.slice(-60).map((m) => (
-            <p key={m.id} className={m.spectator ? "is-spectator" : ""}>
-              <time dateTime={new Date(m.at).toISOString()}>
-                {messageTime(m.at)}
-              </time>
-              <b>{m.name}</b>
-              {m.spectator && <em>观战</em>}
-              <span>{m.text}</span>
-            </p>
+            <article
+              key={m.id}
+              className={
+                "public-chat-message" + (m.spectator ? " is-spectator" : "")
+              }
+            >
+              <div className="public-message-meta">
+                <b title={m.name}>{m.name}</b>
+                {m.spectator && <em>观战</em>}
+                <time dateTime={new Date(m.at).toISOString()}>
+                  {messageTime(m.at)}
+                </time>
+              </div>
+              <p>{m.text}</p>
+            </article>
           ))
         ) : (
           <p className="chat-welcome">

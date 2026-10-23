@@ -20,7 +20,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-24_LTS-339933?logo=nodedotjs&logoColor=white)
 ![Players](https://img.shields.io/badge/Players-1%E2%80%934-E47832)
 
-![游戏大厅](docs/images/lobby.webp)
+![游戏大厅](docs/images/lobby-4.1.1.png)
 
 </div>
 
@@ -143,7 +143,7 @@ npm run test:feedback
 
 ## 当前状态与边界
 
-版本 **4.1.0**。大厅改为上方选择玩法、下方工友集合的游戏整备界面；无尽首波重新校准为可清怪的开局，敌人组合与精英逐波加入。E交互明确显示真实收益、费用和持续效果，修复F8各工作视图背景串色。详见[4.1玩法与修复](docs/PLAYABILITY-4.1.md)和[开局伤害审计](docs/balance-4.1.json)。4.0的[美术动作](docs/ART-4.0.md)、[逐职业矩阵](docs/COMBAT-4.0.md)、[已发布验收](docs/PUBLISHED-4.0.md)与[分支保护策略](docs/BRANCH-PROTECTION.md)继续保留。
+版本 **4.1.1**。增加 WebSocket 压缩与视觉坐标传输精度优化，减少后期同步流量；聊天消息区与职业技能说明重新排版，GitHub 入口保留清楚文字，提供四独立浏览器的高刷诊断工具。详见[同步性能与测试边界](docs/PERFORMANCE-4.1.1.md)和[大厅可读性](docs/LOBBY-4.1.1.md)。大厅改为上方选择玩法、下方工友集合的游戏整备界面；无尽首波重新校准为可清怪的开局，敌人组合与精英逐波加入。E交互明确显示真实收益、费用和持续效果，修复F8各工作视图背景串色。详见[4.1玩法与修复](docs/PLAYABILITY-4.1.md)和[开局伤害审计](docs/balance-4.1.json)。4.0的[美术动作](docs/ART-4.0.md)、[逐职业矩阵](docs/COMBAT-4.0.md)、[已发布验收](docs/PUBLISHED-4.0.md)与[分支保护策略](docs/BRANCH-PROTECTION.md)继续保留。
 
 - 目前采用单实例房间服务，多个副本不会共享房间或在线人数。正式扩容前需要独立的房间路由与共享存储设计。
 - 支持144FPS目标档位，实际取决于硬件、分辨率和敌人密度，**不保证全场景144FPS**。上一轮4.0测量和限制见[4.0性能实测](docs/PERFORMANCE-4.0.md)，旧版本结果保留在历史报告。

@@ -149,7 +149,7 @@ try {
   await publicLog(b).getByText("观众自带板凳", { exact: true }).waitFor();
   assert.match(
     await publicLog(b)
-      .locator("p")
+      .locator(".public-chat-message")
       .filter({ hasText: "观众自带板凳" })
       .innerText(),
     /观战/,
@@ -236,7 +236,7 @@ try {
     }
   }
   await publicLog(a).getByText("公屏缓存消息-63", { exact: true }).waitFor();
-  assert.equal(await publicLog(a).locator("p").count(), 60);
+  assert.equal(await publicLog(a).locator(".public-chat-message").count(), 60);
   await publicLog(a).evaluate((el) => {
     el.scrollTop = 0;
     el.dispatchEvent(new Event("scroll", { bubbles: true }));
@@ -336,5 +336,11 @@ try {
   helpers.forEach((s) => s.disconnect());
   await browser.close();
   await app.close();
-  rmSync(dataDir, { recursive: true, force: true });
+  const cleanupPath = path.resolve(dataDir);
+  if (
+    !cleanupPath.startsWith(path.resolve(tmpdir()) + path.sep) ||
+    !path.basename(cleanupPath).startsWith("community36-")
+  )
+    throw new Error("Unsafe browser-test cleanup path");
+  rmSync(cleanupPath, { recursive: true, force: true });
 }

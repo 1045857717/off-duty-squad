@@ -52,12 +52,14 @@ try {
     path: "test-results/comedy/lobby.png",
     fullPage: true,
   });
+  await host.locator(".lobby-profession-roster > summary").click();
   await host
     .locator(".career-filters")
     .getByRole("button", { name: /资本艺术家/ })
     .click();
   assert.equal(await host.locator(".job-grid>button").count(), 4);
   await host.getByRole("button", { name: "选择画饼总监", exact: true }).click();
+  await host.locator(".lobby-profession-details > summary").click();
   assert.match(
     await host.getByRole("region", { name: "职业技能详细说明" }).innerText(),
     /87.4/,
@@ -280,5 +282,11 @@ try {
 } finally {
   await browser.close();
   await app.close();
-  rmSync(dir, { recursive: true, force: true });
+  const cleanupPath = path.resolve(dir);
+  if (
+    !cleanupPath.startsWith(path.resolve(tmpdir()) + path.sep) ||
+    !path.basename(cleanupPath).startsWith("comedy32-")
+  )
+    throw new Error("Unsafe browser-test cleanup path");
+  rmSync(cleanupPath, { recursive: true, force: true });
 }

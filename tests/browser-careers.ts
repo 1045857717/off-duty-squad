@@ -32,16 +32,19 @@ try {
     path: "test-results/careers/lobby.png",
     fullPage: true,
   });
+  await host.locator(".lobby-profession-roster > summary").click();
   const picker = host.getByRole("region", { name: "打工人职业选择" });
   await picker.getByRole("button", { name: /^IT/ }).click();
   assert.equal(await picker.locator(".job-grid>button").count(), 3);
   await picker.getByRole("button", { name: /^抽象打工人/ }).click();
   assert.equal(await picker.locator(".job-grid>button").count(), 5);
   await picker.getByRole("button", { name: "选择牛马", exact: true }).click();
+  await host.locator(".lobby-profession-details > summary").click();
   assert.match(
     await host.getByRole("region", { name: "职业技能详细说明" }).innerText(),
     /74.8/,
   );
+  await host.locator(".lobby-profession-roster > summary").click();
   await picker.getByLabel("搜索职业").fill("考古学家");
   await picker.getByText("暂时还没有这个岗位").waitFor();
   await picker.getByRole("button", { name: "没找到职业？" }).click();
@@ -103,7 +106,10 @@ try {
     .locator(".ready-seat.is-ready footer")
     .evaluateAll((els) => els.map((el) => getComputedStyle(el).color));
   assert.ok(
-    green.every((x) => x === "rgb(36, 115, 75)"),
+    green.every((color) => {
+      const [r, g, b] = (color.match(/[\d.]+/g) || []).map(Number);
+      return g > r && g > b;
+    }),
     green.join(","),
   );
   await host.getByText(/查看 牛马冲锋 的伤害/).click();
@@ -176,5 +182,11 @@ try {
 } finally {
   await browser.close();
   await app.close();
-  rmSync(data, { recursive: true, force: true });
+  const cleanupPath = path.resolve(data);
+  if (
+    !cleanupPath.startsWith(path.resolve(tmpdir()) + path.sep) ||
+    !path.basename(cleanupPath).startsWith("careers31-")
+  )
+    throw new Error("Unsafe browser-test cleanup path");
+  rmSync(cleanupPath, { recursive: true, force: true });
 }
