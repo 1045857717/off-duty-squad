@@ -1,4 +1,5 @@
 import { transientSnapshot } from "./snapshot";
+import { SnapshotCadence } from "./snapshotCadence";
 import { APP_VERSION } from "./version";
 import { rankPeriod, rankingWindow } from "../shared/rankPeriod";
 import { statSync } from "node:fs";
@@ -68,6 +69,7 @@ export function createServer(options: { dataDir?: string } = {}) {
     );
   const lobbyChat: ChatMessage[] = [];
   const lastWorld = new WeakMap<Game, unknown>();
+  const snapshotCadences = new WeakMap<Game, SnapshotCadence>();
   app.disable("x-powered-by");
   app.use((_req, res, next) => {
     res.setHeader(
@@ -747,7 +749,13 @@ export function createServer(options: { dataDir?: string } = {}) {
           console.error("Leaderboard write failed; retrying:", String(e));
         }
       }
-      if (frame % 2 === 0) broadcast(g);
+      let cadence = snapshotCadences.get(g);
+      if (!cadence) {
+        cadence = new SnapshotCadence();
+        snapshotCadences.set(g, cadence);
+      }
+      const due = cadence.due(frame, g.state);
+      if (lastWorld.get(g) !== g.state.world || due) broadcast(g);
     }
     frame++;
   }, 1000 / 60);

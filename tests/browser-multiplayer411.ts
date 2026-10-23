@@ -54,6 +54,10 @@ if (
 
 async function run() {
   const config = readConfig();
+  const fixtureLayout =
+    process.env.BENCH_CLUSTER === "1"
+      ? "clustered-visible"
+      : "distributed-world";
   const root = fileURLToPath(new URL("../", import.meta.url));
   const runId =
     new Date().toISOString().replace(/[:.]/g, "-") + `-${process.pid}`;
@@ -380,6 +384,7 @@ async function run() {
           fixture: config.liveUrl
             ? null
             : {
+                layout: fixtureLayout,
                 synthetic: true,
                 survivalResult: false,
                 enemyCounts: [6, 150],
@@ -538,6 +543,15 @@ async function measurePhase(
       ),
       "Not four living, connected human players throughout playing",
     );
+    if (
+      !process.env.LIVE_URL &&
+      process.env.BENCH_CLUSTER === "1" &&
+      enemies === 150
+    )
+      check(
+        raw?.states.every((s) => (s.enemyCentersInView ?? 0) >= 100),
+        "Clustered fixture must keep at least 100 enemy centers genuinely visible",
+      );
     check(raw?.playerId, "Player identity missing");
     const first = raw?.states[0];
     const last = raw?.states.at(-1);

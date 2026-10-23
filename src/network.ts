@@ -2,6 +2,11 @@ import type { ChatMessage } from "../shared/types";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { io, type Socket } from "socket.io-client";
 import type { GameState, RoomReply, Input } from "../shared/types";
+import {
+  NetworkHealth,
+  NETWORK_PROBE_INTERVAL_MS,
+  NETWORK_PROBE_TIMEOUT_MS,
+} from "./networkHealth";
 export const IS_FLOATING =
   new URLSearchParams(location.search).get("floating") === "1";
 export function useNetwork(notify: (message: string) => void) {
@@ -18,6 +23,7 @@ export function useNetwork(notify: (message: string) => void) {
       lobby: number;
       rooms: number;
     } | null>(null);
+  const [networkHealth] = useState(() => new NetworkHealth());
   const ref = useRef<Socket | null>(null),
     notifyRef = useRef(notify),
     latest = useRef<GameState | null>(null),
@@ -33,8 +39,25 @@ export function useNetwork(notify: (message: string) => void) {
     });
     ref.current = socket;
     let published: GameState | null = null;
+    let active = true;
+    const probeLatency = () => {
+      setLatency(networkHealth.read().rttMs ?? 0);
+      if (!socket.connected || delegated.current || document.hidden) return;
+      const probe = networkHealth.beginProbe();
+      if (probe === null) return;
+      socket
+        .timeout(NETWORK_PROBE_TIMEOUT_MS)
+        .volatile.emit("ping:latency", {}, (err: Error | null) => {
+          if (!active) return;
+          networkHealth.finishProbe(probe, !!err);
+          setLatency(networkHealth.read().rttMs ?? 0);
+        });
+    };
     socket.on("connect", () => {
+      networkHealth.setConnected(true);
+      setLatency(0);
       setConnected(true);
+      probeLatency();
       if (delegated.current) return;
       const token = sessionStorage.getItem("offduty-session");
       if (token)
@@ -58,10 +81,16 @@ export function useNetwork(notify: (message: string) => void) {
     });
     socket.on("presence", (value) => setPresence(value));
     socket.on("disconnect", () => {
+      networkHealth.setConnected(false);
+      setLatency(0);
       setConnected(false);
       setPresence(null);
     });
-    socket.on("connect_error", () => setConnected(false));
+    socket.on("connect_error", () => {
+      networkHealth.setConnected(false);
+      setLatency(0);
+      setConnected(false);
+    });
     socket.on("state", (s: GameState) => {
       const previous = latest.current;
       if (!s.world && previous?.code === s.code)
@@ -121,13 +150,13 @@ export function useNetwork(notify: (message: string) => void) {
       published = latest.current;
       setState(published);
     }, 120);
-    const pingTimer = setInterval(() => {
-      if (!socket.connected || delegated.current || document.hidden) return;
-      const t = performance.now();
-      socket.timeout(2500).emit("ping:latency", {}, (err: Error | null) => {
-        if (!err) setLatency(Math.max(1, Math.round(performance.now() - t)));
-      });
-    }, 3000);
+    const pingTimer = setInterval(probeLatency, NETWORK_PROBE_INTERVAL_MS);
+    const visibility = () => {
+      networkHealth.reset();
+      setLatency(0);
+      if (!document.hidden) probeLatency();
+    };
+    document.addEventListener("visibilitychange", visibility);
     const message = (e: MessageEvent) => {
       if (
         !IS_FLOATING ||
@@ -159,6 +188,9 @@ export function useNetwork(notify: (message: string) => void) {
     ready();
     const handshake = setInterval(ready, 250);
     return () => {
+      active = false;
+      networkHealth.setConnected(false);
+      document.removeEventListener("visibilitychange", visibility);
       clearInterval(uiTimer);
       clearInterval(pingTimer);
       clearInterval(handshake);
@@ -208,12 +240,16 @@ export function useNetwork(notify: (message: string) => void) {
   }, []);
   const delegate = useCallback(() => {
     delegated.current = true;
-  }, []);
+    networkHealth.reset();
+    setLatency(0);
+  }, [networkHealth]);
   const reclaim = useCallback(async () => {
     delegated.current = false;
+    networkHealth.reset();
+    setLatency(0);
     const token = sessionStorage.getItem("offduty-session");
     if (token) await request("room:resume", { token, floating: false });
-  }, [request]);
+  }, [request, networkHealth]);
   return {
     state,
     lobbyMessages,
@@ -222,6 +258,7 @@ export function useNetwork(notify: (message: string) => void) {
     connected,
     playerId,
     latency,
+    networkHealth,
     busy,
     request,
     send,

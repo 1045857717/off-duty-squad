@@ -71,6 +71,8 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps --only-shell chromium
       - run: npm run test:lobby
+      - run: npm run test:viewport
+      - run: npm run test:network-hud
       - run: npm run test:community
       - run: npm run test:work
       - run: npm run test:playability
@@ -83,6 +85,8 @@ jobs:
           name: browser-combat-and-compact-window
           path: |
             test-results/lobby41
+            test-results/viewport412
+            test-results/network-hud412
             test-results/community
             test-results/work41
             test-results/playability41

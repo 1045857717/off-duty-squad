@@ -43,6 +43,7 @@ import {
 } from "./abyssArt";
 import { generateWorld, worldBlocked } from "../../shared/world";
 import { predictPosition } from "../renderMotion";
+import { inViewport, RemoteMotion, RemoteClock } from "../remoteMotion";
 import {
   EMPTY_INPUT,
   MAP_WALLS,
@@ -82,6 +83,7 @@ export type SceneBridge = {
   sound: (kind: string) => void;
 };
 type Actor = {
+  motion: RemoteMotion;
   rig?: ArticulatedActor;
   vitals?: PlayerVitals;
   ribbon?: WeaponRibbon;
@@ -94,10 +96,6 @@ type Actor = {
   muzzle: Phaser.GameObjects.Image | null;
   x: number;
   y: number;
-  sx: number;
-  sy: number;
-  vx: number;
-  vy: number;
   gait: number;
   fire: number;
   skill: number;
@@ -151,7 +149,8 @@ export class StationScene extends Phaser.Scene {
   private aim = { x: 1, y: 0 };
   private snapshot: GameState | null = null;
   private snapshotAt = 0;
-  private snapshotGap = 1 / 30;
+  private remoteClock = new RemoteClock();
+  private remoteTime = 0;
   private fresh = false;
   private age = 0;
   private serial = 0;
@@ -454,6 +453,7 @@ export class StationScene extends Phaser.Scene {
         .setOrigin(0, 0.5)
         .setDepth(79);
     const a: Actor = {
+      motion: new RemoteMotion(),
       sprite,
       shadow,
       name: text,
@@ -463,10 +463,6 @@ export class StationScene extends Phaser.Scene {
       muzzle: null,
       x: NaN,
       y: NaN,
-      sx: NaN,
-      sy: NaN,
-      vx: 0,
-      vy: 0,
       gait: 0,
       fire: 0,
       skill: 0,
@@ -483,19 +479,22 @@ export class StationScene extends Phaser.Scene {
     this.actors.set(id, a);
     return a;
   }
-  private position(a: Actor, p: Vec, dt: number, local = false) {
-    if (this.fresh) {
-      const displacement = Math.hypot(p.x - a.sx, p.y - a.sy);
-      a.vx = displacement < 70 ? (p.x - a.sx) / this.snapshotGap : 0;
-      a.vy = displacement < 70 ? (p.y - a.sy) / this.snapshotGap : 0;
-      a.sx = p.x;
-      a.sy = p.y;
-    }
+  private position(
+    a: Actor,
+    p: Vec,
+    dt: number,
+    local = false,
+    preview = false,
+  ) {
     if (!Number.isFinite(a.x) || Math.hypot(p.x - a.x, p.y - a.y) > 140) {
       a.x = p.x;
       a.y = p.y;
     }
-    if (local && this.bridge.enabled) {
+    if (preview) {
+      const f = 1 - Math.exp(-dt / 14);
+      a.x += (p.x - a.x) * f;
+      a.y += (p.y - a.y) * f;
+    } else if (local && this.bridge.enabled) {
       const me = p as Player,
         move = predictPosition(
           { x: a.x, y: a.y },
@@ -520,15 +519,16 @@ export class StationScene extends Phaser.Scene {
         a.y += (target.y - a.y) * f;
       }
     } else {
-      const target = predictPosition(
-        p,
-        { x: a.vx, y: a.vy },
-        this.age,
-        this.bridge.state?.world,
-      );
-      const f = 1 - Math.exp(-dt / 14);
-      a.x += (target.x - a.x) * f;
-      a.y += (target.y - a.y) * f;
+      const elapsed = this.bridge.state?.elapsed || 0;
+      if (this.fresh || !a.motion.size) a.motion.push(p, elapsed);
+      const target = a.motion.sample(this.remoteTime);
+      // Interpolating across a corner must not cut through a newly closed
+      // cabinet/shutter; hold the authoritative point in that rare case.
+      const blocked =
+        this.bridge.state?.world &&
+        worldBlocked(this.bridge.state.world, target.x, target.y, 12);
+      a.x = blocked ? p.x : target.x;
+      a.y = blocked ? p.y : target.y;
     }
   }
   update(time: number, delta: number) {
@@ -552,12 +552,13 @@ export class StationScene extends Phaser.Scene {
     }
     this.fresh = !!s && s !== this.snapshot;
     if (s && this.fresh) {
-      this.snapshotGap = this.snapshot
-        ? Math.max(
-            1 / 90,
-            Math.min(0.12, s.elapsed - this.snapshot.elapsed || 1 / 30),
-          )
-        : 1 / 30;
+      if (
+        this.snapshot &&
+        (s.code !== this.snapshot.code || s.elapsed < this.snapshot.elapsed)
+      ) {
+        this.remoteClock.reset();
+        for (const actor of this.actors.values()) actor.motion.clear();
+      }
       this.snapshot = s;
       this.snapshotAt = performance.now();
     }
@@ -568,7 +569,11 @@ export class StationScene extends Phaser.Scene {
       this.lastMission = mission;
       this.loadMap(active ? s!.world.theme : 0);
       this.seenEffects.clear();
+      this.remoteClock.reset();
+      for (const [id, actor] of this.actors)
+        this.destroyActor(id, actor, false);
     }
+    this.remoteTime = this.remoteClock.advance(s?.elapsed || 0, this.age);
     const self = s?.players.find((p) => p.id === this.bridge.playerId);
     const me =
       self ||
@@ -794,7 +799,7 @@ export class StationScene extends Phaser.Scene {
     a.seen = this.serial;
     const px = a.x,
       py = a.y;
-    this.position(a, p, dt, p.id === this.bridge.playerId && p.alive);
+    this.position(a, p, dt, p.id === this.bridge.playerId && p.alive, preview);
     const travel = Number.isFinite(px) ? Math.hypot(a.x - px, a.y - py) : 0,
       moving = travel > 0.02;
     a.gait += Math.min(travel, 6) * 0.29;
@@ -1076,6 +1081,22 @@ export class StationScene extends Phaser.Scene {
   private drawEnemy(e: GameState["enemies"][number], time: number, dt: number) {
     const key = "e" + e.id;
     let a = this.actors.get(key);
+    // Cull before allocating a 2-view skeleton or running collision prediction.
+    // Margin covers boss limbs, 50ms interpolation lag and camera movement.
+    if (!inViewport(e, this.cameras.main.worldView, 164)) {
+      if (a) {
+        a.seen = this.serial;
+        a.rig?.setVisible(false);
+        a.shadow.setVisible(false);
+        a.hp.setVisible(false);
+        a.hpBg.setVisible(false);
+        a.motion.clear();
+        a.warned = false;
+        a.x = e.x;
+        a.y = e.y;
+      }
+      return;
+    }
     if (!a) {
       a = this.actor(key, "enemy-" + e.kind);
       a.sprite.setVisible(false).setActive(false);
@@ -1181,8 +1202,13 @@ export class StationScene extends Phaser.Scene {
       .setFillStyle(e.kind === "boss" ? 0xe4b4df : 0xf0c38d)
       .setVisible(visible);
   }
-  private destroyActor(id: string, a: Actor) {
-    if (id.startsWith("e") && this.bridge.state?.phase === "playing") {
+  private destroyActor(id: string, a: Actor, death = true) {
+    if (
+      death &&
+      id.startsWith("e") &&
+      a.rig?.visible &&
+      this.bridge.state?.phase === "playing"
+    ) {
       if (this.corpses.length >= 28) this.corpses.shift()!.sprite.destroy();
       if (a.rig) {
         this.corpses.push({ sprite: a.rig, born: this.frameNow });
@@ -1227,6 +1253,7 @@ export class StationScene extends Phaser.Scene {
   }
   private drawPickups(s: GameState, time: number) {
     for (const p of s.pickups) {
+      if (!inViewport(p, this.cameras.main.worldView, 70)) continue;
       const y =
         p.y +
         (this.bridge.settings.lowMotion
@@ -1259,6 +1286,12 @@ export class StationScene extends Phaser.Scene {
     for (const b of s.bullets) {
       seen.add(b.id);
       let sp = this.bullets.get(b.id);
+      const x = b.x + b.vx * this.age,
+        y = b.y + b.vy * this.age - 10;
+      if (!inViewport({ x, y }, this.cameras.main.worldView, 64)) {
+        sp?.setVisible(false);
+        continue;
+      }
       if (!sp) {
         sp = this.add
           .image(0, 0, "bullet")
@@ -1283,10 +1316,7 @@ export class StationScene extends Phaser.Scene {
           .setTint(0xffffff)
           .setAlpha(0.95);
       }
-      sp.setPosition(
-        b.x + b.vx * this.age,
-        b.y + b.vy * this.age - 10,
-      ).setRotation(Math.atan2(b.vy, b.vx));
+      sp.setVisible(true).setPosition(x, y).setRotation(Math.atan2(b.vy, b.vx));
     }
     for (const [id, sp] of this.bullets)
       if (!seen.has(id)) {

@@ -2031,3 +2031,84 @@
     min-height: 104px;
   }
 }
+
+/* In-game telemetry: sampled once a second; keep both values legible in small windows. */
+.app.odyssey40 .performance-meter {
+  top: 7px;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  max-width: calc(100% - 20px);
+  z-index: 8;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 9px;
+  padding: 5px 8px;
+  border: 1px solid #705779;
+  border-radius: 4px;
+  background: #201b29;
+  color: #f4f0dc;
+  font: 12px/1.3 var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  opacity: 1;
+  pointer-events: auto;
+}
+.app.odyssey40 .performance-meter:focus-visible {
+  outline: 2px solid #d4f778;
+  outline-offset: 2px;
+}
+.app.odyssey40 .performance-meter :is(.render-rate, .rtt-meter) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.app.odyssey40 .performance-meter .render-rate i {
+  flex: 0 0 4px;
+  background: #d4f778;
+}
+.app.odyssey40 .performance-meter .fps-low {
+  color: #ffd19a;
+}
+.app.odyssey40 .performance-meter .fps-low i {
+  background: currentColor;
+}
+.app.odyssey40 .performance-meter .rtt-meter {
+  border-left: 1px solid #705779;
+  padding-left: 9px;
+  color: #d3c3dc;
+}
+.app.odyssey40 .performance-meter .rtt-meter svg {
+  flex: 0 0 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.app.odyssey40 .performance-meter .network-good {
+  color: #d4f778;
+}
+.app.odyssey40 .performance-meter .network-moderate {
+  color: #ffd19a;
+}
+.app.odyssey40
+  .performance-meter
+  :is(.network-poor, .network-no-response, .network-disconnected) {
+  color: #ffb9ae;
+}
+@media (max-width: 480px) {
+  .app.odyssey40 .performance-meter {
+    top: auto;
+    bottom: 104px;
+    left: 8px;
+    right: auto;
+    transform: none;
+    gap: 4px 7px;
+    padding: 4px 6px;
+  }
+  .app.odyssey40 .performance-meter .rtt-meter {
+    padding-left: 7px;
+  }
+}

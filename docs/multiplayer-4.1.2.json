@@ -1,0 +1,1684 @@
+{
+  "conditions": {
+    "viewport": "1366x768",
+    "dpr": 2,
+    "players": 4,
+    "independentBrowserProcesses": 4,
+    "clusteredVisible": true,
+    "moduleLevel": 8,
+    "modulesPerPlayer": 4,
+    "enemyHp": 1000000000,
+    "enemySpeed": 0,
+    "secondsPerPhase": 10,
+    "warmupSeconds": 2,
+    "synthetic": true,
+    "physical144HzDisplayEvidence": false
+  },
+  "runs": [
+    {
+      "runId": "2026-10-23T05-15-30-658Z-22176",
+      "label": "v4.1.1 baseline",
+      "valid": true,
+      "build": {
+        "sha256": "3f86bbb3104b7e98e71ca2bf9839470c487ff77e0835b3000772eaedec2da2de",
+        "modifiedAt": "2026-10-23T05:15:02.329Z"
+      },
+      "phases": [
+        {
+          "name": "baseline6enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 144.00639584270223,
+            "fastestPlayerRenderedFramesPerSecond": 144.09769063930256,
+            "worstPlayerFrameP95Ms": 10.299999952316284,
+            "worstPlayerFrameP99Ms": 12,
+            "worstPlayerStateGapP95Ms": 45.27200001757592,
+            "worstPlayerStateGapMaxMs": 57.16100009158254,
+            "totalServerTcpDeltaBytesWritten": 13077572,
+            "totalServerTcpBytesPerSecond": 1294867.929248113
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.02510694541851,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2,
+                "mean": 6.940972222222222,
+                "p50": 6.900000095367432,
+                "p95": 10.100000023841858,
+                "p99": 11.600000023841858,
+                "max": 15.100000023841858
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.8000000715255737,
+                "mean": 1.9135322682481934,
+                "p50": 1.899999976158142,
+                "p95": 2.5,
+                "p99": 3,
+                "max": 6.199999928474426
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.8990284525462937,
+                "p50": 0.8999999761581421,
+                "p95": 1.2000000476837158,
+                "p99": 1.5,
+                "max": 2.399999976158142
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 5,
+                "mean": 7.75,
+                "p50": 5,
+                "p95": 14,
+                "p99": 14,
+                "max": 14
+              },
+              "browserMainThread": {
+                "ScriptMs": 3283.34,
+                "TaskMs": 9600.409,
+                "LayoutMs": 632.584,
+                "RecalcStyleMs": 831.6969999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 28.012875034119034,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 21.697000018320978,
+                "mean": 35.480397163084476,
+                "p50": 35.00900010112673,
+                "p95": 43.35599998012185,
+                "p99": 49.033000017516315,
+                "max": 54.669000091962516
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.09769063930256,
+              "renderedFrameIntervalMs": {
+                "count": 1441,
+                "min": 2.200000047683716,
+                "mean": 6.940388619031118,
+                "p50": 6.900000095367432,
+                "p95": 10.200000047683716,
+                "p99": 11.600000023841858,
+                "max": 14.5
+              },
+              "gameStepCostMs": {
+                "count": 1442,
+                "min": 0.7999999523162842,
+                "mean": 2.0101941734676387,
+                "p50": 2,
+                "p95": 2.600000023841858,
+                "p99": 3.0999999046325684,
+                "max": 7
+              },
+              "webglSubmitCostMs": {
+                "count": 1442,
+                "min": 0.2999999523162842,
+                "mean": 0.9187239945017515,
+                "p50": 0.9000000953674316,
+                "p95": 1.2000000476837158,
+                "p99": 1.5,
+                "max": 2.0999999046325684
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 15,
+                "p50": 5,
+                "p95": 35,
+                "p99": 35,
+                "max": 35
+              },
+              "browserMainThread": {
+                "ScriptMs": 3397.3429999999994,
+                "TaskMs": 9591.137,
+                "LayoutMs": 640.041,
+                "RecalcStyleMs": 755.889
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 28.011981090546804,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 21.483000018633902,
+                "mean": 35.49705319154466,
+                "p50": 34.80100003071129,
+                "p95": 45.21799995563924,
+                "p99": 51.958999945782125,
+                "max": 53.36000001989305
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.06974535313233,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 1.899999976158142,
+                "mean": 6.939583333333333,
+                "p50": 6.899999976158142,
+                "p95": 10.299999952316284,
+                "p99": 12,
+                "max": 14.100000023841858
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.7000000476837158,
+                "mean": 2.0834836904411924,
+                "p50": 2.100000023841858,
+                "p95": 2.6999999284744263,
+                "p99": 3.299999952316284,
+                "max": 6.299999952316284
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.9465648864889046,
+                "p50": 1,
+                "p95": 1.2000000476837158,
+                "p99": 1.600000023841858,
+                "max": 2.200000047683716
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 3,
+                "mean": 6.75,
+                "p50": 4,
+                "p95": 14,
+                "p99": 14,
+                "max": 14
+              },
+              "browserMainThread": {
+                "ScriptMs": 3541.5699999999993,
+                "TaskMs": 9593.400999999998,
+                "LayoutMs": 594.9119999999999,
+                "RecalcStyleMs": 803.8859999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 28.011665839316215,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 18.675000057555735,
+                "mean": 35.517017730653734,
+                "p50": 34.93100008927286,
+                "p95": 44.98600005172193,
+                "p99": 53.97499992977828,
+                "max": 57.16100009158254
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.00639584270223,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2.899999976158142,
+                "mean": 6.945486111111111,
+                "p50": 6.899999976158142,
+                "p95": 10.100000023841858,
+                "p99": 11.600000023841858,
+                "max": 14.699999928474426
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.7999999523162842,
+                "mean": 2.036016655249533,
+                "p50": 2,
+                "p95": 2.6999999284744263,
+                "p99": 3.200000047683716,
+                "max": 6.299999952316284
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.9272033329393862,
+                "p50": 0.8999999761581421,
+                "p95": 1.2000000476837158,
+                "p99": 1.5,
+                "max": 2.1999999284744263
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 12.25,
+                "p50": 10,
+                "p95": 19,
+                "p99": 19,
+                "max": 19
+              },
+              "browserMainThread": {
+                "ScriptMs": 3434.8669999999997,
+                "TaskMs": 9598.994999999999,
+                "LayoutMs": 630.3800000000001,
+                "RecalcStyleMs": 745.932
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 28.011465934340706,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 23.080000071786344,
+                "mean": 35.48390070902818,
+                "p50": 34.94499996304512,
+                "p95": 45.27200001757592,
+                "p99": 51.16399994585663,
+                "max": 53.77900006715208
+              }
+            }
+          ]
+        },
+        {
+          "name": "dense150enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 93.07992689452799,
+            "fastestPlayerRenderedFramesPerSecond": 96.5677022474605,
+            "worstPlayerFrameP95Ms": 18,
+            "worstPlayerFrameP99Ms": 20.799999952316284,
+            "worstPlayerStateGapP95Ms": 53.817000007256866,
+            "worstPlayerStateGapMaxMs": 74.86100005917251,
+            "totalServerTcpDeltaBytesWritten": 32540769,
+            "totalServerTcpBytesPerSecond": 3224676.332744129
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 96.43153361205509,
+              "renderedFrameIntervalMs": {
+                "count": 964,
+                "min": 3.899999976158142,
+                "mean": 10.370331950207468,
+                "p50": 8.600000023841858,
+                "p95": 17.799999952316284,
+                "p99": 20.5,
+                "max": 24.199999928474426
+              },
+              "gameStepCostMs": {
+                "count": 965,
+                "min": 2.5,
+                "mean": 5.790673571423546,
+                "p50": 5.899999976158142,
+                "p95": 7.5,
+                "p99": 8.399999976158142,
+                "max": 11.700000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 965,
+                "min": 1.1999999284744263,
+                "mean": 2.6765803092501943,
+                "p50": 2.700000047683716,
+                "p95": 3.5999999046325684,
+                "p99": 4.100000023841858,
+                "max": 7.699999928474426
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 22,
+                "mean": 41.5,
+                "p50": 42,
+                "p95": 51,
+                "p99": 51,
+                "max": 51
+              },
+              "browserMainThread": {
+                "ScriptMs": 6076.973000000001,
+                "TaskMs": 9162.734999999997,
+                "LayoutMs": 203.86499999999995,
+                "RecalcStyleMs": 325.008
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 29.289703417509717,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 15.225999988615513,
+                "mean": 34.07674237288598,
+                "p50": 32.346999971196055,
+                "p95": 53.817000007256866,
+                "p99": 63.39200004003942,
+                "max": 63.95500001963228
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 96.5677022474605,
+              "renderedFrameIntervalMs": {
+                "count": 966,
+                "min": 4.100000023841858,
+                "mean": 10.35703933744944,
+                "p50": 8.700000047683716,
+                "p95": 17.300000071525574,
+                "p99": 19.200000047683716,
+                "max": 23.09999990463257
+              },
+              "gameStepCostMs": {
+                "count": 967,
+                "min": 2.899999976158142,
+                "mean": 5.999586350915351,
+                "p50": 6.100000023841858,
+                "p95": 7.600000023841858,
+                "p99": 8.5,
+                "max": 11.399999976158142
+              },
+              "webglSubmitCostMs": {
+                "count": 967,
+                "min": 1.100000023841858,
+                "mean": 2.7566701129402467,
+                "p50": 2.799999952316284,
+                "p95": 3.600000023841858,
+                "p99": 4.199999928474426,
+                "max": 7.5
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 17,
+                "mean": 32,
+                "p50": 25,
+                "p95": 49,
+                "p99": 49,
+                "max": 49
+              },
+              "browserMainThread": {
+                "ScriptMs": 6288.276999999999,
+                "TaskMs": 9169.862000000003,
+                "LayoutMs": 204.97999999999993,
+                "RecalcStyleMs": 258.2310000000001
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 29.28946083465741,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 15.570999938063323,
+                "mean": 34.102444067771025,
+                "p50": 33.050999976694584,
+                "p95": 52.242000005207956,
+                "p99": 63.36399994324893,
+                "max": 70.97100000828505
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 93.07992689452799,
+              "renderedFrameIntervalMs": {
+                "count": 931,
+                "min": 3.799999952316284,
+                "mean": 10.747261009590199,
+                "p50": 9.100000023841858,
+                "p95": 18,
+                "p99": 20.799999952316284,
+                "max": 23.200000047683716
+              },
+              "gameStepCostMs": {
+                "count": 932,
+                "min": 2.700000047683716,
+                "mean": 6.062017168865695,
+                "p50": 6.200000047683716,
+                "p95": 7.799999952316284,
+                "p99": 8.600000023841858,
+                "max": 11.700000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 932,
+                "min": 1.100000023841858,
+                "mean": 2.7842274670181357,
+                "p50": 2.8000000715255737,
+                "p95": 3.6999999284744263,
+                "p99": 4.200000047683716,
+                "max": 5.899999976158142
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 19,
+                "mean": 35,
+                "p50": 33,
+                "p95": 49,
+                "p99": 49,
+                "max": 49
+              },
+              "browserMainThread": {
+                "ScriptMs": 6139.618,
+                "TaskMs": 9164.869000000002,
+                "LayoutMs": 200.83999999999992,
+                "RecalcStyleMs": 313.24600000000015
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 29.38824130750244,
+              "snapshotGapMs": {
+                "count": 296,
+                "min": 14.152999967336655,
+                "mean": 34.01264527024437,
+                "p50": 33.057000022381544,
+                "p95": 52.496999967843294,
+                "p99": 60.397999943234026,
+                "max": 70.81299996934831
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 96.3323816550016,
+              "renderedFrameIntervalMs": {
+                "count": 964,
+                "min": 4,
+                "mean": 10.380601659726306,
+                "p50": 8.699999928474426,
+                "p95": 17.399999976158142,
+                "p99": 19.300000071525574,
+                "max": 23.800000071525574
+              },
+              "gameStepCostMs": {
+                "count": 965,
+                "min": 2.600000023841858,
+                "mean": 5.965699482952375,
+                "p50": 6.099999904632568,
+                "p95": 7.600000023841858,
+                "p99": 8.600000023841858,
+                "max": 11.600000023841858
+              },
+              "webglSubmitCostMs": {
+                "count": 965,
+                "min": 1.0999999046325684,
+                "mean": 2.697512954257313,
+                "p50": 2.700000047683716,
+                "p95": 3.5999999046325684,
+                "p99": 4,
+                "max": 8.300000071525574
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 17,
+                "mean": 32.25,
+                "p50": 27,
+                "p95": 56,
+                "p99": 56,
+                "max": 56
+              },
+              "browserMainThread": {
+                "ScriptMs": 6229.780999999999,
+                "TaskMs": 9173.988000000001,
+                "LayoutMs": 200.194,
+                "RecalcStyleMs": 253.5290000000001
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 29.28911855911627,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 17.863000044599175,
+                "mean": 34.08377288122488,
+                "p50": 32.50800003297627,
+                "p95": 53.131000022403896,
+                "p99": 66.51999999303371,
+                "max": 74.86100005917251
+              }
+            }
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "player": 2,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 3,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 4,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 1,
+          "result": "room:leave-confirmed-via-ui"
+        }
+      ]
+    },
+    {
+      "runId": "2026-10-23T05-19-27-900Z-88028",
+      "label": "culling and interpolation, 30Hz",
+      "valid": true,
+      "build": {
+        "sha256": "5d823f04a9e61d57e8d00cc6f3e40bc48029289693944e054804890524fd4c1e",
+        "modifiedAt": "2026-10-23T05:18:58.405Z"
+      },
+      "phases": [
+        {
+          "name": "baseline6enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 143.99056717032374,
+            "fastestPlayerRenderedFramesPerSecond": 144.06974535484943,
+            "worstPlayerFrameP95Ms": 10.200000047683716,
+            "worstPlayerFrameP99Ms": 11.799999952316284,
+            "worstPlayerStateGapP95Ms": 44.206000049598515,
+            "worstPlayerStateGapMaxMs": 51.67099996469915,
+            "totalServerTcpDeltaBytesWritten": 12658949,
+            "totalServerTcpBytesPerSecond": 1251757.6492499826
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.02716739912105,
+              "renderedFrameIntervalMs": {
+                "count": 1441,
+                "min": 2.3000000715255737,
+                "mean": 6.944899375450272,
+                "p50": 6.899999976158142,
+                "p95": 10.199999928474426,
+                "p99": 11.799999952316284,
+                "max": 15.700000047683716
+              },
+              "gameStepCostMs": {
+                "count": 1442,
+                "min": 0.8999999761581421,
+                "mean": 1.9217059632114828,
+                "p50": 1.899999976158142,
+                "p95": 2.5,
+                "p99": 3.100000023841858,
+                "max": 7.200000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 1442,
+                "min": 0.3999999761581421,
+                "mean": 0.9196948695116665,
+                "p50": 0.8999999761581421,
+                "p95": 1.2999999523162842,
+                "p99": 1.600000023841858,
+                "max": 5.700000047683716
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 3,
+                "mean": 9.75,
+                "p50": 4,
+                "p95": 17,
+                "p99": 17,
+                "max": 17
+              },
+              "browserMainThread": {
+                "ScriptMs": 3298.964,
+                "TaskMs": 9599.413000000002,
+                "LayoutMs": 624.066,
+                "RecalcStyleMs": 821.924
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 27.953128510191892,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 21.841999958269298,
+                "mean": 35.488652482344804,
+                "p50": 34.74400006234646,
+                "p95": 44.206000049598515,
+                "p99": 48.020999995060265,
+                "max": 49.593000090681016
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.00063955904758,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2.399999976158142,
+                "mean": 6.946180555555555,
+                "p50": 7,
+                "p95": 9.899999976158142,
+                "p99": 11.700000047683716,
+                "max": 13.900000095367432
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.7999999523162842,
+                "mean": 1.9308119371150783,
+                "p50": 1.9000000953674316,
+                "p95": 2.5,
+                "p99": 2.899999976158142,
+                "max": 6.300000071525574
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.19999992847442627,
+                "mean": 0.9147120047409778,
+                "p50": 0.8999999761581421,
+                "p95": 1.2000000476837158,
+                "p99": 1.4000000953674316,
+                "max": 2
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 3,
+                "mean": 7.5,
+                "p50": 6,
+                "p95": 14,
+                "p99": 14,
+                "max": 14
+              },
+              "browserMainThread": {
+                "ScriptMs": 3287.6520000000005,
+                "TaskMs": 9605.415999999997,
+                "LayoutMs": 644.0339999999999,
+                "RecalcStyleMs": 773.997
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 27.952091221876877,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 23.616999969817698,
+                "mean": 35.48844326254483,
+                "p50": 34.866000059992075,
+                "p95": 43.29800000414252,
+                "p99": 48.64100005943328,
+                "max": 49.961999990046024
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.06974535484943,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2.600000023841858,
+                "mean": 6.9418749999668865,
+                "p50": 6.899999976158142,
+                "p95": 10,
+                "p99": 11.399999976158142,
+                "max": 12.699999928474426
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.8000000715255737,
+                "mean": 1.8309507299677354,
+                "p50": 1.8000000715255737,
+                "p95": 2.4000000953674316,
+                "p99": 2.8000000715255737,
+                "max": 4.200000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.8530881336213482,
+                "p50": 0.8999999761581421,
+                "p95": 1.2000000476837158,
+                "p99": 1.399999976158142,
+                "max": 2
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 11.75,
+                "p50": 4,
+                "p95": 35,
+                "p99": 35,
+                "max": 35
+              },
+              "browserMainThread": {
+                "ScriptMs": 3174.8289999999997,
+                "TaskMs": 9615.903,
+                "LayoutMs": 637.4469999999999,
+                "RecalcStyleMs": 849.659
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 27.951716304025748,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 22.715000086463988,
+                "mean": 35.502748227024334,
+                "p50": 34.83100002631545,
+                "p95": 43.541999999433756,
+                "p99": 47.95100004412234,
+                "max": 48.60499990172684
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 143.99056717032374,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2.6999999284744263,
+                "mean": 6.946944444461002,
+                "p50": 6.899999976158142,
+                "p95": 10.200000047683716,
+                "p99": 11.600000023841858,
+                "max": 14.099999904632568
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.7000000476837158,
+                "mean": 1.9280360861009893,
+                "p50": 1.899999976158142,
+                "p95": 2.5,
+                "p99": 2.899999976158142,
+                "max": 7.100000023841858
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.9249826510030308,
+                "p50": 0.8999999761581421,
+                "p95": 1.2999999523162842,
+                "p99": 1.5,
+                "max": 5.899999976158142
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 8,
+                "p50": 5,
+                "p95": 17,
+                "p99": 17,
+                "max": 17
+              },
+              "browserMainThread": {
+                "ScriptMs": 3280.916,
+                "TaskMs": 9616.098000000002,
+                "LayoutMs": 651.682,
+                "RecalcStyleMs": 775.2739999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 27.951550106546268,
+              "snapshotGapMs": {
+                "count": 282,
+                "min": 22.212999989278615,
+                "mean": 35.488446808258296,
+                "p50": 34.822999965399504,
+                "p95": 43.27200003899634,
+                "p99": 49.67800003942102,
+                "max": 51.67099996469915
+              }
+            }
+          ]
+        },
+        {
+          "name": "dense150enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 95.48064918851436,
+            "fastestPlayerRenderedFramesPerSecond": 97.75210146934778,
+            "worstPlayerFrameP95Ms": 17.799999952316284,
+            "worstPlayerFrameP99Ms": 20.399999976158142,
+            "worstPlayerStateGapP95Ms": 55.395000032149255,
+            "worstPlayerStateGapMaxMs": 78.14900006633252,
+            "totalServerTcpDeltaBytesWritten": 32499843,
+            "totalServerTcpBytesPerSecond": 3219574.5809931275
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 95.48064918851436,
+              "renderedFrameIntervalMs": {
+                "count": 955,
+                "min": 4,
+                "mean": 10.478743455547313,
+                "p50": 8.700000047683716,
+                "p95": 17.799999952316284,
+                "p99": 19.799999952316284,
+                "max": 25.100000023841858
+              },
+              "gameStepCostMs": {
+                "count": 956,
+                "min": 2.600000023841858,
+                "mean": 5.823117155534952,
+                "p50": 5.899999976158142,
+                "p95": 7.399999976158142,
+                "p99": 8.199999928474426,
+                "max": 12.200000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 956,
+                "min": 1.1999999284744263,
+                "mean": 2.6889121340408484,
+                "p50": 2.700000047683716,
+                "p95": 3.5,
+                "p99": 4,
+                "max": 6.099999904632568
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 20,
+                "mean": 40.25,
+                "p50": 36,
+                "p95": 56,
+                "p99": 56,
+                "max": 56
+              },
+              "browserMainThread": {
+                "ScriptMs": 6071.032999999999,
+                "TaskMs": 9183.274999999998,
+                "LayoutMs": 208.793,
+                "RecalcStyleMs": 325.87699999999995
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 29.296308895688604,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 12.168000102974474,
+                "mean": 34.08194915273116,
+                "p50": 32.11200004443526,
+                "p95": 54.471999988891184,
+                "p99": 63.129000016488135,
+                "max": 78.14900006633252
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 96.00591420453735,
+              "renderedFrameIntervalMs": {
+                "count": 960,
+                "min": 3.899999976158142,
+                "mean": 10.419166666766008,
+                "p50": 8.5,
+                "p95": 17.399999976158142,
+                "p99": 19.399999976158142,
+                "max": 24.799999952316284
+              },
+              "gameStepCostMs": {
+                "count": 961,
+                "min": 2.700000047683716,
+                "mean": 5.949011446285942,
+                "p50": 6,
+                "p95": 7.399999976158142,
+                "p99": 8.100000023841858,
+                "max": 11.199999928474426
+              },
+              "webglSubmitCostMs": {
+                "count": 961,
+                "min": 1.2000000476837158,
+                "mean": 2.709053071430893,
+                "p50": 2.700000047683716,
+                "p95": 3.5,
+                "p99": 4,
+                "max": 4.800000071525574
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 14,
+                "mean": 35,
+                "p50": 25,
+                "p95": 53,
+                "p99": 53,
+                "max": 53
+              },
+              "browserMainThread": {
+                "ScriptMs": 6213.668000000001,
+                "TaskMs": 9176.715000000002,
+                "LayoutMs": 207.02700000000007,
+                "RecalcStyleMs": 260.5390000000001
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 29.296062434026332,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 15.440999995917082,
+                "mean": 34.08199999978671,
+                "p50": 32.81899995636195,
+                "p95": 55.395000032149255,
+                "p99": 64.24999993760139,
+                "max": 71.53800001833588
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 97.75210146934778,
+              "renderedFrameIntervalMs": {
+                "count": 977,
+                "min": 3.600000023841858,
+                "mean": 10.22988741034251,
+                "p50": 8.5,
+                "p95": 17.199999928474426,
+                "p99": 20.399999976158142,
+                "max": 23.699999928474426
+              },
+              "gameStepCostMs": {
+                "count": 978,
+                "min": 2.299999952316284,
+                "mean": 5.700715748444656,
+                "p50": 5.799999952316284,
+                "p95": 7.200000047683716,
+                "p99": 8.299999952316284,
+                "max": 12.199999928474426
+              },
+              "webglSubmitCostMs": {
+                "count": 978,
+                "min": 1.100000023841858,
+                "mean": 2.6366053188261565,
+                "p50": 2.6999999284744263,
+                "p95": 3.5,
+                "p99": 4,
+                "max": 6.700000047683716
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 6,
+                "mean": 27.5,
+                "p50": 25,
+                "p95": 43,
+                "p99": 43,
+                "max": 43
+              },
+              "browserMainThread": {
+                "ScriptMs": 6090.142,
+                "TaskMs": 9183.914999999999,
+                "LayoutMs": 209.71099999999998,
+                "RecalcStyleMs": 321.353
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 29.295894552515506,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 17.641999991610646,
+                "mean": 34.051464406883944,
+                "p50": 32.06899994984269,
+                "p95": 53.878000006079674,
+                "p99": 65.78300008550286,
+                "max": 70.69900003261864
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 95.8667452243667,
+              "renderedFrameIntervalMs": {
+                "count": 959,
+                "min": 3.899999976158142,
+                "mean": 10.435245046899018,
+                "p50": 8.600000023841858,
+                "p95": 17.300000071525574,
+                "p99": 19.399999976158142,
+                "max": 24.5
+              },
+              "gameStepCostMs": {
+                "count": 960,
+                "min": 2.399999976158142,
+                "mean": 6.014895835146308,
+                "p50": 6.100000023841858,
+                "p95": 7.5,
+                "p99": 8.399999976158142,
+                "max": 13
+              },
+              "webglSubmitCostMs": {
+                "count": 960,
+                "min": 1.0999999046325684,
+                "mean": 2.8068749979138374,
+                "p50": 2.899999976158142,
+                "p95": 3.600000023841858,
+                "p99": 4.100000023841858,
+                "max": 5
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 12,
+                "mean": 26.5,
+                "p50": 26,
+                "p95": 36,
+                "p99": 36,
+                "max": 36
+              },
+              "browserMainThread": {
+                "ScriptMs": 6269.630000000001,
+                "TaskMs": 9189.730000000001,
+                "LayoutMs": 206.20100000000008,
+                "RecalcStyleMs": 259.78600000000006
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 29.29571275553643,
+              "snapshotGapMs": {
+                "count": 295,
+                "min": 16.371999983675778,
+                "mean": 34.05219322046802,
+                "p50": 32.62900002300739,
+                "p95": 51.805000053718686,
+                "p99": 66.71299994923174,
+                "max": 68.17999994382262
+              }
+            }
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "player": 2,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 3,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 4,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 1,
+          "result": "room:leave-confirmed-via-ui"
+        }
+      ]
+    },
+    {
+      "runId": "2026-10-23T05-33-24-315Z-91268",
+      "label": "v4.1.2 with heavy20Hz budget",
+      "valid": true,
+      "build": {
+        "sha256": "44515e953064ad4a0846e70c0dc5405454ede44a2bfa31b6b789506cdee0a5e1",
+        "modifiedAt": "2026-10-23T05:30:02.588Z"
+      },
+      "phases": [
+        {
+          "name": "baseline6enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 143.94386189420445,
+            "fastestPlayerRenderedFramesPerSecond": 144.04958264607387,
+            "worstPlayerFrameP95Ms": 10.100000023841858,
+            "worstPlayerFrameP99Ms": 11.899999976158142,
+            "worstPlayerStateGapP95Ms": 63.24100005440414,
+            "worstPlayerStateGapMaxMs": 73.01499997265637,
+            "totalServerTcpDeltaBytesWritten": 8400457,
+            "totalServerTcpBytesPerSecond": 832897.8539075508
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 143.94386189420445,
+              "renderedFrameIntervalMs": {
+                "count": 1439,
+                "min": 2.600000023841858,
+                "mean": 6.943293954201089,
+                "p50": 6.899999976158142,
+                "p95": 10,
+                "p99": 11.700000047683716,
+                "max": 15.199999928474426
+              },
+              "gameStepCostMs": {
+                "count": 1440,
+                "min": 0.6999999284744263,
+                "mean": 2.0127083328035145,
+                "p50": 1.9000000953674316,
+                "p95": 2.799999952316284,
+                "p99": 4.299999952316284,
+                "max": 9.600000023841858
+              },
+              "webglSubmitCostMs": {
+                "count": 1440,
+                "min": 0.2999999523162842,
+                "mean": 0.9551388877133529,
+                "p50": 0.8999999761581421,
+                "p95": 1.3000000715255737,
+                "p99": 2.700000047683716,
+                "max": 8.5
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 4.25,
+                "p50": 4,
+                "p95": 5,
+                "p99": 5,
+                "max": 5
+              },
+              "browserMainThread": {
+                "ScriptMs": 3388.3559999999998,
+                "TaskMs": 9705.991000000002,
+                "LayoutMs": 646.072,
+                "RecalcStyleMs": 848.117
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 18.63252822773516,
+              "snapshotGapMs": {
+                "count": 187,
+                "min": 30.45300010126084,
+                "mean": 53.18722994637023,
+                "p50": 52.23600007593632,
+                "p95": 63.021000009030104,
+                "p99": 70.19300002139062,
+                "max": 72.12499994784594
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 143.96400899775057,
+              "renderedFrameIntervalMs": {
+                "count": 1439,
+                "min": 2.299999952316284,
+                "mean": 6.944197359227571,
+                "p50": 6.899999976158142,
+                "p95": 10,
+                "p99": 11.700000047683716,
+                "max": 13.399999976158142
+              },
+              "gameStepCostMs": {
+                "count": 1440,
+                "min": 0.7000000476837158,
+                "mean": 1.835208334856563,
+                "p50": 1.8000000715255737,
+                "p95": 2.4000000953674316,
+                "p99": 2.899999976158142,
+                "max": 7.400000095367432
+              },
+              "webglSubmitCostMs": {
+                "count": 1440,
+                "min": 0.20000004768371582,
+                "mean": 0.8713194453881846,
+                "p50": 0.8999999761581421,
+                "p95": 1.2000000476837158,
+                "p99": 1.4000000953674316,
+                "max": 4.899999976158142
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 13,
+                "p50": 4,
+                "p95": 38,
+                "p99": 38,
+                "max": 38
+              },
+              "browserMainThread": {
+                "ScriptMs": 3111.378,
+                "TaskMs": 9698.196999999998,
+                "LayoutMs": 700.207,
+                "RecalcStyleMs": 823.451
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 18.632004161834736,
+              "snapshotGapMs": {
+                "count": 187,
+                "min": 42.621999979019165,
+                "mean": 53.20755080232785,
+                "p50": 51.89500004053116,
+                "p95": 62.4140000436455,
+                "p99": 67.91700003668666,
+                "max": 70.92099997680634
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 144.04958264607387,
+              "renderedFrameIntervalMs": {
+                "count": 1440,
+                "min": 2.4000000953674316,
+                "mean": 6.94375,
+                "p50": 6.899999976158142,
+                "p95": 10.100000023841858,
+                "p99": 11.899999976158142,
+                "max": 15.100000023841858
+              },
+              "gameStepCostMs": {
+                "count": 1441,
+                "min": 0.7999999523162842,
+                "mean": 2.005551701118183,
+                "p50": 2,
+                "p95": 2.700000047683716,
+                "p99": 3.1999999284744263,
+                "max": 7.399999976158142
+              },
+              "webglSubmitCostMs": {
+                "count": 1441,
+                "min": 0.2999999523162842,
+                "mean": 0.9217904232013234,
+                "p50": 0.8999999761581421,
+                "p95": 1.2999999523162842,
+                "p99": 1.5,
+                "max": 2.600000023841858
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 4,
+                "mean": 7.25,
+                "p50": 4,
+                "p95": 12,
+                "p99": 12,
+                "max": 12
+              },
+              "browserMainThread": {
+                "ScriptMs": 3391.667,
+                "TaskMs": 9710.928,
+                "LayoutMs": 651.216,
+                "RecalcStyleMs": 856.9229999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 18.63184369793893,
+              "snapshotGapMs": {
+                "count": 187,
+                "min": 42.024000082165,
+                "mean": 53.19261497302469,
+                "p50": 51.986000034958124,
+                "p95": 62.67899996601045,
+                "p99": 69.1749999532476,
+                "max": 73.01499997265637
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 143.98848092049647,
+              "renderedFrameIntervalMs": {
+                "count": 1439,
+                "min": 1.6999999284744263,
+                "mean": 6.944405837387074,
+                "p50": 6.900000095367432,
+                "p95": 9.799999952316284,
+                "p99": 11.399999976158142,
+                "max": 15.800000071525574
+              },
+              "gameStepCostMs": {
+                "count": 1440,
+                "min": 0.7000000476837158,
+                "mean": 1.896180555721124,
+                "p50": 1.899999976158142,
+                "p95": 2.600000023841858,
+                "p99": 3,
+                "max": 4.5
+              },
+              "webglSubmitCostMs": {
+                "count": 1440,
+                "min": 0.2999999523162842,
+                "mean": 0.8956249994536241,
+                "p50": 0.8999999761581421,
+                "p95": 1.2999999523162842,
+                "p99": 1.5,
+                "max": 2.0999999046325684
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 11,
+                "mean": 15,
+                "p50": 12,
+                "p95": 22,
+                "p99": 22,
+                "max": 22
+              },
+              "browserMainThread": {
+                "ScriptMs": 3194.491,
+                "TaskMs": 9693.454999999998,
+                "LayoutMs": 691.792,
+                "RecalcStyleMs": 807.4389999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 18.63168619118722,
+              "snapshotGapMs": {
+                "count": 187,
+                "min": 40.71800003293902,
+                "mean": 53.20970053513121,
+                "p50": 52.26500006392598,
+                "p95": 63.24100005440414,
+                "p99": 67.71400000434369,
+                "max": 71.09700003638864
+              }
+            }
+          ]
+        },
+        {
+          "name": "dense150enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 105.4513136475056,
+            "fastestPlayerRenderedFramesPerSecond": 109.74183682700499,
+            "worstPlayerFrameP95Ms": 16.899999976158142,
+            "worstPlayerFrameP99Ms": 19,
+            "worstPlayerStateGapP95Ms": 71.8350000679493,
+            "worstPlayerStateGapMaxMs": 92.75399998296052,
+            "totalServerTcpDeltaBytesWritten": 21909028,
+            "totalServerTcpBytesPerSecond": 2172031.7537173526
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 106.63448014342592,
+              "renderedFrameIntervalMs": {
+                "count": 1068,
+                "min": 3.5,
+                "mean": 9.37771535578292,
+                "p50": 8.399999976158142,
+                "p95": 16.799999952316284,
+                "p99": 18.800000071525574,
+                "max": 21.100000023841858
+              },
+              "gameStepCostMs": {
+                "count": 1069,
+                "min": 2.5,
+                "mean": 5.7623947573332615,
+                "p50": 5.899999976158142,
+                "p95": 7.399999976158142,
+                "p99": 8.100000023841858,
+                "max": 12.299999952316284
+              },
+              "webglSubmitCostMs": {
+                "count": 1069,
+                "min": 1.0999999046325684,
+                "mean": 2.6782974731821785,
+                "p50": 2.700000047683716,
+                "p95": 3.5,
+                "p99": 4,
+                "max": 8.799999952316284
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 11,
+                "mean": 22.5,
+                "p50": 18,
+                "p95": 35,
+                "p99": 35,
+                "max": 35
+              },
+              "browserMainThread": {
+                "ScriptMs": 6580.401,
+                "TaskMs": 9466.290999999997,
+                "LayoutMs": 223.82199999999997,
+                "RecalcStyleMs": 355.72800000000007
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 19.605678513470522,
+              "snapshotGapMs": {
+                "count": 197,
+                "min": 26.756000006571412,
+                "mean": 51.08347715724846,
+                "p50": 51.36299994774163,
+                "p95": 71.76800002343953,
+                "p99": 78.9809999987483,
+                "max": 85.13600006699562
+              }
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 109.59943303806297,
+              "renderedFrameIntervalMs": {
+                "count": 1097,
+                "min": 3.5,
+                "mean": 9.124612579806458,
+                "p50": 7.900000095367432,
+                "p95": 16.700000047683716,
+                "p99": 18.700000047683716,
+                "max": 22.699999928474426
+              },
+              "gameStepCostMs": {
+                "count": 1098,
+                "min": 2.5,
+                "mean": 5.648269580253052,
+                "p50": 5.700000047683716,
+                "p95": 7.200000047683716,
+                "p99": 7.800000071525574,
+                "max": 11.700000047683716
+              },
+              "webglSubmitCostMs": {
+                "count": 1098,
+                "min": 1.0999999046325684,
+                "mean": 2.6246812396796457,
+                "p50": 2.600000023841858,
+                "p95": 3.5,
+                "p99": 3.899999976158142,
+                "max": 7.800000071525574
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 10,
+                "mean": 30.25,
+                "p50": 17,
+                "p95": 51,
+                "p99": 51,
+                "max": 51
+              },
+              "browserMainThread": {
+                "ScriptMs": 6623.608000000001,
+                "TaskMs": 9450.037999999999,
+                "LayoutMs": 229.8880000000001,
+                "RecalcStyleMs": 289.71500000000015
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.605543592213245,
+              "snapshotGapMs": {
+                "count": 197,
+                "min": 26.529000024311244,
+                "mean": 51.03656852814052,
+                "p50": 51.00600002333522,
+                "p95": 69.23100003041327,
+                "p99": 80.87399997748435,
+                "max": 92.75399998296052
+              }
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 105.4513136475056,
+              "renderedFrameIntervalMs": {
+                "count": 1055,
+                "min": 3.799999952316284,
+                "mean": 9.484644549717835,
+                "p50": 8.399999976158142,
+                "p95": 16.899999976158142,
+                "p99": 19,
+                "max": 22.899999976158142
+              },
+              "gameStepCostMs": {
+                "count": 1056,
+                "min": 2.799999952316284,
+                "mean": 5.797632576502634,
+                "p50": 5.899999976158142,
+                "p95": 7.300000071525574,
+                "p99": 8.200000047683716,
+                "max": 12.799999952316284
+              },
+              "webglSubmitCostMs": {
+                "count": 1056,
+                "min": 1.100000023841858,
+                "mean": 2.7068181825858173,
+                "p50": 2.700000047683716,
+                "p95": 3.5,
+                "p99": 4.100000023841858,
+                "max": 9.699999928474426
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 5,
+                "mean": 26.5,
+                "p50": 19,
+                "p95": 45,
+                "p99": 45,
+                "max": 45
+              },
+              "browserMainThread": {
+                "ScriptMs": 6562.506000000001,
+                "TaskMs": 9451.879,
+                "LayoutMs": 219.50500000000005,
+                "RecalcStyleMs": 352.3949999999998
+              },
+              "visibleEnemyCenters": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 19.506443027640774,
+              "snapshotGapMs": {
+                "count": 196,
+                "min": 24.985000025480986,
+                "mean": 51.078913265326044,
+                "p50": 50.34800001885742,
+                "p95": 71.8350000679493,
+                "p99": 80.63800004310906,
+                "max": 85.82400006707758
+              }
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "failures": [],
+              "renderedFramesPerSecond": 109.74183682700499,
+              "renderedFrameIntervalMs": {
+                "count": 1097,
+                "min": 3.600000023841858,
+                "mean": 9.113764813083241,
+                "p50": 8.099999904632568,
+                "p95": 16.399999976158142,
+                "p99": 18.800000071525574,
+                "max": 22.600000023841858
+              },
+              "gameStepCostMs": {
+                "count": 1098,
+                "min": 2.5,
+                "mean": 5.735519124836218,
+                "p50": 5.899999976158142,
+                "p95": 7.299999952316284,
+                "p99": 8.100000023841858,
+                "max": 11.600000023841858
+              },
+              "webglSubmitCostMs": {
+                "count": 1098,
+                "min": 1.1999999284744263,
+                "mean": 2.6586520932411237,
+                "p50": 2.700000047683716,
+                "p95": 3.5,
+                "p99": 4.099999904632568,
+                "max": 7.600000023841858
+              },
+              "gameHeaderRttMs": {
+                "count": 4,
+                "min": 16,
+                "mean": 31.25,
+                "p50": 24,
+                "p95": 44,
+                "p99": 44,
+                "max": 44
+              },
+              "browserMainThread": {
+                "ScriptMs": 6730.571000000001,
+                "TaskMs": 9465.405,
+                "LayoutMs": 225.58299999999986,
+                "RecalcStyleMs": 283.6829999999999
+              },
+              "visibleEnemyCenters": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.605379165508133,
+              "snapshotGapMs": {
+                "count": 197,
+                "min": 18.678999971598387,
+                "mean": 50.959999999858745,
+                "p50": 50.8100000442937,
+                "p95": 70.41099993512034,
+                "p99": 84.6029999665916,
+                "max": 85.97899996675551
+              }
+            }
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "player": 2,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 3,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 4,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 1,
+          "result": "room:leave-confirmed-via-ui"
+        }
+      ]
+    }
+  ]
+}
