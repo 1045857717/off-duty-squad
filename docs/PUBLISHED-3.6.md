@@ -1,6 +1,6 @@
 # v3.6.0 已发布 / Published
 
-> 历史验收记录：旧Release对象已按维护者要求移除，原附件链接可能不再可用；Git标签与版本镜像保留。当前正式版见[3.9发行验收](PUBLISHED-3.9.md)。 Archived verification: old Release objects/assets were removed; source tags and versioned images remain.
+> 历史验收记录：下文保留发布时的原始数值与验收结果。历史Release说明依据保留的标签与CHANGELOG恢复，不自动重新上传旧策略下已删除的二进制附件，原附件链接可能不可用；Git标签、源码归档与版本镜像保留。[最新稳定版](https://github.com/1045857717/off-duty-squad/releases/latest)。 Archived verification: original values and results are preserved. Historical notes are restored from preserved tags and CHANGELOG entries without automatically re-uploading deleted binary assets; original asset links may be unavailable. Source tags, source archives and versioned images remain. See the [latest stable release](https://github.com/1045857717/off-duty-squad/releases/latest).
 
 发布时间：**2026-10-22 03:54:00 Asia/Shanghai**。
 
