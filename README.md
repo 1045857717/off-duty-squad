@@ -6,6 +6,10 @@
 
 一款由 AI 从零实现、把职场日常变成抽象战场的 1–4 人在线合作生存游戏。组队、随机成长、挑战办公室异变物与离谱 KPI，在下班前打出自己的构筑。
 
+**[🎮 在线试玩 · moyu.xiebc.com](https://moyu.xiebc.com)**
+
+无需下载，在浏览器中打开即可组队。桌面客户端请连接同一在线地址。
+
 [English](README.en.md) · [Docker 部署](docs/DEPLOYMENT.md) · [版本发布](docs/RELEASING.md) · [操作指南](docs/CONTROLS.md) · [更新日志](CHANGELOG.md)
 
 [![CI](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml/badge.svg)](https://github.com/1045857717/off-duty-squad/actions/workflows/ci.yml)

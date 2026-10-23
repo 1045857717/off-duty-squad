@@ -168,7 +168,11 @@ try {
     await profileSession.send("Profiler.enable");
     await profileSession.send("Profiler.start");
   }
-  const result = await page.evaluate(async () => {
+  const durationMs = Number(process.env.STRESS_SECONDS || 6) * 1000;
+  assert.ok(
+    Number.isFinite(durationMs) && durationMs >= 1000 && durationMs <= 300000,
+  );
+  const result = await page.evaluate(async (durationMs) => {
     let frames = 0;
     const times: number[] = [],
       proto = (window as any).Phaser.Renderer.WebGL.WebGLRenderer.prototype,
@@ -182,7 +186,7 @@ try {
       return old.apply(this, args);
     };
     const start = performance.now();
-    await new Promise((r) => setTimeout(r, 6000));
+    await new Promise((r) => setTimeout(r, durationMs));
     proto.render = old;
     times.shift();
     times.sort((a, b) => a - b);
@@ -190,7 +194,7 @@ try {
     return {
       displayUncapped: (window as any).__BENCH_UNCAPPED === true,
       worldSeed: window.__OFFDUTY__!.state!.world.seed,
-      measurementSeconds: 6,
+      measurementSeconds: durationMs / 1000,
       phase: window.__OFFDUTY__!.state!.phase,
       modulesPerPlayer: Object.keys(
         window.__OFFDUTY__!.state!.players[0].arsenal,
@@ -207,7 +211,7 @@ try {
         damage: p.damageDealt,
       })),
     };
-  });
+  }, durationMs);
   if (profileSession) {
     const { profile } = await profileSession.send("Profiler.stop");
     await fs.mkdir("test-results", { recursive: true });

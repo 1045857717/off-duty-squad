@@ -1,5 +1,18 @@
 # Changelog / 更新日志
 
+## [4.1.1] - 2026-10-23
+
+### Performance / 性能
+
+- Compress WebSocket state traffic with low-cost deflate, bounded zlib concurrency and no retained compression history. Clients without compression remain supported.
+- Remove meaningless floating-point tails from transmitted enemy, projectile, effect and pickup positions. Keep the authoritative simulation, damage, health, cooldowns, 60Hz simulation and 30Hz broadcast target unchanged.
+- Add four-client real-wire regression coverage for dense late-game snapshots, compression opt-out, subpixel error bounds and acknowledged-action responsiveness.
+
+### Documentation / 文档
+
+- Add the public browser play address, https://moyu.xiebc.com, prominently to both READMEs and the GitHub project homepage.
+- Document measured transport savings, reproduction conditions and how to distinguish server/resource pressure from client rendering or a slow connection. See [performance investigation](docs/PERFORMANCE-4.1.1.md).
+
 ## [4.1.0] - 2026-10-23
 
 ### Gameplay / 玩法
@@ -35,7 +48,6 @@ See [中文设计与规则](docs/PLAYABILITY-4.1.md), [English design](docs/PLAY
 
 - Add eight-direction real-game attack captures, 672 human joint-frame coverage and reproducible 630 enemy-frame/WebGL rig audits. Commands and measured results are recorded in docs/ART-4.0.md and docs/validation-4.0.json.
 
-
 ## 3.9.0 — 2026-10-22
 
 - Name: 带薪摸鱼 / Paid Break Crew; friendly public-chat copy, GitHub-only support QR.
@@ -44,7 +56,6 @@ See [中文设计与规则](docs/PLAYABILITY-4.1.md), [English design](docs/PLAY
 - Grounded attacks, constant tool scale and blended profession casts; distinct undead attacks and15-joint anatomy for all seven enemy types.
 - Dedicated zombie faces, ragged uniforms, crawler/brute/exploder silhouettes, jaws, fingers and joint death recovery; actual art reused in codex. Removed seven unused legacy enemy atlases.
 - Main protection applied on GitHub with PR/required CI, administrator enforcement and blocked force push/deletion. New browser combat/quiet-window CI. Keep latest verified Release only; historical Git tags/images remain.
-
 
 Changes follow [Semantic Versioning](https://semver.org/) and the categories used by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates use Asia/Shanghai. Release tags are the source of truth for published versions.
 
