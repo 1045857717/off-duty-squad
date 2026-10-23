@@ -72,7 +72,9 @@ try {
     p.x = me.x;
     p.y = me.y;
   }
-  await page.waitForTimeout(150);
+  await page.waitForFunction(
+    () => window.__OFFDUTY__?.state?.enemies.length === 0,
+  );
   const q = g.state.players[1];
   const setup = async (kind: "chest" | "fountain" | "shrine", cost = 0) => {
     g.state.objects = [
@@ -94,7 +96,15 @@ try {
     ];
     me.interaction = undefined;
     me.interactionLatched = false;
-    await page.waitForTimeout(140);
+    const target = g.state.objects[0];
+    await page.waitForFunction(
+      (id) => window.__OFFDUTY__?.state?.objects.some((o) => o.id === id),
+      target.id,
+    );
+    await page
+      .getByLabel("E交互进度")
+      .filter({ hasText: target.label })
+      .waitFor();
   };
   const press = async () => {
     await page.keyboard.down("e");
@@ -165,7 +175,10 @@ try {
       used: 0,
     },
   ];
-  await page.waitForTimeout(160);
+  await page
+    .getByLabel("E交互进度")
+    .filter({ hasText: /减速.*10/ })
+    .waitFor();
   assert.match(await page.getByLabel("E交互进度").innerText(), /减速.*10/);
   await page.keyboard.down("e");
   await page.waitForTimeout(1050);
@@ -185,5 +198,11 @@ try {
   peers.forEach((s) => s.disconnect());
   await browser.close();
   await app.close();
-  rmSync(dir, { recursive: true, force: true });
+  const cleanup = path.resolve(dir);
+  if (
+    !cleanup.startsWith(path.resolve(tmpdir()) + path.sep) ||
+    !path.basename(cleanup).startsWith("playability41-")
+  )
+    throw Error("Unsafe fixture cleanup");
+  rmSync(cleanup, { recursive: true, force: true });
 }
