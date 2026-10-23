@@ -106,7 +106,7 @@
   display: none;
 }
 .app.odyssey40.lobby41:not(.is-compact) .main-grid {
-  grid-template-columns: minmax(0, 1fr) 310px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 18px;
   align-items: start;
 }
@@ -978,16 +978,17 @@
   color: #c1cfb2;
 }
 .app.odyssey40.lobby41 .squad-side-rail .lobby-channels .public-chat-log {
-  height: 95px;
-  min-height: 95px;
+  height: clamp(220px, 29vh, 300px);
+  min-height: 220px;
+  max-height: none;
   background: #1c352e;
   border: 0;
   border-radius: 4px;
 }
 .app.odyssey40.lobby41 .squad-chat-messages {
-  height: 95px;
-  min-height: 95px;
-  max-height: 95px;
+  height: clamp(220px, 29vh, 300px);
+  min-height: 220px;
+  max-height: none;
   background: #1c352e;
   border-color: #4b684e;
 }
@@ -1658,16 +1659,26 @@
   display: flex;
 }
 .app.odyssey40.lobby41 .stage-heading .project-links a {
-  width: 28px;
-  height: 26px;
-  min-height: 26px;
-  padding: 4px;
-  border-color: #59735f;
-  background: #25453d;
-  color: #e0f3b6;
+  width: auto;
+  height: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  gap: 8px;
+  border-color: #a9c377;
+  background: #172f29;
+  color: #f1f7de;
+  font-size: 13px;
+  font-weight: 750;
 }
 .app.odyssey40.lobby41 .stage-heading .project-links span {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.app.odyssey40.lobby41 .stage-heading .project-links small {
+  color: #c2d5a5;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 @media (max-width: 620px) {
@@ -1695,5 +1706,328 @@
     margin-left: 0;
     width: 100%;
     padding-bottom: 58px;
+  }
+}
+
+/* 4.1.1: readable conversations and progressive profession details. */
+.app.odyssey40.lobby41 .stage-heading {
+  min-height: 54px;
+}
+.app.odyssey40.lobby41 .squad-side-rail .channel-chat-body {
+  max-height: none;
+  overflow: visible;
+}
+.app.odyssey40.lobby41 .channel-chat-header [role="tab"] {
+  min-height: 40px;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .channel-collapse {
+  width: 40px;
+  height: 40px;
+}
+.app.odyssey40.lobby41 .lobby-channels .lobby-chat > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.app.odyssey40.lobby41 .lobby-channels header small {
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome {
+  padding: 18px 10px;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome strong {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.app.odyssey40.lobby41 .lobby-channels .chat-welcome span {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.app.odyssey40.lobby41 .lobby-channels form {
+  margin-top: 12px;
+  gap: 8px;
+}
+.app.odyssey40.lobby41 .lobby-channels form :is(input, button) {
+  min-height: 44px;
+  font-size: 13px;
+}
+.app.odyssey40.lobby41 .lobby-channels footer {
+  margin-top: 8px;
+  font-size: 11px;
+}
+.app.odyssey40 .lobby-channels .public-chat-message {
+  min-width: 0;
+  padding: 12px 2px;
+  border-bottom: 1px solid #63796366;
+}
+.app.odyssey40 .lobby-channels .public-message-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.app.odyssey40 .lobby-channels .public-message-meta b {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--paper);
+}
+.app.odyssey40 .lobby-channels .public-message-meta time {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font: 11px/1.6 var(--mono);
+  color: var(--muted);
+}
+.app.odyssey40 .lobby-channels .public-message-meta em {
+  flex: 0 0 auto;
+  color: #ecf3d7;
+  background: #48664e;
+  font-size: 10px;
+}
+.app.odyssey40
+  .squad-side-rail
+  .lobby-channels
+  .public-chat-log
+  .public-chat-message
+  > p {
+  display: block;
+  margin: 6px 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--paper);
+  font-size: 13px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.app.odyssey40.lobby41 .squad-chat-messages > p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 8px;
+  padding: 12px 2px;
+}
+.app.odyssey40.lobby41 .squad-chat-messages > p > strong {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .squad-chat-messages > p > time {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 11px;
+}
+.app.odyssey40.lobby41 .squad-chat-messages > p > span {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.app.odyssey40.lobby41 .profession-identity p,
+.app.odyssey40.lobby41 .profession-signature {
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .profession-card {
+  margin-bottom: 4px;
+  padding: 10px;
+}
+.app.odyssey40.lobby41 .lobby-profession-roster > summary,
+.app.odyssey40.lobby41 .lobby-profession-details > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 8px;
+  list-style: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 13px;
+}
+.app.odyssey40.lobby41
+  :is(.lobby-profession-roster, .lobby-profession-details)
+  > summary::-webkit-details-marker {
+  display: none;
+}
+.app.odyssey40.lobby41 .lobby-profession-roster > summary > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+.app.odyssey40.lobby41
+  :is(.lobby-profession-roster, .lobby-profession-details)
+  > summary
+  > svg:last-child {
+  margin-left: auto;
+  transition: transform 180ms ease-out;
+}
+.app.odyssey40.lobby41
+  :is(.lobby-profession-roster, .lobby-profession-details)[open]
+  > summary
+  > svg:last-child {
+  transform: rotate(90deg);
+}
+.app.odyssey40.lobby41 .lobby-profession-roster .job-picker {
+  margin-bottom: 14px;
+}
+.app.odyssey40.lobby41 .lobby-profession-roster .job-grid {
+  max-height: 300px;
+  gap: 8px;
+}
+.app.odyssey40.lobby41 .lobby-profession-roster .job-grid > button {
+  min-height: 68px;
+  padding: 7px;
+}
+.app.odyssey40.lobby41 .lobby-profession-roster .career-filters button {
+  min-height: 36px;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .profession-combat-summary {
+  border-top: 1px solid #587452;
+}
+.app.odyssey40.lobby41 .profession-action-row {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  padding: 10px 0;
+}
+.app.odyssey40.lobby41 .profession-action-row + .profession-action-row {
+  border-top: 1px solid #58745266;
+}
+.app.odyssey40.lobby41 .profession-action-row kbd {
+  flex: 0 0 36px;
+  min-height: 29px;
+  display: grid;
+  place-items: center;
+  color: #e4f2c8;
+  background: #19312a;
+  border-color: #78926a;
+  font: 700 12px/1.5 var(--display);
+}
+.app.odyssey40.lobby41 .profession-action-row > div {
+  min-width: 0;
+}
+.app.odyssey40.lobby41 .profession-action-row strong {
+  display: block;
+  color: var(--paper);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.app.odyssey40.lobby41 .profession-action-row p {
+  margin: 4px 0 0;
+  color: #c4d6b6;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.app.odyssey40.lobby41 .lobby-profession-details {
+  border-top: 1px solid #58745266;
+}
+.app.odyssey40.lobby41 .lobby-profession-details > summary {
+  color: #d4f778;
+}
+.app.odyssey40.lobby41 .lobby-profession-details .skill-details {
+  max-height: none;
+  overflow: visible;
+  margin: 0;
+  padding: 10px 0 16px;
+  border: 0;
+  background: transparent;
+}
+.app.odyssey40.lobby41 .lobby-profession-details .innate-attack {
+  margin: 0 0 16px;
+  padding: 0 0 16px;
+  border: 0;
+  border-bottom: 1px solid #587452;
+  background: transparent;
+  box-shadow: none;
+}
+.app.odyssey40.lobby41 .lobby-profession-details .skill-details p {
+  color: #d6e3c5 !important;
+  font-size: 13px !important;
+  line-height: 1.8;
+}
+.app.odyssey40.lobby41
+  .lobby-profession-details
+  .skill-details
+  :is(dt, small, em) {
+  color: #c4d6b6;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.app.odyssey40.lobby41
+  .lobby-profession-details
+  .skill-details
+  :is(dd, header strong, .innate-attack strong) {
+  color: var(--paper);
+  font-size: 14px;
+}
+.app.odyssey40.lobby41 .solo-button {
+  min-height: 44px;
+  margin-top: 12px;
+  font-size: 13px;
+}
+@media (max-width: 1200px) and (min-width: 901px) {
+  .app.odyssey40.lobby41:not(.is-compact) .main-grid {
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .app.odyssey40.lobby41 .stage-heading .sector-label {
+    display: none;
+  }
+  .app.odyssey40.lobby41 .stage-heading .project-links a {
+    padding: 8px;
+  }
+  .app.odyssey40.lobby41 .stage-heading .project-links small,
+  .app.odyssey40.lobby41 .stage-heading .project-links a > svg:last-child {
+    display: none;
+  }
+}
+
+.app.odyssey40.lobby41 .lobby-channels .lobby-chat > .public-chat-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 0 10px;
+  margin: 0 0 10px;
+}
+.app.odyssey40.lobby41 .public-chat-status > span {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  gap: 6px;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .public-chat-status > small {
+  width: auto;
+  font-size: 12px;
+}
+.app.odyssey40.lobby41 .public-chat-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d4f778;
+}
+.app.odyssey40.lobby41 .public-chat-status i.is-offline {
+  background: #e6ae7d;
+}
+.app.odyssey40.lobby41 .team-panel > .team-actions {
+  margin: 12px 0 0;
+  border-top: 1px solid #587452;
+  padding-top: 12px;
+}
+
+@media (min-width: 1100px) {
+  /* Once a squad exists, compact its already-chosen modes so departure stays visible. */
+  .app.odyssey40.lobby41.has-lobby .mode-cards > button {
+    height: 104px;
+    min-height: 104px;
   }
 }

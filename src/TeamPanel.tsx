@@ -1,4 +1,5 @@
-import { SkillDetails } from "./SkillDetails";
+import { useState } from "react";
+import { SkillDetails, SkillSummary } from "./SkillDetails";
 import { ProfessionCard } from "./ProfessionCard";
 import { JobPicker } from "./JobPicker";
 import type { GameState, Role, RoomReply } from "../shared/types";
@@ -31,6 +32,7 @@ export function TeamPanel({
   request: (e: string, d?: unknown) => Promise<RoomReply>;
   onLeave: () => void;
 }) {
+  const [rosterOpen, setRosterOpen] = useState(false);
   const players = state?.players || [],
     lobby = !state || state.phase === "lobby";
   return (
@@ -147,19 +149,7 @@ export function TeamPanel({
             <Icon name="copy" size={15} />
           </button>
         </div>
-      ) : (
-        <div className="team-actions">
-          <button
-            className="btn btn-secondary full"
-            onClick={onJoin}
-            disabled={busy}
-          >
-            <Icon name="link" size={16} />
-            输入房间码加入
-          </button>
-          <span className="team-hint">无需注册 · 同一地址，实时联机</span>
-        </div>
-      )}
+      ) : null}
       <div className="role-section">
         <div className="section-label">
           {lobby ? "选择你的职业" : "专属职业技能"}
@@ -168,29 +158,28 @@ export function TeamPanel({
         {lobby ? (
           <>
             <ProfessionCard role={role} />
-            <JobPicker role={role} onRole={onRole} />
-            <div className="role-description">
-              <span style={{ color: ROLES[role].color }}>
-                <Icon
-                  name={
-                    role === "scout"
-                      ? "target"
-                      : role === "engineer"
-                        ? "tool"
-                        : role === "medic"
-                          ? "heart"
-                          : "shield"
-                  }
-                  size={17}
-                />
-                {ROLES[role].skill}
-              </span>
-              <SkillDetails
+            <details
+              className="lobby-profession-roster"
+              open={rosterOpen}
+              onToggle={(event) => setRosterOpen(event.currentTarget.open)}
+            >
+              <summary>
+                <Icon name="users" size={16} />
+                更换职业 <span>28 个岗位</span>
+                <Icon name="chevron" size={14} />
+              </summary>
+              <JobPicker
                 role={role}
-                player={state?.players.find((p) => p.id === playerId)}
-                compact
+                onRole={(next) => {
+                  onRole(next);
+                  setRosterOpen(false);
+                }}
               />
-            </div>
+            </details>
+            <SkillSummary
+              role={role}
+              player={state?.players.find((p) => p.id === playerId)}
+            />
           </>
         ) : (
           <div className="role-description active">
@@ -222,6 +211,19 @@ export function TeamPanel({
           </div>
         )}
       </div>
+      {!state && (
+        <div className="team-actions">
+          <button
+            className="btn btn-secondary full"
+            onClick={onJoin}
+            disabled={busy}
+          >
+            <Icon name="link" size={16} />
+            输入房间码加入
+          </button>
+          <span className="team-hint">无需注册 · 同一地址，实时联机</span>
+        </div>
+      )}
       {!state ? (
         <button className="solo-button" onClick={onSolo} disabled={busy}>
           <Icon name="play" size={13} />

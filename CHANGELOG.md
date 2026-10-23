@@ -8,6 +8,12 @@
 - Remove meaningless floating-point tails from transmitted enemy, projectile, effect and pickup positions. Keep the authoritative simulation, damage, health, cooldowns, 60Hz simulation and 30Hz broadcast target unchanged.
 - Add four-client real-wire regression coverage for dense late-game snapshots, compression opt-out, subpixel error bounds and acknowledged-action responsiveness.
 
+### Interface / 界面
+
+- Replace the cramped profession micro-scrollbox with visible basic/Q summaries and full-flow expandable mechanics; make profession selection an explicit28-career disclosure.
+- Widen lobby chat, separate author/time from full-width message text, retain drafts/unread/follow behaviour, and keep lobby messages open on narrow screens.
+- Make the in-lobby GitHub link a labelled44px control and preserve the readiness/launch viewport. Native Enter activation no longer opens chat when a button, link or disclosure has focus.
+
 ### Documentation / 文档
 
 - Add the public browser play address, https://moyu.xiebc.com, prominently to both READMEs and the GitHub project homepage.

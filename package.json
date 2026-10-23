@@ -49,7 +49,8 @@
     "test:lobby": "tsx tests/browser-lobby41.ts",
     "test:work": "tsx tests/browser-work41.ts",
     "audit:balance": "tsx scripts/audit-balance41.ts",
-    "test:transport": "tsx --test tests/transport-performance.test.ts"
+    "test:transport": "tsx --test tests/transport-performance.test.ts",
+    "test:multiplayer": "tsx tests/browser-multiplayer411.ts"
   },
   "dependencies": {
     "express": "4.22.3",

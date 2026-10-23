@@ -39,17 +39,9 @@ export function LobbyChannels({
   const [channel, setChannel] = useState<"public" | "squad">(
     state ? "squad" : "public",
   );
-  const [collapsed, setCollapsed] = useState(
-    () => inRun || window.matchMedia("(max-width:620px)").matches,
-  );
+  const [collapsed, setCollapsed] = useState(inRun);
   useEffect(() => setChannel(state ? "squad" : "public"), [state?.code]);
-  useEffect(() => {
-    const media = window.matchMedia("(max-width:620px)");
-    const update = () => setCollapsed(inRun || media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, [inRun]);
+  useEffect(() => setCollapsed(inRun), [inRun]);
   useEffect(() => {
     const focus = () => {
       if (state) {

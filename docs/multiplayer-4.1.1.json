@@ -1,0 +1,1602 @@
+{
+  "version": "4.1.1",
+  "date": "2026-10-23",
+  "fourRealBrowsers": true,
+  "sharedMachine": true,
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "devicePixelRatio": 2,
+  "renderer": "NVIDIA GeForce RTX4060 Laptop GPU, ANGLE D3D11",
+  "localVersion": "4.1.1",
+  "publicBaselineVersion": "4.1.0",
+  "physical144HzScanoutVerified": false,
+  "nativeBlankBrowserClock": {
+    "fps": 56.83895629051022,
+    "devicePixelRatio": 1.25,
+    "reportedDriverRefreshRate": 240,
+    "note": "Current browser session runs about60Hz despite driver report. No Windows refresh settings changed."
+  },
+  "loadNote": "150 is total authoritative world population. Fixture spreads enemies across map; it is not150 simultaneously visible bodies. Visible centers in player1 samples are recorded below.",
+  "visibleEnemyCenters": [
+    {
+      "phase": "baseline6enemies",
+      "min": 6,
+      "max": 6
+    },
+    {
+      "phase": "dense150enemies",
+      "min": 45,
+      "max": 53
+    }
+  ],
+  "localUnconstrained": [
+    {
+      "name": "baseline6enemies",
+      "synthetic": true,
+      "valid": true,
+      "summary": {
+        "slowestPlayerRenderedFramesPerSecond": 143.9916004893993,
+        "fastestPlayerRenderedFramesPerSecond": 144.03292181012745,
+        "worstPlayerFrameP95Ms": 10.700000047683716,
+        "worstPlayerFrameP99Ms": 12.5,
+        "worstPlayerStateGapP95Ms": 45.82599992863834,
+        "worstPlayerStateGapMaxMs": 54.04800001997501,
+        "totalServerTcpDeltaBytesWritten": 16995554,
+        "totalServerTcpBytesPerSecond": 1400750.5552935696
+      },
+      "node": {
+        "scope": "owned server + harness/CDP in this process",
+        "eventLoopDelayMs": {
+          "resolutionMs": 10,
+          "samples": 1050,
+          "mean": 11.52743424,
+          "p95": 17.317887,
+          "p99": 20.611071,
+          "max": 51.118079
+        },
+        "cpu": {
+          "userMs": 4359,
+          "systemMs": 1437,
+          "totalMs": 5796,
+          "percentOfOneCore": 47.7698474464647,
+          "percentOfAvailableCores": 1.492807732702022
+        },
+        "eventLoopUtilization": 0.3336617056536565
+      },
+      "players": [
+        {
+          "player": 1,
+          "fps": 144.03292181012745,
+          "referenceRafHz": 333.30001166126084,
+          "frameIntervalMs": {
+            "count": 1728,
+            "min": 2.200000047683716,
+            "mean": 6.944386574060276,
+            "p50": 6.800000071525574,
+            "p95": 10.700000047683716,
+            "p99": 12.5,
+            "max": 15.599999904632568
+          },
+          "gameStepCostMs": {
+            "count": 1729,
+            "min": 1,
+            "mean": 2.133371892038834,
+            "p50": 2.100000023841858,
+            "p95": 2.799999952316284,
+            "p99": 3.200000047683716,
+            "max": 8.100000023841858
+          },
+          "webglSubmitCostMs": {
+            "count": 1729,
+            "min": 0.2999999523162842,
+            "mean": 0.9743782532153066,
+            "p50": 1,
+            "p95": 1.2999999523162842,
+            "p99": 1.5,
+            "max": 2.3000000715255737
+          },
+          "mainThread": {
+            "ScriptMs": 4322.381000000001,
+            "TaskMs": 11488.803,
+            "LayoutMs": 710.455,
+            "RecalcStyleMs": 939.385
+          },
+          "stateArrival": {
+            "count": 341,
+            "min": 14.88999999128282,
+            "mean": 35.10179178914891,
+            "p50": 34.37799995299429,
+            "p95": 45.36800005007535,
+            "p99": 48.752999980933964,
+            "max": 54.04800001997501
+          },
+          "stateHz": 28.15375086042843,
+          "gameRttMs": {
+            "count": 4,
+            "min": 3.8640000857412815,
+            "mean": 7.669999991776422,
+            "p50": 4.166999948211014,
+            "p95": 13.303000014275312,
+            "p99": 13.303000014275312,
+            "max": 13.303000014275312
+          },
+          "tcpBytesPerSecond": 350187.762451362,
+          "movement": {
+            "firstPosition": {
+              "x": 715.5823676999994,
+              "y": 695.959787799999
+            },
+            "lastPosition": {
+              "x": 664.7328449999984,
+              "y": 827.1471363999955
+            },
+            "maxSampledDisplacementFromFirst": 193.7539850696427,
+            "attackSeqDelta": 81,
+            "dashSeqDelta": 3,
+            "damageDelta": 42311.15
+          }
+        },
+        {
+          "player": 2,
+          "fps": 143.9916004893993,
+          "referenceRafHz": 371.5616589017543,
+          "frameIntervalMs": {
+            "count": 1727,
+            "min": 2.399999976158142,
+            "mean": 6.9456861610003955,
+            "p50": 6.899999976158142,
+            "p95": 10.5,
+            "p99": 11.899999976158142,
+            "max": 13.399999976158142
+          },
+          "gameStepCostMs": {
+            "count": 1728,
+            "min": 0.8999999761581421,
+            "mean": 2.0241898151321545,
+            "p50": 2,
+            "p95": 2.6999999284744263,
+            "p99": 3.100000023841858,
+            "max": 6.700000047683716
+          },
+          "webglSubmitCostMs": {
+            "count": 1728,
+            "min": 0.2999999523162842,
+            "mean": 0.9355324084560076,
+            "p50": 0.9000000953674316,
+            "p95": 1.3000000715255737,
+            "p99": 1.5,
+            "max": 5.100000023841858
+          },
+          "mainThread": {
+            "ScriptMs": 4119.259999999999,
+            "TaskMs": 11479.900999999998,
+            "LayoutMs": 750.054,
+            "RecalcStyleMs": 918.502
+          },
+          "stateArrival": {
+            "count": 341,
+            "min": 14.771000016480684,
+            "mean": 35.107011730302006,
+            "p50": 34.61899992544204,
+            "p95": 45.82599992863834,
+            "p99": 48.20600000675768,
+            "max": 48.820999916642904
+          },
+          "stateHz": 28.15136806223836,
+          "gameRttMs": {
+            "count": 4,
+            "min": 2.5140000507235527,
+            "mean": 9.143500006757677,
+            "p50": 3.5500000230968,
+            "p95": 18.03699997253716,
+            "p99": 18.03699997253716,
+            "max": 18.03699997253716
+          },
+          "tcpBytesPerSecond": 350187.762451362,
+          "movement": {
+            "firstPosition": {
+              "x": 851.1259647999992,
+              "y": 954.8691247999992
+            },
+            "lastPosition": {
+              "x": 728.9090664000003,
+              "y": 926.2484975999955
+            },
+            "maxSampledDisplacementFromFirst": 182.641387663457,
+            "attackSeqDelta": 78,
+            "dashSeqDelta": 3,
+            "damageDelta": 46782.84999999999
+          }
+        },
+        {
+          "player": 3,
+          "fps": 143.9928003596959,
+          "referenceRafHz": 345.23273836239593,
+          "frameIntervalMs": {
+            "count": 1727,
+            "min": 2.299999952316284,
+            "mean": 6.9455124493203,
+            "p50": 6.800000071525574,
+            "p95": 10.600000023841858,
+            "p99": 12.299999952316284,
+            "max": 15.600000023841858
+          },
+          "gameStepCostMs": {
+            "count": 1728,
+            "min": 0.7999999523162842,
+            "mean": 2.0210648137662144,
+            "p50": 2,
+            "p95": 2.6999999284744263,
+            "p99": 3.100000023841858,
+            "max": 7.5
+          },
+          "webglSubmitCostMs": {
+            "count": 1728,
+            "min": 0.30000007152557373,
+            "mean": 0.9508101860130275,
+            "p50": 1,
+            "p95": 1.2999999523162842,
+            "p99": 1.600000023841858,
+            "max": 2.100000023841858
+          },
+          "mainThread": {
+            "ScriptMs": 4143.021,
+            "TaskMs": 11489.746000000001,
+            "LayoutMs": 736.6460000000002,
+            "RecalcStyleMs": 968.354
+          },
+          "stateArrival": {
+            "count": 341,
+            "min": 17.176000052131712,
+            "mean": 35.09432258073492,
+            "p50": 34.48100003879517,
+            "p95": 45.33799993805587,
+            "p99": 47.99800005275756,
+            "max": 49.94199995417148
+          },
+          "stateHz": 28.15100310008394,
+          "gameRttMs": {
+            "count": 4,
+            "min": 2.785000018775463,
+            "mean": 8.194750000257045,
+            "p50": 6.213999935425818,
+            "p95": 11.945000034756958,
+            "p99": 11.945000034756958,
+            "max": 11.945000034756958
+          },
+          "tcpBytesPerSecond": 350187.5151954228,
+          "movement": {
+            "firstPosition": {
+              "x": 634.9387892000004,
+              "y": 1127.474647600001
+            },
+            "lastPosition": {
+              "x": 688.0696572000041,
+              "y": 992.8079472000024
+            },
+            "maxSampledDisplacementFromFirst": 185.12226828545397,
+            "attackSeqDelta": 81,
+            "dashSeqDelta": 3,
+            "damageDelta": 25052.77
+          }
+        },
+        {
+          "player": 4,
+          "fps": 144.02812255273528,
+          "referenceRafHz": 370.77453642696634,
+          "frameIntervalMs": {
+            "count": 1728,
+            "min": 2.399999976158142,
+            "mean": 6.944733796296297,
+            "p50": 6.899999976158142,
+            "p95": 10.300000071525574,
+            "p99": 12.100000023841858,
+            "max": 18.200000047683716
+          },
+          "gameStepCostMs": {
+            "count": 1729,
+            "min": 1,
+            "mean": 2.089994218185363,
+            "p50": 2.100000023841858,
+            "p95": 2.799999952316284,
+            "p99": 3.200000047683716,
+            "max": 3.8000000715255737
+          },
+          "webglSubmitCostMs": {
+            "count": 1729,
+            "min": 0.3999999761581421,
+            "mean": 0.9914979755430293,
+            "p50": 1,
+            "p95": 1.3000000715255737,
+            "p99": 1.600000023841858,
+            "max": 2.100000023841858
+          },
+          "mainThread": {
+            "ScriptMs": 4218.968,
+            "TaskMs": 11482.412999999999,
+            "LayoutMs": 749.1629999999999,
+            "RecalcStyleMs": 882.724
+          },
+          "stateArrival": {
+            "count": 341,
+            "min": 17.583999899215996,
+            "mean": 35.10528445739539,
+            "p50": 34.48600007686764,
+            "p95": 43.54400001466274,
+            "p99": 49.56600000150502,
+            "max": 50.478999968618155
+          },
+          "stateHz": 28.150797335117122,
+          "gameRttMs": {
+            "count": 4,
+            "min": 5.101999966427684,
+            "mean": 7.7025000064168125,
+            "p50": 5.1509999902918935,
+            "p95": 13.92699999269098,
+            "p99": 13.92699999269098,
+            "max": 13.92699999269098
+          },
+          "tcpBytesPerSecond": 350187.5151954228,
+          "movement": {
+            "firstPosition": {
+              "x": 489.0068487999991,
+              "y": 945.6686441000004
+            },
+            "lastPosition": {
+              "x": 629.8525899999976,
+              "y": 972.6114683000028
+            },
+            "maxSampledDisplacementFromFirst": 184.3075556475506,
+            "attackSeqDelta": 79,
+            "dashSeqDelta": 3,
+            "damageDelta": 36731.99
+          }
+        }
+      ]
+    },
+    {
+      "name": "dense150enemies",
+      "synthetic": true,
+      "valid": true,
+      "summary": {
+        "slowestPlayerRenderedFramesPerSecond": 127.3190553916253,
+        "fastestPlayerRenderedFramesPerSecond": 132.74925880249467,
+        "worstPlayerFrameP95Ms": 14.799999952316284,
+        "worstPlayerFrameP99Ms": 17,
+        "worstPlayerStateGapP95Ms": 50.71199999656528,
+        "worstPlayerStateGapMaxMs": 65.80500002019107,
+        "totalServerTcpDeltaBytesWritten": 32430065,
+        "totalServerTcpBytesPerSecond": 2679267.283085825
+      },
+      "node": {
+        "scope": "owned server + harness/CDP in this process",
+        "eventLoopDelayMs": {
+          "resolutionMs": 10,
+          "samples": 1026,
+          "mean": 11.773189489278753,
+          "p95": 17.563647,
+          "p99": 22.036479,
+          "max": 40.927231
+        },
+        "cpu": {
+          "userMs": 5828,
+          "systemMs": 1516,
+          "totalMs": 7344,
+          "percentOfOneCore": 60.673757289670235,
+          "percentOfAvailableCores": 1.8960549153021948
+        },
+        "eventLoopUtilization": 0.5179365068380006
+      },
+      "players": [
+        {
+          "player": 1,
+          "fps": 128.56488613181233,
+          "referenceRafHz": 128.56488613181233,
+          "frameIntervalMs": {
+            "count": 1543,
+            "min": 2.600000023841858,
+            "mean": 7.77906675309387,
+            "p50": 6.399999976158142,
+            "p95": 14.399999976158142,
+            "p99": 16.699999928474426,
+            "max": 18.100000023841858
+          },
+          "gameStepCostMs": {
+            "count": 1544,
+            "min": 1.600000023841858,
+            "mean": 4.048898963112905,
+            "p50": 4.100000023841858,
+            "p95": 5.200000047683716,
+            "p99": 6,
+            "max": 8.799999952316284
+          },
+          "webglSubmitCostMs": {
+            "count": 1544,
+            "min": 0.6999999284744263,
+            "mean": 1.700388602024533,
+            "p50": 1.7000000476837158,
+            "p95": 2.299999952316284,
+            "p99": 2.600000023841858,
+            "max": 3.3000000715255737
+          },
+          "mainThread": {
+            "ScriptMs": 6850.93,
+            "TaskMs": 11070.385000000002,
+            "LayoutMs": 333.08000000000004,
+            "RecalcStyleMs": 420.33200000000016
+          },
+          "stateArrival": {
+            "count": 350,
+            "min": 15.518999891355634,
+            "mean": 34.32341714289838,
+            "p50": 33.518999931402504,
+            "p95": 49.54899998847395,
+            "p99": 54.7450000885874,
+            "max": 60.42100000195205
+          },
+          "stateHz": 28.970178494431217,
+          "gameRttMs": {
+            "count": 4,
+            "min": 9.679000009782612,
+            "mean": 25.781250005820766,
+            "p50": 27.513999957591295,
+            "p95": 34.95000000111759,
+            "p99": 34.95000000111759,
+            "max": 34.95000000111759
+          },
+          "tcpBytesPerSecond": 669816.7175004913,
+          "movement": {
+            "firstPosition": {
+              "x": 703.9042275,
+              "y": 809.0641132000004
+            },
+            "lastPosition": {
+              "x": 628.6865301000006,
+              "y": 979.0101046000002
+            },
+            "maxSampledDisplacementFromFirst": 186.134080524907,
+            "attackSeqDelta": 79,
+            "dashSeqDelta": 3,
+            "damageDelta": 61380.149999999994
+          }
+        },
+        {
+          "player": 2,
+          "fps": 131.4704878304952,
+          "referenceRafHz": 131.72027343118646,
+          "frameIntervalMs": {
+            "count": 1578,
+            "min": 2.8000000715255737,
+            "mean": 7.607097591888467,
+            "p50": 6.299999952316284,
+            "p95": 14.299999952316284,
+            "p99": 16.40000009536743,
+            "max": 21.90000009536743
+          },
+          "gameStepCostMs": {
+            "count": 1579,
+            "min": 1.7999999523162842,
+            "mean": 3.9093096853435,
+            "p50": 4,
+            "p95": 5.100000023841858,
+            "p99": 5.600000023841858,
+            "max": 9
+          },
+          "webglSubmitCostMs": {
+            "count": 1579,
+            "min": 0.7000000476837158,
+            "mean": 1.6535782140595314,
+            "p50": 1.6999999284744263,
+            "p95": 2.200000047683716,
+            "p99": 2.799999952316284,
+            "max": 3.200000047683716
+          },
+          "mainThread": {
+            "ScriptMs": 6774.405,
+            "TaskMs": 11057.157000000003,
+            "LayoutMs": 339.2200000000001,
+            "RecalcStyleMs": 438.275
+          },
+          "stateArrival": {
+            "count": 350,
+            "min": 16.254000016488135,
+            "mean": 34.31494857151328,
+            "p50": 33.71699992567301,
+            "p95": 50.71199999656528,
+            "p99": 56.942000053822994,
+            "max": 59.76400000508875
+          },
+          "stateHz": 28.969923606889207,
+          "gameRttMs": {
+            "count": 4,
+            "min": 7.636000053025782,
+            "mean": 23.855250008637086,
+            "p50": 17.48000003863126,
+            "p95": 41.05400003027171,
+            "p99": 41.05400003027171,
+            "max": 41.05400003027171
+          },
+          "tcpBytesPerSecond": 669816.7175004913,
+          "movement": {
+            "firstPosition": {
+              "x": 722.9245615999996,
+              "y": 936.7190367999998
+            },
+            "lastPosition": {
+              "x": 539.3596207999998,
+              "y": 899.926535999999
+            },
+            "maxSampledDisplacementFromFirst": 187.21585297732,
+            "attackSeqDelta": 76,
+            "dashSeqDelta": 3,
+            "damageDelta": 61478.67999999999
+          }
+        },
+        {
+          "player": 3,
+          "fps": 132.74925880249467,
+          "referenceRafHz": 133.9151870479369,
+          "frameIntervalMs": {
+            "count": 1593,
+            "min": 2.5999999046325684,
+            "mean": 7.533898305084746,
+            "p50": 6.200000047683716,
+            "p95": 14,
+            "p99": 16.399999976158142,
+            "max": 19.899999976158142
+          },
+          "gameStepCostMs": {
+            "count": 1594,
+            "min": 1.5999999046325684,
+            "mean": 3.827854454592151,
+            "p50": 3.899999976158142,
+            "p95": 5,
+            "p99": 5.600000023841858,
+            "max": 9.100000023841858
+          },
+          "webglSubmitCostMs": {
+            "count": 1594,
+            "min": 0.6999999284744263,
+            "mean": 1.6260978670760409,
+            "p50": 1.600000023841858,
+            "p95": 2.200000047683716,
+            "p99": 2.600000023841858,
+            "max": 4.299999952316284
+          },
+          "mainThread": {
+            "ScriptMs": 6696.514,
+            "TaskMs": 11058.798999999997,
+            "LayoutMs": 346.9689999999999,
+            "RecalcStyleMs": 443.18100000000004
+          },
+          "stateArrival": {
+            "count": 350,
+            "min": 14.168000081554055,
+            "mean": 34.30231999971771,
+            "p50": 33.69300009217113,
+            "p95": 49.5060000102967,
+            "p99": 55.45899993740022,
+            "max": 65.80500002019107
+          },
+          "stateHz": 28.969724434286274,
+          "gameRttMs": {
+            "count": 4,
+            "min": 6.514000007882714,
+            "mean": 21.65650003007613,
+            "p50": 20.269000087864697,
+            "p95": 33.71900005731732,
+            "p99": 33.71900005731732,
+            "max": 33.71900005731732
+          },
+          "tcpBytesPerSecond": 669816.7175004913,
+          "movement": {
+            "firstPosition": {
+              "x": 636.0891799999997,
+              "y": 1007.8428867999993
+            },
+            "lastPosition": {
+              "x": 666.5645439999965,
+              "y": 865.2947615999965
+            },
+            "maxSampledDisplacementFromFirst": 185.02976290489718,
+            "attackSeqDelta": 79,
+            "dashSeqDelta": 3,
+            "damageDelta": 48237.8
+          }
+        },
+        {
+          "player": 4,
+          "fps": 127.3190553916253,
+          "referenceRafHz": 127.56886387179199,
+          "frameIntervalMs": {
+            "count": 1528,
+            "min": 3.1999999284744263,
+            "mean": 7.855628272313722,
+            "p50": 6.5,
+            "p95": 14.799999952316284,
+            "p99": 17,
+            "max": 19.600000023841858
+          },
+          "gameStepCostMs": {
+            "count": 1529,
+            "min": 1.899999976158142,
+            "mean": 4.085873118095573,
+            "p50": 4.199999928474426,
+            "p95": 5.200000047683716,
+            "p99": 5.799999952316284,
+            "max": 7.5
+          },
+          "webglSubmitCostMs": {
+            "count": 1529,
+            "min": 0.7000000476837158,
+            "mean": 1.773577501993697,
+            "p50": 1.7999999523162842,
+            "p95": 2.399999976158142,
+            "p99": 2.700000047683716,
+            "max": 3.600000023841858
+          },
+          "mainThread": {
+            "ScriptMs": 6849.527000000002,
+            "TaskMs": 11069.339,
+            "LayoutMs": 333.97900000000004,
+            "RecalcStyleMs": 428.458
+          },
+          "stateArrival": {
+            "count": 350,
+            "min": 16.817999887280166,
+            "mean": 34.290111428791924,
+            "p50": 34.15199997834861,
+            "p95": 49.915999989025295,
+            "p99": 56.274999980814755,
+            "max": 59.3469999730587
+          },
+          "stateHz": 28.969542957672477,
+          "gameRttMs": {
+            "count": 4,
+            "min": 23.135999916121364,
+            "mean": 25.086999987252057,
+            "p50": 23.75900000333786,
+            "p95": 28.725999989546835,
+            "p99": 28.725999989546835,
+            "max": 28.725999989546835
+          },
+          "tcpBytesPerSecond": 669817.1305843508,
+          "movement": {
+            "firstPosition": {
+              "x": 624.304244,
+              "y": 950.7025404999994
+            },
+            "lastPosition": {
+              "x": 793.3400350000027,
+              "y": 998.8019496999974
+            },
+            "maxSampledDisplacementFromFirst": 187.31034094510525,
+            "attackSeqDelta": 77,
+            "dashSeqDelta": 3,
+            "damageDelta": 90294.26999999999
+          }
+        }
+      ]
+    }
+  ],
+  "publicUnconstrained": [
+    {
+      "name": "live-basic4players",
+      "synthetic": false,
+      "valid": true,
+      "summary": {
+        "slowestPlayerRenderedFramesPerSecond": 143.41308134020304,
+        "fastestPlayerRenderedFramesPerSecond": 143.8249435458171,
+        "worstPlayerFrameP95Ms": 25.5,
+        "worstPlayerFrameP99Ms": 34.200000047683716,
+        "worstPlayerStateGapP95Ms": 42.64200001489371,
+        "worstPlayerStateGapMaxMs": 200.68299991544336,
+        "totalServerTcpDeltaBytesWritten": null,
+        "totalServerTcpBytesPerSecond": null
+      },
+      "node": {
+        "scope": "harness only; remote server unavailable",
+        "eventLoopDelayMs": {
+          "resolutionMs": 10,
+          "samples": 917,
+          "mean": 13.107954878953109,
+          "p95": 20.037631,
+          "p99": 21.643263,
+          "max": 25.673727
+        },
+        "cpu": {
+          "userMs": 1062,
+          "systemMs": 187,
+          "totalMs": 1249,
+          "percentOfOneCore": 10.373399958079506,
+          "percentOfAvailableCores": 0.3241687486899846
+        },
+        "eventLoopUtilization": 0.09274446058340584
+      },
+      "players": [
+        {
+          "player": 1,
+          "fps": 143.41308134020304,
+          "referenceRafHz": 331.991700208814,
+          "frameIntervalMs": {
+            "count": 1720,
+            "min": 0.8999999761581421,
+            "mean": 6.972034883707068,
+            "p50": 6.100000023841858,
+            "p95": 25.300000071525574,
+            "p99": 34.200000047683716,
+            "max": 37.199999928474426
+          },
+          "stateArrival": {
+            "count": 361,
+            "min": 18.04899994749576,
+            "mean": 33.14877839319129,
+            "p50": 33.04700006265193,
+            "p95": 40.35599995404482,
+            "p99": 46.05999996419996,
+            "max": 49.95200003031641
+          },
+          "stateHz": 30.065013099251463,
+          "gameRttMs": {
+            "count": 4,
+            "min": 58.58299997635186,
+            "mean": 60.69275003392249,
+            "p50": 59.111000038683414,
+            "p95": 64.41900006029755,
+            "p99": 64.41900006029755,
+            "max": 64.41900006029755
+          },
+          "tcpBytesPerSecond": null,
+          "movement": {
+            "firstPosition": {
+              "x": 1603.6946410791847,
+              "y": 866.2184798694427
+            },
+            "lastPosition": {
+              "x": 1533.7125356005508,
+              "y": 986.6955617083235
+            },
+            "maxSampledDisplacementFromFirst": 189.34195208321898,
+            "attackSeqDelta": 18,
+            "dashSeqDelta": 3,
+            "damageDelta": 192.55
+          }
+        },
+        {
+          "player": 2,
+          "fps": 143.80217619487206,
+          "referenceRafHz": 351.4238581633664,
+          "frameIntervalMs": {
+            "count": 1725,
+            "min": 0.7000000476837158,
+            "mean": 6.9551304347964304,
+            "p50": 6.300000071525574,
+            "p95": 24.600000023841858,
+            "p99": 32.39999997615814,
+            "max": 37.10000002384186
+          },
+          "stateArrival": {
+            "count": 361,
+            "min": 8.412000024691224,
+            "mean": 33.150252077336376,
+            "p50": 33.075999934226274,
+            "p95": 39.409999968484044,
+            "p99": 47.62000008486211,
+            "max": 53.536999970674515
+          },
+          "stateHz": 30.064154414014993,
+          "gameRttMs": {
+            "count": 4,
+            "min": 61.765999998897314,
+            "mean": 72.41774996509776,
+            "p50": 74.28099995013326,
+            "p95": 78.31399992574006,
+            "p99": 78.31399992574006,
+            "max": 78.31399992574006
+          },
+          "tcpBytesPerSecond": null,
+          "movement": {
+            "firstPosition": {
+              "x": 1788.3942547195265,
+              "y": 1078.6664621920738
+            },
+            "lastPosition": {
+              "x": 1632.7849974706714,
+              "y": 1050.2567380801427
+            },
+            "maxSampledDisplacementFromFirst": 195.99697186103415,
+            "attackSeqDelta": 23,
+            "dashSeqDelta": 3,
+            "damageDelta": 141.8
+          }
+        },
+        {
+          "player": 3,
+          "fps": 143.64511989925256,
+          "referenceRafHz": 338.8658367924943,
+          "frameIntervalMs": {
+            "count": 1723,
+            "min": 0.8000000715255737,
+            "mean": 6.964364480571005,
+            "p50": 6.200000047683716,
+            "p95": 25.5,
+            "p99": 33.799999952316284,
+            "max": 37.699999928474426
+          },
+          "stateArrival": {
+            "count": 361,
+            "min": 8.325999951921403,
+            "mean": 33.15068421036604,
+            "p50": 32.759000081568956,
+            "p95": 41.86700005084276,
+            "p99": 51.110000000335276,
+            "max": 200.68299991544336
+          },
+          "stateHz": 30.063814848624464,
+          "gameRttMs": {
+            "count": 4,
+            "min": 62.40199995227158,
+            "mean": 66.82200002251193,
+            "p50": 65.37100009154528,
+            "p95": 73.24200007133186,
+            "p99": 73.24200007133186,
+            "max": 73.24200007133186
+          },
+          "tcpBytesPerSecond": null,
+          "movement": {
+            "firstPosition": {
+              "x": 1543.6547196638762,
+              "y": 1277.0497181835256
+            },
+            "lastPosition": {
+              "x": 1577.2174916679253,
+              "y": 1168.6636152982444
+            },
+            "maxSampledDisplacementFromFirst": 180.91477292084218,
+            "attackSeqDelta": 20,
+            "dashSeqDelta": 3,
+            "damageDelta": 74.25
+          }
+        },
+        {
+          "player": 4,
+          "fps": 143.8249435458171,
+          "referenceRafHz": 348.729657438728,
+          "frameIntervalMs": {
+            "count": 1725,
+            "min": 0.7999999523162842,
+            "mean": 6.953913043478261,
+            "p50": 6.299999952316284,
+            "p95": 24.600000023841858,
+            "p99": 28.5,
+            "max": 38.700000047683716
+          },
+          "stateArrival": {
+            "count": 361,
+            "min": 16.59100002143532,
+            "mean": 33.162038781037786,
+            "p50": 32.891000038944185,
+            "p95": 42.64200001489371,
+            "p99": 48.949999967589974,
+            "max": 51.96000006981194
+          },
+          "stateHz": 30.063611612420452,
+          "gameRttMs": {
+            "count": 4,
+            "min": 61.83599994983524,
+            "mean": 67.56174998008646,
+            "p50": 61.8930000346154,
+            "p95": 75.81299997400492,
+            "p99": 75.81299997400492,
+            "max": 75.81299997400492
+          },
+          "tcpBytesPerSecond": null,
+          "movement": {
+            "firstPosition": {
+              "x": 1418.6401152793749,
+              "y": 1064.6680905088629
+            },
+            "lastPosition": {
+              "x": 1562.6737272831579,
+              "y": 1107.7324070518987
+            },
+            "maxSampledDisplacementFromFirst": 191.71851651591524,
+            "attackSeqDelta": 24,
+            "dashSeqDelta": 3,
+            "damageDelta": 89.4
+          }
+        }
+      ]
+    }
+  ],
+  "localDisplayPaced": [
+    {
+      "name": "baseline6enemies",
+      "synthetic": true,
+      "valid": true,
+      "summary": {
+        "slowestPlayerRenderedFramesPerSecond": 59.534217603928376,
+        "fastestPlayerRenderedFramesPerSecond": 59.624929215741794,
+        "worstPlayerFrameP95Ms": 18.40000009536743,
+        "worstPlayerFrameP99Ms": 19.700000047683716,
+        "worstPlayerStateGapP95Ms": 46.99699999764562,
+        "worstPlayerStateGapMaxMs": 65.47600007615983,
+        "totalServerTcpDeltaBytesWritten": 18169326,
+        "totalServerTcpBytesPerSecond": 1506763.0712357333
+      },
+      "node": {
+        "scope": "owned server + harness/CDP in this process",
+        "eventLoopDelayMs": {
+          "resolutionMs": 10,
+          "samples": 1037,
+          "mean": 11.605158881388622,
+          "p95": 16.793599,
+          "p99": 19.922943,
+          "max": 24.494079
+        },
+        "cpu": {
+          "userMs": 4656,
+          "systemMs": 1125,
+          "totalMs": 5781,
+          "percentOfOneCore": 47.94122420839261,
+          "percentOfAvailableCores": 1.4981632565122691
+        },
+        "eventLoopUtilization": 0.3140772653983
+      },
+      "players": [
+        {
+          "player": 1,
+          "fps": 59.624929215741794,
+          "referenceRafHz": 59.624929215741794,
+          "frameIntervalMs": {
+            "count": 715,
+            "min": 13.5,
+            "mean": 16.783496503396467,
+            "p50": 16.700000047683716,
+            "p95": 18.199999928474426,
+            "p99": 19.5,
+            "max": 35.300000071525574
+          },
+          "gameStepCostMs": {
+            "count": 716,
+            "min": 0.8999999761581421,
+            "mean": 1.7487430152946344,
+            "p50": 1.7000000476837158,
+            "p95": 2.399999976158142,
+            "p99": 2.899999976158142,
+            "max": 3.100000023841858
+          },
+          "webglSubmitCostMs": {
+            "count": 716,
+            "min": 0.2999999523162842,
+            "mean": 0.6741620132377028,
+            "p50": 0.6000000238418579,
+            "p95": 1,
+            "p99": 1.1999999284744263,
+            "max": 1.3000000715255737
+          },
+          "mainThread": {
+            "ScriptMs": 1551.4440000000004,
+            "TaskMs": 3261.5580000000004,
+            "LayoutMs": 134.81799999999998,
+            "RecalcStyleMs": 207.734
+          },
+          "stateArrival": {
+            "count": 354,
+            "min": 16.54199999757111,
+            "mean": 33.86278813546997,
+            "p50": 33.37299998383969,
+            "p95": 44.88399997353554,
+            "p99": 49.48699998203665,
+            "max": 64.8580000270158
+          },
+          "stateHz": 29.42385115609212,
+          "gameRttMs": {
+            "count": 4,
+            "min": 1.1699999449774623,
+            "mean": 3.963249968364835,
+            "p50": 3.3950000070035458,
+            "p95": 7.740999921225011,
+            "p99": 7.740999921225011,
+            "max": 7.740999921225011
+          },
+          "tcpBytesPerSecond": 376690.80927340675,
+          "movement": {
+            "firstPosition": {
+              "x": 710.9521517999992,
+              "y": 687.0947789000003
+            },
+            "lastPosition": {
+              "x": 675.0557828999976,
+              "y": 817.472404899999
+            },
+            "maxSampledDisplacementFromFirst": 200.4222663279888,
+            "attackSeqDelta": 80,
+            "dashSeqDelta": 3,
+            "damageDelta": 40699.24
+          }
+        },
+        {
+          "player": 2,
+          "fps": 59.62393617895329,
+          "referenceRafHz": 59.62393617895329,
+          "frameIntervalMs": {
+            "count": 715,
+            "min": 10.700000047683716,
+            "mean": 16.783496503563192,
+            "p50": 16.699999928474426,
+            "p95": 18.200000047683716,
+            "p99": 19.399999976158142,
+            "max": 36.40000009536743
+          },
+          "gameStepCostMs": {
+            "count": 716,
+            "min": 1.0999999046325684,
+            "mean": 1.8420391049464988,
+            "p50": 1.7999999523162842,
+            "p95": 2.5,
+            "p99": 3.100000023841858,
+            "max": 3.600000023841858
+          },
+          "webglSubmitCostMs": {
+            "count": 716,
+            "min": 0.2999999523162842,
+            "mean": 0.7122904999629079,
+            "p50": 0.6999999284744263,
+            "p95": 1.100000023841858,
+            "p99": 1.2000000476837158,
+            "max": 1.5
+          },
+          "mainThread": {
+            "ScriptMs": 1606.1959999999997,
+            "TaskMs": 3271.327,
+            "LayoutMs": 132.407,
+            "RecalcStyleMs": 176.62
+          },
+          "stateArrival": {
+            "count": 354,
+            "min": 17.156000016257167,
+            "mean": 33.86243220351605,
+            "p50": 33.34500000346452,
+            "p95": 45.765999937430024,
+            "p99": 49.29099988657981,
+            "max": 50.602000090293586
+          },
+          "stateHz": 29.423442911815524,
+          "gameRttMs": {
+            "count": 4,
+            "min": 1.167000038549304,
+            "mean": 2.6645000325515866,
+            "p50": 1.193000003695488,
+            "p95": 4.537000088021159,
+            "p99": 4.537000088021159,
+            "max": 4.537000088021159
+          },
+          "tcpBytesPerSecond": 376690.80927340675,
+          "movement": {
+            "firstPosition": {
+              "x": 858.2764800000002,
+              "y": 944.5736703999992
+            },
+            "lastPosition": {
+              "x": 718.9354216000006,
+              "y": 921.9441008000003
+            },
+            "maxSampledDisplacementFromFirst": 199.76869909864013,
+            "attackSeqDelta": 77,
+            "dashSeqDelta": 3,
+            "damageDelta": 52512.100000000006
+          }
+        },
+        {
+          "player": 3,
+          "fps": 59.622943174649876,
+          "referenceRafHz": 59.622943174649876,
+          "frameIntervalMs": {
+            "count": 715,
+            "min": 13.200000047683716,
+            "mean": 16.781958041991388,
+            "p50": 16.700000047683716,
+            "p95": 18.199999928474426,
+            "p99": 19.199999928474426,
+            "max": 34.5
+          },
+          "gameStepCostMs": {
+            "count": 716,
+            "min": 0.8999999761581421,
+            "mean": 1.769972067471989,
+            "p50": 1.7000000476837158,
+            "p95": 2.5,
+            "p99": 2.899999976158142,
+            "max": 3.5
+          },
+          "webglSubmitCostMs": {
+            "count": 716,
+            "min": 0.2999999523162842,
+            "mean": 0.6825419000074184,
+            "p50": 0.6000000238418579,
+            "p95": 1,
+            "p99": 1.2000000476837158,
+            "max": 1.5
+          },
+          "mainThread": {
+            "ScriptMs": 1559.904,
+            "TaskMs": 3293.177,
+            "LayoutMs": 135.27,
+            "RecalcStyleMs": 205.333
+          },
+          "stateArrival": {
+            "count": 354,
+            "min": 17.475000000558794,
+            "mean": 33.86278531091856,
+            "p50": 33.40399998705834,
+            "p95": 45.91400001663715,
+            "p99": 49.14500005543232,
+            "max": 64.49600006453693
+          },
+          "stateHz": 29.423253182070958,
+          "gameRttMs": {
+            "count": 4,
+            "min": 1.1610001092776656,
+            "mean": 3.929000027710572,
+            "p50": 3.62099998164922,
+            "p95": 6.652000010944903,
+            "p99": 6.652000010944903,
+            "max": 6.652000010944903
+          },
+          "tcpBytesPerSecond": 376690.72634445986,
+          "movement": {
+            "firstPosition": {
+              "x": 632.3328648000006,
+              "y": 1135.8648612000002
+            },
+            "lastPosition": {
+              "x": 672.114962000002,
+              "y": 1011.6603192000019
+            },
+            "maxSampledDisplacementFromFirst": 196.27013010818922,
+            "attackSeqDelta": 80,
+            "dashSeqDelta": 3,
+            "damageDelta": 26527.36
+          }
+        },
+        {
+          "player": 4,
+          "fps": 59.534217603928376,
+          "referenceRafHz": 59.534217603928376,
+          "frameIntervalMs": {
+            "count": 714,
+            "min": 12.599999904632568,
+            "mean": 16.807282913131875,
+            "p50": 16.700000047683716,
+            "p95": 18.40000009536743,
+            "p99": 19.700000047683716,
+            "max": 37.60000002384186
+          },
+          "gameStepCostMs": {
+            "count": 715,
+            "min": 1.4000000953674316,
+            "mean": 2.355804194103588,
+            "p50": 2.3000000715255737,
+            "p95": 3.0999999046325684,
+            "p99": 3.600000023841858,
+            "max": 4
+          },
+          "webglSubmitCostMs": {
+            "count": 715,
+            "min": 0.5,
+            "mean": 0.973566434266684,
+            "p50": 0.9000000953674316,
+            "p95": 1.399999976158142,
+            "p99": 1.600000023841858,
+            "max": 1.899999976158142
+          },
+          "mainThread": {
+            "ScriptMs": 2072.3149999999996,
+            "TaskMs": 4338.26,
+            "LayoutMs": 170.26999999999998,
+            "RecalcStyleMs": 240.702
+          },
+          "stateArrival": {
+            "count": 354,
+            "min": 15.80600009765476,
+            "mean": 33.86285028250698,
+            "p50": 33.362000016495585,
+            "p95": 46.99699999764562,
+            "p99": 50.448999973014,
+            "max": 65.47600007615983
+          },
+          "stateHz": 29.423107838060652,
+          "gameRttMs": {
+            "count": 4,
+            "min": 1.631000079214573,
+            "mean": 1.7472500330768526,
+            "p50": 1.6349999932572246,
+            "p95": 1.8770000897347927,
+            "p99": 1.8770000897347927,
+            "max": 1.8770000897347927
+          },
+          "tcpBytesPerSecond": 376690.72634445986,
+          "movement": {
+            "firstPosition": {
+              "x": 484.0474410000001,
+              "y": 951.7461643000001
+            },
+            "lastPosition": {
+              "x": 628.6750161000006,
+              "y": 975.4688420000015
+            },
+            "maxSampledDisplacementFromFirst": 197.82669559780953,
+            "attackSeqDelta": 78,
+            "dashSeqDelta": 3,
+            "damageDelta": 42372.91
+          }
+        }
+      ]
+    },
+    {
+      "name": "dense150enemies",
+      "synthetic": true,
+      "valid": true,
+      "summary": {
+        "slowestPlayerRenderedFramesPerSecond": 59.48066878276378,
+        "fastestPlayerRenderedFramesPerSecond": 59.4811642982086,
+        "worstPlayerFrameP95Ms": 19.799999952316284,
+        "worstPlayerFrameP99Ms": 22.899999976158142,
+        "worstPlayerStateGapP95Ms": 46.84699990320951,
+        "worstPlayerStateGapMaxMs": 81.63200004491955,
+        "totalServerTcpDeltaBytesWritten": 32351507,
+        "totalServerTcpBytesPerSecond": 2682817.6931172833
+      },
+      "node": {
+        "scope": "owned server + harness/CDP in this process",
+        "eventLoopDelayMs": {
+          "resolutionMs": 10,
+          "samples": 963,
+          "mean": 12.48667327933541,
+          "p95": 18.874367,
+          "p99": 21.151743,
+          "max": 26.361855
+        },
+        "cpu": {
+          "userMs": 5672,
+          "systemMs": 1391,
+          "totalMs": 7063,
+          "percentOfOneCore": 58.571433369355475,
+          "percentOfAvailableCores": 1.8303572927923586
+        },
+        "eventLoopUtilization": 0.49375430380717195
+      },
+      "players": [
+        {
+          "player": 1,
+          "fps": 59.4811642982086,
+          "referenceRafHz": 59.4811642982086,
+          "frameIntervalMs": {
+            "count": 713,
+            "min": 11.199999928474426,
+            "mean": 16.807713884959547,
+            "p50": 16.699999928474426,
+            "p95": 18.5,
+            "p99": 21.299999952316284,
+            "max": 38.5
+          },
+          "gameStepCostMs": {
+            "count": 714,
+            "min": 1.7999999523162842,
+            "mean": 2.8614845913665303,
+            "p50": 2.799999952316284,
+            "p95": 3.700000047683716,
+            "p99": 4.299999952316284,
+            "max": 4.899999976158142
+          },
+          "webglSubmitCostMs": {
+            "count": 714,
+            "min": 0.5999999046325684,
+            "mean": 1.0161064432448699,
+            "p50": 1,
+            "p95": 1.4000000953674316,
+            "p99": 1.7000000476837158,
+            "max": 2.3000000715255737
+          },
+          "mainThread": {
+            "ScriptMs": 2369.2599999999998,
+            "TaskMs": 4376.557,
+            "LayoutMs": 130.35199999999998,
+            "RecalcStyleMs": 178.04799999999997
+          },
+          "stateArrival": {
+            "count": 355,
+            "min": 4.14099998306483,
+            "mean": 33.92675211259597,
+            "p50": 33.41300005558878,
+            "p95": 45.390999992378056,
+            "p99": 63.20899992715567,
+            "max": 81.57100004609674
+          },
+          "stateHz": 29.480744386808304,
+          "gameRttMs": {
+            "count": 4,
+            "min": 0.9689999278634787,
+            "mean": 7.06999993417412,
+            "p50": 7.080999901518226,
+            "p95": 10.829999926500022,
+            "p99": 10.829999926500022,
+            "max": 10.829999926500022
+          },
+          "tcpBytesPerSecond": 670296.7742299291,
+          "movement": {
+            "firstPosition": {
+              "x": 715.9240475999999,
+              "y": 814.278415000001
+            },
+            "lastPosition": {
+              "x": 666.6875900999971,
+              "y": 960.8001665999998
+            },
+            "maxSampledDisplacementFromFirst": 199.34661157856894,
+            "attackSeqDelta": 80,
+            "dashSeqDelta": 3,
+            "damageDelta": 74913.43000000001
+          }
+        },
+        {
+          "player": 2,
+          "fps": 59.4811642982086,
+          "referenceRafHz": 59.4811642982086,
+          "frameIntervalMs": {
+            "count": 713,
+            "min": 11.399999976158142,
+            "mean": 16.80701262268746,
+            "p50": 16.699999928474426,
+            "p95": 18.600000023841858,
+            "p99": 20.800000071525574,
+            "max": 36.60000002384186
+          },
+          "gameStepCostMs": {
+            "count": 714,
+            "min": 2,
+            "mean": 2.953501402329998,
+            "p50": 2.899999976158142,
+            "p95": 3.899999976158142,
+            "p99": 4.5,
+            "max": 5.5
+          },
+          "webglSubmitCostMs": {
+            "count": 714,
+            "min": 0.6999999284744263,
+            "mean": 1.0623249294711095,
+            "p50": 1,
+            "p95": 1.5,
+            "p99": 1.7000000476837158,
+            "max": 2.200000047683716
+          },
+          "mainThread": {
+            "ScriptMs": 2437.676000000001,
+            "TaskMs": 4435.741999999999,
+            "LayoutMs": 129.249,
+            "RecalcStyleMs": 169.69299999999998
+          },
+          "stateArrival": {
+            "count": 354,
+            "min": 5.816000048071146,
+            "mean": 33.791943502909696,
+            "p50": 33.37999992072582,
+            "p95": 45.956999994814396,
+            "p99": 58.65399993490428,
+            "max": 74.90200002212077
+          },
+          "stateHz": 29.397486100889267,
+          "gameRttMs": {
+            "count": 4,
+            "min": 6.339000072330236,
+            "mean": 9.422000002814457,
+            "p50": 9.596999967470765,
+            "p95": 11.155999964103103,
+            "p99": 11.155999964103103,
+            "max": 11.155999964103103
+          },
+          "tcpBytesPerSecond": 670297.1888655894,
+          "movement": {
+            "firstPosition": {
+              "x": 728.8987583999998,
+              "y": 948.5361871999995
+            },
+            "lastPosition": {
+              "x": 573.5562920000045,
+              "y": 896.641495999997
+            },
+            "maxSampledDisplacementFromFirst": 196.1027705168181,
+            "attackSeqDelta": 77,
+            "dashSeqDelta": 3,
+            "damageDelta": 60562.07000000001
+          }
+        },
+        {
+          "player": 3,
+          "fps": 59.48066878276378,
+          "referenceRafHz": 59.48066878276378,
+          "frameIntervalMs": {
+            "count": 713,
+            "min": 9.700000047683716,
+            "mean": 16.805750350631136,
+            "p50": 16.700000047683716,
+            "p95": 18.399999976158142,
+            "p99": 22.5,
+            "max": 38.5
+          },
+          "gameStepCostMs": {
+            "count": 714,
+            "min": 1.899999976158142,
+            "mean": 2.948179269538206,
+            "p50": 2.899999976158142,
+            "p95": 3.899999976158142,
+            "p99": 4.200000047683716,
+            "max": 5.600000023841858
+          },
+          "webglSubmitCostMs": {
+            "count": 714,
+            "min": 0.6000000238418579,
+            "mean": 1.0417366919397306,
+            "p50": 1,
+            "p95": 1.5,
+            "p99": 1.7000000476837158,
+            "max": 2.100000023841858
+          },
+          "mainThread": {
+            "ScriptMs": 2431.7909999999997,
+            "TaskMs": 4415.869000000001,
+            "LayoutMs": 125.99100000000001,
+            "RecalcStyleMs": 173.56800000000007
+          },
+          "stateArrival": {
+            "count": 355,
+            "min": 4.339999984949827,
+            "mean": 33.926329577446616,
+            "p50": 33.46499998588115,
+            "p95": 46.5519999852404,
+            "p99": 63.24799999129027,
+            "max": 81.63200004491955
+          },
+          "stateHz": 29.480104771629875,
+          "gameRttMs": {
+            "count": 4,
+            "min": 6.063000066205859,
+            "mean": 14.609750040108338,
+            "p50": 6.717000040225685,
+            "p95": 37.53400000277907,
+            "p99": 37.53400000277907,
+            "max": 37.53400000277907
+          },
+          "tcpBytesPerSecond": 670297.4376469855,
+          "movement": {
+            "firstPosition": {
+              "x": 634.408234400001,
+              "y": 1009.3768727999991
+            },
+            "lastPosition": {
+              "x": 689.8009868000024,
+              "y": 851.7714376000005
+            },
+            "maxSampledDisplacementFromFirst": 197.6597141841334,
+            "attackSeqDelta": 80,
+            "dashSeqDelta": 3,
+            "damageDelta": 46784.55
+          }
+        },
+        {
+          "player": 4,
+          "fps": 59.48066878276378,
+          "referenceRafHz": 59.48066878276378,
+          "frameIntervalMs": {
+            "count": 713,
+            "min": 8.799999952316284,
+            "mean": 16.805049088359045,
+            "p50": 16.600000023841858,
+            "p95": 19.799999952316284,
+            "p99": 22.899999976158142,
+            "max": 39.39999997615814
+          },
+          "gameStepCostMs": {
+            "count": 714,
+            "min": 2.899999976158142,
+            "mean": 4.376050416995831,
+            "p50": 4.299999952316284,
+            "p95": 5.400000095367432,
+            "p99": 6,
+            "max": 7.199999928474426
+          },
+          "webglSubmitCostMs": {
+            "count": 714,
+            "min": 0.8000000715255737,
+            "mean": 1.7156862750106834,
+            "p50": 1.6999999284744263,
+            "p95": 2.299999952316284,
+            "p99": 2.600000023841858,
+            "max": 2.9000000953674316
+          },
+          "mainThread": {
+            "ScriptMs": 3599.7659999999996,
+            "TaskMs": 6339.074999999999,
+            "LayoutMs": 168.78100000000006,
+            "RecalcStyleMs": 241.86399999999998
+          },
+          "stateArrival": {
+            "count": 355,
+            "min": 5.891999928280711,
+            "mean": 33.78629577444525,
+            "p50": 33.40399998705834,
+            "p95": 46.84699990320951,
+            "p99": 64.28300007246435,
+            "max": 76.71599998138845
+          },
+          "stateHz": 29.479789368561132,
+          "gameRttMs": {
+            "count": 4,
+            "min": 1.5750000020489097,
+            "mean": 6.9727499794680625,
+            "p50": 7.683999952860177,
+            "p95": 10.908000054769218,
+            "p99": 10.908000054769218,
+            "max": 10.908000054769218
+          },
+          "tcpBytesPerSecond": 671926.2923747795,
+          "movement": {
+            "firstPosition": {
+              "x": 622.2568499000013,
+              "y": 944.8800012000008
+            },
+            "lastPosition": {
+              "x": 781.5422908000002,
+              "y": 993.0179762000021
+            },
+            "maxSampledDisplacementFromFirst": 191.67332801903788,
+            "attackSeqDelta": 78,
+            "dashSeqDelta": 3,
+            "damageDelta": 88989.67
+          }
+        }
+      ]
+    }
+  ],
+  "singleRendererControl": {
+    "fps": 239.58177246938445,
+    "smallWindowFps": 303.8058833305634,
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "dpr": 2,
+    "realBrowsers": 1,
+    "additionalProtocolPeers": 3,
+    "notFourBrowserEvidence": true
+  },
+  "publicHttpProbe": {
+    "samples": 83,
+    "failures": 0,
+    "medianMs": 76.58710000000428,
+    "p95Ms": 86.51360000000204
+  },
+  "publicTestCleanup": [
+    {
+      "player": 2,
+      "result": "room:leave-confirmed-via-ui"
+    },
+    {
+      "player": 3,
+      "result": "room:leave-confirmed-via-ui"
+    },
+    {
+      "player": 4,
+      "result": "room:leave-confirmed-via-ui"
+    },
+    {
+      "player": 1,
+      "result": "room:leave-confirmed-via-ui"
+    }
+  ],
+  "productionRestarted": false,
+  "productionRootCauseConfirmed": false
+}

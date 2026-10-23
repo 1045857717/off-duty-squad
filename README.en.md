@@ -20,7 +20,7 @@ Play in your browser without installing anything. Use the same online address in
 ![Node.js](https://img.shields.io/badge/Node.js-24_LTS-339933?logo=nodedotjs&logoColor=white)
 ![Players](https://img.shields.io/badge/Players-1%E2%80%934-E47832)
 
-![Public lobby](docs/images/lobby.webp)
+![Public lobby](docs/images/lobby-4.1.1.png)
 
 </div>
 
@@ -143,7 +143,7 @@ Built with **React 19, TypeScript, Phaser 3 / WebGL, Express and Socket.IO**. An
 
 ## Status and limitations
 
-Current version: **4.1.0**. Mode selection comes before squad assembly in an illustrated game lobby. Endless mode opens with killable common enemies and introduces enemy combinations and elites gradually. E interactions explain actual benefits, costs and durations; F8 work surfaces retain their own palettes. See [4.1 gameplay and fixes](docs/PLAYABILITY-4.1.en.md) and the [opening damage audit](docs/balance-4.1.json). Historical [4.0 art](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.en.md) and [protected-main policy](docs/BRANCH-PROTECTION.md) remain available.
+Current version: **4.1.1**. WebSocket compression and wire-only visual precision reduce late-match state traffic. Lobby chat and profession details have readable layouts, the GitHub entry is labelled, and a four-browser high-refresh diagnostic tool is included. See [transport measurements and limits](docs/PERFORMANCE-4.1.1.md) and [lobby readability](docs/LOBBY-4.1.1.md). Mode selection comes before squad assembly in an illustrated game lobby. Endless mode opens with killable common enemies and introduces enemy combinations and elites gradually. E interactions explain actual benefits, costs and durations; F8 work surfaces retain their own palettes. See [4.1 gameplay and fixes](docs/PLAYABILITY-4.1.en.md) and the [opening damage audit](docs/balance-4.1.json). Historical [4.0 art](docs/ART-4.0.md), [profession audit](docs/COMBAT-4.0.md), [published verification](docs/PUBLISHED-4.0.en.md) and [protected-main policy](docs/BRANCH-PROTECTION.md) remain available.
 
 - The room server is a single-instance service. Replicas do not share rooms or presence; scaling requires room routing and shared storage design.
 - A 144 FPS target setting is available. Hardware, resolution and enemy density determine actual performance; **144FPS is not guaranteed for every scene**. See historical [4.0 measurements](docs/PERFORMANCE-4.0.md); earlier measurements remain historical evidence.

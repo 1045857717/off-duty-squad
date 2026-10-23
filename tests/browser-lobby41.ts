@@ -95,7 +95,7 @@ async function geometry(page: Page, ready = false) {
   if (ready)
     assert.ok(
       result.launchBottom! <= 768,
-      "Launch must be visible without scrolling",
+      "Launch must be visible without scrolling: " + JSON.stringify(result),
     );
   return result;
 }
@@ -141,6 +141,57 @@ try {
       )
       .count(),
   );
+  const readingGeometry = await host.evaluate(() => {
+    const log = document.querySelector<HTMLElement>(".public-chat-log")!;
+    const link = document.querySelector<HTMLElement>(".project-links a")!;
+    const label = link.querySelector("span")!;
+    return {
+      chatHeight: log.clientHeight,
+      chatWidth: log.clientWidth,
+      githubWidth: link.clientWidth,
+      githubHeight: link.clientHeight,
+      githubTextVisible: getComputedStyle(label).display !== "none",
+    };
+  });
+  assert.ok(
+    readingGeometry.chatHeight >= 220 && readingGeometry.chatWidth >= 300,
+  );
+  assert.ok(
+    readingGeometry.githubWidth >= 90 &&
+      readingGeometry.githubHeight >= 42 &&
+      readingGeometry.githubTextVisible,
+  );
+  await host.locator(".lobby-profession-roster > summary").click();
+  await host
+    .getByRole("button", { name: "选择测试工程师", exact: true })
+    .click();
+  await host
+    .getByRole("region", { name: "职业攻击与技能" })
+    .locator(".profession-action-row")
+    .getByText("强制回归", { exact: true })
+    .waitFor();
+  await host.locator(".lobby-profession-details > summary").click();
+  const detailsGeometry = await host
+    .getByRole("region", { name: "职业技能详细说明" })
+    .evaluate((el) => ({
+      height: el.clientHeight,
+      content: el.scrollHeight,
+      overflow: getComputedStyle(el).overflowY,
+    }));
+  assert.ok(
+    detailsGeometry.height >= 300 &&
+      detailsGeometry.content <= detailsGeometry.height + 2 &&
+      detailsGeometry.overflow === "visible",
+  );
+  await host.locator(".lobby-profession-details > summary").click();
+  await host.locator(".lobby-profession-roster > summary").click();
+  await host
+    .getByRole("button", { name: "选择开发工程师", exact: true })
+    .click();
+  await host.evaluate(() => window.scrollTo(0, 0));
+  checks.push(
+    "Readable chat, visible labelled GitHub link, profession switching, and full skill details without micro-scroll clipping",
+  );
   const publicGeometry = await geometry(host);
   await host.screenshot({ path: out + "/public-lobby-empty-1366.png" });
   await host
@@ -182,6 +233,27 @@ try {
   await host.getByLabel("小队名称").fill("今天也要准点下班");
   await host.getByRole("button", { name: "创建小队，邀请同事" }).click();
   await host.getByRole("region", { name: "小队准备大厅" }).waitFor();
+  for (const selector of [
+    ".lobby-profession-roster",
+    ".lobby-profession-details",
+  ]) {
+    const disclosure = host.locator(selector);
+    await disclosure.locator(":scope > summary").focus();
+    await host.keyboard.press("Enter");
+    assert.equal(
+      await disclosure.evaluate((el) => (el as HTMLDetailsElement).open),
+      true,
+      "Enter must expand profession details with an active squad",
+    );
+    await host.keyboard.press("Enter");
+    assert.equal(
+      await disclosure.evaluate((el) => (el as HTMLDetailsElement).open),
+      false,
+    );
+  }
+  checks.push(
+    "Native profession disclosures activate with Enter in a real room without opening chat",
+  );
   const code = await host.evaluate(() => window.__OFFDUTY__!.state!.code);
   const guest = await open();
   await guest.getByLabel("搜索公开房间").fill(code);
