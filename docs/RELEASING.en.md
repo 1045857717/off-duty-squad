@@ -105,7 +105,13 @@ gh workflow run verify-release.yml --ref main --field version=4.1.0
 
 ## Release list retention
 
-After validating current assets, anonymous image pulls and both runtime architectures, keep only the latest stable Release. Preserve Git tags and versioned GHCR images for history and rollback; do not use `--cleanup-tag`. Historical verification documents record their original run; old Release asset links may have been removed.
+Effective 2026-10-23, retain every published Release, its iteration notes, existing assets, Git tag and versioned GHCR images for history and rollback. After validation, mark the newest stable release as GitHub Latest. Do not automatically delete older Releases, notes, assets, tags or versioned images, or use `--cleanup-tag`. This supersedes the latest-only policy introduced during 3.9; see the original request and policy change in [prompt history](PROMPT-HISTORY.md).
+
+Restore eight historical Release objects from v3.5.0 through v4.1.1 using their preserved Git tags, original titles and authentic CHANGELOG sections, with `make_latest: false`. Preserve the existing v4.1.2 notes body and its Latest designation. Restoring notes does not automatically re-upload binary assets deleted under the previous policy, so some historical Releases may lack their original assets. Source archives remain available from the preserved Git tags. Retain existing assets and assets published with future releases.
+
+Historical verification records, JSON evidence and policy snapshots retain their original values and wording. Restoring notes does not rewrite them; any old cleanup instructions describe the policy at that time and are no longer current requirements. Future release workflows run `node scripts/release-notes.mjs --version "$VERSION" > releases/notes.md` to extract the exact matching version section from CHANGELOG, then append deployment notes. Missing, duplicate or empty matching sections cause a failure. This does not automatically rewrite notes for existing published Releases.
+
+This retention policy applies only to formal Releases. Temporary CI artifacts still expire after 7 days. The documentation and release-helper changes keep the application version and require no new version tag or server deployment.
 
 
 Browser CI installs the actual Chromium headless shell with --only-shell and system dependencies. All undead/art/rig checks and the same three protected-main contexts remain required. It skips an unused full-browser download, not browser validation.

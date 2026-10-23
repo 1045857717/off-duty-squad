@@ -107,7 +107,13 @@ gh workflow run verify-release.yml --ref main --field version=4.1.0
 
 ## Release 列表保留策略
 
-正式验证当前版本的附件、匿名镜像拉取及双架构运行后，Releases 列表只保留最新稳定版。删除旧 Release 时保留 Git 标签和 GHCR 版本镜像，便于追溯和回滚。不要使用 `--cleanup-tag`。历史验收文档是当时的记录，旧 Release 附件链接可能已移除。
+自 2026-10-23 起，保留每个已发布版本的 Release、迭代说明、已有附件、Git 标签与 GHCR 版本镜像，便于追溯和回滚。新版本验收通过后，将最新稳定版标记为 GitHub Latest；不自动删除旧 Release、说明、附件、标签或版本镜像，也不使用 `--cleanup-tag`。此规则取代 3.9 时期“只保留最新稳定版”的策略，原始需求与变更见[提示词历史](PROMPT-HISTORY.md)。
+
+历史说明按保留的 Git 标签与 CHANGELOG 恢复，为 v3.5.0–v4.1.1 的八个版本分别创建历史 Release，保留原标签、标题与对应的真实 CHANGELOG 内容，并设置 `make_latest: false`；v4.1.2 的现有说明正文及 Latest 标记保持不变。旧策略下已删除的二进制附件不随说明自动重新上传，因此部分历史 Release 可能缺少原有附件；对应源码归档仍可从保留的 Git 标签获取。已有附件及此后发布的附件均继续保留。
+
+历史验收记录、JSON 证据和当时的政策快照保留原始数值与表述，不因恢复说明而重写；其中的旧清理条款是历史策略记录，不再作为当前操作要求。今后的发布工作流使用 `node scripts/release-notes.mjs --version "$VERSION" > releases/notes.md` 提取 CHANGELOG 中与发布版本精确匹配的章节，再附上部署说明；匹配章节缺失、重复或为空时失败。已有正式 Release 的说明不会因此自动重写。
+
+此保留策略仅适用于正式 Releases，CI 临时 artifacts 仍保留 7 天。本次文档与发布辅助流程调整沿用应用版本，无需新增版本标签或部署服务器。
 
 
 浏览器CI仅下载实际运行的Chromium headless shell（--only-shell）及系统依赖；undead、art与rigs三套检查全部保留，主分支仍要求相同三项CI。此项减少无用完整浏览器下载，不跳过浏览器测试。

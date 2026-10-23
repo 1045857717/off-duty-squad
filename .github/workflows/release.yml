@@ -190,7 +190,8 @@ jobs:
           sed -i "s/^GAME_VERSION=.*/GAME_VERSION=$VERSION/" releases/env.example
           printf '%s@%s\n' "$IMAGE" "$DIGEST" > releases/image-digest.txt
           (cd releases && sha256sum offshift-desktop-win-x64.zip desktop-release.json compose.prod.yaml env.example image-digest.txt > SHA256SUMS.txt)
-          cat > releases/notes.md <<EOF
+          node scripts/release-notes.mjs --version "$VERSION" > releases/notes.md
+          cat >> releases/notes.md <<EOF
           ## 部署 / Deploy
           Docker: $IMAGE:$VERSION
           Digest: $IMAGE@$DIGEST
