@@ -1,0 +1,253 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", system-ui,
+    sans-serif;
+  color: #f6f0e4;
+  background: #171522;
+  font-synthesis: none;
+  --muted: #c3bbd3;
+  --gold: #e2c184;
+  --line: #6a607b;
+}
+
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+main {
+  width: min(100% - 48px, 820px);
+  margin: 44px auto;
+}
+h1,
+h2,
+p,
+dl {
+  margin: 0;
+}
+h1 {
+  font-size: clamp(26px, 4.5vw, 36px);
+  line-height: 1.35;
+  font-weight: 700;
+}
+h2 {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.intro {
+  margin-top: 16px;
+  color: var(--muted);
+}
+.measurement {
+  margin-top: 28px;
+  padding: 24px;
+  background: #211e2d;
+  border: 1px solid var(--line);
+}
+.instructions {
+  margin-top: 10px;
+  color: var(--muted);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 16px;
+}
+button {
+  min-height: 46px;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+  line-height: 1.5;
+  font-weight: 600;
+  background: #211e2d;
+  color: #f6f0e4;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+#frame-start {
+  background: var(--gold);
+  color: #211b2c;
+  border-color: var(--gold);
+}
+button:hover:enabled {
+  border-color: var(--gold);
+  background: #332d43;
+}
+#frame-start:hover:enabled {
+  background: #efd7ac;
+}
+button:disabled {
+  cursor: default;
+  background: #302a3c;
+  color: #b3a9c2;
+  border-color: var(--line);
+}
+#frame-start:disabled {
+  background: #302a3c;
+  color: #b3a9c2;
+  border-color: var(--line);
+}
+:focus-visible {
+  outline: 3px solid #f5dbab;
+  outline-offset: 4px;
+}
+#frame-status {
+  min-height: 28px;
+}
+.progress-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+progress {
+  display: block;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 0;
+  background: #40374f;
+  color: var(--gold);
+  accent-color: var(--gold);
+}
+progress::-webkit-progress-bar {
+  background: #40374f;
+}
+progress::-webkit-progress-value {
+  background: var(--gold);
+  transition: none;
+}
+progress::-moz-progress-bar {
+  background: var(--gold);
+}
+#frame-result {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.rate {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 14px;
+  margin-top: 10px;
+}
+#frame-rate {
+  font-size: clamp(40px, 8vw, 56px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--gold);
+}
+.rate span {
+  font-size: 16px;
+}
+output,
+#frame-progress-text {
+  font-variant-numeric: tabular-nums;
+}
+.statistics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+  margin-top: 22px;
+}
+.statistics dt {
+  font-size: 14px;
+  color: var(--muted);
+}
+.statistics dd {
+  margin: 0;
+  font-size: 16px;
+}
+.method,
+.limit,
+footer {
+  color: var(--muted);
+  font-size: 14px;
+}
+.method {
+  margin-top: 20px;
+}
+.copy-status:not(:empty) {
+  margin-top: 18px;
+  color: var(--gold);
+}
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+aside {
+  margin-top: 28px;
+}
+aside > p {
+  margin-top: 12px;
+}
+.comparison {
+  margin-top: 18px;
+}
+.comparison > div + div {
+  margin-top: 18px;
+}
+.comparison dt {
+  color: var(--gold);
+  font-weight: 600;
+}
+.comparison dd {
+  margin: 6px 0 0;
+}
+footer {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 480px) {
+  main {
+    width: calc(100% - 32px);
+    margin: 24px auto;
+  }
+  .measurement {
+    padding: 18px;
+  }
+  .actions {
+    gap: 10px;
+  }
+  .actions button {
+    flex: 1 1 140px;
+  }
+  .statistics {
+    gap: 14px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

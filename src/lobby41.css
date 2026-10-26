@@ -2112,3 +2112,75 @@
     padding-left: 7px;
   }
 }
+/* F2 diagnostic details share the existing settings surface; battle HUD stays compact. */
+.app.odyssey40 .performance-diagnostics {
+  margin: 10px 0 14px;
+  border-block: 1px solid var(--line, #705779);
+  font-size: 13px;
+}
+.app.odyssey40 .performance-diagnostics > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  color: var(--text, #f4f0dc);
+  cursor: pointer;
+  font-weight: 650;
+}
+.app.odyssey40 .performance-diagnostics > summary span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted, #c3b4ca);
+}
+.app.odyssey40 .diagnostic-content {
+  padding-bottom: 14px;
+}
+.app.odyssey40 .diagnostic-content dl {
+  margin: 0 0 12px;
+}
+.app.odyssey40 .diagnostic-content dl > div {
+  display: grid;
+  grid-template-columns: minmax(92px, 1fr) minmax(0, 1.7fr);
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line, #705779);
+}
+.app.odyssey40 .diagnostic-content dt {
+  color: var(--muted, #c3b4ca);
+}
+.app.odyssey40 .diagnostic-content dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+.app.odyssey40 .diagnostic-guidance {
+  color: var(--text, #f4f0dc);
+  line-height: 1.65;
+  margin: 12px 0 8px;
+}
+.app.odyssey40 .diagnostic-note {
+  color: var(--muted, #c3b4ca);
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 8px 0 14px;
+}
+.app.odyssey40 .diagnostic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.app.odyssey40 .diagnostic-actions :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--line, #705779);
+  border-radius: 5px;
+  background: var(--panel, #2b2435);
+  color: var(--text, #f4f0dc);
+  text-decoration: none;
+  font: inherit;
+}

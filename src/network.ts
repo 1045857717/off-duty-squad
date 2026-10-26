@@ -2,11 +2,8 @@ import type { ChatMessage } from "../shared/types";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { io, type Socket } from "socket.io-client";
 import type { GameState, RoomReply, Input } from "../shared/types";
-import {
-  NetworkHealth,
-  NETWORK_PROBE_INTERVAL_MS,
-  NETWORK_PROBE_TIMEOUT_MS,
-} from "./networkHealth";
+import { NetworkHealth, NETWORK_PROBE_INTERVAL_MS } from "./networkHealth";
+import { networkOptions, sendLatencyProbe } from "./networkTransport";
 export const IS_FLOATING =
   new URLSearchParams(location.search).get("floating") === "1";
 export function useNetwork(notify: (message: string) => void) {
@@ -31,11 +28,8 @@ export function useNetwork(notify: (message: string) => void) {
   notifyRef.current = notify;
   useEffect(() => {
     const socket = io({
+      ...networkOptions(),
       autoConnect: !IS_FLOATING,
-      transports: ["websocket", "polling"],
-      reconnection: true,
-      reconnectionDelay: 750,
-      timeout: 5000,
     });
     ref.current = socket;
     let published: GameState | null = null;
@@ -43,18 +37,18 @@ export function useNetwork(notify: (message: string) => void) {
     const probeLatency = () => {
       setLatency(networkHealth.read().rttMs ?? 0);
       if (!socket.connected || delegated.current || document.hidden) return;
-      const probe = networkHealth.beginProbe();
-      if (probe === null) return;
-      socket
-        .timeout(NETWORK_PROBE_TIMEOUT_MS)
-        .volatile.emit("ping:latency", {}, (err: Error | null) => {
-          if (!active) return;
-          networkHealth.finishProbe(probe, !!err);
-          setLatency(networkHealth.read().rttMs ?? 0);
-        });
+      sendLatencyProbe(socket, networkHealth, () => {
+        if (active) setLatency(networkHealth.read().rttMs ?? 0);
+      });
     };
     socket.on("connect", () => {
       networkHealth.setConnected(true);
+      const engine = socket.io.engine;
+      networkHealth.stream.setTransport(engine.transport.name);
+      engine.once("upgrade", () => {
+        if (active && socket.connected && socket.io.engine === engine)
+          networkHealth.stream.setTransport(engine.transport.name);
+      });
       setLatency(0);
       setConnected(true);
       probeLatency();
@@ -68,10 +62,13 @@ export function useNetwork(notify: (message: string) => void) {
             { token, floating: IS_FLOATING },
             (err: Error | null, r: RoomReply) => {
               if (err) return;
-              if (r.ok) setPlayerId(r.playerId!);
-              else {
+              if (r.ok) {
+                networkHealth.stream.expectState(true);
+                setPlayerId(r.playerId!);
+              } else {
                 sessionStorage.removeItem("offduty-session");
                 latest.current = null;
+                networkHealth.stream.expectState(false);
                 setState(null);
                 setPlayerId("");
                 notifyRef.current(r.error || "请重新加入房间。");
@@ -96,6 +93,10 @@ export function useNetwork(notify: (message: string) => void) {
       if (!s.world && previous?.code === s.code)
         s = { ...s, world: previous.world };
       if (!s.world) return;
+      if (previous && (previous.code !== s.code || previous.runId !== s.runId))
+        networkHealth.stream.reset();
+      if (!document.hidden && !delegated.current)
+        networkHealth.stream.recordSnapshot();
       latest.current = s;
       if (
         !delegated.current &&
@@ -125,6 +126,7 @@ export function useNetwork(notify: (message: string) => void) {
     socket.on("room:closed", (data) => {
       sessionStorage.removeItem("offduty-session");
       latest.current = null;
+      networkHealth.stream.expectState(false);
       setState(null);
       setPlayerId("");
       notifyRef.current(data.message || "房间已关闭。");
@@ -132,6 +134,7 @@ export function useNetwork(notify: (message: string) => void) {
     socket.on("room:kicked", (data) => {
       sessionStorage.removeItem("offduty-session");
       latest.current = null;
+      networkHealth.stream.expectState(false);
       setState(null);
       setPlayerId("");
       notifyRef.current(data.message || "你已离开小队。");
@@ -140,6 +143,7 @@ export function useNetwork(notify: (message: string) => void) {
       if (delegated.current) return;
       if (!IS_FLOATING) sessionStorage.removeItem("offduty-session");
       latest.current = null;
+      networkHealth.stream.expectState(false);
       setState(null);
       setPlayerId("");
       notifyRef.current("此身份已移交到另一个窗口。");
@@ -218,12 +222,14 @@ export function useNetwork(notify: (message: string) => void) {
             }
             if (r.ok) {
               if (r.token) {
+                networkHealth.stream.expectState(true);
                 sessionStorage.setItem("offduty-session", r.token);
                 setPlayerId(r.playerId!);
               }
               if (event === "room:leave") {
                 sessionStorage.removeItem("offduty-session");
                 latest.current = null;
+                networkHealth.stream.expectState(false);
                 setState(null);
                 setPlayerId("");
               }

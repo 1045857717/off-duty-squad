@@ -52,6 +52,7 @@ import {
   RELAYS,
   SPORE_ZONES,
 } from "../../shared/content";
+import type { FrameDiagnosticsSnapshot } from "../frameDiagnostics";
 import type {
   GameState,
   Input,
@@ -68,6 +69,7 @@ export type SceneBridge = {
   hidden: boolean;
   metrics: {
     fps: number;
+    frameDiagnostics?: FrameDiagnosticsSnapshot;
     view?: { x: number; y: number; w: number; h: number };
     positions?: Record<string, Vec>;
   };

@@ -72,6 +72,8 @@ jobs:
       - run: npx playwright install --with-deps --only-shell chromium
       - run: npm run test:lobby
       - run: npm run test:viewport
+      - run: npm run test:frame-check
+      - run: npm run test:diagnostics
       - run: npm run test:network-hud
       - run: npm run test:community
       - run: npm run test:work
@@ -86,6 +88,8 @@ jobs:
           path: |
             test-results/lobby41
             test-results/viewport412
+            test-results/diagnostics413
+            test-results/frame-check413
             test-results/network-hud412
             test-results/community
             test-results/work41

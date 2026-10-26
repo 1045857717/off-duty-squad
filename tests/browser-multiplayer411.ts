@@ -28,6 +28,7 @@ import {
   beginWireSample,
   distribution,
   endWireSample,
+  engineSessionId,
   formSquad,
   installFixture,
   installPageProbe,
@@ -490,7 +491,8 @@ async function measurePhase(
         (row.tcp.bytesWritten - row.startBytes) / (elapsedMs / 1000),
       connectedAtEnd: !row.tcp.destroyed,
       sameConnectionAtEnd: [...app!.io.sockets.sockets.values()].some(
-        (s) => s.id === row.socketId && s.conn.transport.sid === row.engineId,
+        (s) =>
+          s.id === row.socketId && engineSessionId(s.conn) === row.engineId,
       ),
     })) ?? null;
   const rows = players.map((p, i) => {

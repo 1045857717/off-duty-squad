@@ -1,5 +1,24 @@
 # Changelog / 更新日志
 
+## [4.1.3] - 2026-10-26
+
+### Fixed / 修复
+
+- 延迟探测改为有确认与超时的普通消息，避免可丢弃消息在发送忙碌时被跳过、制造虚假的探测超时。
+- 连接先通过 HTTP 建立，再自动升级 WebSocket；升级被阻断或悬挂时继续使用 HTTP 轮询，并允许尝试其他可用传输。
+- 将 RTT 探测、实际游戏同步与连接状态分开，房间重连或显示恢复后增加首份状态的等待期限；大厅未进房时保持未测量。
+- Send sparse latency probes reliably with a bounded acknowledgement deadline. Establish over HTTP and upgrade to WebSocket; blocked or hanging upgrades no longer prevent an otherwise usable connection.
+
+### Added / 新增
+
+- F2 增加帧率与联机诊断：实际绘制、浏览器回调、目标上限、CPU 帧内时间、通道、同步频率与到包抖动；支持主动复制数值诊断。
+- 增加五秒空载刷新对照页，使用原生 RAF 并限制样本数量；页面隐藏会中止，长调度停顿明确提示，不冒充物理刷新率认证。
+- Measure browser callbacks separately from admitted render steps without fake frame loops or automatic system-setting changes. Distinguish a missing RTT reply from a stalled state stream.
+
+### Verification / 验证
+
+- Add real-transport regressions for sender backpressure, unavailable/silent WebSocket upgrades and healthy upgrades, plus frame-counter, state-arrival and responsive browser regressions. See [4.1.3 diagnosis](docs/PERFORMANCE-4.1.3.md) for measured conditions and limits.
+
 ## [4.1.2] - 2026-10-23
 
 ### Changed / 优化

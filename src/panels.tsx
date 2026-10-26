@@ -1,3 +1,6 @@
+import { PerformanceDiagnostics } from "./PerformanceDiagnostics";
+import type { SceneBridge } from "./game/StationScene";
+import type { NetworkHealth } from "./networkHealth";
 import { ThemedSelect } from "./ThemedSelect";
 import { useState } from "react";
 import { Icon } from "./icons";
@@ -24,11 +27,15 @@ export const EMPTY_RECORDS: Records = {
   highestMission: 0,
 };
 export function SettingsPanel({
+  bridge,
+  networkHealth,
   settings,
   update,
   onClose,
   notify,
 }: {
+  bridge: SceneBridge;
+  networkHealth: NetworkHealth;
   settings: Settings;
   update: (p: Partial<Settings>) => void;
   onClose: () => void;
@@ -57,7 +64,7 @@ export function SettingsPanel({
               update({ frameCap: Number(v) as Settings["frameCap"] })
             }
             options={[
-              ["0", "高刷 · 跟随屏幕"],
+              ["0", "高刷 · 跟随浏览器回调"],
               ["144", "144 FPS 上限"],
               ["165", "165 FPS 上限"],
               ["240", "240 FPS 上限"],
@@ -65,6 +72,11 @@ export function SettingsPanel({
             ]}
           />
         </label>
+        <PerformanceDiagnostics
+          bridge={bridge}
+          networkHealth={networkHealth}
+          notify={notify}
+        />
         <label className="quality-select">
           <span>画面精细度</span>
           <ThemedSelect
@@ -129,7 +141,8 @@ export function SettingsPanel({
         />
         <p className="inline-note">
           <Icon name="help" />
-          默认解除60帧限制。144Hz以上显示器才能显示相应帧率；右下角显示真实绘制帧率。高分屏较吃GPU时，可选择均衡画质。
+          高刷是渲染目标，不保证浏览器一定提供 144 次/秒的回调。若实际停在
+          60，请展开上方诊断做空载对照；高分屏渲染较重时可尝试均衡画质。
         </p>
       </div>
       <div className="settings-group">
