@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src data:; base-uri 'none'; form-action 'none'; object-src 'none'"
+    />
+    <title>浏览器空载刷新测试</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./frame-check.css" />
+    <script src="./frame-check.js" defer></script>
+  </head>
+  <body>
+    <main id="frame-check" data-state="idle">
+      <header>
+        <h1>浏览器空载刷新测试</h1>
+        <p class="intro">
+          用 5 秒原生 requestAnimationFrame
+          回调，观察浏览器在轻负载页面中的回调频率。
+        </p>
+      </header>
+
+      <section class="measurement" aria-labelledby="measurement-title">
+        <h2 id="measurement-title">空载参考</h2>
+        <p class="instructions" id="frame-instructions">
+          请在大厅或对局结束后测试，联机对局不会暂停。关闭其他高负载页面，将本页放在要测试的屏幕上；开始后保持页面在前台可见。
+        </p>
+        <div class="actions">
+          <button
+            id="frame-start"
+            type="button"
+            aria-describedby="frame-instructions"
+            disabled
+          >
+            开始 5 秒测试
+          </button>
+          <button id="frame-copy" type="button" disabled>复制结果</button>
+        </div>
+        <p
+          id="frame-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          准备就绪，点击开始。结果仅供对照。
+        </p>
+        <div class="progress-caption" aria-hidden="true">
+          <span>测量进度</span>
+          <span id="frame-progress-text">0.0 / 5.0 秒</span>
+        </div>
+        <progress
+          id="frame-progress"
+          max="5000"
+          value="0"
+          aria-label="5 秒测量进度"
+        ></progress>
+
+        <section id="frame-result" aria-labelledby="result-title" hidden>
+          <h2 id="result-title">本次测量结果</h2>
+          <p class="rate">
+            <output id="frame-rate" aria-label="浏览器回调平均频率">—</output
+            ><span>浏览器回调 次/秒</span>
+          </p>
+          <dl class="statistics">
+            <div>
+              <dt>实际测量时长</dt>
+              <dd><output id="frame-duration">—</output> 秒</dd>
+            </div>
+            <div>
+              <dt>统计回调数</dt>
+              <dd><output id="frame-callbacks">—</output> 次</dd>
+            </div>
+            <div>
+              <dt>全程平均间隔</dt>
+              <dd><output id="frame-mean">—</output> ms</dd>
+            </div>
+            <div>
+              <dt>全程最大间隔</dt>
+              <dd><output id="frame-max">—</output> ms</dd>
+            </div>
+            <div>
+              <dt>样本中位间隔</dt>
+              <dd><output id="frame-median">—</output> ms</dd>
+            </div>
+            <div>
+              <dt>样本 P95 间隔</dt>
+              <dd><output id="frame-p95">—</output> ms</dd>
+            </div>
+          </dl>
+          <p class="method">
+            首个回调用于建立起点，其后统计至少 5
+            秒，到首个达到时长的回调结束。平均频率 = 统计回调数 ÷
+            实际时长；间隔样本仅保留末尾最多 512 段。
+          </p>
+        </section>
+        <p
+          id="frame-copy-status"
+          class="copy-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+        <pre
+          id="frame-result-json"
+          tabindex="0"
+          aria-label="可手动复制的 JSON 测量结果"
+          hidden
+        ></pre>
+        <noscript
+          ><p>
+            请启用 JavaScript 后重新打开此页，才能运行原生回调测试。
+          </p></noscript
+        >
+      </section>
+
+      <aside aria-labelledby="comparison-title">
+        <h2 id="comparison-title">怎么对照游戏</h2>
+        <p>
+          在同一块屏幕、相同窗口环境下分别测试，避免同时运行带来额外负载。本页不加载游戏引擎或游戏画面，仅更新少量进度文字。
+        </p>
+        <dl class="comparison">
+          <div>
+            <dt>空载约 60，游戏也约 60</dt>
+            <dd>
+              先核对 Windows「高级显示」中的刷新率，再检查
+              Chrome「节能模式」和「图形加速（硬件加速）」。同时确认是否正在使用虚拟屏幕或远程桌面。
+            </dd>
+          </div>
+          <div>
+            <dt>空载明显更高，游戏较低</dt>
+            <dd>
+              优先查看游戏的 GPU 渲染负载与 CPU
+              主线程耗时。空载结果提供比较基准，不能单独确定瓶颈。
+            </dd>
+          </div>
+        </dl>
+        <p class="limit">
+          这里测到的是浏览器回调频率，不等同于显示器物理刷新率，也不保证实际游戏帧率。切换到后台会中止本次测量并清空读数；返回后可重新开始。
+        </p>
+      </aside>
+      <footer>
+        结果只在本页保留；仅在点击「复制结果」时写入剪贴板。复制内容仅含测量数值，不含用户或设备标识。
+      </footer>
+    </main>
+  </body>
+</html>

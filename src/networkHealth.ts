@@ -1,3 +1,4 @@
+import { NetworkStream } from "./networkStream";
 export const NETWORK_PROBE_INTERVAL_MS = 3000;
 export const NETWORK_PROBE_TIMEOUT_MS = 2500;
 // One scheduled probe plus its acknowledgement deadline.
@@ -25,14 +26,19 @@ export class NetworkHealth {
   private waitingSince = 0;
   private failed = false;
 
-  constructor(private readonly now: () => number = () => performance.now()) {}
+  readonly stream: NetworkStream;
+  constructor(private readonly now: () => number = () => performance.now()) {
+    this.stream = new NetworkStream(now);
+  }
 
   setConnected(connected: boolean) {
     this.connected = connected;
+    this.stream.setConnected(connected);
     this.reset();
   }
 
   reset() {
+    this.stream.reset();
     // Invalidate replies from a previous connection, visibility period or owner.
     this.serial++;
     this.pending = null;

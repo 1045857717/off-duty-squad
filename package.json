@@ -1,6 +1,6 @@
 {
   "name": "off-duty-squad",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "private": true,
   "type": "module",
   "description": "带薪摸鱼 — 1–4人带薪摸鱼合作闯关 / 随机构筑无尽生存",
@@ -8,13 +8,13 @@
     "dev": "concurrently -k -n server,web -c green,cyan \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
-    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts tests/feel.test.ts tests/community.test.ts tests/basics.test.ts tests/quiet-undead.test.ts tests/combat-direction.test.ts tests/playability.test.ts tests/transport-performance.test.ts tests/remote-motion.test.ts tests/snapshot-cadence.test.ts tests/network-health.test.ts && node --test tests/release.test.mjs tests/release-notes.test.mjs",
+    "test": "tsx --test tests/simulation.test.ts tests/network.test.ts tests/rendering.test.ts tests/damage.test.ts tests/rogue.test.ts tests/social.test.ts tests/effects.test.ts tests/identity.test.ts tests/arsenal.test.ts tests/launch.test.ts tests/growth.test.ts tests/office.test.ts tests/careers.test.ts tests/comedy.test.ts tests/motion.test.ts tests/readability.test.ts tests/feel.test.ts tests/community.test.ts tests/basics.test.ts tests/quiet-undead.test.ts tests/combat-direction.test.ts tests/playability.test.ts tests/transport-performance.test.ts tests/remote-motion.test.ts tests/snapshot-cadence.test.ts tests/network-health.test.ts tests/network-transport.test.ts tests/network-stream.test.ts tests/frame-diagnostics.test.ts && node --test tests/release.test.mjs tests/release-notes.test.mjs",
     "desktop": "electron electron/main.cjs",
     "check": "npm test && npm run build",
     "browser:install": "playwright install chromium",
     "test:browser": "tsx tests/browser-abyss.ts",
     "desktop:smoke": "electron electron/main.cjs --compact --smoke-test",
-    "format:check": "prettier --check src server shared tests electron scripts/*.mjs *.json *.ts index.html",
+    "format:check": "prettier --check src server shared tests electron scripts/*.mjs *.json *.ts index.html public/frame-check.*",
     "test:windows": "node tests/browser-windows.mjs",
     "test:pip": "node tests/browser-pip.mjs",
     "test:performance": "node tests/performance.mjs",
@@ -52,7 +52,9 @@
     "test:transport": "tsx --test tests/transport-performance.test.ts",
     "test:multiplayer": "tsx tests/browser-multiplayer411.ts",
     "test:viewport": "tsx tests/browser-viewport412.ts",
-    "test:network-hud": "tsx tests/browser-network-hud412.ts"
+    "test:network-hud": "tsx tests/browser-network-hud412.ts",
+    "test:frame-check": "tsx tests/browser-frame-check413.ts",
+    "test:diagnostics": "tsx tests/browser-diagnostics413.ts"
   },
   "dependencies": {
     "express": "4.22.3",

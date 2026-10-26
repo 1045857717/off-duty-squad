@@ -1375,6 +1375,8 @@ export default function App() {
       )}
       {panel === "settings" && (
         <SettingsPanel
+          bridge={bridge}
+          networkHealth={net.networkHealth}
           settings={settings}
           update={update}
           onClose={close}

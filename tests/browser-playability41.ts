@@ -107,9 +107,39 @@ try {
       .waitFor();
   };
   const press = async () => {
+    const previous = Math.max(
+      me.interactionFeedback?.seq || 0,
+      await page.evaluate(
+        (id) =>
+          window.__OFFDUTY__!.state!.players.find((p) => p.id === id)
+            ?.interactionFeedback?.seq || 0,
+        me.id,
+      ),
+    );
     await page.keyboard.down("e");
-    await page.waitForTimeout(850);
-    await page.keyboard.up("e");
+    try {
+      await page.waitForFunction(
+        ({ id, seq }) =>
+          (window.__OFFDUTY__?.state?.players.find((p) => p.id === id)
+            ?.interactionFeedback?.seq || 0) > seq,
+        { id: me.id, seq: previous },
+        { timeout: 5000 },
+      );
+    } finally {
+      await page.keyboard.up("e");
+    }
+    const feedback = await page.evaluate(
+      (id) =>
+        window.__OFFDUTY__!.state!.players.find((p) => p.id === id)!
+          .interactionFeedback!,
+      me.id,
+    );
+    await page
+      .getByRole(feedback.status === "complete" ? "status" : "alert", {
+        name: feedback.status === "complete" ? "交互效果反馈" : "交互失败反馈",
+      })
+      .filter({ hasText: feedback.message })
+      .waitFor();
   };
   const receipt = page.getByRole("status", { name: "交互效果反馈" });
   g.state.coins = 50;
@@ -180,9 +210,7 @@ try {
     .filter({ hasText: /减速.*10/ })
     .waitFor();
   assert.match(await page.getByLabel("E交互进度").innerText(), /减速.*10/);
-  await page.keyboard.down("e");
-  await page.waitForTimeout(1050);
-  await page.keyboard.up("e");
+  await press();
   await receipt.waitFor();
   assert.match(await receipt.innerText(), /减速50%.*10/);
   assert.ok(g.state.officeProps[0].active > 8);

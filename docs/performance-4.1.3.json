@@ -1,0 +1,599 @@
+{
+  "date": "2026-10-26",
+  "conditions": {
+    "fourIndependentBrowsers": true,
+    "sharedGPU": true,
+    "viewport": [1366, 768],
+    "dpr": 2,
+    "gameCap": 144,
+    "enemyCounts": [6, 150],
+    "clustered": true,
+    "secondsPerPhase": 10
+  },
+  "runs": [
+    {
+      "run": "2026-10-26T02-44-55-660Z-55232",
+      "valid": true,
+      "throughput": "simulated/display-unconstrained throughput; Chromium vsync/frame limit disabled, game FramePacer cap 144",
+      "physical144HzDisplayEvidence": false,
+      "build": {
+        "sha256": "d3f975f5464bd7762335d41d91c3bc0d26032a162cf5d613acd83149574e452c",
+        "modifiedAt": "2026-10-26T02:40:06.771Z"
+      },
+      "phases": [
+        {
+          "name": "baseline6enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 143.9582521072321,
+            "fastestPlayerRenderedFramesPerSecond": 143.9870411666383,
+            "worstPlayerFrameP95Ms": 9.399999976158142,
+            "worstPlayerFrameP99Ms": 10.899999976158142,
+            "worstPlayerStateGapP95Ms": 67.80600000638515,
+            "worstPlayerStateGapMaxMs": 80.55299997795373,
+            "totalServerTcpDeltaBytesWritten": 8135156,
+            "totalServerTcpBytesPerSecond": 805863.2275533727
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "fps": 143.9582521072321,
+              "frameIntervalsMs": {
+                "count": 1439,
+                "min": 2.299999952316284,
+                "mean": 6.94468380818357,
+                "p50": 7,
+                "p95": 9.399999976158142,
+                "p99": 10.899999976158142,
+                "max": 14.100000023841858
+              },
+              "referenceRafPerSecond": 506.05324456028404,
+              "stepCostMs": {
+                "count": 1440,
+                "min": 0.7999999523162842,
+                "mean": 1.7986805547442701,
+                "p50": 1.8000000715255737,
+                "p95": 2.4000000953674316,
+                "p99": 2.700000047683716,
+                "max": 5.200000047683716
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 17.522895048372398
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "fps": 143.9870411666383,
+              "frameIntervalsMs": {
+                "count": 1439,
+                "min": 2.200000047683716,
+                "mean": 6.944961779062909,
+                "p50": 7,
+                "p95": 9.199999928474426,
+                "p99": 10.599999904632568,
+                "max": 13.399999976158142
+              },
+              "referenceRafPerSecond": 547.7507024380866,
+              "stepCostMs": {
+                "count": 1440,
+                "min": 0.7000000476837158,
+                "mean": 1.6747222224871317,
+                "p50": 1.6999999284744263,
+                "p95": 2.299999952316284,
+                "p99": 2.6999999284744263,
+                "max": 4.299999952316284
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 17.522581410061726
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "fps": 143.97696368546704,
+              "frameIntervalsMs": {
+                "count": 1439,
+                "min": 1.899999976158142,
+                "mean": 6.944961778980067,
+                "p50": 6.899999976158142,
+                "p95": 9.200000047683716,
+                "p99": 10.5,
+                "max": 15
+              },
+              "referenceRafPerSecond": 533.7146056618216,
+              "stepCostMs": {
+                "count": 1440,
+                "min": 0.7999999523162842,
+                "mean": 1.6086805567145348,
+                "p50": 1.600000023841858,
+                "p95": 2.299999952316284,
+                "p99": 2.5999999046325684,
+                "max": 2.899999976158142
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 17.52250959401949
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "fps": 143.98337346714834,
+              "frameIntervalsMs": {
+                "count": 1440,
+                "min": 2,
+                "mean": 6.945486111111111,
+                "p50": 6.900000095367432,
+                "p95": 9.299999952316284,
+                "p99": 10.899999976158142,
+                "max": 13.099999904632568
+              },
+              "referenceRafPerSecond": 541.6612543826586,
+              "stepCostMs": {
+                "count": 1441,
+                "min": 0.7999999523162842,
+                "mean": 1.7495489257809853,
+                "p50": 1.7999999523162842,
+                "p95": 2.399999976158142,
+                "p99": 2.799999952316284,
+                "max": 3.100000023841858
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 17.522372728844342
+            }
+          ]
+        },
+        {
+          "name": "dense150enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 142.96282966394654,
+            "fastestPlayerRenderedFramesPerSecond": 144.10777102688635,
+            "worstPlayerFrameP95Ms": 13.5,
+            "worstPlayerFrameP99Ms": 15.399999976158142,
+            "worstPlayerStateGapP95Ms": 67.29500007349998,
+            "worstPlayerStateGapMaxMs": 98.81300001870841,
+            "totalServerTcpDeltaBytesWritten": 21602942,
+            "totalServerTcpBytesPerSecond": 2143628.1130730095
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "fps": 142.96282966394654,
+              "frameIntervalsMs": {
+                "count": 1429,
+                "min": 4.100000023841858,
+                "mean": 6.994051784464661,
+                "p50": 6.100000023841858,
+                "p95": 13.399999976158142,
+                "p99": 15.100000023841858,
+                "max": 17.299999952316284
+              },
+              "referenceRafPerSecond": 151.46062023837692,
+              "stepCostMs": {
+                "count": 1430,
+                "min": 2.899999976158142,
+                "mean": 4.386923078223542,
+                "p50": 4.200000047683716,
+                "p95": 6,
+                "p99": 7,
+                "max": 10.100000023841858
+              },
+              "visibleEnemies": {
+                "min": 148,
+                "max": 150
+              },
+              "snapshotHz": 19.22972577796483
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "fps": 144.10777102688635,
+              "frameIntervalsMs": {
+                "count": 1441,
+                "min": 3.899999976158142,
+                "mean": 6.939208882786515,
+                "p50": 6.100000023841858,
+                "p95": 12.800000071525574,
+                "p99": 14.699999928474426,
+                "max": 17.300000071525574
+              },
+              "referenceRafPerSecond": 196.97393668099377,
+              "stepCostMs": {
+                "count": 1442,
+                "min": 2.799999952316284,
+                "mean": 4.166574203604303,
+                "p50": 4,
+                "p95": 5.700000047683716,
+                "p99": 6.699999928474426,
+                "max": 9.199999928474426
+              },
+              "visibleEnemies": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.32874921483151
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "fps": 143.73388241374698,
+              "frameIntervalsMs": {
+                "count": 1437,
+                "min": 3.799999952316284,
+                "mean": 6.956715379312127,
+                "p50": 6,
+                "p95": 13.5,
+                "p99": 15.399999976158142,
+                "max": 17.600000023841858
+              },
+              "referenceRafPerSecond": 165.22399696100402,
+              "stepCostMs": {
+                "count": 1438,
+                "min": 2.6999999284744263,
+                "mean": 4.260222531906918,
+                "p50": 4.099999904632568,
+                "p95": 5.899999976158142,
+                "p99": 6.799999952316284,
+                "max": 11.300000071525574
+              },
+              "visibleEnemies": {
+                "min": 148,
+                "max": 150
+              },
+              "snapshotHz": 19.229566810988864
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "fps": 143.66782560147422,
+              "frameIntervalsMs": {
+                "count": 1437,
+                "min": 3.9000000953674316,
+                "mean": 6.961099512890635,
+                "p50": 6,
+                "p95": 13.299999952316284,
+                "p99": 15.299999952316284,
+                "max": 18.399999976158142
+              },
+              "referenceRafPerSecond": 181.133357312568,
+              "stepCostMs": {
+                "count": 1438,
+                "min": 2.8000000715255737,
+                "mean": 4.283310155875162,
+                "p50": 4.100000023841858,
+                "p95": 5.700000047683716,
+                "p99": 6.899999976158142,
+                "max": 9.900000095367432
+              },
+              "visibleEnemies": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.229509438660983
+            }
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "player": 2,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 3,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 4,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 1,
+          "result": "room:leave-confirmed-via-ui"
+        }
+      ]
+    },
+    {
+      "run": "2026-10-26T02-47-09-533Z-116672",
+      "valid": true,
+      "throughput": "display-paced Chromium; game FramePacer cap 144; physical display refresh unverified",
+      "physical144HzDisplayEvidence": false,
+      "build": {
+        "sha256": "d3f975f5464bd7762335d41d91c3bc0d26032a162cf5d613acd83149574e452c",
+        "modifiedAt": "2026-10-26T02:40:06.771Z"
+      },
+      "phases": [
+        {
+          "name": "baseline6enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 59.26740292838939,
+            "fastestPlayerRenderedFramesPerSecond": 59.26858764882874,
+            "worstPlayerFrameP95Ms": 18.5,
+            "worstPlayerFrameP99Ms": 33.5,
+            "worstPlayerStateGapP95Ms": 66.27099995967001,
+            "worstPlayerStateGapMaxMs": 84.28800001274794,
+            "totalServerTcpDeltaBytesWritten": 9245049,
+            "totalServerTcpBytesPerSecond": 921546.8635844548
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "fps": 59.26740292838939,
+              "frameIntervalsMs": {
+                "count": 592,
+                "min": 12.299999952316284,
+                "mean": 16.864527027147847,
+                "p50": 16.600000023841858,
+                "p95": 18.300000071525574,
+                "p99": 33.199999928474426,
+                "max": 34.700000047683716
+              },
+              "referenceRafPerSecond": 59.26740292838939,
+              "stepCostMs": {
+                "count": 593,
+                "min": 1,
+                "mean": 1.9379426659058157,
+                "p50": 1.9000000953674316,
+                "p95": 2.600000023841858,
+                "p99": 2.899999976158142,
+                "max": 3.600000023841858
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 19.832228317781066
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "fps": 59.26858764882874,
+              "frameIntervalsMs": {
+                "count": 592,
+                "min": 11.5,
+                "mean": 16.862837837958658,
+                "p50": 16.699999928474426,
+                "p95": 18.199999928474426,
+                "p99": 33,
+                "max": 36
+              },
+              "referenceRafPerSecond": 59.26858764882874,
+              "stepCostMs": {
+                "count": 593,
+                "min": 1,
+                "mean": 1.9345699828149496,
+                "p50": 2,
+                "p95": 2.600000023841858,
+                "p99": 2.899999976158142,
+                "max": 3.700000047683716
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 19.831948256115005
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "fps": 59.26858764882874,
+              "frameIntervalsMs": {
+                "count": 592,
+                "min": 10.399999976158142,
+                "mean": 16.863175675675677,
+                "p50": 16.699999928474426,
+                "p95": 18.5,
+                "p99": 32.90000009536743,
+                "max": 34.199999928474426
+              },
+              "referenceRafPerSecond": 59.26858764882874,
+              "stepCostMs": {
+                "count": 593,
+                "min": 1,
+                "mean": 2.049915683008165,
+                "p50": 2,
+                "p95": 2.700000047683716,
+                "p99": 2.9000000953674316,
+                "max": 3.5
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 19.83184054219574
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "fps": 59.268587648122576,
+              "frameIntervalsMs": {
+                "count": 592,
+                "min": 11.899999976158142,
+                "mean": 16.864358108188654,
+                "p50": 16.600000023841858,
+                "p95": 18.399999976158142,
+                "p99": 33.5,
+                "max": 34.800000071525574
+              },
+              "referenceRafPerSecond": 59.268587648122576,
+              "stepCostMs": {
+                "count": 593,
+                "min": 1,
+                "mean": 2.003709948284027,
+                "p50": 2,
+                "p95": 2.700000047683716,
+                "p99": 3.200000047683716,
+                "max": 4.600000023841858
+              },
+              "visibleEnemies": {
+                "min": 6,
+                "max": 6
+              },
+              "snapshotHz": 19.83176366086624
+            }
+          ]
+        },
+        {
+          "name": "dense150enemies",
+          "summary": {
+            "slowestPlayerRenderedFramesPerSecond": 59.88862116212198,
+            "fastestPlayerRenderedFramesPerSecond": 59.89101634754787,
+            "worstPlayerFrameP95Ms": 19,
+            "worstPlayerFrameP99Ms": 20.90000009536743,
+            "worstPlayerStateGapP95Ms": 65.25400001555681,
+            "worstPlayerStateGapMaxMs": 83.91400007531047,
+            "totalServerTcpDeltaBytesWritten": 21753984,
+            "totalServerTcpBytesPerSecond": 2168377.432395422
+          },
+          "players": [
+            {
+              "player": 1,
+              "valid": true,
+              "fps": 59.88921994069624,
+              "frameIntervalsMs": {
+                "count": 598,
+                "min": 9.100000023841858,
+                "mean": 16.69581939803318,
+                "p50": 16.699999928474426,
+                "p95": 19,
+                "p99": 20.90000009536743,
+                "max": 36.300000071525574
+              },
+              "referenceRafPerSecond": 59.88921994069624,
+              "stepCostMs": {
+                "count": 599,
+                "min": 3.799999952316284,
+                "mean": 5.522036727959406,
+                "p50": 5.300000071525574,
+                "p95": 7.299999952316284,
+                "p99": 8.299999952316284,
+                "max": 9.299999952316284
+              },
+              "visibleEnemies": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 19.624363386149835
+            },
+            {
+              "player": 2,
+              "valid": true,
+              "fps": 59.88862116212198,
+              "frameIntervalsMs": {
+                "count": 598,
+                "min": 9.600000023841858,
+                "mean": 16.691973244266766,
+                "p50": 16.600000023841858,
+                "p95": 19,
+                "p99": 20.199999928474426,
+                "max": 33.299999952316284
+              },
+              "referenceRafPerSecond": 59.88862116212198,
+              "stepCostMs": {
+                "count": 599,
+                "min": 2.700000047683716,
+                "mean": 4.343405675609442,
+                "p50": 4.200000047683716,
+                "p95": 6,
+                "p99": 6.799999952316284,
+                "max": 7.200000047683716
+              },
+              "visibleEnemies": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.624277957316675
+            },
+            {
+              "player": 3,
+              "valid": true,
+              "fps": 59.89101634754787,
+              "frameIntervalsMs": {
+                "count": 598,
+                "min": 8.899999976158142,
+                "mean": 16.692307692307693,
+                "p50": 16.600000023841858,
+                "p95": 19,
+                "p99": 20.799999952316284,
+                "max": 31.600000023841858
+              },
+              "referenceRafPerSecond": 59.89101634754787,
+              "stepCostMs": {
+                "count": 599,
+                "min": 3.100000023841858,
+                "mean": 4.73322203760354,
+                "p50": 4.600000023841858,
+                "p95": 6.300000071525574,
+                "p99": 7.600000023841858,
+                "max": 8.5
+              },
+              "visibleEnemies": {
+                "min": 147,
+                "max": 150
+              },
+              "snapshotHz": 19.624211882436395
+            },
+            {
+              "player": 4,
+              "valid": true,
+              "fps": 59.89101634754787,
+              "frameIntervalsMs": {
+                "count": 598,
+                "min": 11.700000047683716,
+                "mean": 16.69180602014663,
+                "p50": 16.700000047683716,
+                "p95": 18.699999928474426,
+                "p99": 20.5,
+                "max": 34.200000047683716
+              },
+              "referenceRafPerSecond": 59.89101634754787,
+              "stepCostMs": {
+                "count": 599,
+                "min": 2.899999976158142,
+                "mean": 4.5434056767239195,
+                "p50": 4.400000095367432,
+                "p95": 5.900000095367432,
+                "p99": 7.100000023841858,
+                "max": 8.100000023841858
+              },
+              "visibleEnemies": {
+                "min": 150,
+                "max": 150
+              },
+              "snapshotHz": 19.624152650007716
+            }
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "player": 2,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 3,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 4,
+          "result": "room:leave-confirmed-via-ui"
+        },
+        {
+          "player": 1,
+          "result": "room:leave-confirmed-via-ui"
+        }
+      ]
+    }
+  ]
+}

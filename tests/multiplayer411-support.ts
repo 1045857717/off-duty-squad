@@ -216,8 +216,13 @@ export async function openPlayer(
   player.cdp = cdp;
   const pendingPings = new Map<string, number>();
   cdp.on("Network.webSocketCreated", ({ requestId, url }) => {
-    if (new URL(url).pathname.includes("/socket.io/"))
+    const address = new URL(url);
+    if (address.pathname.includes("/socket.io/")) {
       player.socketRequestIds.add(requestId);
+      // Polling-first clients send the existing Engine.IO sid in the upgrade
+      // URL; direct-WebSocket clients still provide it in their open packet.
+      player.engineId = address.searchParams.get("sid") || player.engineId;
+    }
   });
   cdp.on(
     "Network.webSocketFrameReceived",
@@ -580,10 +585,19 @@ export function installFixture(game: Game, enemyCount: 6 | 150) {
   }));
 }
 
+/** Pinned Engine.IO instrumentation adapter, like the native TCP counter below.
+ * The runtime session id survives transport upgrade; transport.sid may not.
+ * Fail explicitly if a future SDK changes this internal measurement seam. */
+export function engineSessionId(connection: unknown): string {
+  const id = (connection as { id?: unknown }).id;
+  assert.equal(typeof id, "string", "Engine.IO session id unavailable");
+  return id as string;
+}
+
 export function serverTcpCounters(app: OwnedServer, players: Player[]) {
   return players.map((player) => {
     const socket = [...app.io.sockets.sockets.values()].find(
-      (s) => s.conn.transport.sid === player.engineId,
+      (s) => engineSessionId(s.conn) === player.engineId,
     );
     assert.ok(socket, `Missing server socket for player ${player.number}`);
     assert.equal(socket.conn.transport.name, "websocket");
@@ -598,7 +612,7 @@ export function serverTcpCounters(app: OwnedServer, players: Player[]) {
     );
     return {
       player: player.number,
-      engineId: socket.conn.transport.sid,
+      engineId: engineSessionId(socket.conn),
       socketId: socket.id,
       tcp,
       startBytes: tcp.bytesWritten,
